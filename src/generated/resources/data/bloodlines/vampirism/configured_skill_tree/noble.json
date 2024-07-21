@@ -1,0 +1,69 @@
+{
+  "children": [
+    {
+      "node": "bloodlines:noble_better_trade_prices"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "node": "bloodlines:noble_celerity"
+            }
+          ],
+          "node": "bloodlines:noble_faster_movement_speed"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:noble_mesmerise"
+            },
+            {
+              "children": [
+                {
+                  "node": "bloodlines:noble_noble_flank"
+                }
+              ],
+              "node": "bloodlines:noble_noble_intrigue"
+            },
+            {
+              "children": [
+                {
+                  "node": "bloodlines:noble_better_bat_flight_speed"
+                },
+                {
+                  "node": "bloodlines:noble_bottomless_chalice"
+                }
+              ],
+              "node": "bloodlines:noble_rank_4"
+            },
+            {
+              "node": "bloodlines:noble_better_faster_resurrect"
+            },
+            {
+              "node": "bloodlines:noble_invisibility"
+            }
+          ],
+          "node": "bloodlines:noble_rank_3"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:noble_enhanced_leeching"
+            }
+          ],
+          "node": "bloodlines:noble_leeching"
+        }
+      ],
+      "node": "bloodlines:noble_rank_2"
+    },
+    {
+      "node": "bloodlines:noble_better_more_ticks_in_sun"
+    },
+    {
+      "node": "bloodlines:noble_better_blood_drain"
+    }
+  ],
+  "node": "bloodlines:noble_root",
+  "skill_tree": "bloodlines:vampire/noble"
+}

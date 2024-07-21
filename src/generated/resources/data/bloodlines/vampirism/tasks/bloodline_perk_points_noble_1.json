@@ -1,0 +1,50 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:stat",
+        "amount": 10000,
+        "description": {
+          "translate": "stat.vampirism.blood_drunk"
+        },
+        "id": "vampirism:blood_drunk",
+        "stat": "vampirism:blood_drunk"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.emerald"
+        },
+        "id": "minecraft:emerald",
+        "item": {
+          "count": 24,
+          "id": "minecraft:emerald"
+        }
+      },
+      {
+        "type": "vampirism:stat",
+        "amount": 20,
+        "description": {
+          "translate": "stat.minecraft.traded_with_villager"
+        },
+        "id": "minecraft:traded_with_villager",
+        "stat": "minecraft:traded_with_villager"
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_perk_reward",
+    "perkPointAmount": 1
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_perk_points_noble_1"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:noble",
+      "matchExactly": false
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:entity",
+        "amount": 1,
+        "description": {
+          "translate": "entity.minecraft.elder_guardian"
+        },
+        "entityType": "minecraft:elder_guardian",
+        "id": "minecraft:elder_guardian"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.packed_ice"
+        },
+        "id": "minecraft:packed_ice",
+        "item": {
+          "count": 64,
+          "id": "minecraft:packed_ice"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.tropical_fish"
+        },
+        "id": "minecraft:tropical_fish",
+        "item": {
+          "count": 64,
+          "id": "minecraft:tropical_fish"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 4
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_ectotherm_three"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 3,
+      "bloodlineId": "bloodlines:ectotherm",
+      "matchExactly": true
+    }
+  ]
+}

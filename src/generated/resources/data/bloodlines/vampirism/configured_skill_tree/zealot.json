@@ -1,0 +1,67 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "node": "bloodlines:zealot_tunneler"
+        }
+      ],
+      "node": "bloodlines:zealot_stone_speed"
+    },
+    {
+      "children": [
+        {
+          "node": "bloodlines:zealot_shadow_walk"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:zealot_dark_cloak"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:zealot_obscured_power"
+                    }
+                  ],
+                  "node": "bloodlines:zealot_shadow_mastery"
+                }
+              ],
+              "node": "bloodlines:zealot_rank_4"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:zealot_frenzy"
+                    }
+                  ],
+                  "node": "bloodlines:zealot_wall_climb"
+                }
+              ],
+              "node": "bloodlines:zealot_fall_damage"
+            }
+          ],
+          "node": "bloodlines:zealot_rank_3"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:zealot_hex_protection"
+            }
+          ],
+          "node": "bloodlines:zealot_flesh_shadow_armour"
+        }
+      ],
+      "node": "bloodlines:zealot_rank_2"
+    },
+    {
+      "node": "bloodlines:zealot_spider_friend"
+    }
+  ],
+  "node": "bloodlines:zealot_root",
+  "skill_tree": "bloodlines:vampire/zealot"
+}

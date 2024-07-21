@@ -1,0 +1,63 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.amethyst_block"
+        },
+        "id": "minecraft:amethyst_block",
+        "item": {
+          "count": 24,
+          "id": "minecraft:amethyst_block"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 32,
+          "id": "minecraft:diamond"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 24,
+        "description": {
+          "translate": "entity.minecraft.enderman"
+        },
+        "entityType": "minecraft:enderman",
+        "id": "minecraft:enderman"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.sculk"
+        },
+        "id": "minecraft:sculk",
+        "item": {
+          "count": 64,
+          "id": "minecraft:sculk"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 3
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_zealot_two"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 2,
+      "bloodlineId": "bloodlines:zealot",
+      "matchExactly": true
+    }
+  ]
+}

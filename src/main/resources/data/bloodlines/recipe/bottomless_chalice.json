@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:gold_ingot"
+    },
+    "X": {
+      "item": "vampirism:human_heart"
+    },
+    "Y": {
+      "item": "minecraft:emerald"
+    },
+    "Z": {
+      "item": "vampirism:pure_blood_4"
+    }
+  },
+  "pattern": [
+    " X ",
+    "BZB",
+    "YBY"
+  ],
+  "result": {
+    "id": "bloodlines:bottomless_chalice"
+  }
+}

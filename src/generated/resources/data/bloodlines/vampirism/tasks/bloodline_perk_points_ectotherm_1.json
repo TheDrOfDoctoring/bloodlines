@@ -1,0 +1,52 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 8,
+          "id": "minecraft:diamond"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 1,
+        "description": {
+          "translate": "entity.minecraft.elder_guardian"
+        },
+        "entityType": "minecraft:elder_guardian",
+        "id": "minecraft:elder_guardian"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.salmon"
+        },
+        "id": "minecraft:salmon",
+        "item": {
+          "count": 32,
+          "id": "minecraft:salmon"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_perk_reward",
+    "perkPointAmount": 1
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_perk_points_ectotherm_1"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:ectotherm",
+      "matchExactly": false
+    }
+  ]
+}

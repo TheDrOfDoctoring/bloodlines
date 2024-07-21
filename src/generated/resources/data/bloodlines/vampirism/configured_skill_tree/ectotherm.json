@@ -1,0 +1,47 @@
+{
+  "children": [
+    {
+      "node": "bloodlines:ectotherm_fishmonger"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "node": "bloodlines:ectotherm_diffusion"
+            }
+          ],
+          "node": "bloodlines:ectotherm_refraction"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:ectotherm_frozen_slowness"
+            },
+            {
+              "node": "bloodlines:ectotherm_rank_4"
+            }
+          ],
+          "node": "bloodlines:ectotherm_rank_3"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:ectotherm_frost_control"
+            }
+          ],
+          "node": "bloodlines:ectotherm_ice_lord"
+        }
+      ],
+      "node": "bloodlines:ectotherm_rank_2"
+    },
+    {
+      "node": "bloodlines:ectotherm_underwater_mining_speed"
+    },
+    {
+      "node": "bloodlines:ectotherm_dolphin_leap"
+    }
+  ],
+  "node": "bloodlines:ectotherm_root",
+  "skill_tree": "bloodlines:vampire/ectotherm"
+}

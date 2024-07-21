@@ -1,0 +1,63 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 24,
+          "id": "minecraft:diamond"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.emerald"
+        },
+        "id": "minecraft:emerald",
+        "item": {
+          "count": 32,
+          "id": "minecraft:emerald"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.gold_block"
+        },
+        "id": "minecraft:gold_block",
+        "item": {
+          "count": 8,
+          "id": "minecraft:gold_block"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 20,
+        "description": {
+          "translate": "entity.vampirism.vampire_baron"
+        },
+        "entityType": "vampirism:vampire_baron",
+        "id": "vampirism:vampire_baron"
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 3
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_noble_two"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 2,
+      "bloodlineId": "bloodlines:noble",
+      "matchExactly": true
+    }
+  ]
+}

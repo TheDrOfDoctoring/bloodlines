@@ -1,0 +1,52 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.cod"
+        },
+        "id": "minecraft:cod",
+        "item": {
+          "count": 32,
+          "id": "minecraft:cod"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 10,
+        "description": {
+          "translate": "entity.minecraft.guardian"
+        },
+        "entityType": "minecraft:guardian",
+        "id": "minecraft:guardian"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.water_bucket"
+        },
+        "id": "minecraft:water_bucket",
+        "item": {
+          "count": 10,
+          "id": "minecraft:water_bucket"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 2
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_ectotherm_one"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:ectotherm",
+      "matchExactly": true
+    }
+  ]
+}

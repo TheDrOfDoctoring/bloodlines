@@ -1,0 +1,61 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.amethyst_block"
+        },
+        "id": "minecraft:amethyst_block",
+        "item": {
+          "count": 48,
+          "id": "minecraft:amethyst_block"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 64,
+          "id": "minecraft:diamond"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 48,
+        "description": {
+          "translate": "entity.minecraft.enderman"
+        },
+        "entityType": "minecraft:enderman",
+        "id": "minecraft:enderman"
+      },
+      {
+        "type": "vampirism:stat",
+        "amount": 1,
+        "description": {
+          "translate": "stat.vampirism.mother_defeated"
+        },
+        "id": "vampirism:mother_defeated",
+        "stat": "vampirism:mother_defeated"
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 4
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_zealot_three"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 3,
+      "bloodlineId": "bloodlines:zealot",
+      "matchExactly": true
+    }
+  ]
+}

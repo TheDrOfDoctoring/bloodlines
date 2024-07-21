@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "com.thedrofdoctoring.bloodlines.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "bloodlines.refmap.json",
+  "mixins": [
+    "ActionHandlerMixin",
+    "BatVampireActionMixin",
+    "BlockBehaviourMixin",
+    "EntityMixin",
+    "PlayerMixin",
+    "RegistriesDatapackGeneratorAccessor",
+    "SkillHandlerMixin",
+    "SpiderTargetGoalMixin",
+    "VampirePlayerMixin",
+    "VampirePlayerSpecialAttributesMixin",
+    "VillagerMixin"
+  ],
+  "client": [
+    "ScreenAccessor",
+    "ScreenEffectRenderer",
+    "SkillNodeScreenMixin"
+  ],
+  "minVersion": "0.8"
+}

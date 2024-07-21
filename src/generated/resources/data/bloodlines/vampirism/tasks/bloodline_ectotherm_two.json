@@ -1,0 +1,52 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:entity",
+        "amount": 20,
+        "description": {
+          "translate": "entity.minecraft.guardian"
+        },
+        "entityType": "minecraft:guardian",
+        "id": "minecraft:guardian"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.ice"
+        },
+        "id": "minecraft:ice",
+        "item": {
+          "count": 30,
+          "id": "minecraft:ice"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.salmon"
+        },
+        "id": "minecraft:salmon",
+        "item": {
+          "count": 48,
+          "id": "minecraft:salmon"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 3
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_ectotherm_two"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 2,
+      "bloodlineId": "bloodlines:ectotherm",
+      "matchExactly": true
+    }
+  ]
+}
