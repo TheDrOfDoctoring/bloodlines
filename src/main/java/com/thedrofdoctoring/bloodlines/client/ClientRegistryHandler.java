@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.client;
 
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class ClientRegistryHandler {

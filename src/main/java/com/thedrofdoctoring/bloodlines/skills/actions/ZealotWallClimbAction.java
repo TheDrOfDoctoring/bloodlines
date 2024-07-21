@@ -1,12 +1,10 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.vampirism.api.entity.player.actions.IAction;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
-import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 

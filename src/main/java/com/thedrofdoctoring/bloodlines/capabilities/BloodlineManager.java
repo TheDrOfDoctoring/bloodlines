@@ -1,25 +1,18 @@
 package com.thedrofdoctoring.bloodlines.capabilities;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.lib.HelperLib;
 import de.teamlapen.lib.lib.storage.IAttachment;
-import de.teamlapen.lib.lib.storage.ISyncable;
-import de.teamlapen.lib.lib.storage.ISyncableSaveData;
-import de.teamlapen.vampirism.api.VampirismRegistries;
-import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -32,11 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import static de.teamlapen.vampirism.entity.factions.FactionPlayerHandler.getCurrentFactionPlayer;
 
 public class BloodlineManager implements IBloodlineManager, IAttachment {
     public static final String NBT_KEY = "bloodline_manager";

@@ -6,22 +6,13 @@ import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.vampirism.api.entity.player.actions.IAction;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
-import de.teamlapen.vampirism.api.entity.player.refinement.IRefinement;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
-import de.teamlapen.vampirism.config.VampirismConfig;
-import de.teamlapen.vampirism.core.ModParticles;
-import de.teamlapen.vampirism.core.ModRefinements;
-import de.teamlapen.vampirism.particle.GenericParticleOptions;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.UUID;
 
 public class ZealotFrenzyAction extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
 

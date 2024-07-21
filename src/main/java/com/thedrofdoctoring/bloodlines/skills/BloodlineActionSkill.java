@@ -1,7 +1,6 @@
 package com.thedrofdoctoring.bloodlines.skills;
 
 import com.mojang.datafixers.util.Either;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.entity.player.skills.ActionSkill;

@@ -2,10 +2,8 @@ package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
-import de.teamlapen.vampirism.api.entity.player.refinement.IRefinement;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
-import de.teamlapen.vampirism.core.ModRefinements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

@@ -7,15 +7,8 @@ import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.task.ITaskRewardInstance;
 import de.teamlapen.vampirism.api.entity.player.task.TaskReward;
-import de.teamlapen.vampirism.core.ModParticles;
-import de.teamlapen.vampirism.core.ModSounds;
-import de.teamlapen.vampirism.particle.GenericParticleOptions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentSerialization;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public record BloodlinePerkReward(int perkPoints) implements TaskReward, ITaskRewardInstance {

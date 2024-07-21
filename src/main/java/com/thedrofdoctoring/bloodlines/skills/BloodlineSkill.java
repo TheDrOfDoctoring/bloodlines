@@ -3,14 +3,11 @@ package com.thedrofdoctoring.bloodlines.skills;
 import com.mojang.datafixers.util.Either;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
-import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.entity.player.skills.VampirismSkill;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;

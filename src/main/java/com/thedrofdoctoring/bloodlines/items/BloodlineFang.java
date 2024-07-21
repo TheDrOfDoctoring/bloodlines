@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.items;
 
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import de.teamlapen.vampirism.core.ModSounds;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.ChatFormatting;

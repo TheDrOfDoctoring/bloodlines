@@ -1,11 +1,8 @@
 package com.thedrofdoctoring.bloodlines;
 
 import com.mojang.logging.LogUtils;
-import com.mojang.serialization.Codec;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.client.ClientRegistryHandler;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
@@ -26,21 +23,12 @@ import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
 import com.thedrofdoctoring.bloodlines.tasks.BloodlineTasks;
 import de.teamlapen.lib.HelperRegistry;
 import de.teamlapen.vampirism.api.VampirismAPI;
-import de.teamlapen.vampirism.api.VampirismRegistries;
-import de.teamlapen.vampirism.api.entity.player.task.Task;
-import de.teamlapen.vampirism.core.ModRegistries;
-import de.teamlapen.vampirism.entity.player.skills.SkillNode;
-import de.teamlapen.vampirism.entity.player.skills.SkillTree;
-import de.teamlapen.vampirism.mixin.accessor.RegistriesDatapackGeneratorAccessor;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -54,21 +42,12 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
-import net.neoforged.neoforge.network.handling.IPayloadHandler;
-import net.neoforged.neoforge.network.handling.MainThreadPayloadHandler;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-
-import static de.teamlapen.vampirism.api.VampirismRegistries.Keys.SKILL_NODE;
-import static de.teamlapen.vampirism.api.VampirismRegistries.Keys.SKILL_TREE;
 
 @Mod(Bloodlines.MODID)
 public class Bloodlines {

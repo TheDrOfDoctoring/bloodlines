@@ -1,8 +1,6 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.BloodlineReference;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;

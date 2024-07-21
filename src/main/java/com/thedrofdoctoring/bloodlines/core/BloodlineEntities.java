@@ -5,7 +5,6 @@ import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSubPredicate;
 import net.minecraft.advancements.critereon.EntitySubPredicate;
 import net.minecraft.core.registries.Registries;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

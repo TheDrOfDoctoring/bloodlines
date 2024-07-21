@@ -1,6 +1,5 @@
 package com.thedrofdoctoring.bloodlines.tasks;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineFrost;
@@ -15,15 +14,11 @@ import de.teamlapen.vampirism.core.ModEntities;
 import de.teamlapen.vampirism.core.ModStats;
 import de.teamlapen.vampirism.entity.player.tasks.TaskBuilder;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

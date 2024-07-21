@@ -1,6 +1,5 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.actions.InvisibilityVampireAction;

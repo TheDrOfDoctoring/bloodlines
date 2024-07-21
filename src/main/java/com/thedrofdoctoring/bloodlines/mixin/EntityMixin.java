@@ -1,16 +1,11 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
-import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 

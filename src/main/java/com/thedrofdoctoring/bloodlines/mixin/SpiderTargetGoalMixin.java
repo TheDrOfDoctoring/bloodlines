@@ -3,16 +3,13 @@ package com.thedrofdoctoring.bloodlines.mixin;
 import com.thedrofdoctoring.bloodlines.entity.ZealotTargetGoalModifier;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
-import de.teamlapen.vampirism.mixin.NearestAttackableTargetGoalMixin;
 import de.teamlapen.vampirism.mixin.accessor.TargetConditionAccessor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.function.Predicate;

@@ -1,9 +1,7 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkill;
 import com.thedrofdoctoring.bloodlines.skills.IBloodlineSkill;
-import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.client.gui.screens.skills.SkillNodeScreen;
 import net.minecraft.ChatFormatting;
@@ -11,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

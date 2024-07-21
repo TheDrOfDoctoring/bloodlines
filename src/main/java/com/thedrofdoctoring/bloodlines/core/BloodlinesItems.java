@@ -6,16 +6,13 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.items.BloodlineFang;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
-import de.teamlapen.vampirism.core.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

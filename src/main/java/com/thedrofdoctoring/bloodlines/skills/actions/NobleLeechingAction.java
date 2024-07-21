@@ -12,10 +12,7 @@ import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.core.ModAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.UUID;
 
 public class NobleLeechingAction extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
     @Override

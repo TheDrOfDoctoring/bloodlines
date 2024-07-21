@@ -1,40 +1,23 @@
 package com.thedrofdoctoring.bloodlines.client;
 
-import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.thedrofdoctoring.bloodlines.BloodlineReference;
-import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.mixin.ScreenAccessor;
 import de.teamlapen.vampirism.client.gui.screens.VampirismContainerScreen;
-import de.teamlapen.vampirism.client.gui.screens.skills.SkillsScreen;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.OutlineBufferSource;
-import net.minecraft.client.renderer.PostChain;
-import net.minecraft.client.renderer.PostPass;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.material.FogType;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.event.ContainerScreenEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
-
-import static com.mojang.text2speech.Narrator.LOGGER;
 
 public class ClientEventHandler {
 

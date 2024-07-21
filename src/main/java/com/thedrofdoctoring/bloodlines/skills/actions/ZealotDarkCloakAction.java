@@ -5,7 +5,6 @@ import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
-import de.teamlapen.vampirism.config.VampirismConfig;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

@@ -12,7 +12,6 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.core.ModAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
-import de.teamlapen.vampirism.util.RegUtil;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -22,12 +21,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Attr;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class BloodlineNoble implements IBloodline {
     private final Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
