@@ -45,6 +45,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_RANK_2 = SKILLS.register("zealot_rank_2", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_RANK_3 = SKILLS.register("zealot_rank_3", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, false, 0, false));
     public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_RANK_4 = SKILLS.register("zealot_rank_4", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
+    public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_POISONED_STRIKE = SKILLS.register("zealot_poisoned_strike", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_STONE_SPEED = SKILLS.register("zealot_stone_speed", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_DARKCLOAK = SKILLS.register("zealot_darkcloak", () -> new BloodlineActionSkill<>(BloodlineActions.ZEALOT_DARK_CLOAK_ACTION, 0, true, BloodlineReference.ZEALOT, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_SHADOWWALK = SKILLS.register("zealot_shadowwalk", () -> new BloodlineActionSkill<>(BloodlineActions.ZEALOT_SHADOWWALK_ACTION, 0, true, BloodlineReference.ZEALOT, true));
@@ -54,6 +55,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_TUNNELER = SKILLS.register("zealot_tunneler", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_SPIDER_FRIEND = SKILLS.register("zealot_spider_friend", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_SHADOW_MASTERY = SKILLS.register("zealot_shadow_mastery", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_SWIFT_SNEAK = SKILLS.register("zealot_swift_sneak", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_OBSCURED_POWER = SKILLS.register("zealot_obscured_power", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_HEX_PROTECTION = SKILLS.register("zealot_hex_protection", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_FRENZY = SKILLS.register("zealot_frenzy", () -> new BloodlineActionSkill<>(BloodlineActions.ZEALOT_FRENZY_ACTION, 0, true, BloodlineReference.ZEALOT, true));
@@ -149,6 +151,8 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> ZEALOT_OBSCURED_POWER = node("obscured_power", "zealot");
         public static final ResourceKey<ISkillNode> ZEALOT_HEX_PROTECTION = node("hex_protection", "zealot");
         public static final ResourceKey<ISkillNode> ZEALOT_FRENZY = node("frenzy", "zealot");
+        public static final ResourceKey<ISkillNode> ZEALOT_SWIFT_SNEAK = node("swift_sneak", "zealot");
+
 
         public static final ResourceKey<ISkillNode> ECTOTHERM_RANK_2 = node("rank_2", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_RANK_3 = node("rank_3", "ectotherm");
@@ -206,7 +210,9 @@ public class BloodlineSkills {
             context.register(ZEALOT_SHADOW_MASTERY, new SkillNode(BloodlineSkills.ZEALOT_SHADOW_MASTERY));
             context.register(ZEALOT_OBSCURED_POWER, new SkillNode(BloodlineSkills.ZEALOT_OBSCURED_POWER));
             context.register(ZEALOT_HEX_PROTECTION, new SkillNode(BloodlineSkills.ZEALOT_HEX_PROTECTION));
-            context.register(ZEALOT_FRENZY, new SkillNode(BloodlineSkills.ZEALOT_FRENZY));
+            context.register(ZEALOT_FRENZY, new SkillNode(BloodlineSkills.ZEALOT_FRENZY, BloodlineSkills.ZEALOT_POISONED_STRIKE));
+            context.register(ZEALOT_SWIFT_SNEAK, new SkillNode(BloodlineSkills.ZEALOT_SWIFT_SNEAK));
+
 
             context.register(ECTOTHERM_RANK_2, new SkillNode(BloodlineSkills.ECTOTHERM_RANK_2));
             context.register(ECTOTHERM_RANK_3, new SkillNode(BloodlineSkills.ECTOTHERM_RANK_3));

@@ -49,6 +49,8 @@ public class CommonConfig {
     public static final ModConfigSpec.DoubleValue zealotBrightAreaDamageMultiplier;
     public static final ModConfigSpec.IntValue zealotBrightAreaDamageMultiplierRank;
     public static final ModConfigSpec.IntValue zealotBrightAreaDamageMultiplierLightLevel;
+    public static final ModConfigSpec.IntValue zealotPoisonedStrikeDuration;
+
 
     public static final ModConfigSpec.IntValue ectothermFishmongerNutrition;
     public static final ModConfigSpec.IntValue ectothermFrozenAttackFreezingAmount;
@@ -86,6 +88,8 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotShadowMasteryCooldownMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotHexProtectionMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotMiningSpeedMultipliers;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotSerpentSpeedMultipliers;
+
 
     public static final ModConfigSpec.ConfigValue<List<? extends Integer>> zealotShadowwalkCooldowns ;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotShadowArmourDamageMultiplier;
@@ -187,10 +191,12 @@ public class CommonConfig {
         zealotHexProtectionMultiplier = COMMON_BUILDER.comment("Multiplier for damage from magical sources").defineList("zealotHexProtectionMultiplier", Arrays.asList(0.9d, 0.85d, 0.85d, 0.75d), t -> t instanceof Double);
         zealotFrenzyCooldown = COMMON_BUILDER.comment("Frenzy cooldown, seconds").defineInRange("zealotFrenzyCooldown", 60, 0, Integer.MAX_VALUE);
         zealotFrenzyDuration = COMMON_BUILDER.comment("Frenzy duration, seconds").defineInRange("zealotFrenzyDuration", 15, 0, Integer.MAX_VALUE);
+        zealotSerpentSpeedMultipliers = COMMON_BUILDER.comment("Crawling or shifting speed multiplier for Serpent Skill, at each bloodline rank").defineList("zealotSerpentSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
         zealotMiningSpeedMultipliers = COMMON_BUILDER.comment("Frenzy mining speed multipliers").defineList("zealotMiningSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
         zealotBrightAreaDamageMultiplier = COMMON_BUILDER.comment("Damage taken in bright areas at specificed Bloodline Rank").defineInRange("zealotBrightAreaDamageMultiplier", 1.2d, 0, Integer.MAX_VALUE);
         zealotBrightAreaDamageMultiplierRank = COMMON_BUILDER.comment("Bloodline Rank required to start taking more damage in bright areas, set to 5 to disable").defineInRange("zealotBrightAreaDamageMultiplierRank",4, 0, 5);
         zealotBrightAreaDamageMultiplierLightLevel = COMMON_BUILDER.comment("Light Level at which more damage is taken").defineInRange("zealotBrightAreaDamageMultiplierLightLevel",14, 0, 15);
+        zealotPoisonedStrikeDuration = COMMON_BUILDER.comment("Poisoned strike poison duration, in ticks").defineInRange("zealotPoisonedStrikeDuration", 60, 0, Integer.MAX_VALUE);
 
 
         zealotDefaults[0] = zealotBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("zealotBLRank1DefaultSkills", List.of("bloodlines:zealot"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;

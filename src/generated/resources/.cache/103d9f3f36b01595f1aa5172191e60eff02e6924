@@ -1,4 +1,4 @@
-// 1.21	2024-07-21T22:29:03.119697214	Registries
+// 1.21	2024-07-22T23:03:02.110110831	Registries
 1c8f54167e8f5056e0b56caf9e8b3b6b6d090983 data/bloodlines/vampirism/skill_node/ectotherm_diffusion.json
 6a4607e6fe1ba9d5bfc76308f64e9d7e8bf52bfe data/bloodlines/vampirism/skill_node/ectotherm_dolphin_leap.json
 f842ceed1e25669fe08e43981c052c75d8c40a62 data/bloodlines/vampirism/skill_node/ectotherm_fishmonger.json
@@ -32,7 +32,7 @@ f520c9de4605d4f58558431f93811ef6ba70b003 data/bloodlines/vampirism/skill_node/no
 9e4841e642e007408bcf00c66abf1bf7b86bbbf2 data/bloodlines/vampirism/skill_node/zealot_dark_cloak.json
 babdbf525923e24dd10f52ef67ee5948d615e246 data/bloodlines/vampirism/skill_node/zealot_fall_damage.json
 28c3b16a4b0b3cda2f27878ea2f7e2a07f3fe379 data/bloodlines/vampirism/skill_node/zealot_flesh_shadow_armour.json
-bdf97e715dc5c95f59fc6af276d7661d3738725a data/bloodlines/vampirism/skill_node/zealot_frenzy.json
+08379f9f665a2dd467871cbc813998275e6f8155 data/bloodlines/vampirism/skill_node/zealot_frenzy.json
 b9d31aeadb040c0c3d732b1c228ef9f2ef511f4a data/bloodlines/vampirism/skill_node/zealot_hex_protection.json
 ec39d2fb423ca3bb25de2b9876440520988c80f5 data/bloodlines/vampirism/skill_node/zealot_obscured_power.json
 54a7780a2a8fb9ba5541264676e4a87844eb9775 data/bloodlines/vampirism/skill_node/zealot_rank_2.json
@@ -44,6 +44,7 @@ d1bf9626aab398faff9dd3e35f21d4712d576471 data/bloodlines/vampirism/skill_node/ze
 ae6eb87cef57b32e9ad3a32a5d3a75c07aacbe29 data/bloodlines/vampirism/skill_node/zealot_shadow_walk.json
 01531d140af27df082e6f392d8cf25eee60be6d2 data/bloodlines/vampirism/skill_node/zealot_spider_friend.json
 2eda012b8b5bc77dbc9f59145e969280b1c74860 data/bloodlines/vampirism/skill_node/zealot_stone_speed.json
+4a917ad033365d9000d7d1eff35b818d068b4f75 data/bloodlines/vampirism/skill_node/zealot_swift_sneak.json
 b02f196748d644ccb1d71c15f21fe24d41528e79 data/bloodlines/vampirism/skill_node/zealot_tunneler.json
 0e4f9afa2b97fa366694e39f938f82b272c41ef2 data/bloodlines/vampirism/skill_node/zealot_wall_climb.json
 a7c1cef41f6fe070fb6c1ead3182abb27ebbf90e data/bloodlines/vampirism/skill_tree/vampire/ectotherm.json

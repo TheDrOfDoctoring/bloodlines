@@ -35,6 +35,7 @@ import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -113,6 +114,9 @@ public class BloodlineEventHandler {
                 if(vp.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_SLOWNESS_ATTACK.get())) {
                     living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, CommonConfig.ectothermSlowingAttackSlownessDuration.get(), 0));
                 }
+            }
+            if(!event.getTarget().getType().is(EntityTypeTags.UNDEAD) && vp.getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_POISONED_STRIKE.get())) {
+                living.addEffect(new MobEffectInstance(MobEffects.POISON, CommonConfig.zealotPoisonedStrikeDuration.get(), 0));
             }
         }
     }

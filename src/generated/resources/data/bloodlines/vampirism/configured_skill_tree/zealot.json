@@ -59,6 +59,11 @@
       "node": "bloodlines:zealot_rank_2"
     },
     {
+      "children": [
+        {
+          "node": "bloodlines:zealot_swift_sneak"
+        }
+      ],
       "node": "bloodlines:zealot_spider_friend"
     }
   ],

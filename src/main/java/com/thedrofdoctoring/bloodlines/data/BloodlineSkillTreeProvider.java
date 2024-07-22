@@ -77,7 +77,8 @@ public class BloodlineSkillTreeProvider extends SkillTreeProvider {
 
 
                                         ),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SPIDER_FRIEND))
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SPIDER_FRIEND),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SWIFT_SNEAK)))
                 )
         );
         skillTreeOutput.accept(modId("ectotherm"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.ECTOTHERM), nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ROOT),
