@@ -31,7 +31,7 @@ Some of their unlockable skills include:
 
 ## Ectotherm Bloodline
 
-The Zealot Bloodline live in the frigid cold and underwater. They take more fire damage and are weakened in hot areas or biomes. However, they have significantly faster swim speed and have more innate power related to their bloodline than other bloodlines.
+The Ectotherm Bloodline live in the frigid cold and underwater. They take more fire damage and are weakened in hot areas or biomes. However, they have significantly faster swim speed and have more innate power related to their bloodline than other bloodlines.
 This includes gaining access to the 'Lord of Frost' action innately at Rank 2, which is further upgraded by skills
 
 Some of their unlockable skills include:
