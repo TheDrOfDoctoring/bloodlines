@@ -94,13 +94,14 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> FISHMONGER = SKILLS.register("ectotherm_fishmonger", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_REFRACTION = SKILLS.register("ectotherm_refraction", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setRefraction(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setRefraction(false)));
     public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_DIFFUSION = SKILLS.register("ectotherm_diffusion", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0));
-
+    public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_TENTACLES = SKILLS.register("ectotherm_tentacles", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_ICELORD = SKILLS.register("ectotherm_icelord", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_FROST_CONTROL = SKILLS.register("ectotherm_frost_control", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setFrost(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setFrost(false)));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_MINING_SPEED_UNDERWATER = SKILLS.register("ectotherm_mining_speed_underwater", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_FROZEN_ATTACK = SKILLS.register("ectotherm_frozen_attack", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SLOWNESS_ATTACK = SKILLS.register("ectotherm_slowness_attack", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_DOLPHIN_LEAP = SKILLS.register("ectotherm_dolphin_leap", () -> new BloodlineActionSkill<>(BloodlineActions.ECTOTHERM_DOLPHIN_LEAP_ACTION, 0, true, BloodlineReference.ECTOTHERM, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SNOW_WALKER = SKILLS.register("ectotherm_snow_walker", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
 
 
     //Bloodline Skills are added here so that they can be removed if the player's bloodline changes. Not sure if there's a better way to do this.
@@ -161,11 +162,12 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> ECTOTHERM_FISHMONGER = node("fishmonger", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_REFRACTION = node("refraction", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_DIFFUSION = node("diffusion", "ectotherm");
-
+        public static final ResourceKey<ISkillNode> ECTOTHERM_TENTACLES = node("tentacles", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_FROST_CONTROL = node("frost_control", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_UNDERWATER_MINING_SPEED = node("underwater_mining_speed", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_FROZEN_SLOWNESS = node("frozen_slowness", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_DOLPHIN_LEAP = node("dolphin_leap", "ectotherm");
+        public static final ResourceKey<ISkillNode> ECTOTHERM_SNOW_WALKER = node("snow_walker", "ectotherm");
 
 
         public static final ResourceKey<ISkillNode> NOBLE_RANK_2 = node("rank_2", "noble");
@@ -225,6 +227,9 @@ public class BloodlineSkills {
             context.register(ECTOTHERM_UNDERWATER_MINING_SPEED, new SkillNode(BloodlineSkills.ECTOTHERM_MINING_SPEED_UNDERWATER));
             context.register(ECTOTHERM_FROZEN_SLOWNESS, new SkillNode(BloodlineSkills.ECTOTHERM_FROZEN_ATTACK, BloodlineSkills.ECTOTHERM_SLOWNESS_ATTACK));
             context.register(ECTOTHERM_DOLPHIN_LEAP, new SkillNode(BloodlineSkills.ECTOTHERM_DOLPHIN_LEAP));
+            context.register(ECTOTHERM_TENTACLES, new SkillNode(BloodlineSkills.ECTOTHERM_TENTACLES));
+            context.register(ECTOTHERM_SNOW_WALKER, new SkillNode(BloodlineSkills.ECTOTHERM_SNOW_WALKER));
+
 
 
             context.register(NOBLE_RANK_2, new SkillNode(BloodlineSkills.NOBLE_RANK_2));

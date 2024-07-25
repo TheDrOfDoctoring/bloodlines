@@ -6,6 +6,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.items.BloodlineFang;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
+import com.thedrofdoctoring.bloodlines.items.PurityInjection;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -30,6 +31,8 @@ public class BloodlinesItems {
 
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_NOBLE = register("bloodline_fang_noble", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineNoble.NOBLE));
     public static final DeferredHolder<Item, BottomlessChaliceItem> CHALICE_ITEM = register("bottomless_chalice", () -> new BottomlessChaliceItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredHolder<Item, PurityInjection> PURITY_INJECTION = register("purity_injection", () -> new PurityInjection(new Item.Properties().stacksTo(1)));
+
 
     private static <T extends Item> DeferredHolder<Item, T> register(final String id, final Supplier<? extends T> itemSupplier) {
         DeferredHolder<Item, T> item = ITEMS.register(id, itemSupplier);

@@ -40,8 +40,11 @@ public class BloodlineUnlocker implements TaskUnlocker {
     @Override
     public boolean isUnlocked(IFactionPlayer<?> iFactionPlayer) {
         BloodlineManager bl = BloodlineManager.get(iFactionPlayer.asEntity());
-        boolean correctRank = this.matchExactly ? bl.getRank() == bloodlineLevel : bl.getRank() >= bloodlineLevel;
-        return (bl.getBloodlineId().toString().equals(id) && correctRank);
+        if(bl.getBloodlineId() != null) {
+            boolean correctRank = this.matchExactly ? bl.getRank() == bloodlineLevel : bl.getRank() >= bloodlineLevel;
+            return (bl.getBloodlineId().toString().equals(id) && correctRank);
+        }
+        return false;
     }
 
     @Override

@@ -82,19 +82,22 @@ public class BloodlineSkillTreeProvider extends SkillTreeProvider {
                 )
         );
         skillTreeOutput.accept(modId("ectotherm"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.ECTOTHERM), nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ROOT),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FISHMONGER)),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_SNOW_WALKER)),
 
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_2),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_REFRACTION),
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DIFFUSION))),
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_3),
                                     new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROZEN_SLOWNESS)),
-                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_4)
-                                )
+                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_4)),
+                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_TENTACLES))
                         ),
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ICE_LORD),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROST_CONTROL))
-                        )),
+                        ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FISHMONGER))
+                        ),
+
                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_UNDERWATER_MINING_SPEED)),
                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DOLPHIN_LEAP))
                 )

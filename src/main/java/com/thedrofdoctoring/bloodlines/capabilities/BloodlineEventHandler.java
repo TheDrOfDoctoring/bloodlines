@@ -34,6 +34,7 @@ import it.unimi.dsi.fastutil.objects.Object2BooleanArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
@@ -44,6 +45,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -69,6 +73,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Attr;
 
 import java.util.function.Predicate;
 
@@ -76,6 +81,10 @@ import static com.mojang.text2speech.Narrator.LOGGER;
 
 @EventBusSubscriber(modid = Bloodlines.MODID)
 public class BloodlineEventHandler {
+
+    private static final ResourceLocation reducedMovementSpeed = Bloodlines.rl("ectotherm_biome_reduced_movement_speed");
+    private static final ResourceLocation increasedMovementSpeed = Bloodlines.rl("ectotherm_biome_increased_movement_speed");
+    private static final ResourceLocation reducedMaxHealth = Bloodlines.rl("ectotherm_biome_reduced_max_haelth");
 
     @SubscribeEvent
     public static void onChangeFaction(PlayerFactionEvent.FactionLevelChanged event) {
@@ -152,21 +161,53 @@ public class BloodlineEventHandler {
         }
 
         if (player.tickCount % 10 == 0) {
+            checkNobleRain(player);
+            checkEctothermBiome(player);
+        }
+    }
 
+    private static void checkNobleRain(Player player) {
+        if (player.isSpectator() || !Helper.isVampire(player) || VampirePlayer.getOpt(player).map(vp -> vp.getSpecialAttributes().waterResistance).orElse(false))
+            return;
 
-            if (player.isSpectator() || !Helper.isVampire(player) || VampirePlayer.getOpt(player).map(vp -> vp.getSpecialAttributes().waterResistance).orElse(false))
-                return;
-
-            BlockPos pos = player.getOnPos();
-            if (player.level().getBiome(pos).value().getPrecipitationAt(pos) != Biome.Precipitation.RAIN || !player.level().isRaining()) return;
-            BlockPos realPos = new BlockPos((int) player.getX(), (int) (player.getY() + Mth.clamp(player.getBbHeight() / 2.0F, 0F, 2F)), (int) player.getZ());
-            if (Helper.canBlockSeeSun(player.level(), realPos) && !(LevelFog.getOpt(player.level())).map(vw -> vw.isInsideArtificialVampireFogArea(new BlockPos((int) player.getX(), (int) (player.getY() + 1), (int) player.getZ()))).orElse(false)) {
-                if (CommonConfig.nobleRainWeakness.get() && VampirePlayer.getOpt(player).map(vp -> vp.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_RANK_3.get())).orElse(false)) {
-                    player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 40, 1));
-                }
+        BlockPos pos = player.getOnPos();
+        if (player.level().getBiome(pos).value().getPrecipitationAt(pos) != Biome.Precipitation.RAIN || !player.level().isRaining()) return;
+        BlockPos realPos = new BlockPos((int) player.getX(), (int) (player.getY() + Mth.clamp(player.getBbHeight() / 2.0F, 0F, 2F)), (int) player.getZ());
+        if (Helper.canBlockSeeSun(player.level(), realPos) && !(LevelFog.getOpt(player.level())).map(vw -> vw.isInsideArtificialVampireFogArea(new BlockPos((int) player.getX(), (int) (player.getY() + 1), (int) player.getZ()))).orElse(false)) {
+            if (CommonConfig.nobleRainWeakness.get() && VampirePlayer.getOpt(player).map(vp -> vp.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_RANK_3.get())).orElse(false)) {
+                player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 40, 1));
             }
         }
-
+    }
+    private static void checkEctothermBiome(Player player) {
+        if(BloodlineManager.get(player).getBloodline() instanceof BloodlineFrost && !player.level().isClientSide) {
+            int rank = BloodlineManager.get(player).getRank() - 1;
+            int modifierRank = rank + 1;
+            if (player.level().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
+                if (modifierRank >= CommonConfig.ectothermHotBiomeReducedMaxHealthRank.get() && !hasAttributeAlready(player, Attributes.MAX_HEALTH, reducedMaxHealth)) {
+                    player.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(reducedMaxHealth, CommonConfig.ectothermHotBiomeReducedMaxHealthAmount.get().get(rank), AttributeModifier.Operation.ADD_VALUE));
+                }
+                if (modifierRank >= CommonConfig.ectothermHotBiomeReducedMovementSpeedRank.get() && !hasAttributeAlready(player, Attributes.MOVEMENT_SPEED, reducedMovementSpeed)) {
+                    player.getAttribute(Attributes.MOVEMENT_SPEED).addPermanentModifier(new AttributeModifier(reducedMovementSpeed, CommonConfig.ectothermHotBiomeReducedMovementSpeedMultiplier.get().get(rank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                }
+            } else {
+                BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), reducedMovementSpeed);
+                BloodlineManager.removeModifier(player.getAttribute(Attributes.MAX_HEALTH), reducedMaxHealth);
+            }
+            if (player.level().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD)) {
+                if (modifierRank >= CommonConfig.ectothermColdBiomeIncreasedMovementSpeedRank.get() && !hasAttributeAlready(player, Attributes.MOVEMENT_SPEED, increasedMovementSpeed)) {
+                    player.getAttribute(Attributes.MOVEMENT_SPEED).addPermanentModifier(new AttributeModifier(increasedMovementSpeed, CommonConfig.ectothermColdBiomeSpeedMultiplier.get().get(rank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                }
+            } else {
+                BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), increasedMovementSpeed);
+            }
+        }
+    }
+    private static boolean hasAttributeAlready(Player player, Holder<Attribute> att, ResourceLocation rl) {
+        if(player.getAttribute(att).hasModifier(rl)) {
+            return true;
+        }
+        return false;
     }
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onDamage(LivingIncomingDamageEvent event) {
@@ -287,6 +328,7 @@ public class BloodlineEventHandler {
     }
     @SubscribeEvent
     public static void actionDeactivatedEvent(ActionEvent.ActionDeactivatedEvent event) {
+        Player player = event.getFactionPlayer().asEntity();
         if(event.getAction() instanceof InvisibilityVampireAction) {
             ISkillHandler<?> skillHandler = event.getFactionPlayer().getSkillHandler();
             if(skillHandler.isSkillEnabled(BloodlineSkills.NOBLE_INVISIBILITY.get()) && skillHandler.isSkillEnabled(VampireSkills.VAMPIRE_INVISIBILITY.get())) {
@@ -294,10 +336,15 @@ public class BloodlineEventHandler {
             }
         }
         if (event.getFactionPlayer().getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_SHADOW_MASTERY.get())) {
-            Player player = event.getFactionPlayer().asEntity();
             if(BloodlineHelper.lightMatches(CommonConfig.zealotShadowMasteryLightLevel.get(), player.getOnPos().above(), player.getCommandSenderWorld(), false)) {
                 int rank = BloodlineHelper.getBloodlineRank(player) - 1;
                 event.setCooldown(Math.round(event.getCooldown() * CommonConfig.zealotShadowMasteryCooldownMultiplier.get().get(rank).floatValue()));
+            }
+        }
+        if (player.level().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT) && BloodlineManager.get(event.getFactionPlayer().asEntity()).getBloodline() instanceof BloodlineFrost) {
+            int rank = BloodlineManager.get(player).getRank() - 1;
+            if(rank >= CommonConfig.ectothermHotBiomeActionCooldownRank.get()) {
+                event.setCooldown(Math.round(event.getCooldown() * CommonConfig.ectothermHotBiomeActionCooldownMultiplier.get().get(rank).floatValue()));
             }
         }
     }

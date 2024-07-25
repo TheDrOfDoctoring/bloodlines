@@ -1,7 +1,7 @@
 {
   "children": [
     {
-      "node": "bloodlines:ectotherm_fishmonger"
+      "node": "bloodlines:ectotherm_snow_walker"
     },
     {
       "children": [
@@ -20,6 +20,9 @@
             },
             {
               "node": "bloodlines:ectotherm_rank_4"
+            },
+            {
+              "node": "bloodlines:ectotherm_tentacles"
             }
           ],
           "node": "bloodlines:ectotherm_rank_3"
@@ -31,6 +34,9 @@
             }
           ],
           "node": "bloodlines:ectotherm_ice_lord"
+        },
+        {
+          "node": "bloodlines:ectotherm_fishmonger"
         }
       ],
       "node": "bloodlines:ectotherm_rank_2"

@@ -9,6 +9,7 @@
     "BlockBehaviourMixin",
     "EntityMixin",
     "PlayerMixin",
+    "PowderedSnowBlockMixin",
     "RegistriesDatapackGeneratorAccessor",
     "SkillHandlerMixin",
     "SpiderTargetGoalMixin",

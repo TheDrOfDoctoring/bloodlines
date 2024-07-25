@@ -1,4 +1,4 @@
-// 1.21	2024-07-22T23:03:02.110110831	Registries
+// 1.21	2024-07-24T21:51:29.590616313	Registries
 1c8f54167e8f5056e0b56caf9e8b3b6b6d090983 data/bloodlines/vampirism/skill_node/ectotherm_diffusion.json
 6a4607e6fe1ba9d5bfc76308f64e9d7e8bf52bfe data/bloodlines/vampirism/skill_node/ectotherm_dolphin_leap.json
 f842ceed1e25669fe08e43981c052c75d8c40a62 data/bloodlines/vampirism/skill_node/ectotherm_fishmonger.json
@@ -10,6 +10,8 @@ a94c0cf0a3ba7a0205345cfcb7fa48ee2f30a921 data/bloodlines/vampirism/skill_node/ec
 a43a6a0480778799480f60bee06226773dc1881a data/bloodlines/vampirism/skill_node/ectotherm_rank_4.json
 5cce4aa6ac4beb46e0e0bd954a3b2c5d1d8db045 data/bloodlines/vampirism/skill_node/ectotherm_refraction.json
 0af0f69c45a884d90148cd316c5bbfb5885dd96d data/bloodlines/vampirism/skill_node/ectotherm_root.json
+c4813b984d90c49a7aa0cca5da87056647a5b1eb data/bloodlines/vampirism/skill_node/ectotherm_snow_walker.json
+b75a32e877dfbdb5d4e9d3cda6e0b1c233a605c1 data/bloodlines/vampirism/skill_node/ectotherm_tentacles.json
 8f406168dc9434d0afbd53af2add6fa8c1b0c4f7 data/bloodlines/vampirism/skill_node/ectotherm_underwater_mining_speed.json
 ec808b2b8054eab9519831e31c609eb2f5474a40 data/bloodlines/vampirism/skill_node/noble_better_bat_flight_speed.json
 5acf469bfe0fd68409304fa02a5073c0b0a68b5e data/bloodlines/vampirism/skill_node/noble_better_blood_drain.json

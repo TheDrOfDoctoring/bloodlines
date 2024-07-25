@@ -1,9 +1,29 @@
-# Vampiric Bloodlines
-### This is an addon for Vampirism that adds a Bloodline mechanic for Vampires, changing the way you play. 
+# Bloodlines
+### This is an addon for Vampirism that adds a Bloodline mechanic for vampires, changing the way you play. 
 
 # Vampire Bloodlines
 Bloodlines significantly change the way you play as a Vampire. While each new bloodline rank may come with some penalties, it will also allow you to unlock powerful new skills. Most skills, including penalties, will become more potent with higher bloodline ranks.
 Each bloodline comes with 4 Bloodline Ranks, enhancing their innate abilities and gaining the ability to unlock new parts of their Skill Tree.
+
+## Bloodline Mechanics
+
+### Joining a Bloodline
+
+In order to join a Bloodline, a player should use a corresponding Bloodline Fang. These can be crafted, with the recipe depending on the bloodline you are joining. Use a recipe viewer to find out the recipe for them.
+
+### Leaving a Bloodline
+
+In order to leave a Bloodline, a player can use the Purity Injection. This can be crafted with an empty syringe, milk bucket and golden apple.
+
+### Levelling & Skill Tree
+
+Bloodlines have a Skill Tree and a Rank. You can increase your Bloodline Rank by doing quests at a faction representative. This will enhance the innate aspects of the Bloodline, as well as furthering the Skill Tree.
+
+The Bloodline Skill Tree can be accessed from Vampirism's Skill Tree Menu. Each Bloodline Skill Tree follows a general path with skills branching out from the "Bloodline Rank Skills". These are special skills that cannot be unlocked. Instead,
+they are automatically given when you level up your Bloodline Rank.
+
+Additionally, skills from the Bloodline Tree require their own bloodline perk points instead of regular skill points. These are gained by doing quests from the faction representative, like the levelling quests.
+
 
 ## Noble Bloodline
 

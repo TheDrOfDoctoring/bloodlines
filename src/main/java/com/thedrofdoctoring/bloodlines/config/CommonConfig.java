@@ -59,7 +59,14 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue ectothermIceLordCooldown;
     public static final ModConfigSpec.IntValue ectothermDolphinLeapCooldown;
     public static final ModConfigSpec.IntValue ectothermDolphinLeapDuration;
+    public static final ModConfigSpec.IntValue ectothermHotBiomeReducedMovementSpeedRank;
+    public static final ModConfigSpec.IntValue ectothermHotBiomeReducedMaxHealthRank;
+    public static final ModConfigSpec.IntValue ectothermColdBiomeIncreasedMovementSpeedRank;
+    public static final ModConfigSpec.IntValue ectothermLordofFrostIncreasedDamageRank;
+    public static final ModConfigSpec.IntValue ectothermHotBiomeActionCooldownRank;
     public static final ModConfigSpec.DoubleValue ectothermDolphinLeapDistance;
+    public static final ModConfigSpec.DoubleValue ectothermTentacleInteractionDistance;
+
 
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleMaxHealthChange;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleAttackSpeedIncrease;
@@ -110,7 +117,11 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends Integer>> ectothermUnderwaterVisionDistance;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermUnderwaterMiningSpeedMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermHolyWaterDiffusion;
-
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermHotBiomeReducedMovementSpeedMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermHotBiomeReducedMaxHealthAmount;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermLordOfFrostDamageMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermColdBiomeSpeedMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermHotBiomeActionCooldownMultiplier;
 
 
     public static final ModConfigSpec.ConfigValue<List<? extends String>>[] ectothermDefaults = new ModConfigSpec.ConfigValue[4];
@@ -220,7 +231,19 @@ public class CommonConfig {
         ectothermDolphinLeapCooldown = COMMON_BUILDER.comment("Dolphin Leap Action cooldown, in seconds").defineInRange("ectothermDolphinLeapCooldown", 7, 0, Integer.MAX_VALUE);
         ectothermDolphinLeapDistance = COMMON_BUILDER.comment("Dolphin Leap action distance leaped multiplier").defineInRange("ectothermDolphinLeapDistance", 2.5d, 0d, 1000);
         ectothermDolphinLeapDuration = COMMON_BUILDER.comment("Dolphin Leap Action duration, in seconds").defineInRange("ectothermDolphinDuration", 5, 0, Integer.MAX_VALUE);
+        ectothermTentacleInteractionDistance = COMMON_BUILDER.comment("How much extra block interaction range is given by the Tentacle Skill").defineInRange("ectothermTentacleRange", 1.75d, 0, 10);
         ectothermHolyWaterDiffusion = COMMON_BUILDER.comment("Damage multipliers when damaged by Holy Water at each Bloodline Rank, with requisite skill").defineList("ectothermHolyWaterDiffusion", Arrays.asList(0.9d, 0.8d, 0.7d, 0.5d), t -> t instanceof Double);
+        ectothermHotBiomeReducedMaxHealthAmount = COMMON_BUILDER.comment("How much each BL Rank reduces max health in hot biomes").defineList("ectothermHotBiomeReducedMaxHealthAmount", Arrays.asList(-1.5d, -2.5d, -3.0d, -3.5d), t -> t instanceof Double);
+        ectothermHotBiomeReducedMovementSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank reduces movement speed in hot biomes (Multiplier)").defineList("ectothermHotBiomeReducedMovementSpeedMultiplier", Arrays.asList(-0.95d, -0.9d, -0.85d, -0.85d), t -> t instanceof Double);
+        ectothermColdBiomeSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermColdBiomeSpeedMultiplier", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
+        ectothermHotBiomeActionCooldownMultiplier = COMMON_BUILDER.comment("How much each BL Rank multiplies the action cooldown by in hot biomes").defineList("ectothermHotBiomeActionCooldownMultiplier", Arrays.asList(1.25d, 1.5d, 2d, 2.5d), t -> t instanceof Double);
+        ectothermHotBiomeReducedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is reduced in hot biomes").defineInRange("ectothermHotBiomeReducedMovementSpeedRank", 4, 0, 5);
+        ectothermHotBiomeReducedMaxHealthRank = COMMON_BUILDER.comment("Rank at which max health is reduced in hot biomes").defineInRange("ectothermHotBiomeReducedMaxHealthRank", 2, 0, 5);
+        ectothermColdBiomeIncreasedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is increased in cold biomes").defineInRange("ectothermColdBiomeIncreasedMovementSpeedRank", 4, 0, 5);
+        ectothermLordofFrostIncreasedDamageRank = COMMON_BUILDER.comment("Rank at which lord of frost damage is increased").defineInRange("ectothermLordofFrostIncreasedDamageRank", 3, 0, 5);
+        ectothermHotBiomeActionCooldownRank = COMMON_BUILDER.comment("Rank at which action cooldown is increased in hot biomes").defineInRange("ectothermHotBiomeActionCooldownRank", 3, 0, 5);
+
         ectothermDefaults[0] = ectothermBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("ectothermBlRank1DefaultSkills", List.of("bloodlines:ectotherm"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;
         ectothermDefaults[1] = ectothermBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("ectothermBlRank2DefaultSkills", List.of("bloodlines:ectotherm_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         ectothermDefaults[2] = ectothermBlRank3DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 3").defineList("ectothermBlRank3DefaultSkills", List.of("bloodlines:ectotherm_rank_3"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
