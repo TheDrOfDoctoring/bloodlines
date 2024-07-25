@@ -37,7 +37,6 @@ Some of their unlockable skills include:
 - Bottomless Chalice, Allows access to a chalice that can store huge amounts of blood
 - Intrigue & Flank, Increased damaging when attacking from behind and the ability to teleport behind creatues that can't see you
 
-![Noble Skills](https://github-production-user-asset-6210df.s3.amazonaws.com/59176662/350805337-365a0502-d568-4504-a54d-778d590e7560.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240722%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240722T001029Z&X-Amz-Expires=300&X-Amz-Signature=9192a5d8f8b9690a7c2ed21a53023efb69a279df49c9dc0825ef87acb5d1813b&X-Amz-SignedHeaders=host&actor_id=59176662&key_id=0&repo_id=831893049)
 
 ## Zealot Bloodline
 
@@ -50,8 +49,6 @@ Some of their unlockable skills include:
 - Dark Cloak, Invisibility at wall in dark areas
 - Wall Climbing
 - Underground Export, Faster movement on Stone-like materials.
-
-![Zealot Skills](https://github-production-user-asset-6210df.s3.amazonaws.com/59176662/350805373-16f19d3c-508c-4560-856b-27ae7ef90651.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240722%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240722T001046Z&X-Amz-Expires=300&X-Amz-Signature=3a17f920082ef62fc072c0c56154729610d12c1b6fbe7f1ed250cf3ddd779bbe&X-Amz-SignedHeaders=host&actor_id=59176662&key_id=0&repo_id=831893049)
 
 ## Ectotherm Bloodline
 
