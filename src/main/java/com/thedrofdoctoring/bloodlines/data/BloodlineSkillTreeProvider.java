@@ -37,7 +37,8 @@ public class BloodlineSkillTreeProvider extends SkillTreeProvider {
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_INTRIGUE),
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_FLANK))),
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_RANK_4),
-                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BAT_FLIGHT_SPEED)),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BAT_FLIGHT_SPEED),
+                                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BAT_ARMOUR))),
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_CHALICE_SKILL)
                                                 )
                                         ),
@@ -89,7 +90,14 @@ public class BloodlineSkillTreeProvider extends SkillTreeProvider {
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DIFFUSION))),
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_3),
                                     new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROZEN_SLOWNESS)),
-                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_4)),
+                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_4),
+                                            new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_LORD_OF_FROST_DURATION),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_UNDERWATER_DURATION))
+                                            ),
+                                            new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_INK_SPLASH),
+                                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_HYDRODYNAMIC_FORM))
+                                        )
+                                    ),
                                     new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_TENTACLES))
                         ),
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ICE_LORD),

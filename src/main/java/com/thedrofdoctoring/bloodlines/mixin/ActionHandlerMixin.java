@@ -29,10 +29,16 @@ public abstract class ActionHandlerMixin<T extends IFactionPlayer<T>> implements
 
     @Inject(method = "updateActions", at = @At(value = "INVOKE", target = "Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;setValue(I)I", ordinal = 2, shift = At.Shift.BY, by = 1), locals = LocalCapture.CAPTURE_FAILSOFT)
     private void updateActions(CallbackInfoReturnable<Boolean> cir, List toRemove, ObjectIterator var2, Object2IntMap.Entry entry, int newtimer, ResourceLocation id, ILastingAction<T> action, ActionEvent.ActionUpdateEvent event) {
-        if(newtimer % 10 == 0 && player.getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_OBSCURED_POWER.get())) {
-            Player player = event.getFactionPlayer().asEntity();
-            if(BloodlineHelper.lightMatches(CommonConfig.zealotObscuredPowerLightLevel.get(), player.getOnPos().above(), player.getCommandSenderWorld(), true))
-                event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.zealotObscuredPowerTimerIncrease.get());
+        if(newtimer % 10 == 0) {
+            if(player.getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_OBSCURED_POWER.get())) {
+                Player player = event.getFactionPlayer().asEntity();
+                if(BloodlineHelper.lightMatches(CommonConfig.zealotObscuredPowerLightLevel.get(), player.getOnPos().above(), player.getCommandSenderWorld(), true))
+                    event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.zealotObscuredPowerTimerIncrease.get());
+            }
+            if(player.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_UNDERWATER_DURATION.get()) && player.asEntity().isUnderWater()) {
+                event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.ectothermUnderwaterDurationIncrease.get());
+            }
+
         }
     }
 }

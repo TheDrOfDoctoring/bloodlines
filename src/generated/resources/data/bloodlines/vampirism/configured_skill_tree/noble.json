@@ -29,6 +29,11 @@
             {
               "children": [
                 {
+                  "children": [
+                    {
+                      "node": "bloodlines:noble_noble_bat_armour"
+                    }
+                  ],
                   "node": "bloodlines:noble_better_bat_flight_speed"
                 },
                 {

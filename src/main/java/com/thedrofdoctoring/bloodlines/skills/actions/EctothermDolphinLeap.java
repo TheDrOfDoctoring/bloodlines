@@ -1,14 +1,17 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.networking.ClientboundLeapPacket;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class EctothermDolphinLeap extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
     @Override
@@ -21,6 +24,10 @@ public class EctothermDolphinLeap extends DefaultVampireAction implements ILasti
         if(!iVampirePlayer.asEntity().isInWater()) {
             iVampirePlayer.asEntity().displayClientMessage(Component.translatable("skill.bloodlines.ectotherm.not_in_water"), true);
             return false;
+        }
+        // Client activation for actions is called everytime an action is synced, which is not ideal for this action as movement can only be done on the client side.
+        if(iVampirePlayer.asEntity() instanceof ServerPlayer player) {
+            PacketDistributor.sendToPlayer(player, ClientboundLeapPacket.getInstance());
         }
         return true;
     }
@@ -37,11 +44,9 @@ public class EctothermDolphinLeap extends DefaultVampireAction implements ILasti
 
     @Override
     public void onActivatedClient(IVampirePlayer iVampirePlayer) {
-        Player player = iVampirePlayer.asEntity();
-        double distanceMult = CommonConfig.ectothermDolphinLeapDistance.get();
-        Vec3 vec = player.getViewVector(1);
-        player.setDeltaMovement(new Vec3(vec.x * distanceMult, vec.y * distanceMult, player.getLookAngle().z * distanceMult));
+
     }
+
 
     @Override
     public void onDeactivated(IVampirePlayer iVampirePlayer) {

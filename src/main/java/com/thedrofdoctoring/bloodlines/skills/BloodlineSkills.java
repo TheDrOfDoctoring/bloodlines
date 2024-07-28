@@ -38,14 +38,14 @@ public class BloodlineSkills {
 
     public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> NOBLE_SKILL = SKILLS.register("noble", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, true, 0, false ));
     public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_SKILL = SKILLS.register("zealot", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_SKILL = SKILLS.register("ectotherm", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = true, player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = false));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SKILL = SKILLS.register("ectotherm", () -> new BloodlineSkill<IVampirePlayer>(BloodlineReference.ECTOTHERM, true, 0, false).setToggleActions(player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = true, player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = false));
 
     // Zealot Skills
 
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_RANK_2 = SKILLS.register("zealot_rank_2", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_RANK_3 = SKILLS.register("zealot_rank_3", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, false, 0, false));
-    public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_RANK_4 = SKILLS.register("zealot_rank_4", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
-    public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_POISONED_STRIKE = SKILLS.register("zealot_poisoned_strike", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_RANK_4 = SKILLS.register("zealot_rank_4", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_POISONED_STRIKE = SKILLS.register("zealot_poisoned_strike", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_STONE_SPEED = SKILLS.register("zealot_stone_speed", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_DARKCLOAK = SKILLS.register("zealot_darkcloak", () -> new BloodlineActionSkill<>(BloodlineActions.ZEALOT_DARK_CLOAK_ACTION, 0, true, BloodlineReference.ZEALOT, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_SHADOWWALK = SKILLS.register("zealot_shadowwalk", () -> new BloodlineActionSkill<>(BloodlineActions.ZEALOT_SHADOWWALK_ACTION, 0, true, BloodlineReference.ZEALOT, true));
@@ -59,7 +59,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_OBSCURED_POWER = SKILLS.register("zealot_obscured_power", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_HEX_PROTECTION = SKILLS.register("zealot_hex_protection", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_FRENZY = SKILLS.register("zealot_frenzy", () -> new BloodlineActionSkill<>(BloodlineActions.ZEALOT_FRENZY_ACTION, 0, true, BloodlineReference.ZEALOT, true));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> ZEALOT_SHADOW_ARMOUR = SKILLS.register("zealot_shadow_armour", () -> new BloodlineSkill<>(BloodlineReference.ZEALOT, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setShadowArmour(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setShadowArmour(false)));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ZEALOT_SHADOW_ARMOUR = SKILLS.register("zealot_shadow_armour", () -> new BloodlineSkill<IVampirePlayer>(BloodlineReference.ZEALOT, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setShadowArmour(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setShadowArmour(false)));
 
     // Noble Skills
 
@@ -69,7 +69,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_BETTER_TRADE_PRICES = SKILLS.register("noble_better_prices", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, false, 0));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_BETTER_BLOOD_DRAIN = SKILLS.register("noble_better_blood_drain", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, true, 0));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_FASTER_RESURRECT = SKILLS.register("noble_faster_resurrect", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, false, 0));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> NOBLE_MORE_TICKS_IN_SUN = SKILLS.register("noble_more_ticks_in_sun", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setSlowSun(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setSlowSun(false)));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_MORE_TICKS_IN_SUN = SKILLS.register("noble_more_ticks_in_sun", () -> new BloodlineSkill<IVampirePlayer>(BloodlineReference.NOBLE, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setSlowSun(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setSlowSun(false)));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_BAT_FLIGHT_SPEED = SKILLS.register("noble_bat_flying_speed", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, false, 0));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_FASTER_MOVEMENT_SPEED = SKILLS.register("noble_faster_movement_speed", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, false, 0));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_CHALICE_SKILL = SKILLS.register("noble_bottomless_chalice", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, true, 0));
@@ -80,6 +80,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_LEECHING = SKILLS.register("noble_leeching", () -> new BloodlineActionSkill<>(BloodlineActions.NOBLE_LEECHING_ACTION, 0, true, BloodlineReference.NOBLE, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_INVISIBILITY = SKILLS.register("noble_invisibility", () -> new BloodlineActionSkill<>(BloodlineActions.NOBLE_INVISIBILITY_ACTION, 0, true, BloodlineReference.NOBLE, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_FLANK = SKILLS.register("noble_flank", () -> new BloodlineActionSkill<>(BloodlineActions.NOBLE_FLANK_ACTION, 0, true, BloodlineReference.NOBLE, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> NOBLE_BAT_ARMOUR = SKILLS.register("noble_bat_armour", () -> new BloodlineSkill<>(BloodlineReference.NOBLE, true, 0));
 
     //Ectotherm skills
 
@@ -92,16 +93,20 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_RANK_3 = SKILLS.register("ectotherm_rank_3", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_RANK_4 = SKILLS.register("ectotherm_rank_4", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> FISHMONGER = SKILLS.register("ectotherm_fishmonger", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_REFRACTION = SKILLS.register("ectotherm_refraction", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setRefraction(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setRefraction(false)));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_DIFFUSION = SKILLS.register("ectotherm_diffusion", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_TENTACLES = SKILLS.register("ectotherm_tentacles", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_REFRACTION = SKILLS.register("ectotherm_refraction", () -> new BloodlineSkill<IVampirePlayer>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setRefraction(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setRefraction(false)));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_DIFFUSION = SKILLS.register("ectotherm_diffusion", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_TENTACLES = SKILLS.register("ectotherm_tentacles", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_ICELORD = SKILLS.register("ectotherm_icelord", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
-    public static final DeferredHolder<ISkill<?>,ISkill<?>> ECTOTHERM_FROST_CONTROL = SKILLS.register("ectotherm_frost_control", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setFrost(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setFrost(false)));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_FROST_CONTROL = SKILLS.register("ectotherm_frost_control", () -> new BloodlineSkill<IVampirePlayer>(BloodlineReference.ECTOTHERM, true, 0).setToggleActions(player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setFrost(true), player -> ((ISpecialAttributes)((VampirePlayer) player).getSpecialAttributes()).bloodlines$setFrost(false)));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_MINING_SPEED_UNDERWATER = SKILLS.register("ectotherm_mining_speed_underwater", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_FROZEN_ATTACK = SKILLS.register("ectotherm_frozen_attack", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SLOWNESS_ATTACK = SKILLS.register("ectotherm_slowness_attack", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_DOLPHIN_LEAP = SKILLS.register("ectotherm_dolphin_leap", () -> new BloodlineActionSkill<>(BloodlineActions.ECTOTHERM_DOLPHIN_LEAP_ACTION, 0, true, BloodlineReference.ECTOTHERM, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SNOW_WALKER = SKILLS.register("ectotherm_snow_walker", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_LORD_OF_FROST_MULTIPLIER = SKILLS.register("ectotherm_lord_of_frost_multiplier", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_UNDERWATER_DURATION = SKILLS.register("ectotherm_underwater_duration", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_HYDRODYNAMIC_FORM = SKILLS.register("ectotherm_hydrodynamic_form", () -> new BloodlineSkill<>(BloodlineReference.ECTOTHERM, true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_INK_SPLASH = SKILLS.register("ectotherm_ink_splash", () -> new BloodlineActionSkill<>(BloodlineActions.ECTOTHERM_INK_SPLASH_ACTION, 0, true, BloodlineReference.ECTOTHERM, true));
 
 
     //Bloodline Skills are added here so that they can be removed if the player's bloodline changes. Not sure if there's a better way to do this.
@@ -168,6 +173,10 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> ECTOTHERM_FROZEN_SLOWNESS = node("frozen_slowness", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_DOLPHIN_LEAP = node("dolphin_leap", "ectotherm");
         public static final ResourceKey<ISkillNode> ECTOTHERM_SNOW_WALKER = node("snow_walker", "ectotherm");
+        public static final ResourceKey<ISkillNode> ECTOTHERM_LORD_OF_FROST_DURATION = node("frost_duration", "ectotherm");
+        public static final ResourceKey<ISkillNode> ECTOTHERM_UNDERWATER_DURATION = node("underwater_duration", "ectotherm");
+        public static final ResourceKey<ISkillNode> ECTOTHERM_INK_SPLASH = node("ink_splash", "ectotherm");
+        public static final ResourceKey<ISkillNode> ECTOTHERM_HYDRODYNAMIC_FORM = node("hydrodynamic_form", "ectotherm");
 
 
         public static final ResourceKey<ISkillNode> NOBLE_RANK_2 = node("rank_2", "noble");
@@ -187,6 +196,7 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> NOBLE_INVISIBILITY = node("invisibility", "noble");
         public static final ResourceKey<ISkillNode> NOBLE_INTRIGUE = node("noble_intrigue", "noble");
         public static final ResourceKey<ISkillNode> NOBLE_FLANK = node("noble_flank", "noble");
+        public static final ResourceKey<ISkillNode> NOBLE_BAT_ARMOUR = node("noble_bat_armour", "noble");
 
 
         private static ResourceKey<ISkillNode> node(String path, String bloodline) {
@@ -215,7 +225,6 @@ public class BloodlineSkills {
             context.register(ZEALOT_FRENZY, new SkillNode(BloodlineSkills.ZEALOT_FRENZY, BloodlineSkills.ZEALOT_POISONED_STRIKE));
             context.register(ZEALOT_SWIFT_SNEAK, new SkillNode(BloodlineSkills.ZEALOT_SWIFT_SNEAK));
 
-
             context.register(ECTOTHERM_RANK_2, new SkillNode(BloodlineSkills.ECTOTHERM_RANK_2));
             context.register(ECTOTHERM_RANK_3, new SkillNode(BloodlineSkills.ECTOTHERM_RANK_3));
             context.register(ECTOTHERM_RANK_4, new SkillNode(BloodlineSkills.ECTOTHERM_RANK_4));
@@ -229,6 +238,10 @@ public class BloodlineSkills {
             context.register(ECTOTHERM_DOLPHIN_LEAP, new SkillNode(BloodlineSkills.ECTOTHERM_DOLPHIN_LEAP));
             context.register(ECTOTHERM_TENTACLES, new SkillNode(BloodlineSkills.ECTOTHERM_TENTACLES));
             context.register(ECTOTHERM_SNOW_WALKER, new SkillNode(BloodlineSkills.ECTOTHERM_SNOW_WALKER));
+            context.register(ECTOTHERM_LORD_OF_FROST_DURATION, new SkillNode(BloodlineSkills.ECTOTHERM_LORD_OF_FROST_MULTIPLIER));
+            context.register(ECTOTHERM_UNDERWATER_DURATION, new SkillNode(BloodlineSkills.ECTOTHERM_UNDERWATER_DURATION));
+            context.register(ECTOTHERM_HYDRODYNAMIC_FORM, new SkillNode(BloodlineSkills.ECTOTHERM_HYDRODYNAMIC_FORM));
+            context.register(ECTOTHERM_INK_SPLASH, new SkillNode(BloodlineSkills.ECTOTHERM_INK_SPLASH));
 
 
 
@@ -249,6 +262,8 @@ public class BloodlineSkills {
             context.register(NOBLE_INVISIBILITY, new SkillNode(BloodlineSkills.NOBLE_INVISIBILITY));
             context.register(NOBLE_INTRIGUE, new SkillNode(BloodlineSkills.NOBLE_INTRIGUE));
             context.register(NOBLE_FLANK, new SkillNode(BloodlineSkills.NOBLE_FLANK));
+            context.register(NOBLE_BAT_ARMOUR, new SkillNode(BloodlineSkills.NOBLE_BAT_ARMOUR));
+
 
         }
     }

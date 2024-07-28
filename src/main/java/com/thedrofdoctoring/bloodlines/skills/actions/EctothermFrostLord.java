@@ -45,7 +45,11 @@ public class EctothermFrostLord extends DefaultVampireAction implements ILasting
 
     public int getDuration(@NotNull IVampirePlayer player) {
         int realRank = BloodlineHelper.getBloodlineRank(player.asEntity()) - 1;
-        return CommonConfig.ectothermLordOfFrostDuration.get().get(realRank) * 20;
+        int duration = CommonConfig.ectothermLordOfFrostDuration.get().get(realRank) * 20;
+        if(player.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_LORD_OF_FROST_MULTIPLIER.get())) {
+            duration *= CommonConfig.ectothermLordOfFrostMultiplier.get();
+        }
+        return duration;
     }
 
     @Override

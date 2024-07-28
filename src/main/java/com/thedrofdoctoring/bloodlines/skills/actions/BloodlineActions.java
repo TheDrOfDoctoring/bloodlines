@@ -21,6 +21,7 @@ public class BloodlineActions {
     public static final DeferredHolder<IAction<?>, ZealotFrenzyAction> ZEALOT_FRENZY_ACTION = ACTIONS.register("zealot_frenzy_action", ZealotFrenzyAction::new);
     public static final DeferredHolder<IAction<?>, EctothermFrostLord> ECTOTHERM_FROST_LORD_ACTION = ACTIONS.register("ectotherm_frostlord_action", EctothermFrostLord::new);
     public static final DeferredHolder<IAction<?>, EctothermDolphinLeap> ECTOTHERM_DOLPHIN_LEAP_ACTION = ACTIONS.register("ectotherm_dolphin_leap_action", EctothermDolphinLeap::new);
+    public static final DeferredHolder<IAction<?>, EctothermInkSplash> ECTOTHERM_INK_SPLASH_ACTION = ACTIONS.register("ectotherm_ink_splash_action", EctothermInkSplash::new);
 
 
 }

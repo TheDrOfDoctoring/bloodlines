@@ -27,6 +27,7 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue bothInvisibilityDuration;
     public static final ModConfigSpec.DoubleValue leechingMultiplier;
     public static final ModConfigSpec.DoubleValue nobleIntrigueDamageMultiplier;
+    public static final ModConfigSpec.DoubleValue nobleBatArmourMultiplier;
     public static final ModConfigSpec.IntValue zealotShadowwalkLightLevel;
     public static final ModConfigSpec.IntValue zealotShaddowwalkMaxDistance;
     public static final ModConfigSpec.IntValue zealotShadowArmourLightLevel;
@@ -66,6 +67,11 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue ectothermHotBiomeActionCooldownRank;
     public static final ModConfigSpec.DoubleValue ectothermDolphinLeapDistance;
     public static final ModConfigSpec.DoubleValue ectothermTentacleInteractionDistance;
+    public static final ModConfigSpec.DoubleValue ectothermLordOfFrostMultiplier;
+    public static final ModConfigSpec.IntValue ectothermUnderwaterDurationIncrease;
+    public static final ModConfigSpec.IntValue ectothermInkSplashCooldown;
+    public static final ModConfigSpec.DoubleValue ectothermHydrodynamicFormSpeedMultiplier;
+    public static final ModConfigSpec.IntValue ectothermInkSplashBlindnessLength;
 
 
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleMaxHealthChange;
@@ -132,20 +138,21 @@ public class CommonConfig {
 
         defaultNotManuallyUnlockable = COMMON_BUILDER.comment("Whether default unlocked skills (skills unlocked for advancing in bloodline rank) are not unlockable manually").define("defaultNotUnlockable", true);
         COMMON_BUILDER.comment("When changing any config which contains decimal values, ensure your edited value has a decimal at the end or it may be reset to original.");
+        COMMON_BUILDER.comment("Multipliers work differently based on usage, many of them are attributes where you can effectively take the multiplier as 1 + value specified in config. Configs like this will be marked as attribute in description");
         COMMON_BUILDER.push("noble_bloodline");
         COMMON_BUILDER.comment("Noble bloodline configurable values");
         sunTicksPerIncrease = COMMON_BUILDER.comment("When the correct bloodline skill is enabled, how often (amount of ticks) sun damage progress is increased. Integer values only").defineInRange("sunTicksPerIncrease", 3, 2, Integer.MAX_VALUE);
         nobleMaxHealthChange = COMMON_BUILDER.comment("Max Health increase/decrease for each bloodline rank.").defineList("nobleMaxHealthIncrease", Arrays.asList(-2.0d, -4.0d, -4.0d, -8.0d), t -> t instanceof Double);
-        nobleAttackSpeedIncrease = COMMON_BUILDER.comment("Noble attack speed increase per rank.").defineList("nobleAttackSpeedIncrease", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
-        nobleBloodThirstChange = COMMON_BUILDER.comment("Blood Thirst increase/decrease for each bloodline rank. Multiplier").defineList("nobleBloodThirstChange", Arrays.asList(0.2d, 0.4d, 0.6d, 0.75d), t -> t instanceof Double);
-        nobleNeonatalMultiplier = COMMON_BUILDER.comment("Neonatal timer increase/decrease for each bloodline rank. Multiplier. ").defineList("nobleNeonatalMultiplier", Arrays.asList(0d, -0.8d, -0.65d, -0.4d), t -> t instanceof Double);
-        nobleFasterResurrectionMultiplier = COMMON_BUILDER.comment("Resurrection timer increase/decrease for each bloodline rank. Multiplier. ").defineList("nobleResurrectionTimerMultiplier", Arrays.asList(0d, -0.8d, -0.65d, -0.4d), t -> t instanceof Double);
-        nobleTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("nobleTradePricesMultiplier", Arrays.asList(0.8d, 0.75d, 0.5d, 0.35d), t -> t instanceof Double);
+        nobleAttackSpeedIncrease = COMMON_BUILDER.comment("Noble attack speed increase per rank. Attribute Multiplier").defineList("nobleAttackSpeedIncrease", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        nobleBloodThirstChange = COMMON_BUILDER.comment("Blood Thirst increase/decrease for each bloodline rank. Attribute Multiplier").defineList("nobleBloodThirstChange", Arrays.asList(0.2d, 0.4d, 0.6d, 0.75d), t -> t instanceof Double);
+        nobleNeonatalMultiplier = COMMON_BUILDER.comment("Neonatal timer increase/decrease for each bloodline rank. Attribute Multiplier. ").defineList("nobleNeonatalMultiplier", Arrays.asList(0d, -0.8d, -0.65d, -0.4d), t -> t instanceof Double);
+        nobleFasterResurrectionMultiplier = COMMON_BUILDER.comment("Resurrection timer increase/decrease for each bloodline rank. Attribute Multiplier. ").defineList("nobleResurrectionTimerMultiplier", Arrays.asList(0d, -0.8d, -0.65d, -0.4d), t -> t instanceof Double);
+        nobleTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Attribute Multiplier").defineList("nobleTradePricesMultiplier", Arrays.asList(0.8d, 0.75d, 0.5d, 0.35d), t -> t instanceof Double);
         nobleBloodGainDecreaseMultiplier = COMMON_BUILDER.comment("Multiplier for blood gain decrease when gaining blood from human hearts or other Vampirism Blood Food Items").defineList("nobleBloodGainDecreaseMultiplier", Arrays.asList(0.7d, 0.6d, 0.5d, 0.35d), t -> t instanceof Double);
         nobleBloodGainMultiplier = COMMON_BUILDER.comment("Multiplier for blood gain with noble blood drain skill when draining directly from mobs").defineList("nobleBloodMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 1.8d), t -> t instanceof Double);
         nobleBatSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for bat speed with the bat speed increase skill").defineList("nobleBatSpeedMultiplier", Arrays.asList(1d, 1.1d, 1.2d, 1.4d), t -> t instanceof Double);
-        nobleSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for speed from speed boost skill").defineList("nobleSpeedMultiplier", Arrays.asList(0d, 0.05d, 0.1d, 0.2d), t -> true);
-        nobleCeleritySpeedMultipliers = COMMON_BUILDER.comment("Multiplier for speed from celerity action").defineList("nobleCeleritySpeedMultiplier", Arrays.asList(0d, 0.2d, 0.4d, 0.6d), t -> t instanceof Double);
+        nobleSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for speed from speed boost skill. Attribute Multiplier").defineList("nobleSpeedMultiplier", Arrays.asList(0d, 0.05d, 0.1d, 0.2d), t -> true);
+        nobleCeleritySpeedMultipliers = COMMON_BUILDER.comment("Multiplier for speed from celerity action. Attribute Multiplier").defineList("nobleCeleritySpeedMultiplier", Arrays.asList(0d, 0.2d, 0.4d, 0.6d), t -> t instanceof Double);
         celerityEnabled = COMMON_BUILDER.comment("Whether celerity action is enabled").define("celerityEnabled", true);
         celerityCooldown = COMMON_BUILDER.comment("Celerity action cooldown in seconds").defineInRange("celerityCooldown", 60, 1, Integer.MAX_VALUE);
         celerityDuration = COMMON_BUILDER.comment("Celerity action duration in seconds").defineInRange("celerityDuration", 5, 1, Integer.MAX_VALUE);
@@ -166,6 +173,7 @@ public class CommonConfig {
         nobleIntrigueDamageMultiplier = COMMON_BUILDER.comment("How much damage is multiplied by when attacking from behind with intrigue skill").defineInRange("intrigueMultiplier", 1.5d, 0, 1000);
         nobleFlankCooldown = COMMON_BUILDER.comment("Flank cooldown in seconds").defineInRange("nobleFlankCooldown", 15, 1, Integer.MAX_VALUE);
         nobleFlankRange = COMMON_BUILDER.comment("Flank max distance").defineInRange("nobleFlankMaxDistance", 200, 1, 1000);
+        nobleBatArmourMultiplier = COMMON_BUILDER.comment("Multiplier for armour in bat form with requisite skill").defineInRange("nobleBatArmourMultiplier", -0.45d, -1d, 1d);
 
         nobleDefaults[0] = nobleBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("nobleBLRank1DefaultSkills", List.of("bloodlines:noble"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;
         nobleDefaults[1] = nobleBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("nobleBLRank2DefaultSkills", List.of("bloodlines:noble_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
@@ -175,7 +183,7 @@ public class CommonConfig {
 
         COMMON_BUILDER.push("zealot_bloodline");
         COMMON_BUILDER.comment("Deep Zealots bloodline configurable values");
-        zealotBloodExhaustionChange = COMMON_BUILDER.comment("Blood exhaustion change for each bloodline rank, multiplier").defineList("zealotBloodExhaustionChange", Arrays.asList(-0.15d, -0.3, -0.4d, -0.5d), t -> t instanceof Double);
+        zealotBloodExhaustionChange = COMMON_BUILDER.comment("Blood exhaustion change for each bloodline rank, Attribute Multiplier").defineList("zealotBloodExhaustionChange", Arrays.asList(-0.15d, -0.3, -0.4d, -0.5d), t -> t instanceof Double);
         zealotMiningSpeedIncrease = COMMON_BUILDER.comment("Mining speed multiplier for each zealot rank").defineList("zealotMiningSpeed", Arrays.asList(1.1, 1.25d, 1.35d, 1.5d), t -> t instanceof Double);
         zealotTunnelerIncrease = COMMON_BUILDER.comment("Mining speed increase for each rank when mining stone").defineList("zealotTunnelerIncrease", Arrays.asList(5d, 10d, 15d, 20d), t -> t instanceof Double);
         zealotStoneSpeedMultiplier = COMMON_BUILDER.comment("Multiplier of movement speed on stone for each zealot rank. Requires skill").defineList("zealotStoneSpeed", Arrays.asList(1.075d, 1.125d, 1.2d, 1.25d), t -> t instanceof Double);
@@ -202,8 +210,8 @@ public class CommonConfig {
         zealotHexProtectionMultiplier = COMMON_BUILDER.comment("Multiplier for damage from magical sources").defineList("zealotHexProtectionMultiplier", Arrays.asList(0.9d, 0.85d, 0.85d, 0.75d), t -> t instanceof Double);
         zealotFrenzyCooldown = COMMON_BUILDER.comment("Frenzy cooldown, seconds").defineInRange("zealotFrenzyCooldown", 60, 0, Integer.MAX_VALUE);
         zealotFrenzyDuration = COMMON_BUILDER.comment("Frenzy duration, seconds").defineInRange("zealotFrenzyDuration", 15, 0, Integer.MAX_VALUE);
-        zealotSerpentSpeedMultipliers = COMMON_BUILDER.comment("Crawling or shifting speed multiplier for Serpent Skill, at each bloodline rank").defineList("zealotSerpentSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
-        zealotMiningSpeedMultipliers = COMMON_BUILDER.comment("Frenzy mining speed multipliers").defineList("zealotMiningSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        zealotSerpentSpeedMultipliers = COMMON_BUILDER.comment("Crawling or shifting speed multiplier for Serpent Skill, at each bloodline rank. Attribute Multiplier").defineList("zealotSerpentSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        zealotMiningSpeedMultipliers = COMMON_BUILDER.comment("Frenzy mining speed multipliers. Attribute Multiplier").defineList("zealotMiningSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
         zealotBrightAreaDamageMultiplier = COMMON_BUILDER.comment("Damage taken in bright areas at specificed Bloodline Rank").defineInRange("zealotBrightAreaDamageMultiplier", 1.2d, 0, Integer.MAX_VALUE);
         zealotBrightAreaDamageMultiplierRank = COMMON_BUILDER.comment("Bloodline Rank required to start taking more damage in bright areas, set to 5 to disable").defineInRange("zealotBrightAreaDamageMultiplierRank",4, 0, 5);
         zealotBrightAreaDamageMultiplierLightLevel = COMMON_BUILDER.comment("Light Level at which more damage is taken").defineInRange("zealotBrightAreaDamageMultiplierLightLevel",14, 0, 15);
@@ -224,7 +232,7 @@ public class CommonConfig {
         ectothermFishmongerNutrition = COMMON_BUILDER.comment("How much nutrition (blood) is gained from eating fish with the fishmonger perk").defineInRange("ectothermFishmongerNutrition", 5, 0, 20);
         ectothermFishmongerSaturation = COMMON_BUILDER.comment("How much saturation gained from eating fish with the fishmonger perk").defineInRange("ectothermFishmongerSaturation", 0.5, 0, 5);
         ectothermFireDamageMultipliers = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermFireDamageMultipliers", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
-        ectothermSwimSpeedMultipliers = COMMON_BUILDER.comment("Swim speed multipliers for each BL rank").defineList("ectothermSwimSpeedMultipliers", Arrays.asList(0.25d, 0.5d, 0.75d, 1d), t -> t instanceof Double);
+        ectothermSwimSpeedMultipliers = COMMON_BUILDER.comment("Swim speed multipliers for each BL rank. Attribute Multiplier").defineList("ectothermSwimSpeedMultipliers", Arrays.asList(0.25d, 0.5d, 0.75d, 1d), t -> t instanceof Double);
         ectothermUnderwaterMiningSpeedMultiplier = COMMON_BUILDER.comment("Underwater mining speed multipliesr at each rank, with requisite skill").defineList("ectothermUnderwaterMiningSpeedMultiplier", Arrays.asList(4d, 8d, 10d, 12d), t -> t instanceof Double);
         ectothermFrozenAttackFreezingAmount = COMMON_BUILDER.comment("How much a crit with freezing attack contributes to freezing").defineInRange("ectothermFrozenAttackFreezingAmount", 25, 0, 10000);
         ectothermSlowingAttackSlownessDuration = COMMON_BUILDER.comment("How long slowness from a crit with slowing attack lasts").defineInRange("ectothermSlowingAttackSlownessDuration", 30, 0, 10000);
@@ -234,15 +242,21 @@ public class CommonConfig {
         ectothermTentacleInteractionDistance = COMMON_BUILDER.comment("How much extra block interaction range is given by the Tentacle Skill").defineInRange("ectothermTentacleRange", 1.75d, 0, 10);
         ectothermHolyWaterDiffusion = COMMON_BUILDER.comment("Damage multipliers when damaged by Holy Water at each Bloodline Rank, with requisite skill").defineList("ectothermHolyWaterDiffusion", Arrays.asList(0.9d, 0.8d, 0.7d, 0.5d), t -> t instanceof Double);
         ectothermHotBiomeReducedMaxHealthAmount = COMMON_BUILDER.comment("How much each BL Rank reduces max health in hot biomes").defineList("ectothermHotBiomeReducedMaxHealthAmount", Arrays.asList(-1.5d, -2.5d, -3.0d, -3.5d), t -> t instanceof Double);
-        ectothermHotBiomeReducedMovementSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank reduces movement speed in hot biomes (Multiplier)").defineList("ectothermHotBiomeReducedMovementSpeedMultiplier", Arrays.asList(-0.95d, -0.9d, -0.85d, -0.85d), t -> t instanceof Double);
-        ectothermColdBiomeSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermColdBiomeSpeedMultiplier", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        ectothermHotBiomeReducedMovementSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank reduces movement speed in hot biomes (Attribute Multiplier)").defineList("ectothermHotBiomeReducedMovementSpeedMultiplier", Arrays.asList(-0.05d, -0.1d, -0.15d, -0.25d), t -> t instanceof Double);
+        ectothermColdBiomeSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by. Attribute Multiplier").defineList("ectothermColdBiomeSpeedMultiplier", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
         ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
         ectothermHotBiomeActionCooldownMultiplier = COMMON_BUILDER.comment("How much each BL Rank multiplies the action cooldown by in hot biomes").defineList("ectothermHotBiomeActionCooldownMultiplier", Arrays.asList(1.25d, 1.5d, 2d, 2.5d), t -> t instanceof Double);
-        ectothermHotBiomeReducedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is reduced in hot biomes").defineInRange("ectothermHotBiomeReducedMovementSpeedRank", 4, 0, 5);
+        ectothermHotBiomeReducedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is reduced in hot biomes. Attribute Multiplier").defineInRange("ectothermHotBiomeReducedMovementSpeedRank", 4, 0, 5);
         ectothermHotBiomeReducedMaxHealthRank = COMMON_BUILDER.comment("Rank at which max health is reduced in hot biomes").defineInRange("ectothermHotBiomeReducedMaxHealthRank", 2, 0, 5);
         ectothermColdBiomeIncreasedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is increased in cold biomes").defineInRange("ectothermColdBiomeIncreasedMovementSpeedRank", 4, 0, 5);
         ectothermLordofFrostIncreasedDamageRank = COMMON_BUILDER.comment("Rank at which lord of frost damage is increased").defineInRange("ectothermLordofFrostIncreasedDamageRank", 3, 0, 5);
         ectothermHotBiomeActionCooldownRank = COMMON_BUILDER.comment("Rank at which action cooldown is increased in hot biomes").defineInRange("ectothermHotBiomeActionCooldownRank", 3, 0, 5);
+        ectothermLordOfFrostMultiplier = COMMON_BUILDER.comment("Duration multiplier for Lord of Frost with requisite skill").defineInRange("ectothermLordOfFrostMultiplier", 2d, 0, 5.0d);
+        ectothermUnderwaterDurationIncrease = COMMON_BUILDER.comment("Increase to duration for actions every 10 ticks whilst underwater with requisite skill").defineInRange("ectothermUnderwaterDurationIncrease", 5, 0, 1000);
+        ectothermInkSplashCooldown = COMMON_BUILDER.comment("Cooldown for ink splash action in seconds").defineInRange("ectothermInkSplashCooldown", 60, 0, 1000);
+        ectothermHydrodynamicFormSpeedMultiplier = COMMON_BUILDER.comment("Hydrodynamic Form underwater speed additive multiplier. Multiplier").defineInRange("ectothermHydrodynamicFormSpeedMultiplier", 2.5d, 0, 10d);
+        ectothermInkSplashBlindnessLength = COMMON_BUILDER.comment("Duration of blindness from ink splash, in ticks").defineInRange("ectothermInkSplashBlindnessLength", 80, 0, 1000);
+
 
         ectothermDefaults[0] = ectothermBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("ectothermBlRank1DefaultSkills", List.of("bloodlines:ectotherm"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;
         ectothermDefaults[1] = ectothermBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("ectothermBlRank2DefaultSkills", List.of("bloodlines:ectotherm_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));

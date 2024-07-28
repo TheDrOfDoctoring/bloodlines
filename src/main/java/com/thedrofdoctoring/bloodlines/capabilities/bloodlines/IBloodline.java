@@ -29,9 +29,10 @@ public interface IBloodline {
          *
          * @param rank - Bloodline Rank for default skills to be enabled
          * @param player - Player the bloodline belongs to
+         * @param cleanup - True when bloodline is being removed, used for removing conditional modifiers.
          * @return Map of attributes and AttributeModifiers that should be applied to the bloodline player.
          */
-        Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player);
+        Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup);
     default void onBloodlineChange(Player player, int rank) {
         enableDefaultSkills(rank, player);
     }

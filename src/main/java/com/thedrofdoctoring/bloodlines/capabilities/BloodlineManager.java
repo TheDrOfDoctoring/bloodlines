@@ -143,7 +143,8 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
 
     @Override
     public void onBloodlineChange(IBloodline oldBloodline, int oldRank) {
-        //If the oldbloodline was a proper bloodline and different from current one, we need to remove all bloodline skills of that type
+
+
         if(oldBloodline != null && oldBloodline != bloodline) {
             ArrayList<ISkill<?>> blSkills = BloodlineSkills.getBloodlineTypeSkills(oldBloodline.getSkillType());
 
@@ -177,13 +178,13 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
     @Override
     public void updateAttributes(IBloodline oldBloodline) {
         if (oldBloodline != null && oldBloodline != bloodline && !player.getCommandSenderWorld().isClientSide) {
-            Map<Holder<Attribute>, AttributeModifier> oldAttributes = oldBloodline.getBloodlineAttributes(1, player);
+            Map<Holder<Attribute>, AttributeModifier> oldAttributes = oldBloodline.getBloodlineAttributes(1, player, true);
             oldAttributes.forEach((attribute, modifier) -> {
-                removeModifier(player.getAttribute(attribute), modifier.id());
+                    removeModifier(player.getAttribute(attribute), modifier.id());
             });
         }
         if (bloodline != null && !player.getCommandSenderWorld().isClientSide) {
-            Map<Holder<Attribute>, AttributeModifier> attributes = bloodline.getBloodlineAttributes(getRank(), player);
+            Map<Holder<Attribute>, AttributeModifier> attributes = bloodline.getBloodlineAttributes(getRank(), player, false);
             attributes.forEach((attribute, modifier) -> {
                 removeModifier(player.getAttribute(attribute), modifier.id());
                 player.getAttribute(attribute).addPermanentModifier(modifier);

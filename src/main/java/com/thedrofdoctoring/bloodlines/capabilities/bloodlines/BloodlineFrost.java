@@ -27,21 +27,23 @@ import java.util.List;
 import java.util.Map;
 
 public class BloodlineFrost implements IBloodline {
-    private final Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
     public static final ResourceLocation ECTOTHERM = Bloodlines.rl("ectotherm");
+    private final Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
 
     @Override
-    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player) {
+    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup) {
         int realRank = rank - 1;
-        attributes.put(NeoForgeMod.SWIM_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_swim_speed"), CommonConfig.ectothermSwimSpeedMultipliers.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        attributes.clear();
         ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
-        applyConditionalModifier(BloodlineSkills.ECTOTHERM_TENTACLES.get(), Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Bloodlines.rl("ectotherm_tentacles"), CommonConfig.ectothermTentacleInteractionDistance.get(), AttributeModifier.Operation.ADD_VALUE), skillHandler);
-        applyConditionalModifier(BloodlineSkills.ECTOTHERM_MINING_SPEED_UNDERWATER.get(), Attributes.SUBMERGED_MINING_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_underwater_mining_speed"), CommonConfig.ectothermUnderwaterMiningSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler);
+        double speedMul = skillHandler.isSkillEnabled(BloodlineSkills.ECTOTHERM_HYDRODYNAMIC_FORM.get()) ? CommonConfig.ectothermHydrodynamicFormSpeedMultiplier.get() : 1;
+        attributes.put(NeoForgeMod.SWIM_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_swim_speed"), CommonConfig.ectothermSwimSpeedMultipliers.get().get(realRank) * speedMul, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        applyConditionalModifier(BloodlineSkills.ECTOTHERM_TENTACLES.get(), Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Bloodlines.rl("ectotherm_tentacles"), CommonConfig.ectothermTentacleInteractionDistance.get(), AttributeModifier.Operation.ADD_VALUE), skillHandler, cleanup);
+        applyConditionalModifier(BloodlineSkills.ECTOTHERM_MINING_SPEED_UNDERWATER.get(), Attributes.SUBMERGED_MINING_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_underwater_mining_speed"), CommonConfig.ectothermUnderwaterMiningSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
         return attributes;
     }
 
-    private void applyConditionalModifier(ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler) {
-        if (skillHandler.isSkillEnabled(skill)) {
+    private void applyConditionalModifier(ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
+        if (skillHandler.isSkillEnabled(skill) || cleanup) {
             attributes.put(attribute, modifier);
         }
     }

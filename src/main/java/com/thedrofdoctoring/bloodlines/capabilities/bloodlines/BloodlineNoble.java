@@ -30,19 +30,20 @@ public class BloodlineNoble implements IBloodline {
     private final Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
     public static final ResourceLocation NOBLE = Bloodlines.rl("noble");
     @Override
-    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player) {
+    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup) {
         int realRank = rank - 1;
+        attributes.clear();
         attributes.put(Attributes.ATTACK_SPEED, new AttributeModifier(Bloodlines.rl("noble_attack_speed_multiplier"), CommonConfig.nobleAttackSpeedIncrease.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         attributes.put(Attributes.MAX_HEALTH, new AttributeModifier(Bloodlines.rl("noble_health_modifier"), CommonConfig.nobleMaxHealthChange.get().get(realRank), AttributeModifier.Operation.ADD_VALUE));
         attributes.put(ModAttributes.BLOOD_EXHAUSTION, new AttributeModifier(Bloodlines.rl("noble_exhaustion_decrease"), CommonConfig.nobleBloodThirstChange.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         attributes.put(ModAttributes.NEONATAL_DURATION, new AttributeModifier(Bloodlines.rl("noble_neonatal_modifier"), CommonConfig.nobleNeonatalMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
-        applyConditionalModifier(BloodlineSkills.NOBLE_FASTER_RESURRECT.get(), ModAttributes.DBNO_DURATION, new AttributeModifier(Bloodlines.rl("noble_resurrection_modifier"), CommonConfig.nobleFasterResurrectionMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler);
-        applyConditionalModifier(BloodlineSkills.NOBLE_FASTER_MOVEMENT_SPEED.get(), Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_speed_increase"), CommonConfig.nobleSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler);
+        applyConditionalModifier(BloodlineSkills.NOBLE_FASTER_RESURRECT.get(), ModAttributes.DBNO_DURATION, new AttributeModifier(Bloodlines.rl("noble_resurrection_modifier"), CommonConfig.nobleFasterResurrectionMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+        applyConditionalModifier(BloodlineSkills.NOBLE_FASTER_MOVEMENT_SPEED.get(), Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_speed_increase"), CommonConfig.nobleSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
         return attributes;
     }
-    private void applyConditionalModifier(ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler) {
-        if(skillHandler.isSkillEnabled(skill)) {
+    private void applyConditionalModifier(ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
+        if(skillHandler.isSkillEnabled(skill) || cleanup) {
             attributes.put(attribute, modifier);
         }
     }

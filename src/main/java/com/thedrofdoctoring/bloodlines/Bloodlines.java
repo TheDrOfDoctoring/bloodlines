@@ -15,6 +15,8 @@ import com.thedrofdoctoring.bloodlines.data.BloodlinesData;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceFluidHandler;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
+import com.thedrofdoctoring.bloodlines.networking.ClientPayloadHandler;
+import com.thedrofdoctoring.bloodlines.networking.ClientboundLeapPacket;
 import com.thedrofdoctoring.bloodlines.networking.ServerPayloadHandler;
 import com.thedrofdoctoring.bloodlines.networking.ServerboundIcePacket;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkillType;
@@ -96,6 +98,12 @@ public class Bloodlines {
                 ServerboundIcePacket.CODEC,
                 ServerPayloadHandler::handleIcePacket
         );
+        registrar.playToClient(
+                ClientboundLeapPacket.TYPE,
+                ClientboundLeapPacket.CODEC,
+                ClientPayloadHandler::handleLeapPacket
+        );
+
     }
 
     public void gatherData(GatherDataEvent event) {

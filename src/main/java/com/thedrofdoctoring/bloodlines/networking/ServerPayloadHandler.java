@@ -16,7 +16,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class ServerPayloadHandler {
 
-    public static void handleIcePacket(final ServerboundIcePacket data, final IPayloadContext context) {
+    public static void handleIcePacket(ServerboundIcePacket data, final IPayloadContext context) {
         context.enqueueWork(() -> {
 
             Player player = context.player();;

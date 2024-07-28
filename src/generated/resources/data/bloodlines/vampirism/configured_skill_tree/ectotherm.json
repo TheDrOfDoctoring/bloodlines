@@ -19,6 +19,24 @@
               "node": "bloodlines:ectotherm_frozen_slowness"
             },
             {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:ectotherm_underwater_duration"
+                    }
+                  ],
+                  "node": "bloodlines:ectotherm_frost_duration"
+                },
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:ectotherm_hydrodynamic_form"
+                    }
+                  ],
+                  "node": "bloodlines:ectotherm_ink_splash"
+                }
+              ],
               "node": "bloodlines:ectotherm_rank_4"
             },
             {

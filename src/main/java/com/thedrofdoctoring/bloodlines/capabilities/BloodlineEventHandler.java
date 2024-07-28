@@ -201,6 +201,10 @@ public class BloodlineEventHandler {
             } else {
                 BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), increasedMovementSpeed);
             }
+        } else if(player.tickCount % 50 == 0 && !player.level().isClientSide) {
+            BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), reducedMovementSpeed);
+            BloodlineManager.removeModifier(player.getAttribute(Attributes.MAX_HEALTH), reducedMaxHealth);
+            BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), increasedMovementSpeed);
         }
     }
     private static boolean hasAttributeAlready(Player player, Holder<Attribute> att, ResourceLocation rl) {
