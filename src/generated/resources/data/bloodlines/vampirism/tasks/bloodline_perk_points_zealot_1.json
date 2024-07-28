@@ -3,7 +3,7 @@
     "requirements": [
       {
         "type": "vampirism:entity",
-        "amount": 10,
+        "amount": 5,
         "description": {
           "translate": "entity.vampirism.advanced_vampire"
         },

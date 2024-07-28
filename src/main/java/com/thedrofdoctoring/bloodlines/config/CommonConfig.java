@@ -255,7 +255,7 @@ public class CommonConfig {
         ectothermUnderwaterDurationIncrease = COMMON_BUILDER.comment("Increase to duration for actions every 10 ticks whilst underwater with requisite skill").defineInRange("ectothermUnderwaterDurationIncrease", 5, 0, 1000);
         ectothermInkSplashCooldown = COMMON_BUILDER.comment("Cooldown for ink splash action in seconds").defineInRange("ectothermInkSplashCooldown", 60, 0, 1000);
         ectothermHydrodynamicFormSpeedMultiplier = COMMON_BUILDER.comment("Hydrodynamic Form underwater speed additive multiplier. Multiplier").defineInRange("ectothermHydrodynamicFormSpeedMultiplier", 2.5d, 0, 10d);
-        ectothermInkSplashBlindnessLength = COMMON_BUILDER.comment("Duration of blindness from ink splash, in ticks").defineInRange("ectothermInkSplashBlindnessLength", 80, 0, 1000);
+        ectothermInkSplashBlindnessLength = COMMON_BUILDER.comment("Duration of blindness from ink splash, in ticks").defineInRange("ectothermInkSplashBlindnessLength", 150, 0, 1000);
 
 
         ectothermDefaults[0] = ectothermBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("ectothermBlRank1DefaultSkills", List.of("bloodlines:ectotherm"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;

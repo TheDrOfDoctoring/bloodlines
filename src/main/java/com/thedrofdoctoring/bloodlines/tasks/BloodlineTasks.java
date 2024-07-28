@@ -110,7 +110,7 @@ public class BloodlineTasks {
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineZealot.ZEALOT, false))
                 .addRequirement(new ItemStack(Items.DIAMOND, 8))
                 .addRequirement(new ItemStack(Items.AMETHYST_BLOCK, 12))
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 10)
+                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 5)
                 .addRequirement(EntityType.ENDERMAN, 10)
                 .build());
         context.register(BLOODLINE_ECTOTHERM_1, TaskBuilder.builder(BLOODLINE_ECTOTHERM_1).defaultTitle()

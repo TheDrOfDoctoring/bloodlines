@@ -25,9 +25,9 @@ public class ChangeBloodlineCommand extends BasicCommand {
                 .then(Commands.argument("bloodline", new BloodlineArgument())
                         .executes(context -> setRank(context, BloodlineArgument.getBloodline(context, "bloodline"), 1, Lists.newArrayList(context.getSource().getPlayerOrException())))
                         .then(Commands.argument("rank", IntegerArgumentType.integer(0))
-                                .executes(context -> setRank(context, BloodlineArgument.getBloodline(context, "bloodline"), IntegerArgumentType.getInteger(context, "rank"), Lists.newArrayList(context.getSource().getPlayerOrException()))))
+                                .executes(context -> setRank(context, BloodlineArgument.getBloodline(context, "bloodline"), IntegerArgumentType.getInteger(context, "rank"), Lists.newArrayList(context.getSource().getPlayerOrException())))
                                 .then(Commands.argument("player", EntityArgument.entities())
-                                        .executes(context -> setRank(context, BloodlineArgument.getBloodline(context, "bloodline"), IntegerArgumentType.getInteger(context, "rank"), EntityArgument.getPlayers(context, "player")))));
+                                        .executes(context -> setRank(context, BloodlineArgument.getBloodline(context, "bloodline"), IntegerArgumentType.getInteger(context, "rank"), EntityArgument.getPlayers(context, "player"))))));
     }
     @SuppressWarnings("SameReturnValue")
     private static int setRank(@NotNull CommandContext<CommandSourceStack> context, IBloodline bloodline, int rank, @NotNull Collection<ServerPlayer> players) {

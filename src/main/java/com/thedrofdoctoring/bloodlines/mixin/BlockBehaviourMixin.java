@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BlockBehaviourMixin {
     @Unique
     public final VoxelShape bloodlines$voxelShape = Shapes.empty();
-    @Unique
+
     @Inject(method = "getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", at = @At(value = "RETURN"), cancellable = true)
     private void getCollisionShape(BlockGetter getter, BlockPos pos, CollisionContext con, CallbackInfoReturnable<VoxelShape> cir) {
         if(!(con instanceof EntityCollisionContext)) {

@@ -82,6 +82,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
     public BloodlineManager(Player player) {
         this.player = player;
         this.skillHandler = new BloodlineSkillHandler();
+        skillHandler.setEnabledSkills(0);
 
     }
 

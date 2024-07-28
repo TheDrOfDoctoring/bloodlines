@@ -1,4 +1,4 @@
-// 1.21	2024-07-28T19:24:42.939769677	Registries
+// 1.21	2024-07-28T22:31:48.282020187	Registries
 1c8f54167e8f5056e0b56caf9e8b3b6b6d090983 data/bloodlines/vampirism/skill_node/ectotherm_diffusion.json
 6a4607e6fe1ba9d5bfc76308f64e9d7e8bf52bfe data/bloodlines/vampirism/skill_node/ectotherm_dolphin_leap.json
 f842ceed1e25669fe08e43981c052c75d8c40a62 data/bloodlines/vampirism/skill_node/ectotherm_fishmonger.json
@@ -65,7 +65,7 @@ a33f013e6048fbbf418108129204a53f105e7500 data/bloodlines/vampirism/tasks/bloodli
 c8c5f96a5e8cc9b5d497e13cb34a38957e27d3d0 data/bloodlines/vampirism/tasks/bloodline_noble_two.json
 4db8dcd6d6f5634b6f65369db17b017febfde8e3 data/bloodlines/vampirism/tasks/bloodline_perk_points_ectotherm_1.json
 0674a5525566158ba2e41bd7d4efe5c1fadfb00e data/bloodlines/vampirism/tasks/bloodline_perk_points_noble_1.json
-0e90e7d3ae9c6b3eaafd0c79ced7c5c6131e37f6 data/bloodlines/vampirism/tasks/bloodline_perk_points_zealot_1.json
+ce46a3ff77828a4cfa8451dece4e026007f92784 data/bloodlines/vampirism/tasks/bloodline_perk_points_zealot_1.json
 d00e1628406967bacd1657ed6a2fda0c1697c3cf data/bloodlines/vampirism/tasks/bloodline_zealot_one.json
 405efb96a6479afdc1ecce697afd634f1d87e481 data/bloodlines/vampirism/tasks/bloodline_zealot_three.json
 aa2f3eb763bde5320dfe5bbc9916455da6514288 data/bloodlines/vampirism/tasks/bloodline_zealot_two.json
