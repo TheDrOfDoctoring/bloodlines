@@ -37,10 +37,6 @@ public abstract class SkillHandlerMixin<T extends IFactionPlayer<T>> implements 
         if (skill instanceof IBloodlineSkill blSkill) {
                 BloodlineManager bl = BloodlineManager.get(player.asEntity());
 
-                if((skill == BloodlineSkills.ECTOTHERM_SLOWNESS_ATTACK.get() || skill == BloodlineSkills.ECTOTHERM_FROZEN_ATTACK.get()) && !this.isSkillEnabled(BloodlineSkills.ECTOTHERM_ICELORD)) {
-                    cir.setReturnValue(Result.PARENT_NOT_ENABLED);
-                }
-
                 if(bl.getSkillHandler().getRemainingSkillPoints() == 0 && blSkill.requiresBloodlineSkillPoints()) {
                     cir.setReturnValue(Result.NO_POINTS);
                 }
