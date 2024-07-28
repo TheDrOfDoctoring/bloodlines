@@ -29,20 +29,19 @@ import java.util.List;
 import java.util.Map;
 
 public class BloodlineZealot implements IBloodline {
-    private final Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
     public static final ResourceLocation ZEALOT = Bloodlines.rl("zealot");
     @Override
     public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup) {
         int realRank = rank - 1;
-        attributes.clear();
+        Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
         updateSpeed(player, realRank);
         ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
         attributes.put(ModAttributes.SUNDAMAGE, new AttributeModifier(Bloodlines.rl("zealot_sun_damage"), CommonConfig.zealotSunDamageMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         attributes.put(ModAttributes.BLOOD_EXHAUSTION, new AttributeModifier(Bloodlines.rl("zealot_exhaustion_decrease"), CommonConfig.zealotBloodExhaustionChange.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-        applyConditionalModifier(BloodlineSkills.ZEALOT_SWIFT_SNEAK.get(), Attributes.SNEAKING_SPEED, new AttributeModifier(Bloodlines.rl("zealot_serpent_speed"), CommonConfig.zealotSerpentSpeedMultipliers.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), skillHandler, cleanup);
+        applyConditionalModifier(attributes, BloodlineSkills.ZEALOT_SWIFT_SNEAK.get(), Attributes.SNEAKING_SPEED, new AttributeModifier(Bloodlines.rl("zealot_serpent_speed"), CommonConfig.zealotSerpentSpeedMultipliers.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), skillHandler, cleanup);
         return attributes;
     }
-    private void applyConditionalModifier(ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
+    private void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
         if(skillHandler.isSkillEnabled(skill) || cleanup) {
             attributes.put(attribute, modifier);
         }

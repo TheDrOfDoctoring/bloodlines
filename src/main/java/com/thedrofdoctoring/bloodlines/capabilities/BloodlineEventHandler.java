@@ -183,7 +183,8 @@ public class BloodlineEventHandler {
         if(BloodlineManager.get(player).getBloodline() instanceof BloodlineFrost && !player.level().isClientSide) {
             int rank = BloodlineManager.get(player).getRank() - 1;
             int modifierRank = rank + 1;
-            if (player.level().getBiome(player.getOnPos()).is(Tags.Biomes.IS_HOT)) {
+            Holder<Biome> biome = player.level().getBiome(player.getOnPos());
+            if (biome.is(Tags.Biomes.IS_HOT) && biome.is(Tags.Biomes.IS_OCEAN)) {
                 if (modifierRank >= CommonConfig.ectothermHotBiomeReducedMaxHealthRank.get() && !hasAttributeAlready(player, Attributes.MAX_HEALTH, reducedMaxHealth)) {
                     player.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(reducedMaxHealth, CommonConfig.ectothermHotBiomeReducedMaxHealthAmount.get().get(rank), AttributeModifier.Operation.ADD_VALUE));
                 }
@@ -194,7 +195,7 @@ public class BloodlineEventHandler {
                 BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), reducedMovementSpeed);
                 BloodlineManager.removeModifier(player.getAttribute(Attributes.MAX_HEALTH), reducedMaxHealth);
             }
-            if (player.level().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD)) {
+            if (biome.is(Tags.Biomes.IS_COLD)) {
                 if (modifierRank >= CommonConfig.ectothermColdBiomeIncreasedMovementSpeedRank.get() && !hasAttributeAlready(player, Attributes.MOVEMENT_SPEED, increasedMovementSpeed)) {
                     player.getAttribute(Attributes.MOVEMENT_SPEED).addPermanentModifier(new AttributeModifier(increasedMovementSpeed, CommonConfig.ectothermColdBiomeSpeedMultiplier.get().get(rank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
                 }
