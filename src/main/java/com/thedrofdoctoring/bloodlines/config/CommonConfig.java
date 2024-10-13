@@ -190,7 +190,7 @@ public class CommonConfig {
         zealotSunDamageMultiplier = COMMON_BUILDER.comment("Multiplier of sun damage for each zealot rank.").defineList("zealotSunDamageMultiplier", Arrays.asList(0.5d, 1d, 1.5d, 2d), t -> t instanceof Double);
         zealotShadowwalkLightLevel = COMMON_BUILDER.comment("Maximum Light Level for shadowwalk to work").defineInRange("zealotShadowwalkLightLevel", 6, 0, 15);
         zealotShaddowwalkMaxDistance = COMMON_BUILDER.comment("Maximum distance for shadowwalk").defineInRange("zealotShadowwalkmaxDistance", 25, 1, 1000);
-        zealotShadowwalkCooldowns = COMMON_BUILDER.comment("Shaddowwalk cooldown at each rank, in seconds").defineList("shadowwalkCooldown", Arrays.asList(15, 8, 5, 3), t -> t instanceof Double);
+        zealotShadowwalkCooldowns = COMMON_BUILDER.comment("Shaddowwalk cooldown at each rank, in seconds").defineList("shadowwalkCooldown", Arrays.asList(15, 8, 5, 3), t -> t instanceof Integer);
         zealotShadowArmourDamageMultiplier = COMMON_BUILDER.comment("Damage multiplier for shadow armour depending on BL Rank").defineList("zealotShadowArmourDamageMultiplier", Arrays.asList(0.9d, 0.95d, 0.85d, 0.8d), t -> t instanceof Double);
         zealotShadowArmourLightLevel = COMMON_BUILDER.comment("Maximum Light Level for shadow armour to work").defineInRange("zealotShadowarmourLightLevel", 8, 0, 15);
         zealotDarkCloakLightLevel = COMMON_BUILDER.comment("Maximum Light Level for dark cloak to work").defineInRange("zealotDarkCloakLightLevel", 10, 0, 15);
@@ -228,7 +228,6 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Ectotherm bloodline configurable values");
         ectothermIceLordCooldown = COMMON_BUILDER.comment("Ice Lord cooldown").defineInRange("ectothermIceLordCooldown", 15, 0, Integer.MAX_VALUE);
         ectothermUnderwaterVisionDistance = COMMON_BUILDER.comment("Distance you can see clearly underwater at, for each bloodline rank. Set to 0 for normal amount").defineList("ectothermUnderwaterVisionDistance", Arrays.asList(0, 90, 125, 150), t -> t instanceof Integer);
-        ectothermLordOfFrostDuration = COMMON_BUILDER.comment("Lord of Frost action duration at each BL Rank, in seconds").defineList("ectothermFrostDuration", Arrays.asList(15, 30, 60, 120), t -> t instanceof Integer);
         ectothermFishmongerNutrition = COMMON_BUILDER.comment("How much nutrition (blood) is gained from eating fish with the fishmonger perk").defineInRange("ectothermFishmongerNutrition", 5, 0, 20);
         ectothermFishmongerSaturation = COMMON_BUILDER.comment("How much saturation gained from eating fish with the fishmonger perk").defineInRange("ectothermFishmongerSaturation", 0.5, 0, 5);
         ectothermFireDamageMultipliers = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermFireDamageMultipliers", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
@@ -244,14 +243,15 @@ public class CommonConfig {
         ectothermHotBiomeReducedMaxHealthAmount = COMMON_BUILDER.comment("How much each BL Rank reduces max health in hot biomes").defineList("ectothermHotBiomeReducedMaxHealthAmount", Arrays.asList(-1.5d, -2.5d, -3.0d, -3.5d), t -> t instanceof Double);
         ectothermHotBiomeReducedMovementSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank reduces movement speed in hot biomes (Attribute Multiplier)").defineList("ectothermHotBiomeReducedMovementSpeedMultiplier", Arrays.asList(-0.05d, -0.1d, -0.15d, -0.25d), t -> t instanceof Double);
         ectothermColdBiomeSpeedMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by. Attribute Multiplier").defineList("ectothermColdBiomeSpeedMultiplier", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
-        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
         ectothermHotBiomeActionCooldownMultiplier = COMMON_BUILDER.comment("How much each BL Rank multiplies the action cooldown by in hot biomes").defineList("ectothermHotBiomeActionCooldownMultiplier", Arrays.asList(1.25d, 1.5d, 2d, 2.5d), t -> t instanceof Double);
         ectothermHotBiomeReducedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is reduced in hot biomes. Attribute Multiplier").defineInRange("ectothermHotBiomeReducedMovementSpeedRank", 4, 0, 5);
+        ectothermHotBiomeActionCooldownRank = COMMON_BUILDER.comment("Rank at which action cooldown is increased in hot biomes").defineInRange("ectothermHotBiomeActionCooldownRank", 3, 0, 5);
         ectothermHotBiomeReducedMaxHealthRank = COMMON_BUILDER.comment("Rank at which max health is reduced in hot biomes").defineInRange("ectothermHotBiomeReducedMaxHealthRank", 2, 0, 5);
         ectothermColdBiomeIncreasedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is increased in cold biomes").defineInRange("ectothermColdBiomeIncreasedMovementSpeedRank", 4, 0, 5);
-        ectothermLordofFrostIncreasedDamageRank = COMMON_BUILDER.comment("Rank at which lord of frost damage is increased").defineInRange("ectothermLordofFrostIncreasedDamageRank", 3, 0, 5);
-        ectothermHotBiomeActionCooldownRank = COMMON_BUILDER.comment("Rank at which action cooldown is increased in hot biomes").defineInRange("ectothermHotBiomeActionCooldownRank", 3, 0, 5);
+        ectothermLordOfFrostDuration = COMMON_BUILDER.comment("Lord of Frost action duration at each BL Rank, in seconds").defineList("ectothermFrostDuration", Arrays.asList(15, 30, 60, 120), t -> t instanceof Integer);
         ectothermLordOfFrostMultiplier = COMMON_BUILDER.comment("Duration multiplier for Lord of Frost with requisite skill").defineInRange("ectothermLordOfFrostMultiplier", 2d, 0, 5.0d);
+        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
+        ectothermLordofFrostIncreasedDamageRank = COMMON_BUILDER.comment("Rank at which lord of frost damage is increased").defineInRange("ectothermLordofFrostIncreasedDamageRank", 3, 0, 5);
         ectothermUnderwaterDurationIncrease = COMMON_BUILDER.comment("Increase to duration for actions every 10 ticks whilst underwater with requisite skill").defineInRange("ectothermUnderwaterDurationIncrease", 5, 0, 1000);
         ectothermInkSplashCooldown = COMMON_BUILDER.comment("Cooldown for ink splash action in seconds").defineInRange("ectothermInkSplashCooldown", 60, 0, 1000);
         ectothermHydrodynamicFormSpeedMultiplier = COMMON_BUILDER.comment("Hydrodynamic Form underwater speed additive multiplier. Multiplier").defineInRange("ectothermHydrodynamicFormSpeedMultiplier", 2.5d, 0, 10d);
