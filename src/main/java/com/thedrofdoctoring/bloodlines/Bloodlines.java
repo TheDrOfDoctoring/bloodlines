@@ -6,10 +6,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry
 import com.thedrofdoctoring.bloodlines.client.ClientRegistryHandler;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
-import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
-import com.thedrofdoctoring.bloodlines.core.BloodlineEntities;
-import com.thedrofdoctoring.bloodlines.core.BloodlinesBlocks;
-import com.thedrofdoctoring.bloodlines.core.BloodlinesItems;
+import com.thedrofdoctoring.bloodlines.core.*;
 import com.thedrofdoctoring.bloodlines.data.BloodlineSkillTreeProvider;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesData;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
@@ -85,6 +82,7 @@ public class Bloodlines {
         BloodlineAttachments.ATTACHMENT_TYPES.register(modEventBus);
         BloodlineTasks.TASK_REWARDS.register(modEventBus);
         BloodlineTasks.TASK_UNLOCKER.register(modEventBus);
+        BloodlineComponents.DATA_COMPONENTS.register(modEventBus);
         BloodlineTasks.TASK_REWARD_INSTANCES.register(modEventBus);
 
         NeoForge.EVENT_BUS.addListener(this::onCommandsRegister);

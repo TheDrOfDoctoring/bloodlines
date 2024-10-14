@@ -1,6 +1,8 @@
 package com.thedrofdoctoring.bloodlines.items;
 
+import com.thedrofdoctoring.bloodlines.core.BloodlineComponents;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesItems;
+import com.thedrofdoctoring.bloodlines.items.attachments.ChaliceBlood;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.VReference;
 import de.teamlapen.vampirism.api.entity.vampire.IVampire;
@@ -43,7 +45,7 @@ public class BottomlessChaliceItem extends Item {
     }
     public static @NotNull ItemStack getStackDamage (int damage) {
         ItemStack stack = new ItemStack(BloodlinesItems.CHALICE_ITEM.get());
-        stack.setDamageValue(damage);
+        stack.set(BloodlineComponents.CHALICE_BLOOD, new ChaliceBlood(damage));
         return stack;
     }
 
@@ -96,11 +98,12 @@ public class BottomlessChaliceItem extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltips, flag);
         Player player = ClientProxy.get().getClientPlayer();
+        int blood = stack.getOrDefault(BloodlineComponents.CHALICE_BLOOD.get(), ChaliceBlood.EMPTY).blood();
         if (player != null && Helper.isVampire(player)) {
             if (!VampirePlayer.getOpt(player).map(vp -> vp.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())).orElse(false)) {
                 tooltips.add(Component.translatable("text.bloodlines.chalice").withStyle(ChatFormatting.DARK_PURPLE));
             } else {
-                tooltips.add(Component.translatable("text.bloodlines.chalice_blood", stack.getDamageValue() * MULTIPLIER).withStyle(ChatFormatting.DARK_RED));
+                tooltips.add(Component.translatable("text.bloodlines.chalice_blood", blood * MULTIPLIER).withStyle(ChatFormatting.DARK_RED));
             }
         }
     }
