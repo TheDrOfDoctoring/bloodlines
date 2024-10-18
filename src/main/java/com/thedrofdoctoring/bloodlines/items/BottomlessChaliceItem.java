@@ -13,6 +13,7 @@ import de.teamlapen.vampirism.proxy.ClientProxy;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -105,6 +107,20 @@ public class BottomlessChaliceItem extends Item {
             } else {
                 tooltips.add(Component.translatable("text.bloodlines.chalice_blood", blood * MULTIPLIER).withStyle(ChatFormatting.DARK_RED));
             }
+        }
+    }
+    public void bloodUpdated(int newAmount, ItemStack stack) {
+        float percentage = (float) newAmount / AMOUNT;
+        if(newAmount == 0) {
+            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(0));
+        }
+        else if(newAmount > 1 && percentage <= 0.25f) {
+            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(1));
+        }
+        else if(percentage > 0.25f && percentage <= 0.5f) {
+            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(2));
+        } else if(percentage > 0.5f) {
+            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(3));
         }
     }
 

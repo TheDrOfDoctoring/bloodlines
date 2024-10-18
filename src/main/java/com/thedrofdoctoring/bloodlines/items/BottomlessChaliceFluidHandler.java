@@ -31,7 +31,11 @@ public class BottomlessChaliceFluidHandler extends BloodBottleFluidHandler {
         }
     }
     public void setBlood(@NotNull ItemStack stack, int amt) {
-        stack.set(BloodlineComponents.CHALICE_BLOOD.get(), new ChaliceBlood(amt / MULTIPLIER));
+        amt = amt / MULTIPLIER;
+        if(stack.getItem() instanceof BottomlessChaliceItem chalice) {
+            chalice.bloodUpdated(amt, stack);
+        }
+        stack.set(BloodlineComponents.CHALICE_BLOOD.get(), new ChaliceBlood(amt));
     }
 
     public int getBlood(@NotNull ItemStack stack) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bloodlines:item/bottomless_chalice_most_blood"
+  }
+}
