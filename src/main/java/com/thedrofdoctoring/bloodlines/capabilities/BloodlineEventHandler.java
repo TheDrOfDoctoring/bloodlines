@@ -77,7 +77,6 @@ import org.w3c.dom.Attr;
 
 import java.util.function.Predicate;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
 
 @EventBusSubscriber(modid = Bloodlines.MODID)
 public class BloodlineEventHandler {
@@ -415,7 +414,7 @@ public class BloodlineEventHandler {
             }
         } else {
             if (entityAIReplacementWarnMap.getOrDefault(name, true)) {
-                LOGGER.warn("Could not modify {} attack target task for {}", name, e.getType().getDescription());
+                Bloodlines.LOGGER.warn("Could not modify {} attack target task for {}", name, e.getType().getDescription());
                 entityAIReplacementWarnMap.put(name, false);
             }
 
