@@ -37,7 +37,7 @@ public class BottomlessChaliceItem extends Item {
 
     //This is effectively identical to the BloodBottleItem with a few minor changes to limit to the correct user and increase capacity.
 
-    public static final int AMOUNT = 100;
+    public static final int AMOUNT = 250;
     private static final int MULTIPLIER = VReference.FOOD_TO_FLUID_BLOOD;
     public static final int CAPACITY = AMOUNT * MULTIPLIER;
     public BottomlessChaliceItem(Properties props) {
