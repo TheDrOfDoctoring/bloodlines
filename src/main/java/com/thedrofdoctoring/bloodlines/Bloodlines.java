@@ -2,7 +2,8 @@ package com.thedrofdoctoring.bloodlines;
 
 import com.mojang.logging.LogUtils;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry;
+import com.thedrofdoctoring.bloodlines.capabilities.entity.BloodlineMobManager;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.client.ClientRegistryHandler;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
@@ -45,6 +46,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import org.slf4j.Logger;
 
 import java.util.Set;
@@ -61,9 +63,7 @@ public class Bloodlines {
             container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
             ClientRegistryHandler.init();
         }
-        BloodlineRegistry.registerBloodline(BloodlineReference.NOBLE);
-        BloodlineRegistry.registerBloodline(BloodlineReference.ZEALOT);
-        BloodlineRegistry.registerBloodline(BloodlineReference.ECTOTHERM);
+
 
 
         modEventBus.addListener(this::loadComplete);
@@ -71,8 +71,9 @@ public class Bloodlines {
         modEventBus.addListener(this::gatherData);
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerPayloads);
+        modEventBus.addListener(this::registerRegistries);
 
-
+        BloodlineRegistry.BLOODLINES.register(modEventBus);
         BloodlineCommands.COMMAND_ARGUMENT_TYPES.register(modEventBus);
         BloodlinesItems.register(modEventBus);
         BloodlinesBlocks.BLOCKS.register(modEventBus);
@@ -90,6 +91,9 @@ public class Bloodlines {
 
     public void onCommandsRegister(final RegisterCommandsEvent event) {
         BloodlineCommands.registerCommands(event.getDispatcher(), event.getBuildContext());
+    }
+    public void registerRegistries(final NewRegistryEvent event) {
+        event.register(BloodlineRegistry.BLOODLINE_REGISTRY);
     }
 
     public void registerPayloads(final RegisterPayloadHandlersEvent event) {
@@ -124,15 +128,18 @@ public class Bloodlines {
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerItem(Capabilities.FluidHandler.ITEM, (item, b) -> new BottomlessChaliceFluidHandler(item, BottomlessChaliceItem.CAPACITY), BloodlinesItems.CHALICE_ITEM.get());
     }
-
+    //This is seemingly not strictly necessary, but in case this changes the skill types will still be registered.
     private void loadComplete(final FMLLoadCompleteEvent event) {
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.NOBLE);
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.ZEALOT);
+        VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.ECTOTHERM);
 
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         HelperRegistry.registerSyncablePlayerCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MANAGER.get(), BloodlineManager.class);
+        HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MOB_MANAGER.get(), BloodlineMobManager.class);
+
     }
 
     public static ResourceLocation rl(String path) {

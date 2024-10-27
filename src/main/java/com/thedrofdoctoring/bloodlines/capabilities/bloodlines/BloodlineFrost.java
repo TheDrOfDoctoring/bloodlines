@@ -14,6 +14,7 @@ import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -26,18 +27,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BloodlineFrost implements IBloodline {
+public class BloodlineFrost extends VampireBloodline {
     public static final ResourceLocation ECTOTHERM = Bloodlines.rl("ectotherm");
 
     @Override
-    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup) {
+    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup) {
         int realRank = rank - 1;
         Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
-        ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
-        double speedMul = skillHandler.isSkillEnabled(BloodlineSkills.ECTOTHERM_HYDRODYNAMIC_FORM.get()) ? CommonConfig.ectothermHydrodynamicFormSpeedMultiplier.get() : 1;
+        double speedMul = 1;
+        if(entity instanceof Player player) {
+            ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
+            applyConditionalModifier(attributes, BloodlineSkills.ECTOTHERM_MINING_SPEED_UNDERWATER.get(), Attributes.SUBMERGED_MINING_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_underwater_mining_speed"), CommonConfig.ectothermUnderwaterMiningSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+            applyConditionalModifier(attributes, BloodlineSkills.ECTOTHERM_TENTACLES.get(), Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Bloodlines.rl("ectotherm_tentacles"), CommonConfig.ectothermTentacleInteractionDistance.get(), AttributeModifier.Operation.ADD_VALUE), skillHandler, cleanup);
+            speedMul = skillHandler.isSkillEnabled(BloodlineSkills.ECTOTHERM_HYDRODYNAMIC_FORM.get()) ? CommonConfig.ectothermHydrodynamicFormSpeedMultiplier.get() : 1;
+        }
         attributes.put(NeoForgeMod.SWIM_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_swim_speed"), CommonConfig.ectothermSwimSpeedMultipliers.get().get(realRank) * speedMul, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-        applyConditionalModifier(attributes, BloodlineSkills.ECTOTHERM_TENTACLES.get(), Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Bloodlines.rl("ectotherm_tentacles"), CommonConfig.ectothermTentacleInteractionDistance.get(), AttributeModifier.Operation.ADD_VALUE), skillHandler, cleanup);
-        applyConditionalModifier(attributes, BloodlineSkills.ECTOTHERM_MINING_SPEED_UNDERWATER.get(), Attributes.SUBMERGED_MINING_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_underwater_mining_speed"), CommonConfig.ectothermUnderwaterMiningSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+
         return attributes;
     }
 
@@ -50,21 +55,6 @@ public class BloodlineFrost implements IBloodline {
     @Override
     public ResourceLocation getBloodlineId() {
         return ECTOTHERM;
-    }
-
-    @Override
-    public IPlayableFaction<?> getFaction() {
-        return VReference.VAMPIRE_FACTION;
-    }
-
-    @Override
-    public @Nullable ISkillHandler<IVampirePlayer> getSkillHandler(net.minecraft.world.entity.player.Player player) {
-        return VampirePlayer.get(player).getSkillHandler();
-    }
-
-    @Override
-    public BloodlineSkillType getSkillType() {
-        return BloodlineSkillType.ECTOTHERM;
     }
 
     @Override

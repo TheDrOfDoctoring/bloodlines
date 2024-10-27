@@ -135,12 +135,16 @@ public class CommonConfig {
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
-
         defaultNotManuallyUnlockable = COMMON_BUILDER.comment("Whether default unlocked skills (skills unlocked for advancing in bloodline rank) are not unlockable manually").define("defaultNotUnlockable", true);
         COMMON_BUILDER.comment("When changing any config which contains decimal values, ensure your edited value has a decimal at the end or it may be reset to original.");
         COMMON_BUILDER.comment("Multipliers work differently based on usage, many of them are attributes where you can effectively take the multiplier as 1 + value specified in config. Configs like this will be marked as attribute in description");
         COMMON_BUILDER.push("noble_bloodline");
         COMMON_BUILDER.comment("Noble bloodline configurable values");
+
+        COMMON_BUILDER.push("noble_mobs");
+
+        COMMON_BUILDER.pop();
+
         sunTicksPerIncrease = COMMON_BUILDER.comment("When the correct bloodline skill is enabled, how often (amount of ticks) sun damage progress is increased. Integer values only").defineInRange("sunTicksPerIncrease", 3, 2, Integer.MAX_VALUE);
         nobleMaxHealthChange = COMMON_BUILDER.comment("Max Health increase/decrease for each bloodline rank.").defineList("nobleMaxHealthIncrease", Arrays.asList(-2.0d, -4.0d, -4.0d, -8.0d), t -> t instanceof Double);
         nobleAttackSpeedIncrease = COMMON_BUILDER.comment("Noble attack speed increase per rank. Attribute Multiplier").defineList("nobleAttackSpeedIncrease", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
@@ -179,10 +183,18 @@ public class CommonConfig {
         nobleDefaults[1] = nobleBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("nobleBLRank2DefaultSkills", List.of("bloodlines:noble_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         nobleDefaults[2] = nobleBlRank3DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 3").defineList("nobleBLRank3DefaultSkills", List.of("bloodlines:noble_rank_3"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         nobleDefaults[3] = nobleBlRank4DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 4").defineList("nobleBLRank4DefaultSkills", List.of("bloodlines:noble_rank_4"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
+
+
+
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push("zealot_bloodline");
         COMMON_BUILDER.comment("Deep Zealots bloodline configurable values");
+
+        COMMON_BUILDER.push("zealot_mobs");
+
+        COMMON_BUILDER.pop();
+
         zealotBloodExhaustionChange = COMMON_BUILDER.comment("Blood exhaustion change for each bloodline rank, Attribute Multiplier").defineList("zealotBloodExhaustionChange", Arrays.asList(-0.15d, -0.3, -0.4d, -0.5d), t -> t instanceof Double);
         zealotMiningSpeedIncrease = COMMON_BUILDER.comment("Mining speed multiplier for each zealot rank").defineList("zealotMiningSpeed", Arrays.asList(1.1, 1.25d, 1.35d, 1.5d), t -> t instanceof Double);
         zealotTunnelerIncrease = COMMON_BUILDER.comment("Mining speed increase for each rank when mining stone").defineList("zealotTunnelerIncrease", Arrays.asList(5d, 10d, 15d, 20d), t -> t instanceof Double);
@@ -222,10 +234,18 @@ public class CommonConfig {
         zealotDefaults[1] = zealotBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("zealotBLRank2DefaultSkills", List.of("bloodlines:zealot_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         zealotDefaults[2] = zealotBlRank3DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 3").defineList("zealotBLRank3DefaultSkills", List.of("bloodlines:zealot_rank_3"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         zealotDefaults[3] = zealotBlRank4DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 4").defineList("zealotBLRank4DefaultSkills", List.of("bloodlines:zealot_rank_4"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
+
+
+
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.push("ectotherm_bloodline");
         COMMON_BUILDER.comment("Ectotherm bloodline configurable values");
+
+        COMMON_BUILDER.push("ectotherm_mobs");
+
+        COMMON_BUILDER.pop();
+
         ectothermIceLordCooldown = COMMON_BUILDER.comment("Ice Lord cooldown").defineInRange("ectothermIceLordCooldown", 15, 0, Integer.MAX_VALUE);
         ectothermUnderwaterVisionDistance = COMMON_BUILDER.comment("Distance you can see clearly underwater at, for each bloodline rank. Set to 0 for normal amount").defineList("ectothermUnderwaterVisionDistance", Arrays.asList(0, 90, 125, 150), t -> t instanceof Integer);
         ectothermFishmongerNutrition = COMMON_BUILDER.comment("How much nutrition (blood) is gained from eating fish with the fishmonger perk").defineInRange("ectothermFishmongerNutrition", 5, 0, 20);
@@ -262,6 +282,9 @@ public class CommonConfig {
         ectothermDefaults[1] = ectothermBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("ectothermBlRank2DefaultSkills", List.of("bloodlines:ectotherm_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         ectothermDefaults[2] = ectothermBlRank3DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 3").defineList("ectothermBlRank3DefaultSkills", List.of("bloodlines:ectotherm_rank_3"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         ectothermDefaults[3] = ectothermBlRank4DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 4").defineList("ectothermBlRank4DefaultSkills", List.of("bloodlines:ectotherm_rank_4"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
+
+
+
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();

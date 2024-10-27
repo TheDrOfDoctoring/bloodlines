@@ -15,6 +15,7 @@ import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -26,19 +27,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BloodlineNoble implements IBloodline {
+public class BloodlineNoble extends VampireBloodline {
     public static final ResourceLocation NOBLE = Bloodlines.rl("noble");
     @Override
-    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup) {
+    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup) {
         int realRank = rank - 1;
         Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
         attributes.put(Attributes.ATTACK_SPEED, new AttributeModifier(Bloodlines.rl("noble_attack_speed_multiplier"), CommonConfig.nobleAttackSpeedIncrease.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         attributes.put(Attributes.MAX_HEALTH, new AttributeModifier(Bloodlines.rl("noble_health_modifier"), CommonConfig.nobleMaxHealthChange.get().get(realRank), AttributeModifier.Operation.ADD_VALUE));
         attributes.put(ModAttributes.BLOOD_EXHAUSTION, new AttributeModifier(Bloodlines.rl("noble_exhaustion_decrease"), CommonConfig.nobleBloodThirstChange.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         attributes.put(ModAttributes.NEONATAL_DURATION, new AttributeModifier(Bloodlines.rl("noble_neonatal_modifier"), CommonConfig.nobleNeonatalMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-        ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
-        applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_RESURRECT.get(), ModAttributes.DBNO_DURATION, new AttributeModifier(Bloodlines.rl("noble_resurrection_modifier"), CommonConfig.nobleFasterResurrectionMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
-        applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_MOVEMENT_SPEED.get(), Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_speed_increase"), CommonConfig.nobleSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+        if(entity instanceof Player player) {
+            ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
+            applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_RESURRECT.get(), ModAttributes.DBNO_DURATION, new AttributeModifier(Bloodlines.rl("noble_resurrection_modifier"), CommonConfig.nobleFasterResurrectionMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+            applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_MOVEMENT_SPEED.get(), Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_speed_increase"), CommonConfig.nobleSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+        }
         return attributes;
     }
     private void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
@@ -51,28 +54,16 @@ public class BloodlineNoble implements IBloodline {
     public ResourceLocation getBloodlineId() {
         return NOBLE;
     }
-    @Override
-    public IPlayableFaction<?> getFaction() {
-        return VReference.VAMPIRE_FACTION;
-    }
 
     @Override
     public ModConfigSpec.ConfigValue<List<? extends String>>[] getDefaultEnabledSkills() {
         return CommonConfig.nobleDefaults;
     }
 
-    @Override
-    public BloodlineSkillType getSkillType() {
-        return BloodlineSkillType.NOBLE;
-    }
 
     @Override
     public ResourceKey<ISkillTree> getSkillTree() {
         return BloodlineSkills.Trees.NOBLE;
     }
 
-    @Override
-    public @Nullable ISkillHandler<IVampirePlayer> getSkillHandler(Player player) {
-        return VampirePlayer.get(player).getSkillHandler();
-    }
 }

@@ -1,13 +1,15 @@
 package com.thedrofdoctoring.bloodlines.capabilities;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
+import com.thedrofdoctoring.bloodlines.skills.BloodlineParentSkill;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.lib.HelperLib;
 import de.teamlapen.lib.lib.storage.IAttachment;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
+import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -106,19 +108,8 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
 
     @Override
     public IBloodline getBloodline() {
-        for(IBloodline bl : BloodlineRegistry.getBloodlines()) {
-            if(bl.getBloodlineId().equals(this.bloodlineName)) {
-                return bl;
-            }
-        }
-        return null;
-    }
-    @Override
-    public IBloodline getBloodlineById(ResourceLocation id) {
-        for(IBloodline bl : BloodlineRegistry.getBloodlines()) {
-            if(bl.getBloodlineId().equals(id)) {
-                return bl;
-            }
+        if(BloodlineRegistry.BLOODLINE_REGISTRY.containsKey(this.bloodlineName)) {
+            return BloodlineRegistry.BLOODLINE_REGISTRY.get(this.bloodlineName);
         }
         return null;
     }
@@ -142,12 +133,11 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         }
     }
 
-    @Override
     public void onBloodlineChange(IBloodline oldBloodline, int oldRank) {
 
 
         if(oldBloodline != null && oldBloodline != bloodline) {
-            ArrayList<ISkill<?>> blSkills = BloodlineSkills.getBloodlineTypeSkills(oldBloodline.getSkillType());
+            ArrayList<ISkill<?>> blSkills = BloodlineSkills.getBloodlineTypeSkills(oldBloodline);
 
             FactionPlayerHandler.get(player).getCurrentFactionPlayer().ifPresent(pl -> {
                 //noinspection rawtypes
@@ -170,12 +160,48 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
             if(oldRank == 0) {
                 FactionPlayerHandler.get(player).checkSkillTreeLocks();
             }
+            if(oldRank > bloodlineRank) {
+                ISkillHandler<?> skillHandler = bloodline.getSkillHandler(player);
+                disableUntilEligible(skillHandler);
+            }
 
         }
 
         updateAttributes(oldBloodline);
         sync(true);
     }
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private void disableUntilEligible(ISkillHandler<?> skillHandler) {
+
+        for(ISkill skill : BloodlineSkills.getBloodlineTypeSkills(this.bloodline)) {
+
+            if(!skillHandler.isSkillEnabled(skill)) continue;
+
+            BloodlineParentSkill<?> nodesClosestParent = closestParent(skill, skillHandler);
+
+            if (nodesClosestParent != null && skillHandler.isSkillEnabled(skill) && nodesClosestParent.getRank() > bloodlineRank) {
+                skillHandler.disableSkill(skill);
+            }
+        }
+    }
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private BloodlineParentSkill<?> closestParent(ISkill skill, ISkillHandler<?> skillHandler) {
+
+        if(skill instanceof BloodlineParentSkill<?> blSkill) {
+            return blSkill;
+        }
+
+        ISkill[] parentSkills = skillHandler.getParentSkills(skill);
+        for(ISkill parentSkill : parentSkills) {
+            if(parentSkill instanceof BloodlineParentSkill<?> bloodlineParentSkill) {
+                return bloodlineParentSkill;
+            } else {
+                return closestParent(parentSkill, skillHandler);
+            }
+        }
+        return null;
+    }
+
     @Override
     public void updateAttributes(IBloodline oldBloodline) {
         if (oldBloodline != null && oldBloodline != bloodline && !player.getCommandSenderWorld().isClientSide) {
@@ -195,7 +221,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
 
 
     @Override
-    public Player getPlayer() {
+    public Player getEntity() {
         return this.player;
     }
 
@@ -206,7 +232,6 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         }
     }
 
-    @Override
     public BloodlineSkillHandler getSkillHandler() {
         return this.skillHandler;
     }

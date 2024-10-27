@@ -1,4 +1,4 @@
-// 1.21	2024-07-28T22:31:48.282020187	Registries
+// 1.21	2024-10-26T13:31:14.0085058	Registries
 1c8f54167e8f5056e0b56caf9e8b3b6b6d090983 data/bloodlines/vampirism/skill_node/ectotherm_diffusion.json
 6a4607e6fe1ba9d5bfc76308f64e9d7e8bf52bfe data/bloodlines/vampirism/skill_node/ectotherm_dolphin_leap.json
 f842ceed1e25669fe08e43981c052c75d8c40a62 data/bloodlines/vampirism/skill_node/ectotherm_fishmonger.json
@@ -54,9 +54,9 @@ ae6eb87cef57b32e9ad3a32a5d3a75c07aacbe29 data/bloodlines/vampirism/skill_node/ze
 4a917ad033365d9000d7d1eff35b818d068b4f75 data/bloodlines/vampirism/skill_node/zealot_swift_sneak.json
 b02f196748d644ccb1d71c15f21fe24d41528e79 data/bloodlines/vampirism/skill_node/zealot_tunneler.json
 0e4f9afa2b97fa366694e39f938f82b272c41ef2 data/bloodlines/vampirism/skill_node/zealot_wall_climb.json
-a7c1cef41f6fe070fb6c1ead3182abb27ebbf90e data/bloodlines/vampirism/skill_tree/vampire/ectotherm.json
-5ac0e1c7e1235e9329da9351421763fe58c15837 data/bloodlines/vampirism/skill_tree/vampire/noble.json
-ef62e10e34c766640e257528386ddab0194e502b data/bloodlines/vampirism/skill_tree/vampire/zealot.json
+aafa90be4a52c392bb7e95284ea0d2f134e213d4 data/bloodlines/vampirism/skill_tree/vampire/ectotherm.json
+94a855d818ee43819bc163146a2af7ef33952ef9 data/bloodlines/vampirism/skill_tree/vampire/noble.json
+62f337088d75742b6aa247853674b28e4907470f data/bloodlines/vampirism/skill_tree/vampire/zealot.json
 976644d049c57ca6dbe5a54f137e353a312d5e23 data/bloodlines/vampirism/tasks/bloodline_ectotherm_one.json
 3031c728dd88b4f2210385cc67f41c7c50899e4d data/bloodlines/vampirism/tasks/bloodline_ectotherm_three.json
 a33f013e6048fbbf418108129204a53f105e7500 data/bloodlines/vampirism/tasks/bloodline_ectotherm_two.json
