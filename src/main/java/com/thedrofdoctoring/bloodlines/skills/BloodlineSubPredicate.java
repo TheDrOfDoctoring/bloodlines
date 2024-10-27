@@ -22,7 +22,7 @@ public record BloodlineSubPredicate(IBloodline bloodline) implements EntitySubPr
     }
     public static final MapCodec<BloodlineSubPredicate> CODEC = RecordCodecBuilder.mapCodec(inst ->
             inst.group(
-                    IBloodline.CODEC.optionalFieldOf("bloodline", null).forGetter(p -> p.bloodline)
+                    IBloodline.CODEC.fieldOf("bloodline").forGetter(p -> p.bloodline)
             ).apply(inst, BloodlineSubPredicate::new)
     );
 

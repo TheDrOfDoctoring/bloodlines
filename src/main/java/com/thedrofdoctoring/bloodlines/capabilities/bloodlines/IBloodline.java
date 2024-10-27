@@ -13,6 +13,7 @@ import de.teamlapen.vampirism.util.RegUtil;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -28,11 +29,12 @@ public interface IBloodline {
         /**
          *
          * @param rank - Bloodline Rank for default skills to be enabled
-         * @param player - Player the bloodline belongs to
+         * @param entity - Entity the bloodline belongs to
          * @param cleanup - True when bloodline is being removed, used for removing conditional modifiers.
          * @return Map of attributes and AttributeModifiers that should be applied to the bloodline player.
          */
-        Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup);
+        Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup);
+
     default void onBloodlineChange(Player player, int rank) {
         enableDefaultSkills(rank, player);
     }
@@ -49,11 +51,7 @@ public interface IBloodline {
 
     @Nullable <T extends IFactionPlayer<T>> ISkillHandler<?> getSkillHandler(Player player);
 
-    /**
-     *
-     * @return The skill type that belongs to the bloodline
-     */
-    BloodlineSkillType getSkillType();
+
 
     ResourceKey<ISkillTree> getSkillTree();
 

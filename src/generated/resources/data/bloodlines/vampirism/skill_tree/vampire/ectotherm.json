@@ -11,7 +11,7 @@
   },
   "unlock_predicate": {
     "type_specific": {
-      "type": "bloodlines:faction",
+      "type": "bloodlines:bloodline",
       "bloodline": {
         "id": "bloodlines:ectotherm"
       }

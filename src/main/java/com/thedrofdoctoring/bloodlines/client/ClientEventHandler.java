@@ -1,11 +1,11 @@
 package com.thedrofdoctoring.bloodlines.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
-import com.thedrofdoctoring.bloodlines.BloodlineReference;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.mixin.ScreenAccessor;
 import de.teamlapen.vampirism.client.gui.screens.VampirismContainerScreen;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
@@ -72,7 +72,7 @@ public class ClientEventHandler {
                 event.setFarPlaneDistance(10f);
             }
 
-            if (BloodlineManager.get(mc.player).getBloodline() == BloodlineReference.ECTOTHERM) {
+            if (BloodlineManager.get(mc.player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM.get()) {
                 int rank = BloodlineHelper.getBloodlineRank(mc.player) - 1;
                 int viewDist = CommonConfig.ectothermUnderwaterVisionDistance.get().get(rank);
                 if(viewDist > 0) {

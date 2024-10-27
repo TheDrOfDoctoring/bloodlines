@@ -17,6 +17,7 @@ import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -28,17 +29,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BloodlineZealot implements IBloodline {
+public class BloodlineZealot extends VampireBloodline {
     public static final ResourceLocation ZEALOT = Bloodlines.rl("zealot");
+
     @Override
-    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, Player player, boolean cleanup) {
+    public Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup) {
+
         int realRank = rank - 1;
         Map<Holder<Attribute>, AttributeModifier> attributes = new HashMap<>();
-        updateSpeed(player, realRank);
-        ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
         attributes.put(ModAttributes.SUNDAMAGE, new AttributeModifier(Bloodlines.rl("zealot_sun_damage"), CommonConfig.zealotSunDamageMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         attributes.put(ModAttributes.BLOOD_EXHAUSTION, new AttributeModifier(Bloodlines.rl("zealot_exhaustion_decrease"), CommonConfig.zealotBloodExhaustionChange.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-        applyConditionalModifier(attributes, BloodlineSkills.ZEALOT_SWIFT_SNEAK.get(), Attributes.SNEAKING_SPEED, new AttributeModifier(Bloodlines.rl("zealot_serpent_speed"), CommonConfig.zealotSerpentSpeedMultipliers.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), skillHandler, cleanup);
+        if(entity instanceof Player player) {
+            updateSpeed(player, realRank);
+            ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
+            applyConditionalModifier(attributes, BloodlineSkills.ZEALOT_SWIFT_SNEAK.get(), Attributes.SNEAKING_SPEED, new AttributeModifier(Bloodlines.rl("zealot_serpent_speed"), CommonConfig.zealotSerpentSpeedMultipliers.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), skillHandler, cleanup);
+        }
+
         return attributes;
     }
     private void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
@@ -50,7 +56,7 @@ public class BloodlineZealot implements IBloodline {
     @Override
     public void onBloodlineChange(Player player, int rank) {
         if(rank > 0) {
-            IBloodline.super.onBloodlineChange(player, rank);
+            super.onBloodlineChange(player, rank);
             updateSpeed(player, rank - 1);
         } else if(Helper.isVampire(player)){
             ISpecialAttributes specialAttributes = (ISpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
@@ -66,19 +72,6 @@ public class BloodlineZealot implements IBloodline {
     @Override
     public ResourceLocation getBloodlineId() {
         return ZEALOT;
-    }
-    @Override
-    public IPlayableFaction<?> getFaction() {
-        return VReference.VAMPIRE_FACTION;
-    }
-
-    @Override
-    public @Nullable ISkillHandler<IVampirePlayer> getSkillHandler(Player player) {
-        return VampirePlayer.get(player).getSkillHandler();
-    }
-    @Override
-    public BloodlineSkillType getSkillType() {
-        return BloodlineSkillType.ZEALOT;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class BloodlineSkill <T extends IFactionPlayer<T>> extends VampirismSkill
         this.bloodlineId = bloodline.getBloodlineId();
         this.cost = cost;
         this.hasCost = hasCost;
-        BloodlineSkills.addSkill(this, bloodline.getSkillType());
+        BloodlineSkills.addSkill(this, bloodline);
     }
 
 

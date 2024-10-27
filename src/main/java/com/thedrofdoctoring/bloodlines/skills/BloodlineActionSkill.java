@@ -17,7 +17,7 @@ public class BloodlineActionSkill<T extends IFactionPlayer<T>> extends ActionSki
         super(action, Either.left(bloodline.getSkillTree()), skillPointCost, customDescription);
         this.bloodline = bloodline;
         this.hasCost = hasCost;
-        BloodlineSkills.addSkill(this, bloodline.getSkillType());
+        BloodlineSkills.addSkill(this, bloodline);
     }
     @Override
     public IBloodline getBloodline() {

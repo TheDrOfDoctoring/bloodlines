@@ -223,9 +223,6 @@ public class BloodlineEventHandler {
                 if (!UtilLib.canReallySee(event.getEntity(), source, false) && VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_INTRIGUE)) {
                     event.setAmount(event.getAmount() * CommonConfig.nobleIntrigueDamageMultiplier.get().floatValue());
                 }
-                if(player.level().getBiome(player.getOnPos()).is(Tags.Biomes.IS_COLD)) {
-
-                }
             }
 
             if (event.getEntity() instanceof Player vampireTarget && Helper.isVampire(vampireTarget)) {
@@ -382,7 +379,6 @@ public class BloodlineEventHandler {
         if(level.getBlockState(pos).is(Blocks.WATER)) {
             ISpecialAttributes specialAttributes = (ISpecialAttributes) VampirePlayer.get(event.getEntity()).getSpecialAttributes();
             if(specialAttributes.bloodlines$getIcePhasing() && specialAttributes.bloodlines$getFrostControl()) {
-                //level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_HURT_FREEZE, SoundSource.PLAYERS, 1, 1);
                 Minecraft.getInstance().getConnection().send(ServerboundIcePacket.getInstance());
             }
         }

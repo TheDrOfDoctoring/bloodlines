@@ -8,7 +8,7 @@ import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineRegistry;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.SharedSuggestionProvider;
@@ -20,11 +20,12 @@ import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
 public class BloodlineArgument implements ArgumentType<IBloodline> {
-    private static final Collection<String> EXAMPLES = BloodlineRegistry.getBloodlines().stream().map(bl -> bl.getBloodlineId().toString()).toList();
+    private static final Collection<String> EXAMPLES = BloodlineRegistry.BLOODLINE_REGISTRY.entrySet().stream().map(p -> p.getKey().location().toString()).toList();
     private static final DynamicCommandExceptionType BLOODLINE_NOT_FOUND = new DynamicCommandExceptionType((id) -> Component.translatable("command.bloodlines.argument.bloodline_not_found", id));
 
     @Override
     public IBloodline parse(StringReader reader) throws CommandSyntaxException {
+
         ResourceLocation id = ResourceLocation.read(reader);
         IBloodline bloodline = BloodlineHelper.getBloodlineById(id);
         if(bloodline == null) throw BLOODLINE_NOT_FOUND.create(id);
