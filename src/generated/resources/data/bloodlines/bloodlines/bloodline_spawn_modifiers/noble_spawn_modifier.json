@@ -1,0 +1,19 @@
+{
+  "biome_weight": [
+    {
+      "biome": "#minecraft:is_overworld",
+      "weight": 45
+    },
+    {
+      "biome": "#bloodlines:is_noble_biome",
+      "weight": 100
+    }
+  ],
+  "bloodline": {
+    "id": "bloodlines:noble"
+  },
+  "entity": [
+    "vampirism:vampire",
+    "vampirism:advanced_vampire"
+  ]
+}

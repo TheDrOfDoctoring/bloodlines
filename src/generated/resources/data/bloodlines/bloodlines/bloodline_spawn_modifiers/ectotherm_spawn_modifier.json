@@ -1,0 +1,23 @@
+{
+  "biome_weight": [
+    {
+      "biome": "#minecraft:is_overworld",
+      "weight": 25
+    },
+    {
+      "biome": "#minecraft:is_ocean",
+      "weight": 50
+    },
+    {
+      "biome": "#c:is_cold",
+      "weight": 150
+    }
+  ],
+  "bloodline": {
+    "id": "bloodlines:ectotherm"
+  },
+  "entity": [
+    "vampirism:vampire",
+    "vampirism:advanced_vampire"
+  ]
+}

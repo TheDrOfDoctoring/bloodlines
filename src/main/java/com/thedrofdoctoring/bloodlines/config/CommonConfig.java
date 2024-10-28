@@ -88,6 +88,7 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleIncreasedNonNobleDamage;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleFireDamageMultiplier;
 
+
     public static final ModConfigSpec.ConfigValue<List<? extends String>> nobleBlRank1DefaultSkills;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> nobleBlRank2DefaultSkills;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> nobleBlRank3DefaultSkills;
@@ -142,6 +143,7 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Noble bloodline configurable values");
 
         COMMON_BUILDER.push("noble_mobs");
+
 
         COMMON_BUILDER.pop();
 

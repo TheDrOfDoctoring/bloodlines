@@ -11,6 +11,8 @@ import com.thedrofdoctoring.bloodlines.core.*;
 import com.thedrofdoctoring.bloodlines.data.BloodlineSkillTreeProvider;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesData;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
+import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistribution;
+import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceFluidHandler;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
 import com.thedrofdoctoring.bloodlines.networking.ClientPayloadHandler;
@@ -46,6 +48,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import org.slf4j.Logger;
 
@@ -72,6 +75,7 @@ public class Bloodlines {
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerPayloads);
         modEventBus.addListener(this::registerRegistries);
+        modEventBus.addListener(this::registerDatapackRegistries);
 
         BloodlineRegistry.BLOODLINES.register(modEventBus);
         BloodlineCommands.COMMAND_ARGUMENT_TYPES.register(modEventBus);
@@ -94,6 +98,13 @@ public class Bloodlines {
     }
     public void registerRegistries(final NewRegistryEvent event) {
         event.register(BloodlineRegistry.BLOODLINE_REGISTRY);
+    }
+
+    public void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
+
+        event.dataPackRegistry(BloodlinesData.BLOODLINE_SPAWN_MODIFIERS, BloodlineSpawnModifier.CODEC.codec(), null);
+        event.dataPackRegistry(BloodlinesData.BLOODLINE_RANK_DISTRIBUTION, BloodlineRankDistribution.CODEC.codec(), null);
+
     }
 
     public void registerPayloads(final RegisterPayloadHandlersEvent event) {
@@ -122,6 +133,7 @@ public class Bloodlines {
 
         lookupProvider = provider.getRegistryProvider();
         BloodlinesTagsProviders.register(generator, event, packOutput, lookupProvider, existingFileHelper);
+
         generator.addProvider(event.includeServer(), new BloodlineSkillTreeProvider(packOutput, lookupProvider));
     }
 

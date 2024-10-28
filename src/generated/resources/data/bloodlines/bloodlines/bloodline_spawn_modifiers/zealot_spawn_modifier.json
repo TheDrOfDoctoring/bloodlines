@@ -1,0 +1,23 @@
+{
+  "biome_weight": [
+    {
+      "biome": "#c:is_underground",
+      "weight": 100
+    },
+    {
+      "biome": "#minecraft:is_overworld",
+      "weight": 10
+    },
+    {
+      "biome": "#minecraft:has_structure/ancient_city",
+      "weight": 100
+    }
+  ],
+  "bloodline": {
+    "id": "bloodlines:zealot"
+  },
+  "entity": [
+    "vampirism:vampire",
+    "vampirism:advanced_vampire"
+  ]
+}
