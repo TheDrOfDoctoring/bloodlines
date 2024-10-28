@@ -7,17 +7,24 @@ import com.thedrofdoctoring.bloodlines.tasks.BloodlineTasks;
 import de.teamlapen.vampirism.api.VampirismRegistries;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.task.Task;
+import de.teamlapen.vampirism.core.ModBiomes;
 import de.teamlapen.vampirism.core.ModTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
@@ -34,9 +41,11 @@ public class BloodlinesTagsProviders {
     public static void register(DataGenerator gen, GatherDataEvent event, PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper existingFileHelper) {
         BloodlinesBlockTagProvider blockTagProvider = new BloodlinesBlockTagProvider(output, future, existingFileHelper);
         gen.addProvider(event.includeServer(), blockTagProvider);
+        gen.addProvider(event.includeServer(), new BloodlinesItemTagProvider(output, future, blockTagProvider.contentsGetter(), existingFileHelper));
         gen.addProvider(event.includeServer(), new BloodlinesSkillTreeProvider(output, future, existingFileHelper));
         gen.addProvider(event.includeServer(), new BloodlinesTasksTagProvider(output, future, existingFileHelper));
-        gen.addProvider(event.includeServer(), new BloodlinesItemTagProvider(output, future, blockTagProvider.contentsGetter(), existingFileHelper));
+        gen.addProvider(event.includeServer(), new BloodlinesBiomeTagProvider(output, future, existingFileHelper));
+
     }
     private static class BloodlinesTasksTagProvider extends TagsProvider<Task> {
         public BloodlinesTasksTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
@@ -101,6 +110,24 @@ public class BloodlinesTagsProviders {
         @Override
         protected void addTags(HolderLookup.@NotNull Provider provider) {
             tag(ECTOTHERM_RAW_FISH).add(Items.COD, Items.SALMON, Items.TROPICAL_FISH);
+        }
+    }
+
+    public static class BloodlinesBiomeTagProvider extends BiomeTagsProvider {
+
+        public BloodlinesBiomeTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pProvider,ExistingFileHelper existingFileHelper) {
+            super(pOutput, pProvider, Bloodlines.MODID, existingFileHelper);
+        }
+
+        public static final TagKey<Biome> NOBLE_BIOMES = tag("is_noble_biome");
+
+        private static @NotNull TagKey<Biome> tag(@NotNull String name) {
+            return TagKey.create(Registries.BIOME, Bloodlines.rl(name));
+        }
+
+        @Override
+        protected void addTags(HolderLookup.@NotNull Provider provider) {
+            tag(NOBLE_BIOMES).addOptional(ResourceLocation.fromNamespaceAndPath("vampirism", "vampire_forest"));
         }
     }
 }
