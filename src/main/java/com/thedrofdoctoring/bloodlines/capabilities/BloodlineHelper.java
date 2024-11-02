@@ -1,17 +1,17 @@
 package com.thedrofdoctoring.bloodlines.capabilities;
 
-import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import de.teamlapen.vampirism.api.VampirismAPI;
-import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
+import com.thedrofdoctoring.bloodlines.capabilities.entity.BloodlineMobManager;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 public class BloodlineHelper {
     public static int getBloodlineRank(Player player) {
@@ -21,6 +21,30 @@ public class BloodlineHelper {
     public static IBloodline getBloodlineById(ResourceLocation id) {
         if(BloodlineRegistry.BLOODLINE_REGISTRY.containsKey(id)) {
             return BloodlineRegistry.BLOODLINE_REGISTRY.get(id);
+        }
+        return null;
+    }
+
+    /**
+     * @return Optional containing bloodline manager if the entity has one with a non-null Bloodline
+     *         Returns empty optional otherwise
+     */
+    public static Optional<IBloodlineManager> getBloodlineData(LivingEntity entity) {
+        if (entity instanceof PathfinderMob pathfinderMob) {
+            return BloodlineMobManager.getSafe(pathfinderMob)
+                    .filter(blManager -> blManager.getBloodline() != null)
+                    .map(blManager -> blManager);
+        } else if (entity instanceof Player player) {
+            BloodlineManager blManager = BloodlineManager.get(player);
+            return blManager.getBloodline() != null ? Optional.of(blManager) : Optional.empty();
+        }
+        return Optional.empty();
+    }
+    public static IBloodlineManager getBloodlineManager(LivingEntity entity) {
+        if (entity instanceof PathfinderMob pathfinderMob) {
+            return BloodlineMobManager.get(pathfinderMob);
+        } else if (entity instanceof Player player) {
+            return BloodlineManager.get(player);
         }
         return null;
     }

@@ -7,8 +7,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import static de.teamlapen.vampirism.core.ModDataComponents.DATA_COMPONENTS;
-
 public class BloodlineComponents {
     public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister.createDataComponents(Bloodlines.MODID);
 

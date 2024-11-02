@@ -87,6 +87,7 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleCeleritySpeedMultipliers;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleIncreasedNonNobleDamage;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleFireDamageMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleMobSpeedIncrease;
 
 
     public static final ModConfigSpec.ConfigValue<List<? extends String>> nobleBlRank1DefaultSkills;
@@ -96,6 +97,7 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends String>>[] nobleDefaults = new ModConfigSpec.ConfigValue[4];
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotBloodExhaustionChange;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotMiningSpeedIncrease;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotMobDamageIncrease;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotTunnelerIncrease;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotSunDamageMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> zealotStoneSpeedMultiplier;
@@ -129,6 +131,8 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermLordOfFrostDamageMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermColdBiomeSpeedMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermHotBiomeActionCooldownMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermMobAdditionalKnockbackResistance;
+
 
 
     public static final ModConfigSpec.ConfigValue<List<? extends String>>[] ectothermDefaults = new ModConfigSpec.ConfigValue[4];
@@ -143,6 +147,7 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Noble bloodline configurable values");
 
         COMMON_BUILDER.push("noble_mobs");
+        nobleMobSpeedIncrease = COMMON_BUILDER.comment("Additional speed for Noble Bloodline Mobs").defineList("nobleMobSpeedIncrease", Arrays.asList(0.1d, 0.15d, 0.25d, 0.5d), t -> true);
 
 
         COMMON_BUILDER.pop();
@@ -158,6 +163,7 @@ public class CommonConfig {
         nobleBloodGainMultiplier = COMMON_BUILDER.comment("Multiplier for blood gain with noble blood drain skill when draining directly from mobs").defineList("nobleBloodMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 1.8d), t -> t instanceof Double);
         nobleBatSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for bat speed with the bat speed increase skill").defineList("nobleBatSpeedMultiplier", Arrays.asList(1d, 1.1d, 1.2d, 1.4d), t -> t instanceof Double);
         nobleSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for speed from speed boost skill. Attribute Multiplier").defineList("nobleSpeedMultiplier", Arrays.asList(0d, 0.05d, 0.1d, 0.2d), t -> true);
+
         nobleCeleritySpeedMultipliers = COMMON_BUILDER.comment("Multiplier for speed from celerity action. Attribute Multiplier").defineList("nobleCeleritySpeedMultiplier", Arrays.asList(0d, 0.2d, 0.4d, 0.6d), t -> t instanceof Double);
         celerityEnabled = COMMON_BUILDER.comment("Whether celerity action is enabled").define("celerityEnabled", true);
         celerityCooldown = COMMON_BUILDER.comment("Celerity action cooldown in seconds").defineInRange("celerityCooldown", 60, 1, Integer.MAX_VALUE);
@@ -194,7 +200,7 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Deep Zealots bloodline configurable values");
 
         COMMON_BUILDER.push("zealot_mobs");
-
+        zealotMobDamageIncrease = COMMON_BUILDER.comment("Zealot Mob Damage Increase for each rank").defineList("zealotMobDamageIncrease", Arrays.asList(1d, 1.5d, 3d, 4.5d), t -> t instanceof Double);
         COMMON_BUILDER.pop();
 
         zealotBloodExhaustionChange = COMMON_BUILDER.comment("Blood exhaustion change for each bloodline rank, Attribute Multiplier").defineList("zealotBloodExhaustionChange", Arrays.asList(-0.15d, -0.3, -0.4d, -0.5d), t -> t instanceof Double);
@@ -245,6 +251,7 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Ectotherm bloodline configurable values");
 
         COMMON_BUILDER.push("ectotherm_mobs");
+        ectothermMobAdditionalKnockbackResistance = COMMON_BUILDER.comment("Additional knockback resistance for Ectotherm Bloodline mobs").defineList("ectothermMobAdditionalKnockbackResistance", Arrays.asList(0.25d, 0.5d, 0.75d, 1d), t -> t instanceof Integer);
 
         COMMON_BUILDER.pop();
 

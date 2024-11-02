@@ -14,7 +14,7 @@
     "SkillHandlerMixin",
     "SpiderTargetGoalMixin",
     "VampirePlayerMixin",
-    "VampirePlayerSpecialAttributesMixin",
+    "VampirePlayerVampSpecialAttributesMixin",
     "VillagerMixin"
   ],
   "client": [

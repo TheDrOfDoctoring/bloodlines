@@ -1,12 +1,12 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayerSpecialAttributes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(VampirePlayerSpecialAttributes.class)
-public class VampirePlayerSpecialAttributesMixin implements ISpecialAttributes {
+public class VampirePlayerVampSpecialAttributesMixin implements IVampSpecialAttributes {
     @Unique
     public boolean bloodlines$mesmerising;
     @Unique

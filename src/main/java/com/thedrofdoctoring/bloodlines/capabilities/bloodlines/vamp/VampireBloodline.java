@@ -1,5 +1,6 @@
-package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
+package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp;
 
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import de.teamlapen.vampirism.api.VReference;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;

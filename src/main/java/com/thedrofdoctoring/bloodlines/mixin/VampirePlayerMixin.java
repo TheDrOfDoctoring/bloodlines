@@ -3,8 +3,8 @@ package com.thedrofdoctoring.bloodlines.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
@@ -48,9 +48,9 @@ public abstract class VampirePlayerMixin extends FactionBasePlayer<IVampirePlaye
     //Increases the amount of time for a player to have ticksInSun increased when they have the correct skill enabled.
     @WrapOperation(method = "handleSunDamage", at = @At(value = "FIELD", target = "Lde/teamlapen/vampirism/entity/player/vampire/VampirePlayer;ticksInSun:I", opcode = Opcodes.PUTFIELD, ordinal = 0))
     private void modifyTicksInSun(VampirePlayer instance, int value, Operation<Void> original) {
-        if(player.tickCount % bloodlines$sunTicksPerIncrease == 0 &&((ISpecialAttributes)getSpecialAttributes()).bloodlines$getSlowSun()) {
+        if(player.tickCount % bloodlines$sunTicksPerIncrease == 0 &&((IVampSpecialAttributes)getSpecialAttributes()).bloodlines$getSlowSun()) {
             original.call(instance, value + 1);
-        } else if(!((ISpecialAttributes)getSpecialAttributes()).bloodlines$getSlowSun()){
+        } else if(!((IVampSpecialAttributes)getSpecialAttributes()).bloodlines$getSlowSun()){
             original.call(instance, value + 1);
         }
         if(BloodlineManager.get(player).getBloodline() instanceof BloodlineZealot && BloodlineManager.get(player).getRank() >= CommonConfig.zealotDoubleSunTickRank.get()) {
@@ -60,7 +60,7 @@ public abstract class VampirePlayerMixin extends FactionBasePlayer<IVampirePlaye
     }
     @Inject(method = "isGettingSundamage", at = @At("RETURN"), cancellable = true)
     private void ectothermDiffraction(LevelAccessor iWorld, boolean forcerefresh, CallbackInfoReturnable<Boolean> cir) {
-        if(((ISpecialAttributes)getSpecialAttributes()).bloodlines$getRefraction()) {
+        if(((IVampSpecialAttributes)getSpecialAttributes()).bloodlines$getRefraction()) {
             BlockPos eyePos = BlockPos.containing(player.getEyePosition());
             if(player.level().getBlockState(eyePos).is(Blocks.WATER)) {
                 this.sundamage_cache = false;

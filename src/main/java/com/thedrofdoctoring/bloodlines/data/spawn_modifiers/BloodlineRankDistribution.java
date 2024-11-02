@@ -4,12 +4,8 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.biome.Biome;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public record BloodlineRankDistribution(List<Float> rankDistributions) {
     public static final MapCodec<BloodlineRankDistribution> CODEC = RecordCodecBuilder.mapCodec(instance -> {

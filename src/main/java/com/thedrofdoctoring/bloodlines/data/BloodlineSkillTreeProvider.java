@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BloodlineSkillTreeProvider extends SkillTreeProvider {
+public class    BloodlineSkillTreeProvider extends SkillTreeProvider {
 
     public BloodlineSkillTreeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(packOutput, lookupProvider, Bloodlines.MODID);

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vampirism:injection_empty"
+    },
+    {
+      "item": "vampirism:vampire_blood_bottle"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "id": "bloodlines:bloodline_tester"
+  }
+}

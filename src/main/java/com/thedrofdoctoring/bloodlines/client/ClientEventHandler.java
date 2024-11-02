@@ -3,7 +3,7 @@ package com.thedrofdoctoring.bloodlines.client;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.mixin.ScreenAccessor;
@@ -65,7 +65,7 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void gameRenderEvent(ViewportEvent.RenderFog event) {
         if (mc.player != null) {
-            if (((ISpecialAttributes) VampirePlayer.get(mc.player).getSpecialAttributes()).bloodlines$isInWall()) {
+            if (((IVampSpecialAttributes) VampirePlayer.get(mc.player).getSpecialAttributes()).bloodlines$isInWall()) {
                 event.setCanceled(true);
                 event.setFogShape(FogShape.SPHERE);
                 event.setNearPlaneDistance(0.1f);

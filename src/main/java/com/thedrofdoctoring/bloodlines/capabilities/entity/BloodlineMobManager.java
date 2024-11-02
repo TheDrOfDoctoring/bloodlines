@@ -1,19 +1,11 @@
 package com.thedrofdoctoring.bloodlines.capabilities.entity;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineSkillHandler;
 import com.thedrofdoctoring.bloodlines.capabilities.IBloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineParentSkill;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
-import de.teamlapen.lib.HelperLib;
 import de.teamlapen.lib.lib.storage.IAttachment;
-import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
-import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
-import de.teamlapen.vampirism.core.ModAttachments;
-import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -23,12 +15,10 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.attachment.IAttachmentHolder;
 import net.neoforged.neoforge.attachment.IAttachmentSerializer;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -43,6 +33,9 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
             return Optional.of(pathfinderMob.getData(BloodlineAttachments.BLOODLINE_MOB_MANAGER.get()));
         }
         return Optional.empty();
+    }
+    public static BloodlineMobManager get(PathfinderMob mob) {
+        return mob.getData(BloodlineAttachments.BLOODLINE_MOB_MANAGER.get());
     }
 
 
@@ -61,7 +54,7 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
                 handler.deserializeNBT(provider, tag);
                 return handler;
             }
-            throw new IllegalStateException("Cannot deserialize Bloodline Manager for non player entity");
+            throw new IllegalStateException("Cannot deserialize Bloodline Manager for non PathfinderMob");
         }
 
         @Override
@@ -77,7 +70,7 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
             if (holder instanceof PathfinderMob mob) {
                 return new BloodlineMobManager(mob);
             }
-            throw new IllegalArgumentException("Cannot create bloodline manager attachment for holder " + holder.getClass() + ". Expected Player");
+            throw new IllegalArgumentException("Cannot create bloodline manager attachment for holder " + holder.getClass() + ". Expected PathfinderMob");
         }
     }
 
@@ -137,18 +130,37 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
         if (oldBloodline != null && oldBloodline != bloodline && !entity.getCommandSenderWorld().isClientSide) {
             Map<Holder<Attribute>, AttributeModifier> oldAttributes = oldBloodline.getBloodlineAttributes(1, entity, true);
             oldAttributes.forEach((attribute, modifier) -> {
-                removeModifier(entity.getAttribute(attribute), modifier.id());
+                AttributeInstance att = entity.getAttribute(attribute);
+                if(att == null) return;
+                removeModifier(att, modifier.id());
             });
         }
         if (bloodline != null && !entity.getCommandSenderWorld().isClientSide) {
             Map<Holder<Attribute>, AttributeModifier> attributes = bloodline.getBloodlineAttributes(getRank(), entity, false);
             attributes.forEach((attribute, modifier) -> {
-                removeModifier(entity.getAttribute(attribute), modifier.id());
+                AttributeInstance att = entity.getAttribute(attribute);
+                if(att == null) return;
+                removeModifier(att, modifier.id());
                 entity.getAttribute(attribute).addPermanentModifier(modifier);
             });
         }
     }
 
+    @Override
+    public void onBloodlineChange(IBloodline oldBloodline, int oldRank) {
+
+        if(oldBloodline != null && oldBloodline != bloodline) {
+            if(bloodline != null) {
+                oldBloodline.onBloodlineChange(entity, 0);
+                bloodline.onBloodlineChange(entity, this.getRank());
+            }
+        } else if(bloodlineRank != oldRank && bloodline != null) {
+            bloodline.onBloodlineChange(entity, this.getRank());
+        }
+
+        updateAttributes(oldBloodline);
+        sync(true);
+    }
 
     @Override
     public PathfinderMob getEntity() {
@@ -156,6 +168,7 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
     }
 
     private static void removeModifier(@NotNull AttributeInstance att, @NotNull ResourceLocation location) {
+
         AttributeModifier m = att.getModifier(location);
         if (m != null) {
             att.removeModifier(m);
@@ -213,7 +226,4 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
         return nbt;
     }
 
-    public void sync(boolean all) {
-        HelperLib.sync(this, entity, all);
-    }
 }

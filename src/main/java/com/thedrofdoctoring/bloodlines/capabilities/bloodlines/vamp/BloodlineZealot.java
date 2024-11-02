@@ -1,12 +1,8 @@
-package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
+package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkillType;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
-import de.teamlapen.vampirism.api.VReference;
-import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
@@ -23,7 +19,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +38,8 @@ public class BloodlineZealot extends VampireBloodline {
             updateSpeed(player, realRank);
             ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
             applyConditionalModifier(attributes, BloodlineSkills.ZEALOT_SWIFT_SNEAK.get(), Attributes.SNEAKING_SPEED, new AttributeModifier(Bloodlines.rl("zealot_serpent_speed"), CommonConfig.zealotSerpentSpeedMultipliers.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_BASE), skillHandler, cleanup);
+        } else {
+            attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(Bloodlines.rl("zealot_mob_damage_increase"), CommonConfig.zealotMobDamageIncrease.get().get(realRank), AttributeModifier.Operation.ADD_VALUE));
         }
 
         return attributes;
@@ -54,18 +51,20 @@ public class BloodlineZealot extends VampireBloodline {
     }
 
     @Override
-    public void onBloodlineChange(Player player, int rank) {
-        if(rank > 0) {
-            super.onBloodlineChange(player, rank);
-            updateSpeed(player, rank - 1);
-        } else if(Helper.isVampire(player)){
-            ISpecialAttributes specialAttributes = (ISpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
-            specialAttributes.bloodlines$setStoneRunSpeed(1f);
+    public void onBloodlineChange(LivingEntity entity, int rank) {
+        if(entity instanceof Player player) {
+            if(rank > 0) {
+                super.onBloodlineChange(player, rank);
+                updateSpeed(player, rank - 1);
+            } else if(Helper.isVampire(player)){
+                IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
+                specialAttributes.bloodlines$setStoneRunSpeed(1f);
+            }
         }
     }
     private void updateSpeed(Player player, int rank) {
         float speed = CommonConfig.zealotStoneSpeedMultiplier.get().get(rank).floatValue();
-        ISpecialAttributes specialAttributes = (ISpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
+        IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
         specialAttributes.bloodlines$setStoneRunSpeed(speed);
     }
 

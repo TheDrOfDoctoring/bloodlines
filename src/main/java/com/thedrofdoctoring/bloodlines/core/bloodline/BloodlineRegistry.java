@@ -1,22 +1,16 @@
 package com.thedrofdoctoring.bloodlines.core.bloodline;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineFrost;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import com.thedrofdoctoring.bloodlines.items.BloodlineFang;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegistryBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class BloodlineRegistry {
 

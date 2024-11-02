@@ -1,6 +1,6 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
@@ -37,7 +37,7 @@ public abstract class BlockBehaviourMixin {
         }
 
         VampirePlayer vp = VampirePlayer.get((Player) entity);
-        ISpecialAttributes specialAttributes = ((ISpecialAttributes)vp.getSpecialAttributes());
+        IVampSpecialAttributes specialAttributes = ((IVampSpecialAttributes)vp.getSpecialAttributes());
         if (getter.getBlockState(pos).is(BloodlinesTagsProviders.BloodlinesBlockTagProvider.ECTOTHERM_ICE) && specialAttributes.bloodlines$getIcePhasing()) {
 
             if(!bloodlines$isAbove(entity, Shapes.block(), pos) || entity.isDescending()) {

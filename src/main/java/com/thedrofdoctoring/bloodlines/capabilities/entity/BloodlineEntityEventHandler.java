@@ -4,28 +4,20 @@ import com.mojang.datafixers.util.Pair;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesData;
-import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistribution;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
-import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlinesSpawnModifiers;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.entity.VampirismEntity;
-import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
-import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.random.WeightedEntry;
 import net.minecraft.util.random.WeightedRandom;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +54,11 @@ public class BloodlineEntityEventHandler {
                         totalWeight += pairs.getSecond();
                     }
                 }
-                weightVals.add(WeightedEntry.wrap(modifier.bloodline(),totalWeight));
+                if(entity.blockPosition().getY() <= modifier.yLevelWeightPair().getFirst()) {
+                    totalWeight += modifier.yLevelWeightPair().getSecond();
+                }
+
+                if(totalWeight >= 0) weightVals.add(WeightedEntry.wrap(modifier.bloodline(), totalWeight));
 
             }
             if(weightVals.isEmpty()) return;
@@ -71,12 +67,18 @@ public class BloodlineEntityEventHandler {
             if(targetBloodline == null) return;
 
             Optional<Registry<BloodlineRankDistribution>> optRankDistributions = level.registryAccess().registry(BloodlinesData.BLOODLINE_RANK_DISTRIBUTION);
-            if(optRankDistributions.isEmpty()) throw new IllegalStateException("Couldn't access Bloodline Rank Distributions");
+            if(optRankDistributions.isEmpty()) {
+                Bloodlines.LOGGER.error("Couldn't access Bloodline Rank Distributions. Mobs will likely not receive bloodlines correctly.");
+                return;
+            }
 
             Registry<BloodlineRankDistribution> rankDistributions = optRankDistributions.get();
 
             BloodlineRankDistribution distribution = rankDistributions.get(targetBloodline.getBloodlineId());
-            if(distribution == null) throw new IllegalStateException("Bloodline chosen for entity " + event.getEntity() + " but no rank distribution found");
+            if(distribution == null) {
+                Bloodlines.LOGGER.error("Bloodline chosen for entity {} but no rank distribution found, how?", event.getEntity());
+                return;
+            }
 
             List<Float> percentages = distribution.rankDistributions();
             float random = event.getEntity().getRandom().nextFloat();
@@ -93,7 +95,7 @@ public class BloodlineEntityEventHandler {
             BloodlineMobManager mobManager = bloodlineMobManager.get();
             mobManager.setBloodline(targetBloodline);
             mobManager.setRank(targetRank);
-
+            mobManager.onBloodlineChange(null, 0);
 
         }
     }

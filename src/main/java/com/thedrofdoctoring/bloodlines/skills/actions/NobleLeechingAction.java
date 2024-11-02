@@ -2,7 +2,7 @@ package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.actions.IAction;
@@ -27,7 +27,7 @@ public class NobleLeechingAction extends DefaultVampireAction implements ILastin
     }
     private void activate(IVampirePlayer vamp) {
         BloodlineManager.removeModifier(vamp.asEntity().getAttribute(ModAttributes.BLOOD_EXHAUSTION), Bloodlines.rl("noble_leeching_exhaustion"));
-        ISpecialAttributes specialAttributes = (ISpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
+        IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
         int leeching = vamp.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_ENHANCED_LEECHING) ? 2 : 1;
         specialAttributes.bloodlines$setLeeching(leeching);
         if(!vamp.isRemote()) {
@@ -46,7 +46,7 @@ public class NobleLeechingAction extends DefaultVampireAction implements ILastin
     @Override
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
         BloodlineManager.removeModifier(vampire.asEntity().getAttribute(ModAttributes.BLOOD_EXHAUSTION), Bloodlines.rl("noble_leeching_exhaustion"));
-        ISpecialAttributes specialAttributes = (ISpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();
+        IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();
         specialAttributes.bloodlines$setLeeching(0);
     }
     @Override

@@ -1,4 +1,8 @@
 {
+  "below_depth_weight": {
+    "weight": 50,
+    "yLevel": 40
+  },
   "biome_weight": [
     {
       "biome": "#c:is_underground",
