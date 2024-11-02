@@ -1,4 +1,8 @@
 {
+  "below_depth_weight": {
+    "weight": -50,
+    "yLevel": 60
+  },
   "biome_weight": [
     {
       "biome": "#minecraft:is_overworld",
@@ -6,11 +10,11 @@
     },
     {
       "biome": "#minecraft:is_ocean",
-      "weight": 50
+      "weight": 100
     },
     {
       "biome": "#c:is_cold",
-      "weight": 150
+      "weight": 100
     }
   ],
   "bloodline": {

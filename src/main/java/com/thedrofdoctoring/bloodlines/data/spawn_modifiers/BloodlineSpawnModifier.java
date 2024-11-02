@@ -5,8 +5,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -14,7 +12,7 @@ import net.minecraft.world.level.biome.Biome;
 
 import java.util.List;
 
-public record BloodlineSpawnModifier(IBloodline bloodline, List<EntityType<?>> targetEntities, List<Pair<HolderSet<Biome>, Integer>> weightPairs) {
+public record BloodlineSpawnModifier(IBloodline bloodline, List<EntityType<?>> targetEntities, List<Pair<HolderSet<Biome>, Integer>> weightPairs, Pair<Integer, Integer> yLevelWeightPair) {
 
     public static final MapCodec<BloodlineSpawnModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(
@@ -23,7 +21,11 @@ public record BloodlineSpawnModifier(IBloodline bloodline, List<EntityType<?>> t
                 Codec.pair(
                         Biome.LIST_CODEC.fieldOf("biome").codec(),
                         Codec.INT.fieldOf("weight").codec()
-                ).listOf().fieldOf("biome_weight").forGetter(BloodlineSpawnModifier::weightPairs)
+                ).listOf().fieldOf("biome_weight").forGetter(BloodlineSpawnModifier::weightPairs),
+                Codec.pair(
+                        Codec.INT.fieldOf("yLevel").codec(),
+                        Codec.INT.fieldOf("weight").codec()
+                ).fieldOf("below_depth_weight").forGetter(BloodlineSpawnModifier::yLevelWeightPair)
     ).apply(instance, BloodlineSpawnModifier::new);
     });
 

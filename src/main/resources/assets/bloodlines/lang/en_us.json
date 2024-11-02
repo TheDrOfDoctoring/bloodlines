@@ -6,6 +6,7 @@
   "command.bloodlines.bloodline_success": "Bloodline changed successfully",
   "command.bloodlines.no_bloodline": "%s is not a member of a Bloodline.",
   "command.bloodlines.perk_success": "Successfully added perk points",
+  "text.bloodlines.creature_bloodline": "Creature has Bloodline %1$s with rank %2$s",
   "text.bloodlines.bloodline_active": "You are already a member of a Bloodline",
   "text.bloodlines.skills.noble": "Noble Bloodline Skills",
   "text.bloodlines.skills.ectotherm":"Ectotherm Bloodline Skills",
@@ -16,6 +17,7 @@
   "item.bloodlines.bloodline_fang_ectotherm": "Ectotherm Bloodline Fang",
   "item.bloodlines.bloodline_fang_zealot": "Zealot Bloodline Fang",
   "item.bloodlines.bottomless_chalice": "Bottomless Chalice",
+  "item.bloodlines.bloodline_tester": "Bloodline Tester",
   "text.bloodlines.chalice": "Requires Bottomless Chalice Bloodline Skill",
   "text.bloodlines.chalice_blood": "Amount of Blood: %s",
   "text.bloodlines.chalice_out_of_blood": "The Chalice is out of blood.",
@@ -274,5 +276,6 @@
   "bloodlines.configuration.ectothermHydrodynamicFormSpeedMultiplier": "Hydrodynamic Form Speed Multiplier",
   "bloodlines.configuration.ectothermHotBiomeActionCooldownMultiplier": "Hot Biome Action Cooldown Multiplier",
   "bloodlines.configuration.zealotPoisonedStrikeDuration": "Poisoned Strike Duration",
-  "bloodlines.configuration.zealotFleshEatingSaturation": "Flesh Eating Saturation"
+  "bloodlines.configuration.zealotFleshEatingSaturation": "Flesh Eating Saturation",
+  "text.bloodlines.blood_tester_usage": "Hit a creature with this to learn their Bloodline"
 }

@@ -1,4 +1,8 @@
 {
+  "below_depth_weight": {
+    "weight": -25,
+    "yLevel": 60
+  },
   "biome_weight": [
     {
       "biome": "#minecraft:is_overworld",

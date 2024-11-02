@@ -1,6 +1,6 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.vampirism.api.entity.player.actions.IAction;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
@@ -17,7 +17,7 @@ public class NobleMesmeriseAction extends DefaultVampireAction implements ILasti
         return true;
     }
     private void activate(IVampirePlayer vamp) {
-        ISpecialAttributes specialAttributes = (ISpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
+        IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
         specialAttributes.bloodlines$setMesmerise(true);
     }
 
@@ -44,7 +44,7 @@ public class NobleMesmeriseAction extends DefaultVampireAction implements ILasti
     }
 
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
-        ISpecialAttributes specialAttributes = (ISpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();
+        IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();
         specialAttributes.bloodlines$setMesmerise(false);
     }
 

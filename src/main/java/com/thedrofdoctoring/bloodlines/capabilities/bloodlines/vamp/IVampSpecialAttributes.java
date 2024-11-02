@@ -1,6 +1,6 @@
-package com.thedrofdoctoring.bloodlines.capabilities;
+package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp;
 
-public interface ISpecialAttributes {
+public interface IVampSpecialAttributes {
 
     boolean bloodlines$getMesmerise();
 

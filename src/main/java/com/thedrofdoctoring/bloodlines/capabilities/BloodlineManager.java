@@ -1,12 +1,11 @@
 package com.thedrofdoctoring.bloodlines.capabilities;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineParentSkill;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
-import de.teamlapen.lib.HelperLib;
 import de.teamlapen.lib.lib.storage.IAttachment;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
@@ -133,9 +132,8 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         }
     }
 
+    @Override
     public void onBloodlineChange(IBloodline oldBloodline, int oldRank) {
-
-
         if(oldBloodline != null && oldBloodline != bloodline) {
             ArrayList<ISkill<?>> blSkills = BloodlineSkills.getBloodlineTypeSkills(oldBloodline);
 
@@ -291,8 +289,5 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         nbt.putInt("rank", bloodlineRank);
         nbt = skillHandler.serializeUpdateNBT(nbt);
         return nbt;
-    }
-    public void sync(boolean all) {
-        HelperLib.sync(this, player, all);
     }
 }

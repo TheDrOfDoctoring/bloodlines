@@ -3,8 +3,6 @@ package com.thedrofdoctoring.bloodlines.items;
 
 import com.thedrofdoctoring.bloodlines.core.BloodlineComponents;
 import com.thedrofdoctoring.bloodlines.items.attachments.ChaliceBlood;
-import de.teamlapen.vampirism.api.VReference;
-import de.teamlapen.vampirism.core.ModDataComponents;
 import de.teamlapen.vampirism.core.ModFluids;
 import de.teamlapen.vampirism.items.BloodBottleFluidHandler;
 import net.minecraft.world.item.ItemStack;

@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.networking;
 
 import com.thedrofdoctoring.bloodlines.blocks.SpecialIceBlock;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesBlocks;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.core.BlockPos;
@@ -35,7 +35,7 @@ public class ServerPayloadHandler {
                 BlockState wasSource = BloodlinesBlocks.ICE_BLOCK.get().defaultBlockState().setValue(SpecialIceBlock.WAS_WATER, true);
                 BlockState notSource = BloodlinesBlocks.ICE_BLOCK.get().defaultBlockState().setValue(SpecialIceBlock.WAS_WATER, false);
 
-                if(((ISpecialAttributes) VampirePlayer.get(player).getSpecialAttributes()).bloodlines$getIcePhasing()) {
+                if(((IVampSpecialAttributes) VampirePlayer.get(player).getSpecialAttributes()).bloodlines$getIcePhasing()) {
 
                     level.setBlock(pos, fState.isSource() ? wasSource : notSource, 3);
                     for(BlockPos possiblePos : possiblePositions) {

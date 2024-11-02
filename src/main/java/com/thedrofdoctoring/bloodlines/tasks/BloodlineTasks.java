@@ -2,9 +2,9 @@ package com.thedrofdoctoring.bloodlines.tasks;
 
 import com.mojang.serialization.MapCodec;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineFrost;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import de.teamlapen.vampirism.api.VampirismRegistries;
 import de.teamlapen.vampirism.api.entity.player.task.ITaskRewardInstance;
 import de.teamlapen.vampirism.api.entity.player.task.Task;

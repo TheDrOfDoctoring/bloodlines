@@ -1,6 +1,6 @@
 package com.thedrofdoctoring.bloodlines.entity;
 
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,7 +31,7 @@ public class MesmeriseGoal extends Goal {
     private boolean shouldFollow(LivingEntity mob) {
         //not too bad i would hope
         if(mob instanceof Player player && Helper.isVampire(mob)) {
-            ISpecialAttributes specialAttributes = (ISpecialAttributes) VampirePlayer.get(player).getSpecialAttributes();
+            IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) VampirePlayer.get(player).getSpecialAttributes();
             return specialAttributes.bloodlines$getMesmerise();
         }
         return false;

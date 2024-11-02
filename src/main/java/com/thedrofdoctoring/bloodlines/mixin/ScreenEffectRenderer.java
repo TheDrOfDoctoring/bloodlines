@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.core.BlockPos;
@@ -18,7 +18,7 @@ public class ScreenEffectRenderer {
     private static Pair<BlockState, BlockPos> hideIceOverlay(Pair<BlockState, BlockPos> original, Player player) {
         if(Helper.isVampire(player)) {
             VampirePlayer vp = VampirePlayer.get(player);
-            if(((ISpecialAttributes)vp.getSpecialAttributes()).bloodlines$isInWall()) {
+            if(((IVampSpecialAttributes)vp.getSpecialAttributes()).bloodlines$isInWall()) {
                 return null;
             }
         }

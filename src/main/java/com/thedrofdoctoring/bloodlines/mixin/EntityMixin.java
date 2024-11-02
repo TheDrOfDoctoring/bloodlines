@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +16,7 @@ public class EntityMixin {
         Entity entity = (Entity) (Object) this;
         if(entity instanceof Player player && Helper.isVampire(player)) {
             VampirePlayer vp = VampirePlayer.get(player);
-            if(((ISpecialAttributes) vp.getSpecialAttributes()).bloodlines$getIcePhasing()) {
+            if(((IVampSpecialAttributes) vp.getSpecialAttributes()).bloodlines$getIcePhasing()) {
                 return false;
             }
         }

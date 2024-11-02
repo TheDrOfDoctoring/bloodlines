@@ -1,17 +1,13 @@
-package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
+package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkillType;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
-import de.teamlapen.vampirism.api.VReference;
-import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.core.ModAttributes;
-import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +17,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +36,9 @@ public class BloodlineNoble extends VampireBloodline {
             ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
             applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_RESURRECT.get(), ModAttributes.DBNO_DURATION, new AttributeModifier(Bloodlines.rl("noble_resurrection_modifier"), CommonConfig.nobleFasterResurrectionMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
             applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_MOVEMENT_SPEED.get(), Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_speed_increase"), CommonConfig.nobleSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
+        } else {
+            attributes.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_mob_speed_increase"), CommonConfig.nobleMobSpeedIncrease.get().get(realRank), AttributeModifier.Operation.ADD_VALUE));
+
         }
         return attributes;
     }

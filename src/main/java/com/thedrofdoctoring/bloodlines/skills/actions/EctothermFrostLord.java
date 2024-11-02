@@ -3,7 +3,7 @@ package com.thedrofdoctoring.bloodlines.skills.actions;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.ISpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.actions.IAction;
@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import org.jetbrains.annotations.NotNull;
 
 public class EctothermFrostLord extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
@@ -28,7 +27,7 @@ public class EctothermFrostLord extends DefaultVampireAction implements ILasting
 
     private void activate(IVampirePlayer vamp) {
         if(vamp.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_ICELORD.get())) {
-            ISpecialAttributes specialAttributes = (ISpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
+            IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
             specialAttributes.bloodlines$setIcePhasing(true);
         }
         BloodlineManager.removeModifier(vamp.asEntity().getAttribute(Attributes.ATTACK_DAMAGE), damage);
@@ -67,7 +66,7 @@ public class EctothermFrostLord extends DefaultVampireAction implements ILasting
 
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
         if(vampire.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_ICELORD.get())) {
-            ISpecialAttributes specialAttributes = (ISpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();
+            IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();
             specialAttributes.bloodlines$setIcePhasing(false);
             specialAttributes.bloodlines$setInWall(false);
         }

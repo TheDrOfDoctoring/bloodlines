@@ -1,10 +1,11 @@
 package com.thedrofdoctoring.bloodlines.capabilities;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineFrost;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineNoble;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineZealot;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
 import com.thedrofdoctoring.bloodlines.entity.ZealotTargetGoalModifier;
@@ -14,6 +15,7 @@ import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
 import de.teamlapen.lib.lib.util.UtilLib;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
+import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.api.event.ActionEvent;
 import de.teamlapen.vampirism.api.event.BloodDrinkEvent;
 import de.teamlapen.vampirism.api.event.PlayerFactionEvent;
@@ -45,6 +47,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -73,7 +76,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Attr;
 
 import java.util.function.Predicate;
 
@@ -233,24 +235,31 @@ public class BloodlineEventHandler {
             }
         }
 
-        if (event.getEntity() instanceof Player vampireTarget && Helper.isVampire(vampireTarget)) {
-            BloodlineManager bl = BloodlineManager.get(vampireTarget);
-            VampirePlayer vamp = VampirePlayer.get(vampireTarget);
-            ISpecialAttributes specialAttributes = (ISpecialAttributes) vamp.getSpecialAttributes();
+        if ((event.getEntity() instanceof Player || event.getEntity() instanceof PathfinderMob) && Helper.isVampire(event.getEntity())) {
+            LivingEntity vampireTarget = event.getEntity();
+            IBloodlineManager bl = BloodlineHelper.getBloodlineManager(vampireTarget);
+            if(bl == null) return;
+            IVampSpecialAttributes specialAttributes = null;
+            ISkillHandler<IVampirePlayer> skillHandler = null;
+            if(vampireTarget instanceof Player playerVampire) {
+                specialAttributes = (IVampSpecialAttributes) VampirePlayer.get(playerVampire).getSpecialAttributes();
+                skillHandler = VampirePlayer.get(playerVampire).getSkillHandler();
+            }
             int rank = bl.getRank() - 1;
             if (bl.getBloodline() instanceof BloodlineNoble && (event.getSource().is(ModDamageTypes.VAMPIRE_ON_FIRE) || event.getSource().is(ModDamageTypes.VAMPIRE_IN_FIRE))) {
                 event.setAmount(event.getAmount() * CommonConfig.nobleFireDamageMultiplier.get().get(rank).floatValue());
             }
 
             if (bl.getBloodline() instanceof BloodlineZealot) {
-                if(specialAttributes.bloodlines$getShadowArmour() && vampireTarget.getCommandSenderWorld().getRawBrightness(vampireTarget.getOnPos().above(), 0) <= CommonConfig.zealotShadowArmourLightLevel.get()) {
+                int brightness = vampireTarget.getCommandSenderWorld().getRawBrightness(vampireTarget.getOnPos().above(), 0);
+                if((specialAttributes == null || specialAttributes.bloodlines$getShadowArmour()) && brightness <= CommonConfig.zealotShadowArmourLightLevel.get()) {
                     event.setAmount(event.getAmount() * CommonConfig.zealotShadowArmourDamageMultiplier.get().get(rank).floatValue());
                     ModParticles.spawnParticlesServer(vampireTarget.getCommandSenderWorld(), new GenericParticleOptions(ResourceLocation.fromNamespaceAndPath("minecraft", "generic_7"), 40, 0x000000, 0.2F) , vampireTarget.getX(), vampireTarget.getY() + 0.5f, vampireTarget.getZ(), 10, 0,0.2f, 0, 0);
                 }
-                if(bl.getRank() >= CommonConfig.zealotBrightAreaDamageMultiplierRank.get() && vampireTarget.getCommandSenderWorld().getRawBrightness(vampireTarget.getOnPos().above(), 0) >= CommonConfig.zealotBrightAreaDamageMultiplierLightLevel.get()) {
+                if(bl.getRank() >= CommonConfig.zealotBrightAreaDamageMultiplierRank.get() && brightness >= CommonConfig.zealotBrightAreaDamageMultiplierLightLevel.get()) {
                     event.setAmount(event.getAmount() * CommonConfig.zealotBrightAreaDamageMultiplier.get().floatValue());
                 }
-                if(vamp.getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_HEX_PROTECTION) && (event.getSource().is(DamageTypes.MAGIC) || event.getSource().is(DamageTypes.INDIRECT_MAGIC))) {
+                if(skillHandler == null || skillHandler.isSkillEnabled(BloodlineSkills.ZEALOT_HEX_PROTECTION.get()) && (event.getSource().is(DamageTypes.MAGIC) || event.getSource().is(DamageTypes.INDIRECT_MAGIC))) {
                     event.setAmount(event.getAmount() * CommonConfig.zealotHexProtectionMultiplier.get().get(rank).floatValue());
                 }
             }
@@ -260,7 +269,7 @@ public class BloodlineEventHandler {
                 if(event.getSource().is(ModDamageTypes.VAMPIRE_IN_FIRE) || event.getSource().is(ModDamageTypes.VAMPIRE_ON_FIRE)) {
                     event.setAmount(event.getAmount() * CommonConfig.ectothermFireDamageMultipliers.get().get(rank).floatValue());
                 }
-                if(vamp.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_DIFFUSION.get()) && event.getSource().is(ModDamageTypes.HOLY_WATER)) {
+                if((skillHandler == null || skillHandler.isSkillEnabled(BloodlineSkills.ECTOTHERM_DIFFUSION.get())) && event.getSource().is(ModDamageTypes.HOLY_WATER)) {
                     event.setAmount(event.getAmount() * CommonConfig.ectothermHolyWaterDiffusion.get().get(rank).floatValue());
                 }
             }
@@ -269,7 +278,7 @@ public class BloodlineEventHandler {
     }
     private static void handleLeeching(Player player, float originalAmount, LivingEntity target) {
         VampirePlayer vampirePlayer = VampirePlayer.get(player);
-        ISpecialAttributes specialAttributes = (ISpecialAttributes) vampirePlayer.getSpecialAttributes();
+        IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) vampirePlayer.getSpecialAttributes();
         if(specialAttributes.bloodlines$getLeeching() < 1) return;
         float amt = Math.min(2, originalAmount * CommonConfig.leechingMultiplier.get().floatValue());
         if(target instanceof Player targetPlayer) {
@@ -377,7 +386,7 @@ public class BloodlineEventHandler {
 
         BlockPos pos = blockResult.getBlockPos();
         if(level.getBlockState(pos).is(Blocks.WATER)) {
-            ISpecialAttributes specialAttributes = (ISpecialAttributes) VampirePlayer.get(event.getEntity()).getSpecialAttributes();
+            IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) VampirePlayer.get(event.getEntity()).getSpecialAttributes();
             if(specialAttributes.bloodlines$getIcePhasing() && specialAttributes.bloodlines$getFrostControl()) {
                 Minecraft.getInstance().getConnection().send(ServerboundIcePacket.getInstance());
             }
