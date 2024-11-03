@@ -13,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ContainerScreenEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
@@ -33,16 +32,15 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void screenInitEvent(ScreenEvent.Init.Post event) {
         if (event.getScreen() instanceof VampirismContainerScreen) {
-            BloodlineManager.getOpt(event.getScreen().getMinecraft().player).ifPresent(bl -> {
-                if(bl.getBloodline() != null) {
-                    bloodlineRank = bl.getRank();
-                    bloodlineName = bl.getBloodlineId().getPath();
-                } else {
-                    bloodlineRank = 0;
-                    bloodlineName = null;
-                }
-
-            });
+            if(mc.player == null) return;
+            BloodlineManager bl = BloodlineManager.get(mc.player);
+            if(bl.getBloodline() != null) {
+                bloodlineRank = bl.getRank();
+                bloodlineName = bl.getBloodlineId().getPath();
+            } else {
+                bloodlineRank = 0;
+                bloodlineName = null;
+            }
         }
     }
 

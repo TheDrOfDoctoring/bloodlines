@@ -50,7 +50,7 @@ public interface IBloodline {
 
     IPlayableFaction<?> getFaction();
 
-    @Nullable <T extends IFactionPlayer<T>> ISkillHandler<?> getSkillHandler(Player player);
+    @Nullable ISkillHandler<?> getSkillHandler(Player player);
 
 
 
