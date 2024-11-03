@@ -1,0 +1,8 @@
+{
+  "bloodline": "bloodlines:ectotherm",
+  "textures": [
+    "bloodlines:textures/entity/vampire/ectotherm/ectotherm1",
+    "bloodlines:textures/entity/vampire/ectotherm/ectotherm2",
+    "bloodlines:textures/entity/vampire/ectotherm/ectotherm3"
+    ]
+}

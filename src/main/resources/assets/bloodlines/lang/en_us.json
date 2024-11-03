@@ -6,7 +6,7 @@
   "command.bloodlines.bloodline_success": "Bloodline changed successfully",
   "command.bloodlines.no_bloodline": "%s is not a member of a Bloodline.",
   "command.bloodlines.perk_success": "Successfully added perk points",
-  "text.bloodlines.creature_bloodline": "Creature has Bloodline %1$s with rank %2$s",
+  "text.bloodlines.creature_bloodline": "Creature is a member of the %1$s Bloodline, and is rank %2$s",
   "text.bloodlines.bloodline_active": "You are already a member of a Bloodline",
   "text.bloodlines.skills.noble": "Noble Bloodline Skills",
   "text.bloodlines.skills.ectotherm":"Ectotherm Bloodline Skills",
