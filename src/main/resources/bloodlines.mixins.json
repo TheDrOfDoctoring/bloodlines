@@ -20,7 +20,9 @@
   "client": [
     "ScreenAccessor",
     "ScreenEffectRenderer",
-    "SkillNodeScreenMixin"
+    "SkillNodeScreenMixin",
+    "client.AdvancedVampireRendererMixin",
+    "client.BasicVampireRendererMixin"
   ],
   "minVersion": "0.8"
 }

@@ -1,0 +1,10 @@
+{
+  "bloodline": "bloodlines:zealot",
+  "textures": [
+    "bloodlines:textures/entity/vampire/zealot/zealot1",
+    "bloodlines:textures/entity/vampire/zealot/zealot2",
+    "bloodlines:textures/entity/vampire/zealot/zealot3"
+
+
+  ]
+}

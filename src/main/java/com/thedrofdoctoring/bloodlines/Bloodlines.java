@@ -3,7 +3,6 @@ package com.thedrofdoctoring.bloodlines;
 import com.mojang.logging.LogUtils;
 import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.entity.BloodlineMobManager;
-import com.thedrofdoctoring.bloodlines.client.ClientRegistryHandler;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.*;
@@ -35,12 +34,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -62,12 +58,6 @@ public class Bloodlines {
 
     public Bloodlines(IEventBus modEventBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG);
-        if (FMLEnvironment.dist.isClient()) {
-            container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-            ClientRegistryHandler.init();
-        }
-
-
 
         modEventBus.addListener(this::loadComplete);
         modEventBus.addListener(this::enqueueIMC);

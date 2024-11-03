@@ -1,0 +1,8 @@
+{
+  "bloodline": "bloodlines:noble",
+  "textures": [
+    "bloodlines:textures/entity/vampire/noble/noble1",
+    "bloodlines:textures/entity/vampire/noble/noble2",
+    "bloodlines:textures/entity/vampire/noble/noble3"
+    ]
+}

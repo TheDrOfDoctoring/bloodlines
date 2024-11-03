@@ -25,14 +25,14 @@ import java.util.Map;
 public interface IBloodline {
 
     Codec<IBloodline> CODEC = RecordCodecBuilder.create(ins -> ins.group(ResourceLocation.CODEC.fieldOf("id").forGetter(IBloodline::getBloodlineId)).apply(ins, BloodlineHelper::getBloodlineById));
-        /**
-         *
-         * @param rank - Bloodline Rank for default skills to be enabled
-         * @param entity - Entity the bloodline belongs to
-         * @param cleanup - True when bloodline is being removed, used for removing conditional modifiers.
-         * @return Map of attributes and AttributeModifiers that should be applied to the bloodline player.
-         */
-        Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup);
+    /**
+     *
+     * @param rank - Bloodline Rank for default skills to be enabled
+     * @param entity - Entity the bloodline belongs to
+     * @param cleanup - True when bloodline is being removed, used for removing conditional modifiers.
+     * @return Map of attributes and AttributeModifiers that should be applied to the bloodline player.
+     */
+    Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup);
 
     default void onBloodlineChange(LivingEntity entity, int rank) {
         if(entity instanceof Player player) {
