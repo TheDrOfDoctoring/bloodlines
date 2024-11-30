@@ -68,3 +68,4 @@ Some of their unlockable skills include:
 # Special Thanks
 - Linus (Chris) Kerman: Textures
 - [Toasterbath](https://www.instagram.com/1zelle1/profilecard/?igsh=MXA5OXB6ejFiaWpqNQ==) : Textures
+- Yanwanshi (Curseforge): Chinese Translation
