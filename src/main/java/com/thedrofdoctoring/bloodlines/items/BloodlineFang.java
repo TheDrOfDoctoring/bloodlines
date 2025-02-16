@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.items;
 
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import de.teamlapen.vampirism.core.ModSounds;
 import de.teamlapen.vampirism.util.Helper;
@@ -43,7 +43,7 @@ public class BloodlineFang extends Item {
                     bl.setRank(1);
                     bl.setBloodline(bloodline);
                     bl.onBloodlineChange(null, 0);
-                    String bloodlineName = bloodlineId.getPath().substring(0, 1).toUpperCase() + bloodlineId.getPath().substring(1).toLowerCase();
+                    String bloodlineName = bloodline.getName();
                     player.displayClientMessage(Component.translatable("text.bloodlines.new_bloodline", bloodlineName).withStyle(ChatFormatting.DARK_RED), true);
                     player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 80, 2));
                     player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 3));

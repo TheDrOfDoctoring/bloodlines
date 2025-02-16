@@ -52,12 +52,17 @@ public class BloodlinesTagsProviders {
         protected void addTags(HolderLookup.@NotNull Provider pProvider) {
             this.tag(ModTags.Tasks.IS_UNIQUE).add(BloodlineTasks.BLOODLINE_NOBLE_1).add(BloodlineTasks.BLOODLINE_NOBLE_2).add(BloodlineTasks.BLOODLINE_NOBLE_3).add(BloodlineTasks.BLOODLINE_NOBLE_PERK_POINTS)
                     .add(BloodlineTasks.BLOODLINE_ZEALOT_1).add(BloodlineTasks.BLOODLINE_ZEALOT_2).add(BloodlineTasks.BLOODLINE_ZEALOT_3).add(BloodlineTasks.BLOODLINE_ZEALOT_PERK_POINTS)
-                    .add(BloodlineTasks.BLOODLINE_ECTOTHERM_1).add(BloodlineTasks.BLOODLINE_ECTOTHERM_2).add(BloodlineTasks.BLOODLINE_ECTOTHERM_3).add(BloodlineTasks.BLOODLINE_ECTOTHERM_PERK_POINTS).replace(false)
-                    ;
+                    .add(BloodlineTasks.BLOODLINE_ECTOTHERM_1).add(BloodlineTasks.BLOODLINE_ECTOTHERM_2).add(BloodlineTasks.BLOODLINE_ECTOTHERM_3).add(BloodlineTasks.BLOODLINE_ECTOTHERM_PERK_POINTS)
+                    .add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_1).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_2).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_3).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_PERK_POINTS).replace(false)
+
+                    .replace(false);
+
             this.tag(ModTags.Tasks.IS_VAMPIRE).add(BloodlineTasks.BLOODLINE_NOBLE_1).add(BloodlineTasks.BLOODLINE_NOBLE_2).add(BloodlineTasks.BLOODLINE_NOBLE_3).add(BloodlineTasks.BLOODLINE_NOBLE_PERK_POINTS)
                     .add(BloodlineTasks.BLOODLINE_ZEALOT_1).add(BloodlineTasks.BLOODLINE_ZEALOT_2).add(BloodlineTasks.BLOODLINE_ZEALOT_3).add(BloodlineTasks.BLOODLINE_ZEALOT_PERK_POINTS)
-                    .add(BloodlineTasks.BLOODLINE_ECTOTHERM_1).add(BloodlineTasks.BLOODLINE_ECTOTHERM_2).add(BloodlineTasks.BLOODLINE_ECTOTHERM_3).add(BloodlineTasks.BLOODLINE_ECTOTHERM_PERK_POINTS).replace(false)
-            ;
+                    .add(BloodlineTasks.BLOODLINE_ECTOTHERM_1).add(BloodlineTasks.BLOODLINE_ECTOTHERM_2).add(BloodlineTasks.BLOODLINE_ECTOTHERM_3).add(BloodlineTasks.BLOODLINE_ECTOTHERM_PERK_POINTS)
+                    .add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_1).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_2).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_3).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_PERK_POINTS).replace(false)
+                    .replace(false);
+
         }
         private static @NotNull TagKey<Task> tag(@NotNull String name) {
             return TagKey.create(VampirismRegistries.Keys.TASK, Bloodlines.rl(name));
@@ -73,8 +78,8 @@ public class BloodlinesTagsProviders {
         @Override
         protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 
-            this.tag(ModTags.SkillTrees.VAMPIRE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM).replace(false);
-            this.tag(BLOODLINE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM);
+            this.tag(ModTags.SkillTrees.VAMPIRE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM, BloodlineSkills.Trees.BLOOD_KNIGHT).replace(false);
+            this.tag(BLOODLINE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM, BloodlineSkills.Trees.BLOOD_KNIGHT);
         }
     }
     public static class BloodlinesBlockTagProvider extends BlockTagsProvider {

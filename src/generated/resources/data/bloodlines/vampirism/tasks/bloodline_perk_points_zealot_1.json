@@ -45,7 +45,8 @@
   },
   "rewards": {
     "type": "bloodlines:bloodline_perk_reward",
-    "perkPointAmount": 1
+    "perkPointAmount": 1,
+    "source": "bloodlines:bloodline_perk_points_zealot_1"
   },
   "title": {
     "translate": "task.bloodlines.bloodline_perk_points_zealot_1"

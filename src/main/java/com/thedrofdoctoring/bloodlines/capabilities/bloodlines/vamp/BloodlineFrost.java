@@ -43,11 +43,6 @@ public class BloodlineFrost extends VampireBloodline {
         return attributes;
     }
 
-    private void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
-        if (skillHandler.isSkillEnabled(skill) || cleanup) {
-            attributes.put(attribute, modifier);
-        }
-    }
 
     @Override
     public ResourceLocation getBloodlineId() {
@@ -62,6 +57,11 @@ public class BloodlineFrost extends VampireBloodline {
     @Override
     public ModConfigSpec.ConfigValue<List<? extends String>>[] getDefaultEnabledSkills() {
         return CommonConfig.ectothermDefaults;
+    }
+
+    @Override
+    public String getName() {
+        return "Ectotherm";
     }
 
 }

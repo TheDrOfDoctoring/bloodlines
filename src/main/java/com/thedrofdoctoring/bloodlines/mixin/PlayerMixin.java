@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;

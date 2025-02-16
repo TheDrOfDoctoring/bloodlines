@@ -10,11 +10,11 @@
     },
     {
       "biome": "#minecraft:is_ocean",
-      "weight": 100
+      "weight": 50
     },
     {
       "biome": "#c:is_cold",
-      "weight": 100
+      "weight": 50
     }
   ],
   "bloodline": {

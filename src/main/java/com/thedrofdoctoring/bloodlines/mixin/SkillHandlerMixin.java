@@ -1,6 +1,6 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.IBloodlineSkill;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;

@@ -3,12 +3,12 @@
     "requirements": [
       {
         "type": "vampirism:entity",
-        "amount": 20,
+        "amount": 3,
         "description": {
-          "translate": "entity.minecraft.guardian"
+          "translate": "entity.minecraft.elder_guardian"
         },
-        "entityType": "minecraft:guardian",
-        "id": "minecraft:guardian"
+        "entityType": "minecraft:elder_guardian",
+        "id": "minecraft:elder_guardian"
       },
       {
         "type": "vampirism:item",

@@ -1,0 +1,52 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.vampirism.pure_blood_2"
+        },
+        "id": "vampirism:pure_blood_2",
+        "item": {
+          "count": 10,
+          "id": "vampirism:pure_blood_2"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 50,
+        "description": {
+          "translate": "entity.vampirism.vampire"
+        },
+        "entityType": "vampirism:vampire",
+        "id": "vampirism:vampire"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.vampirism.vampire_blood_bottle"
+        },
+        "id": "vampirism:vampire_blood_bottle",
+        "item": {
+          "count": 10,
+          "id": "vampirism:vampire_blood_bottle"
+        }
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "targetRank": 2
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_bloodknight_one"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:bloodknight",
+      "matchExactly": true
+    }
+  ]
+}

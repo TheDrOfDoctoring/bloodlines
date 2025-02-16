@@ -38,15 +38,10 @@ public class BloodlineNoble extends VampireBloodline {
             applyConditionalModifier(attributes, BloodlineSkills.NOBLE_FASTER_MOVEMENT_SPEED.get(), Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_speed_increase"), CommonConfig.nobleSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
         } else {
             attributes.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(Bloodlines.rl("noble_mob_speed_increase"), CommonConfig.nobleMobSpeedIncrease.get().get(realRank), AttributeModifier.Operation.ADD_VALUE));
-
         }
         return attributes;
     }
-    private void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
-        if(skillHandler.isSkillEnabled(skill) || cleanup) {
-            attributes.put(attribute, modifier);
-        }
-    }
+
 
     @Override
     public ResourceLocation getBloodlineId() {
@@ -56,6 +51,11 @@ public class BloodlineNoble extends VampireBloodline {
     @Override
     public ModConfigSpec.ConfigValue<List<? extends String>>[] getDefaultEnabledSkills() {
         return CommonConfig.nobleDefaults;
+    }
+
+    @Override
+    public String getName() {
+        return "Noble";
     }
 
 

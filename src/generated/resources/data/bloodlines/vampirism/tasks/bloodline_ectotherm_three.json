@@ -3,12 +3,23 @@
     "requirements": [
       {
         "type": "vampirism:entity",
-        "amount": 1,
+        "amount": 5,
         "description": {
           "translate": "entity.minecraft.elder_guardian"
         },
         "entityType": "minecraft:elder_guardian",
         "id": "minecraft:elder_guardian"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.heart_of_the_sea"
+        },
+        "id": "minecraft:heart_of_the_sea",
+        "item": {
+          "count": 2,
+          "id": "minecraft:heart_of_the_sea"
+        }
       },
       {
         "type": "vampirism:item",
@@ -19,17 +30,6 @@
         "item": {
           "count": 64,
           "id": "minecraft:packed_ice"
-        }
-      },
-      {
-        "type": "vampirism:item",
-        "description": {
-          "translate": "item.minecraft.tropical_fish"
-        },
-        "id": "minecraft:tropical_fish",
-        "item": {
-          "count": 64,
-          "id": "minecraft:tropical_fish"
         }
       }
     ]

@@ -1,0 +1,88 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "node": "bloodlines:bloodknight_still_blood"
+                }
+              ],
+              "node": "bloodlines:bloodknight_feeding_frenzy_2"
+            }
+          ],
+          "node": "bloodlines:bloodknight_feigned_mercy"
+        }
+      ],
+      "node": "bloodlines:bloodknight_feeding_frenzy_1"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:bloodknight_blood_extraction"
+                    }
+                  ],
+                  "node": "bloodlines:bloodknight_day_walker"
+                }
+              ],
+              "node": "bloodlines:bloodknight_vampire_blood_bonus"
+            }
+          ],
+          "node": "bloodlines:bloodknight_crimson_leap"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:bloodknight_bat_frenzy"
+                    }
+                  ],
+                  "node": "bloodlines:bloodknight_haste_step_infusion"
+                }
+              ],
+              "node": "bloodlines:bloodknight_sanguine_infusion"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "node": "bloodlines:bloodknight_frenzied_attacks"
+                            }
+                          ],
+                          "node": "bloodlines:bloodknight_hidden_strike"
+                        }
+                      ],
+                      "node": "bloodlines:bloodknight_sapping_strike"
+                    }
+                  ],
+                  "node": "bloodlines:bloodknight_blood_hunt"
+                }
+              ],
+              "node": "bloodlines:bloodknight_rank_4"
+            }
+          ],
+          "node": "bloodlines:bloodknight_rank_3"
+        }
+      ],
+      "node": "bloodlines:bloodknight_rank_2"
+    }
+  ],
+  "node": "bloodlines:bloodknight_root",
+  "skill_tree": "bloodlines:vampire/bloodknight"
+}

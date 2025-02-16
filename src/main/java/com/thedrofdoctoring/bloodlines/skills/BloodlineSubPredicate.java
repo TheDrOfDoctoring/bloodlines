@@ -2,7 +2,7 @@ package com.thedrofdoctoring.bloodlines.skills;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import net.minecraft.advancements.critereon.EntitySubPredicate;
 import net.minecraft.server.level.ServerLevel;

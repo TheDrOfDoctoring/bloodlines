@@ -21,6 +21,10 @@ public class BloodlineRankDistributions {
             BloodlinesData.BLOODLINE_RANK_DISTRIBUTION,
             BloodlineRegistry.BLOODLINE_ZEALOT.get().getBloodlineId()
     );
+    public static final ResourceKey<BloodlineRankDistribution> BLOODLINE_BLOODKNIGHT_RANK_DISTRIBUTION = ResourceKey.create(
+            BloodlinesData.BLOODLINE_RANK_DISTRIBUTION,
+            BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get().getBloodlineId()
+    );
 
     public static void createRankDistributions(BootstrapContext<BloodlineRankDistribution> context) {
         context.register(BLOODLINE_NOBLE_RANK_DISTRIBUTION,
@@ -36,6 +40,11 @@ public class BloodlineRankDistributions {
         context.register(BLOODLINE_ZEALOT_RANK_DISTRIBUTION,
                 new BloodlineRankDistribution(
                         List.of(0.2f, 0.3f, 0.3f, 0.1f, 0.1f)
+                )
+        );
+        context.register(BLOODLINE_BLOODKNIGHT_RANK_DISTRIBUTION,
+                new BloodlineRankDistribution(
+                        List.of(0.05f, 0.15f, 0.4f, 0.3f, 0.1f)
                 )
         );
     }

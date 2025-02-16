@@ -1,16 +1,14 @@
 package com.thedrofdoctoring.bloodlines.client;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.BloodlinesClient;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import com.thedrofdoctoring.bloodlines.capabilities.entity.BloodlineMobManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.vampirism.entity.VampirismEntity;
-import de.teamlapen.vampirism.entity.vampire.BasicVampireEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
@@ -21,8 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Reader;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class BloodlineEntityRenderManager implements ResourceManagerReloadListener {
 
@@ -85,7 +82,7 @@ public class BloodlineEntityRenderManager implements ResourceManagerReloadListen
         IBloodline bloodline = BloodlineMobManager.get(entity).getBloodline();
         if(bloodline != null) {
             ResourceLocation[] textures = BloodlinesClient.getInstance().getRenderManager().getBloodlineTextures(bloodline);
-            if(textures.length == 0) return original;
+            if(textures == null || textures.length == 0) return original;
             return textures[entity.getId() % textures.length];
         }
         return original;

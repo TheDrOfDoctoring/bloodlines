@@ -2,7 +2,8 @@ package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
@@ -10,6 +11,7 @@ import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.entity.player.FactionBasePlayer;
+import de.teamlapen.vampirism.entity.player.vampire.BloodStats;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayerSpecialAttributes;
 import net.minecraft.core.BlockPos;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.Opcodes;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -39,6 +42,7 @@ public abstract class VampirePlayerMixin extends FactionBasePlayer<IVampirePlaye
     @Shadow @NotNull public abstract VampirePlayerSpecialAttributes getSpecialAttributes();
 
     @Shadow private boolean sundamage_cache;
+    @Shadow @Final private @NotNull BloodStats bloodStats;
     @Unique
     private final int bloodlines$sunTicksPerIncrease = CommonConfig.sunTicksPerIncrease.get();
 

@@ -1,0 +1,20 @@
+{
+  "display": {
+    "count": 1,
+    "id": "vampirism:pure_blood_4"
+  },
+  "faction": {
+    "id": "vampirism:vampire"
+  },
+  "name": {
+    "translate": "text.bloodlines.skills.bloodknight"
+  },
+  "unlock_predicate": {
+    "type_specific": {
+      "type": "bloodlines:bloodline",
+      "bloodline": {
+        "id": "bloodlines:bloodknight"
+      }
+    }
+  }
+}

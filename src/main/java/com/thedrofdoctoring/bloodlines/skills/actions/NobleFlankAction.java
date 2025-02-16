@@ -2,11 +2,13 @@ package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.lib.lib.util.UtilLib;
+import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.config.VampirismConfig;
 import de.teamlapen.vampirism.core.ModRefinements;
 import de.teamlapen.vampirism.core.ModSounds;
+import de.teamlapen.vampirism.entity.player.vampire.actions.VampireActions;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -79,5 +81,11 @@ public class NobleFlankAction extends DefaultVampireAction {
     @Override
     public int getCooldown(IVampirePlayer iVampirePlayer) {
         return CommonConfig.nobleFlankCooldown.get() * 20;
+    }
+
+    @Override
+    public boolean canBeUsedBy(IVampirePlayer vampire) {
+        return !vampire.getActionHandler().isActionActive((ILastingAction) VampireActions.BAT.get());
+
     }
 }

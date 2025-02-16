@@ -110,6 +110,42 @@ public class    BloodlineSkillTreeProvider extends SkillTreeProvider {
                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DOLPHIN_LEAP))
                 )
         );
+        skillTreeOutput.accept(modId("bloodknight"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.BLOOD_KNIGHT), nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_ROOT),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_FEEDING_FRENZY_1),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_FEIGNED_MERCY),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_FEEDING_FRENZY_2),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_STILL_BLOOD))
+                                )
+                        )
+                ),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_RANK_2),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_CRIMSON_LEAP),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_VAMPIRE_BLOOD_BONUS),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_DAY_WALKER),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_BLOOD_EXTRACTION)
+                                                )
+                                        )
+                                )
+                        ),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_RANK_3),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_SANGUINE_INFUSION),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_HASTE_STEP_INFUSION),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_BAT_FRENZY)
+                                                )
+                                        )
+                                ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_RANK_4),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_BLOOD_HUNT),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_SAPPING_STRIKE),
+                                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_HIDDEN_STRIKE),
+                                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_FRENZIED_ATTACKS))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                ))
+        );
     }
 
 

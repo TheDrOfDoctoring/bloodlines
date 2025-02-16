@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;

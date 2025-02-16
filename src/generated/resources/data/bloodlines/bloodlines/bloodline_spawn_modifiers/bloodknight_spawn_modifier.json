@@ -1,0 +1,23 @@
+{
+  "below_depth_weight": {
+    "weight": -25,
+    "yLevel": 60
+  },
+  "biome_weight": [
+    {
+      "biome": "#minecraft:is_overworld",
+      "weight": 15
+    },
+    {
+      "biome": "#c:is_hot/overworld",
+      "weight": 20
+    }
+  ],
+  "bloodline": {
+    "id": "bloodlines:bloodknight"
+  },
+  "entity": [
+    "vampirism:vampire",
+    "vampirism:advanced_vampire"
+  ]
+}

@@ -22,6 +22,11 @@ public class BloodlineActions {
     public static final DeferredHolder<IAction<?>, EctothermFrostLord> ECTOTHERM_FROST_LORD_ACTION = ACTIONS.register("ectotherm_frostlord_action", EctothermFrostLord::new);
     public static final DeferredHolder<IAction<?>, EctothermDolphinLeap> ECTOTHERM_DOLPHIN_LEAP_ACTION = ACTIONS.register("ectotherm_dolphin_leap_action", EctothermDolphinLeap::new);
     public static final DeferredHolder<IAction<?>, EctothermInkSplash> ECTOTHERM_INK_SPLASH_ACTION = ACTIONS.register("ectotherm_ink_splash_action", EctothermInkSplash::new);
+    public static final DeferredHolder<IAction<?>, BloodknightCrimsonLeap> BLOODKNIGHT_CRIMSON_LEAP = ACTIONS.register("bloodknight_crimson_leap_action", BloodknightCrimsonLeap::new);
+    public static final DeferredHolder<IAction<?>, BloodknightSanguineInfusion> BLOODKNIGHT_SANGUINE_INFUSION = ACTIONS.register("bloodknight_sanguine_infusion_action", BloodknightSanguineInfusion::new);
+    public static final DeferredHolder<IAction<?>, BloodknightBloodHunt> BLOODKNIGHT_BLOOD_HUNT = ACTIONS.register("bloodknight_blood_hunt_action", BloodknightBloodHunt::new);
+    public static final DeferredHolder<IAction<?>, BloodknightDayWalker> BLOODKNIGHT_DAY_WALKER = ACTIONS.register("bloodknight_day_walker_action", BloodknightDayWalker::new);
+    public static final DeferredHolder<IAction<?>, BloodknightBloodExtraction> BLOODKNIGHT_BLOOD_EXTRACTION = ACTIONS.register("bloodknight_blood_extraction_action", BloodknightBloodExtraction::new);
 
 
 }
