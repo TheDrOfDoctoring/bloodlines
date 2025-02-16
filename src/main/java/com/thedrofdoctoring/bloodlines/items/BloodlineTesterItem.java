@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.items;
 
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
-import com.thedrofdoctoring.bloodlines.capabilities.IBloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,8 +24,7 @@ public class BloodlineTesterItem  extends Item {
         Optional<IBloodlineManager> optManager = BloodlineHelper.getBloodlineData(target);
         if(source instanceof Player player && optManager.isPresent()) {
             IBloodlineManager blManager = optManager.get();
-            String bloodlineName = blManager.getBloodlineId().getPath();
-            bloodlineName = bloodlineName.substring(0, 1).toUpperCase() + bloodlineName.substring(1).toLowerCase();
+            String bloodlineName = blManager.getBloodline().getName();
             player.sendSystemMessage(Component.translatable("text.bloodlines.creature_bloodline", bloodlineName, blManager.getRank()));
         }
         return true;

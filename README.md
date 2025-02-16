@@ -62,7 +62,9 @@ Some of their unlockable skills include:
 - Lord of Ice, whilst Lord of Frost is active, they can move freely through ice
 - Frost Control, Whilst Lord of Frost is active, water can be turned into ice
 
+## Bloodknight Bloodline
 
+The Bloodknight Bloodline are a strain that primarily feast on the fresh blood of other vampires. As a result, they lose blood slower but other sources of blood are not as nourishing.
 
 
 # Special Thanks

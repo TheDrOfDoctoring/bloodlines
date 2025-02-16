@@ -1,8 +1,8 @@
 package com.thedrofdoctoring.bloodlines.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
@@ -36,7 +36,7 @@ public class ClientEventHandler {
             BloodlineManager bl = BloodlineManager.get(mc.player);
             if(bl.getBloodline() != null) {
                 bloodlineRank = bl.getRank();
-                bloodlineName = bl.getBloodlineId().getPath();
+                bloodlineName = bl.getBloodline().getName();
             } else {
                 bloodlineRank = 0;
                 bloodlineName = null;
@@ -48,7 +48,6 @@ public class ClientEventHandler {
     public void screenRenderEvent(ContainerScreenEvent.Render.Foreground event) {
         if(event.getContainerScreen() instanceof VampirismContainerScreen vampScreen) {
             if (bloodlineName != null) {
-                bloodlineName = bloodlineName.substring(0, 1).toUpperCase() + bloodlineName.substring(1).toLowerCase();
                 String blRank = "(" + bloodlineRank + ")";
                 GuiGraphics graphics = event.getGuiGraphics();
                 Font font = ((ScreenAccessor) vampScreen).getFont();
@@ -64,14 +63,15 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void gameRenderEvent(ViewportEvent.RenderFog event) {
         if (mc.player != null) {
-            if (((IVampSpecialAttributes) VampirePlayer.get(mc.player).getSpecialAttributes()).bloodlines$isInWall()) {
+            boolean inWall = ((IVampSpecialAttributes) VampirePlayer.get(mc.player).getSpecialAttributes()).bloodlines$isInWall();
+            if (inWall) {
                 event.setCanceled(true);
                 event.setFogShape(FogShape.SPHERE);
                 event.setNearPlaneDistance(0.1f);
                 event.setFarPlaneDistance(10f);
             }
 
-            if (BloodlineManager.get(mc.player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM.get()) {
+            if (BloodlineManager.get(mc.player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM.get() && !inWall) {
                 int rank = BloodlineHelper.getBloodlineRank(mc.player) - 1;
                 int viewDist = CommonConfig.ectothermUnderwaterVisionDistance.get().get(rank);
                 if(viewDist > 0) {

@@ -2,10 +2,8 @@ package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
-import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.util.RegUtil;
@@ -24,6 +22,8 @@ import java.util.Map;
 
 public interface IBloodline {
 
+
+
     Codec<IBloodline> CODEC = RecordCodecBuilder.create(ins -> ins.group(ResourceLocation.CODEC.fieldOf("id").forGetter(IBloodline::getBloodlineId)).apply(ins, BloodlineHelper::getBloodlineById));
     /**
      *
@@ -35,7 +35,7 @@ public interface IBloodline {
     Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup);
 
     default void onBloodlineChange(LivingEntity entity, int rank) {
-        if(entity instanceof Player player) {
+        if(entity instanceof Player player && rank > 0) {
             enableDefaultSkills(rank, player);
         }
     }
@@ -81,4 +81,11 @@ public interface IBloodline {
             }
         }
     }
+    default void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
+        if(skillHandler.isSkillEnabled(skill) || cleanup) {
+            attributes.put(attribute, modifier);
+        }
+    }
+    String getName();
+
 }

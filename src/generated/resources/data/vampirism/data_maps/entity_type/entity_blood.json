@@ -1,0 +1,16 @@
+{
+  "values": {
+    "vampirism:advanced_vampire": {
+      "blood": 30
+    },
+    "vampirism:advanced_vampire_imob": {
+      "blood": 30
+    },
+    "vampirism:vampire": {
+      "blood": 20
+    },
+    "vampirism:vampire_imob": {
+      "blood": 20
+    }
+  }
+}

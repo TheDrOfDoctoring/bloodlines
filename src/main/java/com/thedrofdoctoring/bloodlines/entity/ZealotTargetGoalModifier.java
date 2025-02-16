@@ -1,6 +1,6 @@
 package com.thedrofdoctoring.bloodlines.entity;
 
-public interface    ZealotTargetGoalModifier {
+public interface ZealotTargetGoalModifier {
 
     void ignoreZealotSpiderFriend();
 }

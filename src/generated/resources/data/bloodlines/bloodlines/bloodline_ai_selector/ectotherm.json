@@ -1,0 +1,9 @@
+{
+  "player_only": true,
+  "target_bloodlines": [
+    {
+      "id": "bloodlines:bloodknight"
+    }
+  ],
+  "target_without_bloodlines": false
+}

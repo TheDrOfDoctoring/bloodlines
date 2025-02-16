@@ -40,6 +40,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> NOBLE_SKILL = SKILLS.register("noble", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_NOBLE.get(), true, 0, 1 ));
     public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_SKILL = SKILLS.register("zealot", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_ZEALOT.get(), true, 0, 1));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SKILL = SKILLS.register("ectotherm", () -> new BloodlineParentSkill<IVampirePlayer>(BloodlineRegistry.BLOODLINE_ECTOTHERM.get(), true, 0, 1).setToggleActions(player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = true, player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = false));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_SKILL = SKILLS.register("bloodknight", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, 1));
 
     // Zealot Skills
 
@@ -110,6 +111,31 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_INK_SPLASH = SKILLS.register("ectotherm_ink_splash", () -> new BloodlineActionSkill<>(BloodlineActions.ECTOTHERM_INK_SPLASH_ACTION, 0, true, BloodlineRegistry.BLOODLINE_ECTOTHERM.get(), true));
 
 
+    //Bloodknight Skills
+
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_RANK_2 = SKILLS.register("bloodknight_rank_2", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, 2));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_RANK_3 = SKILLS.register("bloodknight_rank_3", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, 3));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_RANK_4 = SKILLS.register("bloodknight_rank_4", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, 4));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_STILL_BLOOD = SKILLS.register("bloodknight_still_water", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_FEIGNED_MERCY = SKILLS.register("bloodknight_feigned_mercy", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_FEEDING_FRENZY_1 = SKILLS.register("bloodknight_feeding_frenzy_1", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_FEEDING_FRENZY_2 = SKILLS.register("bloodknight_feeding_frenzy_2", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_CRIMSON_LEAP = SKILLS.register("bloodknight_crimson_leap", () -> new BloodlineActionSkill<>(BloodlineActions.BLOODKNIGHT_CRIMSON_LEAP, 0, true, BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_SANGUINE_INFUSION = SKILLS.register("bloodknight_sanguine_infusion", () -> new BloodlineActionSkill<>(BloodlineActions.BLOODKNIGHT_SANGUINE_INFUSION, 0, true, BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_BLOOD_HUNT = SKILLS.register("bloodknight_blood_hunt", () -> new BloodlineActionSkill<>(BloodlineActions.BLOODKNIGHT_BLOOD_HUNT, 0, true, BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_VAMPIRE_BLOOD_BONUS = SKILLS.register("bloodknight_vampire_blood_bonus", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_INFUSION_HASTE = SKILLS.register("bloodknight_infusion_haste", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_INFUSION_STEP_ASSIST = SKILLS.register("bloodknight_infusion_step_assist", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_SAPPING_STRIKE = SKILLS.register("bloodknight_sapping_strike", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_DAY_WALKER = SKILLS.register("bloodknight_day_walker", () -> new BloodlineActionSkill<>(BloodlineActions.BLOODKNIGHT_DAY_WALKER, 0, true, BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_BAT_FRENZY = SKILLS.register("bloodknight_bat_frenzy", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_BLOOD_EXTRACTION = SKILLS.register("bloodknight_blood_extraction", () -> new BloodlineActionSkill<>(BloodlineActions.BLOODKNIGHT_BLOOD_EXTRACTION, 0, true, BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_FRENZIED_STRIKES = SKILLS.register("bloodknight_frenzied_attacks", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_HIDDEN_STRIKE = SKILLS.register("bloodknight_hidden_strike", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
+
+
+
+
     //Bloodline Skills are added here so that they can be removed if the player's bloodline changes. Not sure if there's a better way to do this.
     public static void addSkill(ISkill<?> skill, IBloodline type) {
         if(!bloodlineSkills.containsKey(type)) {
@@ -122,12 +148,12 @@ public class BloodlineSkills {
         return bloodlineSkills.get(type);
     }
     public static class Trees {
-        public static final ResourceKey<ISkillTree> NOBLE = tree("noble");
-        public static final ResourceKey<ISkillTree> ZEALOT = tree("zealot");
-        public static final ResourceKey<ISkillTree> ECTOTHERM = tree("ectotherm");
+        public static final ResourceKey<ISkillTree> NOBLE = vampTree("noble");
+        public static final ResourceKey<ISkillTree> ZEALOT = vampTree("zealot");
+        public static final ResourceKey<ISkillTree> ECTOTHERM = vampTree("ectotherm");
+        public static final ResourceKey<ISkillTree> BLOOD_KNIGHT = vampTree("bloodknight");
 
-
-        private static ResourceKey<ISkillTree> tree(String path) {
+        private static ResourceKey<ISkillTree> vampTree(String path) {
             return ResourceKey.create(VampirismRegistries.Keys.SKILL_TREE, Bloodlines.rl("vampire/" + path));
         }
 
@@ -135,12 +161,15 @@ public class BloodlineSkills {
             context.register(ECTOTHERM, new SkillTree(VReference.VAMPIRE_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_ECTOTHERM.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.ectotherm")));
             context.register(ZEALOT, new SkillTree(VReference.VAMPIRE_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_ZEALOT.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.zealot")));
             context.register(NOBLE, new SkillTree(VReference.VAMPIRE_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_NOBLE.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.noble")));
+            context.register(BLOOD_KNIGHT, new SkillTree(VReference.VAMPIRE_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.bloodknight")));
+
         }
     }
     public static class Nodes {
         public static final ResourceKey<ISkillNode> NOBLE_ROOT = node("root", "noble");
         public static final ResourceKey<ISkillNode> ZEALOT_ROOT = node("root", "zealot");
         public static final ResourceKey<ISkillNode> ECTOTHERM_ROOT = node("root", "ectotherm");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_ROOT = node("root", "bloodknight");
 
         public static final ResourceKey<ISkillNode> ZEALOT_RANK_2 = node("rank_2", "zealot");
         public static final ResourceKey<ISkillNode> ZEALOT_RANK_3 = node("rank_3", "zealot");
@@ -199,6 +228,25 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> NOBLE_FLANK = node("noble_flank", "noble");
         public static final ResourceKey<ISkillNode> NOBLE_BAT_ARMOUR = node("noble_bat_armour", "noble");
 
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_RANK_2 = node("rank_2", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_RANK_3 = node("rank_3", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_RANK_4 = node("rank_4", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_STILL_BLOOD = node("still_blood", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_FEIGNED_MERCY = node("feigned_mercy", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_FEEDING_FRENZY_1 = node("feeding_frenzy_1", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_FEEDING_FRENZY_2 = node("feeding_frenzy_2", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_CRIMSON_LEAP = node("crimson_leap", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_BLOOD_HUNT = node("blood_hunt", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_SANGUINE_INFUSION = node("sanguine_infusion", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_VAMPIRE_BLOOD_BONUS = node("vampire_blood_bonus", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_HASTE_STEP_INFUSION = node("haste_step_infusion", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_SAPPING_STRIKE = node("sapping_strike", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_DAY_WALKER = node("day_walker", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_BAT_FRENZY = node("bat_frenzy", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_BLOOD_EXTRACTION = node("blood_extraction", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_FRENZIED_ATTACKS = node("frenzied_attacks", "bloodknight");
+        public static final ResourceKey<ISkillNode> BLOODKNIGHT_HIDDEN_STRIKE = node("hidden_strike", "bloodknight");
+
 
         private static ResourceKey<ISkillNode> node(String path, String bloodline) {
             return ResourceKey.create(VampirismRegistries.Keys.SKILL_NODE, Bloodlines.rl(bloodline + "_" + path));
@@ -206,8 +254,10 @@ public class BloodlineSkills {
         public static void createSkillNodes(BootstrapContext<ISkillNode> context) {
             context.register(NOBLE_ROOT, new SkillNode(NOBLE_SKILL));
             context.register(ECTOTHERM_ROOT, new SkillNode(ECTOTHERM_SKILL));
-
             context.register(ZEALOT_ROOT, new SkillNode(ZEALOT_SKILL));
+            context.register(BLOODKNIGHT_ROOT, new SkillNode(BLOODKNIGHT_SKILL));
+
+
             context.register(ZEALOT_RANK_2, new SkillNode(BloodlineSkills.ZEALOT_RANK_2));
             context.register(ZEALOT_RANK_3, new SkillNode(BloodlineSkills.ZEALOT_RANK_3));
             context.register(ZEALOT_RANK_4, new SkillNode(BloodlineSkills.ZEALOT_RANK_4));
@@ -264,6 +314,25 @@ public class BloodlineSkills {
             context.register(NOBLE_INTRIGUE, new SkillNode(BloodlineSkills.NOBLE_INTRIGUE));
             context.register(NOBLE_FLANK, new SkillNode(BloodlineSkills.NOBLE_FLANK));
             context.register(NOBLE_BAT_ARMOUR, new SkillNode(BloodlineSkills.NOBLE_BAT_ARMOUR));
+
+            context.register(BLOODKNIGHT_RANK_2, new SkillNode(BloodlineSkills.BLOODKNIGHT_RANK_2));
+            context.register(BLOODKNIGHT_RANK_3, new SkillNode(BloodlineSkills.BLOODKNIGHT_RANK_3));
+            context.register(BLOODKNIGHT_RANK_4, new SkillNode(BloodlineSkills.BLOODKNIGHT_RANK_4));
+            context.register(BLOODKNIGHT_STILL_BLOOD, new SkillNode(BloodlineSkills.BLOODKNIGHT_STILL_BLOOD));
+            context.register(BLOODKNIGHT_FEIGNED_MERCY, new SkillNode(BloodlineSkills.BLOODKNIGHT_FEIGNED_MERCY));
+            context.register(BLOODKNIGHT_FEEDING_FRENZY_1, new SkillNode(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_1));
+            context.register(BLOODKNIGHT_FEEDING_FRENZY_2, new SkillNode(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2));
+            context.register(BLOODKNIGHT_BLOOD_HUNT, new SkillNode(BloodlineSkills.BLOODKNIGHT_BLOOD_HUNT));
+            context.register(BLOODKNIGHT_SANGUINE_INFUSION, new SkillNode(BloodlineSkills.BLOODKNIGHT_SANGUINE_INFUSION));
+            context.register(BLOODKNIGHT_CRIMSON_LEAP, new SkillNode(BloodlineSkills.BLOODKNIGHT_CRIMSON_LEAP));
+            context.register(BLOODKNIGHT_VAMPIRE_BLOOD_BONUS, new SkillNode(BloodlineSkills.BLOODKNIGHT_VAMPIRE_BLOOD_BONUS));
+            context.register(BLOODKNIGHT_HASTE_STEP_INFUSION, new SkillNode(BloodlineSkills.BLOODKNIGHT_INFUSION_HASTE, BloodlineSkills.BLOODKNIGHT_INFUSION_STEP_ASSIST));
+            context.register(BLOODKNIGHT_SAPPING_STRIKE, new SkillNode(BloodlineSkills.BLOODKNIGHT_SAPPING_STRIKE));
+            context.register(BLOODKNIGHT_DAY_WALKER, new SkillNode(BloodlineSkills.BLOODKNIGHT_DAY_WALKER));
+            context.register(BLOODKNIGHT_BAT_FRENZY, new SkillNode(BloodlineSkills.BLOODKNIGHT_BAT_FRENZY));
+            context.register(BLOODKNIGHT_BLOOD_EXTRACTION, new SkillNode(BloodlineSkills.BLOODKNIGHT_BLOOD_EXTRACTION));
+            context.register(BLOODKNIGHT_HIDDEN_STRIKE, new SkillNode(BloodlineSkills.BLOODKNIGHT_HIDDEN_STRIKE));
+            context.register(BLOODKNIGHT_FRENZIED_ATTACKS, new SkillNode(BloodlineSkills.BLOODKNIGHT_FRENZIED_STRIKES));
 
 
         }

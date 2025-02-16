@@ -1,4 +1,5 @@
-// 1.21	2024-07-28T19:24:42.940455869	Skill tree config
+// 1.21	2025-02-12T13:41:17.5195745	Skill tree config
+dc41f7882240cf18f40ea88296b1ff3f8e51eef2 data/bloodlines/vampirism/configured_skill_tree/bloodknight.json
 0ff6dbb3d589d1f6547593c5f1e9110e140254a9 data/bloodlines/vampirism/configured_skill_tree/ectotherm.json
 4094da49b762361409e8ca5749f2fed199836f95 data/bloodlines/vampirism/configured_skill_tree/noble.json
 a60e2e2a06c4ae8757975cc882426c2a63c339bd data/bloodlines/vampirism/configured_skill_tree/zealot.json

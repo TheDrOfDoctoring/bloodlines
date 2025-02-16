@@ -1,15 +1,14 @@
 package com.thedrofdoctoring.bloodlines;
 
 import com.mojang.logging.LogUtils;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.entity.BloodlineMobManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
+import com.thedrofdoctoring.bloodlines.capabilities.other.VampExtendedCreature;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.*;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
-import com.thedrofdoctoring.bloodlines.data.BloodlineSkillTreeProvider;
-import com.thedrofdoctoring.bloodlines.data.BloodlinesData;
-import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
+import com.thedrofdoctoring.bloodlines.data.*;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistribution;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceFluidHandler;
@@ -79,6 +78,7 @@ public class Bloodlines {
         BloodlineTasks.TASK_UNLOCKER.register(modEventBus);
         BloodlineComponents.DATA_COMPONENTS.register(modEventBus);
         BloodlineTasks.TASK_REWARD_INSTANCES.register(modEventBus);
+        BloodlinesEffects.EFFECTS.register(modEventBus);
 
         NeoForge.EVENT_BUS.addListener(this::onCommandsRegister);
     }
@@ -91,7 +91,7 @@ public class Bloodlines {
     }
 
     public void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
-
+        event.dataPackRegistry(BloodlinesData.BLOODLINE_AI_SELECTORS, BloodlineSelector.CODEC.codec(), null);
         event.dataPackRegistry(BloodlinesData.BLOODLINE_SPAWN_MODIFIERS, BloodlineSpawnModifier.CODEC.codec(), null);
         event.dataPackRegistry(BloodlinesData.BLOODLINE_RANK_DISTRIBUTION, BloodlineRankDistribution.CODEC.codec(), null);
 
@@ -125,6 +125,7 @@ public class Bloodlines {
         BloodlinesTagsProviders.register(generator, event, packOutput, lookupProvider, existingFileHelper);
 
         generator.addProvider(event.includeServer(), new BloodlineSkillTreeProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new BloodlinesDataMaps(packOutput, lookupProvider));
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -135,12 +136,14 @@ public class Bloodlines {
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.NOBLE);
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.ZEALOT);
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.ECTOTHERM);
+        VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.BLOODKNIGHT);
 
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         HelperRegistry.registerSyncablePlayerCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MANAGER.get(), BloodlineManager.class);
         HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MOB_MANAGER.get(), BloodlineMobManager.class);
+        HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlineAttachments.VAMP_EXTENDED_CREATURE.get(), VampExtendedCreature.class);
 
     }
 

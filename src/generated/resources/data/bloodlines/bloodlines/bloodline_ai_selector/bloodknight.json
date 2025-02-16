@@ -1,0 +1,15 @@
+{
+  "player_only": false,
+  "target_bloodlines": [
+    {
+      "id": "bloodlines:noble"
+    },
+    {
+      "id": "bloodlines:ectotherm"
+    },
+    {
+      "id": "bloodlines:zealot"
+    }
+  ],
+  "target_without_bloodlines": true
+}

@@ -2,17 +2,6 @@
   "requirements": {
     "requirements": [
       {
-        "type": "vampirism:item",
-        "description": {
-          "translate": "item.minecraft.diamond"
-        },
-        "id": "minecraft:diamond",
-        "item": {
-          "count": 8,
-          "id": "minecraft:diamond"
-        }
-      },
-      {
         "type": "vampirism:entity",
         "amount": 1,
         "description": {
@@ -20,6 +9,17 @@
         },
         "entityType": "minecraft:elder_guardian",
         "id": "minecraft:elder_guardian"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.heart_of_the_sea"
+        },
+        "id": "minecraft:heart_of_the_sea",
+        "item": {
+          "count": 3,
+          "id": "minecraft:heart_of_the_sea"
+        }
       },
       {
         "type": "vampirism:item",
@@ -36,7 +36,8 @@
   },
   "rewards": {
     "type": "bloodlines:bloodline_perk_reward",
-    "perkPointAmount": 1
+    "perkPointAmount": 1,
+    "source": "bloodlines:bloodline_perk_points_ectotherm_1"
   },
   "title": {
     "translate": "task.bloodlines.bloodline_perk_points_ectotherm_1"

@@ -14,7 +14,8 @@ public enum BloodlineSkillType implements ISkillType {
     //Each bloodline needs its own unique skill type so that they are given the correct skills.
     NOBLE(Bloodlines.rl("noble"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
     ZEALOT(Bloodlines.rl("zealot"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
-    ECTOTHERM(Bloodlines.rl("ectotherm"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true);
+    ECTOTHERM(Bloodlines.rl("ectotherm"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
+    BLOODKNIGHT(Bloodlines.rl("bloodknight"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true);
 
     public final ResourceLocation id;
     public final String nameSuffix;

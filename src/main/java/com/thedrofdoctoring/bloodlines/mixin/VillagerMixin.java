@@ -1,7 +1,8 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineHelper;
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
@@ -27,6 +28,8 @@ public abstract class VillagerMixin extends AbstractVillager {
     @Shadow
     public abstract VillagerData getVillagerData();
 
+    @Shadow public abstract void playWorkSound();
+
     public VillagerMixin(EntityType<? extends AbstractVillager> vil, Level level) {
         super(vil, level);
     }
@@ -48,6 +51,13 @@ public abstract class VillagerMixin extends AbstractVillager {
                 int rank = BloodlineHelper.getBloodlineRank(player);
                 for (MerchantOffer merchantoffer1 : this.getOffers()) {
                     double rankMult = CommonConfig.zealotTradePricesMultiplier.get().get(rank - 1).floatValue();
+                    int diff = rankMult != 0 ? (int) Math.floor((merchantoffer1.getBaseCostA().getCount()) * (rankMult - 1)) : 0;
+                    merchantoffer1.addToSpecialPriceDiff(diff);
+                }
+            } else if(BloodlineManager.get(player).getBloodline() instanceof BloodlineNoble) {
+                int rank = BloodlineHelper.getBloodlineRank(player);
+                for (MerchantOffer merchantoffer1 : this.getOffers()) {
+                    double rankMult = CommonConfig.bloodknightTradePricesMultiplier.get().get(rank - 1).floatValue();
                     int diff = rankMult != 0 ? (int) Math.floor((merchantoffer1.getBaseCostA().getCount()) * (rankMult - 1)) : 0;
                     merchantoffer1.addToSpecialPriceDiff(diff);
                 }

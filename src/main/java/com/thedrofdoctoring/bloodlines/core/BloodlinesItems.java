@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.core;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
@@ -29,7 +30,7 @@ public class BloodlinesItems {
     public static final ResourceKey<CreativeModeTab> BLOODLINE_TAB_KEY = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Bloodlines.rl("bloodlines"));
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_ECTOTHERM = register("bloodline_fang_ectotherm", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineFrost.ECTOTHERM));
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_ZEALOT = register("bloodline_fang_zealot", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineZealot.ZEALOT));
-
+    public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_BLOODKNIGHT = register("bloodline_fang_bloodknight", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineBloodknight.BLOOD_KNIGHT));
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_NOBLE = register("bloodline_fang_noble", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineNoble.NOBLE));
     public static final DeferredHolder<Item, BottomlessChaliceItem> CHALICE_ITEM = register("bottomless_chalice", () -> new BottomlessChaliceItem(new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, PurityInjection> PURITY_INJECTION = register("purity_injection", () -> new PurityInjection(new Item.Properties().stacksTo(1)));

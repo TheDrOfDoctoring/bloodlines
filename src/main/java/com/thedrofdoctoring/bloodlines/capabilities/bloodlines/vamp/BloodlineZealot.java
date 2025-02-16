@@ -44,19 +44,14 @@ public class BloodlineZealot extends VampireBloodline {
 
         return attributes;
     }
-    private void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
-        if(skillHandler.isSkillEnabled(skill) || cleanup) {
-            attributes.put(attribute, modifier);
-        }
-    }
+
 
     @Override
     public void onBloodlineChange(LivingEntity entity, int rank) {
+        super.onBloodlineChange(entity, rank);
         if(entity instanceof Player player) {
-            if(rank > 0) {
-                super.onBloodlineChange(player, rank);
-                updateSpeed(player, rank - 1);
-            } else if(Helper.isVampire(player)){
+            updateSpeed(player, rank - 1);
+            if(Helper.isVampire(player)){
                 IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
                 specialAttributes.bloodlines$setStoneRunSpeed(1f);
             }
@@ -81,6 +76,11 @@ public class BloodlineZealot extends VampireBloodline {
     @Override
     public ModConfigSpec.ConfigValue<List<? extends String>>[] getDefaultEnabledSkills() {
         return CommonConfig.zealotDefaults;
+    }
+
+    @Override
+    public String getName() {
+        return "Zealot";
     }
 
 }

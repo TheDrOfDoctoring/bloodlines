@@ -17,11 +17,14 @@ public class BloodlinesData {
 
     public static final ResourceKey<Registry<BloodlineSpawnModifier>> BLOODLINE_SPAWN_MODIFIERS = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Bloodlines.MODID, "bloodline_spawn_modifiers"));
     public static final ResourceKey<Registry<BloodlineRankDistribution>> BLOODLINE_RANK_DISTRIBUTION = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Bloodlines.MODID, "bloodline_rank_distribution"));
+    public static final ResourceKey<Registry<BloodlineSelector>> BLOODLINE_AI_SELECTORS = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Bloodlines.MODID, "bloodline_ai_selector"));
 
     
     public static final RegistrySetBuilder DATA_BUILDER = new RegistrySetBuilder()
             .add(BLOODLINE_RANK_DISTRIBUTION, BloodlineRankDistributions::createRankDistributions)
             .add(BLOODLINE_SPAWN_MODIFIERS, BloodlinesSpawnModifiers::createSpawnModifiers)
+            .add(BLOODLINE_AI_SELECTORS, BloodlineAISelectors::createAISelectors)
+
             .add(VampirismRegistries.Keys.TASK, BloodlineTasks::createTasks)
             .add(VampirismRegistries.Keys.SKILL_TREE, BloodlineSkills.Trees::createSkillTrees)
             .add(VampirismRegistries.Keys.SKILL_NODE, BloodlineSkills.Nodes::createSkillNodes);

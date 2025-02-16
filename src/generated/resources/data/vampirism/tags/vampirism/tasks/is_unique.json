@@ -11,6 +11,10 @@
     "bloodlines:bloodline_ectotherm_one",
     "bloodlines:bloodline_ectotherm_two",
     "bloodlines:bloodline_ectotherm_three",
-    "bloodlines:bloodline_perk_points_ectotherm_1"
+    "bloodlines:bloodline_perk_points_ectotherm_1",
+    "bloodlines:bloodline_bloodknight_one",
+    "bloodlines:bloodline_bloodknight_two",
+    "bloodlines:bloodline_bloodknight_three",
+    "bloodlines:bloodline_perk_points_bloodknight_1"
   ]
 }

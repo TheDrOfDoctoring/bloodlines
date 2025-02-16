@@ -132,10 +132,58 @@ public class CommonConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermColdBiomeSpeedMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermHotBiomeActionCooldownMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> ectothermMobAdditionalKnockbackResistance;
-
-
-
     public static final ModConfigSpec.ConfigValue<List<? extends String>>[] ectothermDefaults = new ModConfigSpec.ConfigValue[4];
+
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> bloodknightBlRank1DefaultSkills;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> bloodknightBlRank2DefaultSkills;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> bloodknightBlRank3DefaultSkills;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> bloodknightBlRank4DefaultSkills;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>>[] bloodknightDefaults = new ModConfigSpec.ConfigValue[4];
+    public static final ModConfigSpec.DoubleValue bloodknightVampireMinHealthFeedingPercentage;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightBloodThirstChange;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightDamageIncrease;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightOtherSourceBloodDecrease;
+    public static final ModConfigSpec.IntValue bloodknightVampireBloodBottleNutrition;
+    public static final ModConfigSpec.DoubleValue bloodknightVampireBloodBottleSaturation;
+    public static final ModConfigSpec.DoubleValue bloodknightBloodFrenzyDamageBonus;
+    public static final ModConfigSpec.DoubleValue bloodknightBloodFrenzyMaxHealthBonus;
+    public static final ModConfigSpec.DoubleValue bloodknightBloodFrenzy2SpeedBonus;
+    public static final ModConfigSpec.DoubleValue bloodknightBloodFrenzy2JumpHeightBonus;
+    public static final ModConfigSpec.ConfigValue<List<? extends Integer>> bloodknightBloodFrenzyDurationPerRank;
+    public static final ModConfigSpec.DoubleValue bloodknightFeignedVampireMaxHealthFeedingAmount;
+    public static final ModConfigSpec.IntValue bloodknightCrimsonLeapCooldown;
+    public static final ModConfigSpec.IntValue bloodknightCrimsonLeapDuration;
+    public static final ModConfigSpec.IntValue bloodknightCrimsonLeapBloodUse;
+    public static final ModConfigSpec.IntValue bloodknightBloodHuntDuration;
+    public static final ModConfigSpec.IntValue bloodknightBloodHuntCooldown;
+    public static final ModConfigSpec.IntValue bloodknightBloodHuntTimePerBloodLoss;
+    public static final ModConfigSpec.IntValue bloodknightBloodHuntBaseBloodCost;
+    public static final ModConfigSpec.IntValue bloodknightSanguineInfusionCooldown;
+    public static final ModConfigSpec.IntValue bloodknightSanguineInfusionDuration;
+    public static final ModConfigSpec.IntValue bloodknightSanguineInfusionTimePerBloodLoss;
+    public static final ModConfigSpec.IntValue bloodknightSanguineInfusionBaseBloodCost;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightTradePricesMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightVampireBonusBloodMult;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightVampireBonusSaturationMult;
+    public static final ModConfigSpec.DoubleValue bloodknightSanguineInfusionSpeedMult;
+    public static final ModConfigSpec.DoubleValue bloodknightSanguineInfusionJumpHeightMult;
+    public static final ModConfigSpec.DoubleValue bloodknightSanguineInfusionMiningSpeedMult;
+    public static final ModConfigSpec.IntValue bloodknightSappingStrikePlayerDrain;
+    public static final ModConfigSpec.IntValue bloodknightSappingStrikeMobDrain;
+    public static final ModConfigSpec.DoubleValue bloodknightSappingStrikeSaturation;
+    public static final ModConfigSpec.IntValue bloodknightDaywalkerDuration;
+    public static final ModConfigSpec.IntValue bloodknightDaywalkerCooldown;
+    public static final ModConfigSpec.IntValue bloodknightDaywalkerTimePerBloodLoss;
+    public static final ModConfigSpec.IntValue bloodknightDaywalkerBaseBloodCost;
+    public static final ModConfigSpec.DoubleValue bloodknightBatSpeedMultiplier;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightVampireDamageMult;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> bloodknightHunterDamageMult;
+    public static final ModConfigSpec.IntValue bloodknightBloodExtractionCooldown;
+    public static final ModConfigSpec.DoubleValue bloodknightBloodFrenzyAttackSpeedMult;
+    public static final ModConfigSpec.IntValue bloodknightHiddenStrikeSlownessDurationPlayer;
+    public static final ModConfigSpec.IntValue bloodknightHiddenStrikeWeaknessDurationPlayer;
+    public static final ModConfigSpec.IntValue bloodknightHiddenStrikeWeaknessDurationMob;
+    public static final ModConfigSpec.IntValue bloodknightHiddenStrikeSlownessDurationMob;
 
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
@@ -225,8 +273,8 @@ public class CommonConfig {
         zealotObscuredPowerLightLevel = COMMON_BUILDER.comment("Maximum light level that shadow mastery works at").defineInRange("zealotObscuredPowerLightLevel", 10, 0, 15);
         zealotObscuredPowerTimerIncrease = COMMON_BUILDER.comment("How much the timer replenishes every 10 ticks with obscured power. By default this means the timer will simply not decrease, but not increase either").defineInRange("zealotObscuredPowerTimerIncrease", 10, 0, 1000);
         zealotShadowMasteryLightLevel = COMMON_BUILDER.comment("Maximum light level that shadow mastery works at").defineInRange("zealotShadowMasteryLightLevel", 8, 0, 15);
-        zealotTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("zealotShadowMasteryCooldownMultiplier", Arrays.asList(0.8d, 0.7d, 0.6d, 0.5d), t -> t instanceof Double);
-        zealotShadowMasteryCooldownMultiplier = COMMON_BUILDER.comment("Multiplier for action cooldownsa affected by Shadow Mastery action").defineList("zealotTradePricesMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 2d), t -> t instanceof Double);
+        zealotTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("zealotTradePricesMultiplier", Arrays.asList(0.8d, 0.7d, 0.6d, 0.5d), t -> t instanceof Double);
+        zealotShadowMasteryCooldownMultiplier = COMMON_BUILDER.comment("Multiplier for action cooldownsa affected by Shadow Mastery action").defineList("zealotShadowMasteryCooldownMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 2d), t -> t instanceof Double);
         zealotHexProtectionMultiplier = COMMON_BUILDER.comment("Multiplier for damage from magical sources").defineList("zealotHexProtectionMultiplier", Arrays.asList(0.9d, 0.85d, 0.85d, 0.75d), t -> t instanceof Double);
         zealotFrenzyCooldown = COMMON_BUILDER.comment("Frenzy cooldown, seconds").defineInRange("zealotFrenzyCooldown", 60, 0, Integer.MAX_VALUE);
         zealotFrenzyDuration = COMMON_BUILDER.comment("Frenzy duration, seconds").defineInRange("zealotFrenzyDuration", 15, 0, Integer.MAX_VALUE);
@@ -251,7 +299,7 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Ectotherm bloodline configurable values");
 
         COMMON_BUILDER.push("ectotherm_mobs");
-        ectothermMobAdditionalKnockbackResistance = COMMON_BUILDER.comment("Additional knockback resistance for Ectotherm Bloodline mobs").defineList("ectothermMobAdditionalKnockbackResistance", Arrays.asList(0.25d, 0.5d, 0.75d, 1d), t -> t instanceof Integer);
+        ectothermMobAdditionalKnockbackResistance = COMMON_BUILDER.comment("Additional knockback resistance for Ectotherm Bloodline mobs").defineList("ectothermMobAdditionalKnockbackResistance", Arrays.asList(0.25d, 0.5d, 0.75d, 1d), t -> t instanceof Double);
 
         COMMON_BUILDER.pop();
 
@@ -294,6 +342,65 @@ public class CommonConfig {
 
 
 
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.push("bloodknight_bloodline");
+        COMMON_BUILDER.comment("Bloodknight bloodline configurable values");
+
+        COMMON_BUILDER.push("bloodknight_mobs");
+
+        COMMON_BUILDER.pop();
+
+        bloodknightVampireMinHealthFeedingPercentage = COMMON_BUILDER.comment("The proportion of remaining health that a vampire mob must have, or be below, so that a Bloodknight Vampire can feed on it.").defineInRange("bloodknightVampireMinHealthFeedingProportion", 0.25, 0, 1);
+
+        bloodknightDefaults[0] = bloodknightBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("bloodknightBlRank1DefaultSkills", List.of("bloodlines:bloodknight"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;
+        bloodknightDefaults[1] = bloodknightBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("bloodknightBlRank2DefaultSkills", List.of("bloodlines:bloodknight_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
+        bloodknightDefaults[2] = bloodknightBlRank3DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 3").defineList("bloodknightBlRank3DefaultSkills", List.of("bloodlines:bloodknight_rank_3"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
+        bloodknightDefaults[3] = bloodknightBlRank4DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 4").defineList("bloodknightBlRank4DefaultSkills", List.of("bloodlines:bloodknight_rank_4"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
+        bloodknightBloodThirstChange = COMMON_BUILDER.comment("Multipliers for blood exhaustion at each blood knight rank. Attribute Multiplier").defineList("bloodknightBloodThirstChange", Arrays.asList(-0.9d, -0.75d, -0.5d,-0.35d), t -> t instanceof Double);
+        bloodknightDamageIncrease = COMMON_BUILDER.comment("Multipliers for damage at each blood knight rank. Attribute Multiplier").defineList("bloodknightDamageIncrease", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        bloodknightOtherSourceBloodDecrease = COMMON_BUILDER.comment("Multiplier for blood gain from non-vampiric blood sources").defineList("bloodknightOtherSourceBloodDecrease", Arrays.asList(0.7d, 0.5d, 0.3d, 0.2d), t -> t instanceof Double);
+        bloodknightVampireBloodBottleNutrition = COMMON_BUILDER.comment("Vampire Blood Bottle Nutrition (Blood Gain)").defineInRange("bloodknightVampireBloodBottleNutrition",  18, 0, 100);
+        bloodknightVampireBloodBottleSaturation = COMMON_BUILDER.comment("Vampire Blood Bottle Saturation").defineInRange("bloodknightVampireBloodBottleSaturation",  2d, 0d, 10d);
+        bloodknightBloodFrenzyDamageBonus = COMMON_BUILDER.comment("Damage bonus increase from the Blood Frenzy effect").defineInRange("bloodknightBloodFrenzyDamageBonus",  3d, 0d, 10d);
+        bloodknightBloodFrenzyMaxHealthBonus = COMMON_BUILDER.comment("Max Health increase from the Blood Frenzy effect").defineInRange("bloodknightBloodFrenzyMaxHealthBonus",  4d, 0d, 10d);
+        bloodknightBloodFrenzy2SpeedBonus = COMMON_BUILDER.comment("Speed multiplier from the Blood Frenzy tier 2 effect").defineInRange("bloodknightBloodFrenzy2SpeedBonus",  0.15, -5d, 5d);
+        bloodknightBloodFrenzy2JumpHeightBonus = COMMON_BUILDER.comment("Jump multiplier  from the Blood Frenzy tier 2 effect").defineInRange("bloodknightBloodFrenzy2JumpHeightBonus",  0.15, -5d, 5d);
+        bloodknightBloodFrenzyDurationPerRank = COMMON_BUILDER.comment("Duration of blood frenzy effect, for each BL Rank, in seconds").defineList("bloodknightBloodFrenzyDurationPerRank", Arrays.asList(60, 180, 320, 500, 900), t -> t instanceof Integer);
+        bloodknightFeignedVampireMaxHealthFeedingAmount = COMMON_BUILDER.comment("The percentage with Feigned Mercy skill of max health that a vampire must have to begin feeding on it").defineInRange("bloodknightFeignedVampireMaxHealthFeedingAmount",  0.5d, 0d, 1d);
+        bloodknightCrimsonLeapCooldown = COMMON_BUILDER.comment("Cooldown for crimson leap action, in ticks").defineInRange("bloodknightCrimsonLeapCooldown",  20, 0, 10000);
+        bloodknightCrimsonLeapDuration = COMMON_BUILDER.comment("Duration for crimson leap action, in ticks").defineInRange("bloodknightCrimsonLeapDuration",  50, 0, 10000);
+        bloodknightCrimsonLeapBloodUse = COMMON_BUILDER.comment("Blood cost of using crimson leap action").defineInRange("bloodknightCrimsonLeapBloodUse",  8, 0, 50);
+        bloodknightSanguineInfusionBaseBloodCost = COMMON_BUILDER.comment("Blood usage upon activating Sanguine Infusion").defineInRange("bloodknightSanguineInfusionBaseBloodCost",  3, 0, 50);
+        bloodknightSanguineInfusionCooldown = COMMON_BUILDER.comment("Cooldown for sanguine infusion action, in seconds").defineInRange("bloodknightSanguineInfusionCooldown",  30, 0, 10000);
+        bloodknightSanguineInfusionDuration = COMMON_BUILDER.comment("Duration for sangine infusion action, in seconds").defineInRange("bloodknightSanguineInfusionDuration",  3000, 0, 10000);
+        bloodknightSanguineInfusionTimePerBloodLoss = COMMON_BUILDER.comment("Amount of ticks it takes for 1 blood to be used whilst action is active").defineInRange("bloodknightSanguineInfusionTimePerBloodLoss",  160, 0, 10000);
+        bloodknightSanguineInfusionSpeedMult = COMMON_BUILDER.comment("Speed mult from sanguine infusion").defineInRange("bloodknightSanguineInfusionSpeedMult",  0.75d, 0, 50);
+        bloodknightSanguineInfusionJumpHeightMult = COMMON_BUILDER.comment("Jump mult from sanguine infusion").defineInRange("bloodknightSanguineInfusionJumpHeightMult",  0.25d, 0, 50);
+        bloodknightSanguineInfusionMiningSpeedMult = COMMON_BUILDER.comment("Speed mult from sanguine infusion with requisite skill").defineInRange("bloodknightSanguineInfusionMiningSpeedMult",  0.2d, 0, 50);
+        bloodknightBloodHuntCooldown = COMMON_BUILDER.comment("Cooldown for blood hunt action, in seconds").defineInRange("bloodknightBloodHuntCooldown",  30, 0, 10000);
+        bloodknightBloodHuntDuration = COMMON_BUILDER.comment("Duration for blood hunt action, in seconds").defineInRange("bloodknightBloodHuntDuration",  3000, 0, 10000);
+        bloodknightBloodHuntTimePerBloodLoss = COMMON_BUILDER.comment("Amount of ticks it takes for 1 blood to be used whilst action is active").defineInRange("bloodknightBloodHuntTimePerBloodLoss",  140, 0, 10000);
+        bloodknightBloodHuntBaseBloodCost = COMMON_BUILDER.comment("Blood usage upon activating Blood Hunt").defineInRange("bloodknightBloodHuntBaseBloodCost",  3, 0, 50);
+        bloodknightTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("bloodknightTradePricesMultiplier", Arrays.asList(1d, 0.8d, 0.7d, 0.6d), t -> t instanceof Double);
+        bloodknightVampireBonusBloodMult = COMMON_BUILDER.comment("Increased blood gain when drinking blood from vampires with requisite skill. Multiplier").defineList("bloodknightVampireBonusBloodMult", Arrays.asList(1.5d, 2d, 2.5d, 3d), t -> t instanceof Double);
+        bloodknightVampireBonusSaturationMult = COMMON_BUILDER.comment("Increased saturation gain when drinking blood from vampires with requisite skill. Multiplier").defineList("bloodknightVampireBonusSaturationMult", Arrays.asList(1.25d, 1.5d, 1.75d, 2.0d), t -> t instanceof Double);
+        bloodknightSappingStrikeMobDrain = COMMON_BUILDER.comment("Blood drain from vampire mobs with sapping strike skill").defineInRange("bloodknightSappingStrikeMobDrain",  4, 0, 40);
+        bloodknightSappingStrikePlayerDrain = COMMON_BUILDER.comment("Blood drain from vampire players with sapping strike skill").defineInRange("bloodknightSappingStrikePlayerDrain",  1, 0, 40);
+        bloodknightSappingStrikeSaturation = COMMON_BUILDER.comment("Saturation gain from sapping strike skill").defineInRange("bloodknightSappingStrikeSaturation",  0.25d, 0, 10d);
+        bloodknightDaywalkerBaseBloodCost = COMMON_BUILDER.comment("Blood usage upon activating Daywalker").defineInRange("bloodknightDaywalkerBaseBloodCost",  5, 0, 50);
+        bloodknightDaywalkerCooldown = COMMON_BUILDER.comment("Cooldown for daywalker action, in seconds").defineInRange("bloodknightDaywalkerCooldown",  150, 0, 10000);
+        bloodknightDaywalkerDuration = COMMON_BUILDER.comment("Duration for daywalker action, in seconds").defineInRange("bloodknightDaywalkerDuration",  300, 0, 10000);
+        bloodknightDaywalkerTimePerBloodLoss = COMMON_BUILDER.comment("Amount of ticks it takes for 1 blood to be used whilst action is active").defineInRange("bloodknightDaywalkerTimePerBloodLoss",  75, 0, 10000);
+        bloodknightBatSpeedMultiplier = COMMON_BUILDER.comment("Bat Speed flight multiplier from Frenzied Bat Skill").defineInRange("bloodknightBatSpeedMultiplier", 1.75d, 0d, 100d);
+        bloodknightHunterDamageMult = COMMON_BUILDER.comment("Damage received from hunters multiplier for Bloodknights. Multiplier").defineList("bloodknightHunterDamageMult", Arrays.asList(1d, 1d, 1.15d, 1.35), t -> t instanceof Double);
+        bloodknightVampireDamageMult = COMMON_BUILDER.comment("Damage dealt to vampires multiplier for Bloodknights. Multiplier").defineList("bloodknightVampireDamageMult", Arrays.asList(1.5d, 2d, 1.25d, 1.5d), t -> t instanceof Double);
+        bloodknightBloodExtractionCooldown = COMMON_BUILDER.comment("Cooldown for Blood Extraction action, in seconds").defineInRange("bloodknightBloodExtractionCooldown", 900, 0, 100000);
+        bloodknightBloodFrenzyAttackSpeedMult = COMMON_BUILDER.comment("Blood Frenzy attack speed mult with requisite skill. Attribute Multiplier").defineInRange("bloodknightBloodFrenzyAttackSpeedMult", 0.35d, 0d, 10d);
+        bloodknightHiddenStrikeWeaknessDurationMob = COMMON_BUILDER.comment("Duration of Hidden Strike weakness on mobs, in ticks").defineInRange("bloodknightHiddenStrikeWeaknessDurationMob", 500, 0, 100000);
+        bloodknightHiddenStrikeSlownessDurationMob = COMMON_BUILDER.comment("Duration of Hidden Strike slowness on mobs, in ticks").defineInRange("bloodknightHiddenStrikeSlownessDurationMob", 500, 0, 100000);
+        bloodknightHiddenStrikeWeaknessDurationPlayer = COMMON_BUILDER.comment("Duration of Hidden Strike weakness on players, in ticks").defineInRange("bloodknightHiddenStrikeWeaknessDurationPlayer", 200, 0, 100000);
+        bloodknightHiddenStrikeSlownessDurationPlayer = COMMON_BUILDER.comment("Duration of Hidden Strike slowness on players, in ticks").defineInRange("bloodknightHiddenStrikeSlownessDurationPlayer", 300, 0, 100000);
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();

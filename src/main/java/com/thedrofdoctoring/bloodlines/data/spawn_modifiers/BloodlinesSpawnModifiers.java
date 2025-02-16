@@ -30,6 +30,10 @@ public class BloodlinesSpawnModifiers {
             BloodlinesData.BLOODLINE_SPAWN_MODIFIERS,
             Bloodlines.rl("zealot_spawn_modifier")
     );
+    public static final ResourceKey<BloodlineSpawnModifier> BLOODLINE_BLOODKNIGHT_SPAWN_MODIFIERS = ResourceKey.create(
+            BloodlinesData.BLOODLINE_SPAWN_MODIFIERS,
+            Bloodlines.rl("bloodknight_spawn_modifier")
+    );
 
     public static void createSpawnModifiers(BootstrapContext<BloodlineSpawnModifier> context) {
         HolderGetter<Biome> biomeLookup = context.lookup(Registries.BIOME);
@@ -48,14 +52,27 @@ public class BloodlinesSpawnModifiers {
 
         );
         context.register(
+                BLOODLINE_BLOODKNIGHT_SPAWN_MODIFIERS,
+                new BloodlineSpawnModifier(
+                        BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(),
+                        List.of(ModEntities.VAMPIRE.get(), ModEntities.ADVANCED_VAMPIRE.get()),
+                        List.of(
+                                Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), 15),
+                                Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD), 20)
+                        ),
+                        Pair.of(60, -25)
+                )
+
+        );
+        context.register(
                 BLOODLINE_ECTOTHERM_SPAWN_MODIFIER,
                 new BloodlineSpawnModifier(
                         BloodlineRegistry.BLOODLINE_ECTOTHERM.get(),
                         List.of(ModEntities.VAMPIRE.get(), ModEntities.ADVANCED_VAMPIRE.get()),
                         List.of(
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), 25),
-                                Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OCEAN), 100),
-                                Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_COLD), 100)
+                                Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OCEAN), 50),
+                                Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_COLD), 50)
                         ),
                         Pair.of(60, -50)
                 )

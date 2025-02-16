@@ -14,7 +14,7 @@
       },
       {
         "type": "vampirism:entity",
-        "amount": 10,
+        "amount": 20,
         "description": {
           "translate": "entity.minecraft.guardian"
         },
@@ -24,12 +24,12 @@
       {
         "type": "vampirism:item",
         "description": {
-          "translate": "item.minecraft.water_bucket"
+          "translate": "item.minecraft.heart_of_the_sea"
         },
-        "id": "minecraft:water_bucket",
+        "id": "minecraft:heart_of_the_sea",
         "item": {
-          "count": 10,
-          "id": "minecraft:water_bucket"
+          "count": 1,
+          "id": "minecraft:heart_of_the_sea"
         }
       }
     ]

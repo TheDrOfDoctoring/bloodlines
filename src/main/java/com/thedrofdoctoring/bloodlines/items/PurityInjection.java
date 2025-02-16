@@ -1,6 +1,6 @@
 package com.thedrofdoctoring.bloodlines.items;
 
-import com.thedrofdoctoring.bloodlines.capabilities.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
