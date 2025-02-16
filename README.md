@@ -66,6 +66,13 @@ Some of their unlockable skills include:
 
 The Bloodknight Bloodline are a strain that primarily feast on the fresh blood of other vampires. As a result, they lose blood slower but other sources of blood are not as nourishing.
 
+Some of their unlockable skills include:
+- Daywalker, Continuously consume blood, but receive sun immunity
+- Still Water, Gain a large amount of blood from drinking Vampire Blood Bottles
+- Blood Extraction, Extract Vampire Blood Bottles from Vampires
+- Blood Hunt, Continuously consume blood, but turn invisible
+- Feeding Frenzy, Drinking vampire blood temporarily empowers you.
+
 
 # Special Thanks
 - Linus (Chris) Kerman: Textures
