@@ -47,6 +47,7 @@
   },
   "rewards": {
     "type": "bloodlines:bloodline_reward",
+    "source": "bloodlines:bloodline_zealot_one",
     "targetRank": 2
   },
   "title": {

@@ -36,6 +36,7 @@
   },
   "rewards": {
     "type": "bloodlines:bloodline_reward",
+    "source": "bloodlines:bloodline_bloodknight_one",
     "targetRank": 2
   },
   "title": {

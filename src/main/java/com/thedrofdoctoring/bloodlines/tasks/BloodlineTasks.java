@@ -56,7 +56,7 @@ public class BloodlineTasks {
     }
     public static void createTasks(BootstrapContext<Task> context) {
         context.register(BLOODLINE_NOBLE_1, TaskBuilder.builder(BLOODLINE_NOBLE_1).defaultTitle()
-                .setReward(new BloodlineRankReward(2))
+                .setReward(new BloodlineRankReward(2, BLOODLINE_NOBLE_1.location()))
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineNoble.NOBLE, true))
                 .addRequirement(new ItemStack(Items.DIAMOND, 16))
                 .addRequirement(new ItemStack(Items.GOLD_BLOCK, 4))
@@ -64,7 +64,7 @@ public class BloodlineTasks {
                 .addRequirement(ModEntities.VAMPIRE_BARON.get(), 8)
                 .build());
         context.register(BLOODLINE_NOBLE_2, TaskBuilder.builder(BLOODLINE_NOBLE_2).defaultTitle()
-                .setReward(new BloodlineRankReward(3))
+                .setReward(new BloodlineRankReward(3, BLOODLINE_NOBLE_2.location()))
                 .unlockedBy(new BloodlineUnlocker(2, BloodlineNoble.NOBLE, true))
                 .addRequirement(new ItemStack(Items.DIAMOND, 24))
                 .addRequirement(new ItemStack(Items.GOLD_BLOCK, 8))
@@ -72,7 +72,7 @@ public class BloodlineTasks {
                 .addRequirement(ModEntities.VAMPIRE_BARON.get(), 16)
                 .build());
         context.register(BLOODLINE_NOBLE_3, TaskBuilder.builder(BLOODLINE_NOBLE_3).defaultTitle()
-                .setReward(new BloodlineRankReward(4))
+                .setReward(new BloodlineRankReward(4, BLOODLINE_NOBLE_3.location()))
                 .unlockedBy(new BloodlineUnlocker(3, BloodlineNoble.NOBLE, true))
                 .addRequirement(new ItemStack(Items.DIAMOND, 32))
                 .addRequirement(new ItemStack(Items.GOLD_BLOCK, 12))
@@ -89,7 +89,7 @@ public class BloodlineTasks {
                 .build());
 
         context.register(BLOODLINE_ZEALOT_1, TaskBuilder.builder(BLOODLINE_ZEALOT_1).defaultTitle()
-                .setReward(new BloodlineRankReward(2))
+                .setReward(new BloodlineRankReward(2, BLOODLINE_ZEALOT_1.location()))
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineZealot.ZEALOT, true))
                 .addRequirement(new ItemStack(Items.DIAMOND, 16))
                 .addRequirement(new ItemStack(Items.SCULK, 64))
@@ -97,7 +97,7 @@ public class BloodlineTasks {
                 .addRequirement(EntityType.ENDERMAN, 12)
                 .build());
         context.register(BLOODLINE_ZEALOT_2, TaskBuilder.builder(BLOODLINE_ZEALOT_2).defaultTitle()
-                .setReward(new BloodlineRankReward(3))
+                .setReward(new BloodlineRankReward(3, BLOODLINE_ZEALOT_2.location()))
                 .unlockedBy(new BloodlineUnlocker(2, BloodlineZealot.ZEALOT, true))
                 .addRequirement(new ItemStack(Items.DIAMOND, 32))
                 .addRequirement(new ItemStack(Items.SCULK, 64))
@@ -105,7 +105,7 @@ public class BloodlineTasks {
                 .addRequirement(EntityType.ENDERMAN, 24)
                 .build());
         context.register(BLOODLINE_ZEALOT_3, TaskBuilder.builder(BLOODLINE_ZEALOT_3).defaultTitle()
-                .setReward(new BloodlineRankReward(4))
+                .setReward(new BloodlineRankReward(4, BLOODLINE_ZEALOT_3.location()))
                 .unlockedBy(new BloodlineUnlocker(3, BloodlineZealot.ZEALOT, true))
                 .addRequirement(new ItemStack(Items.DIAMOND, 64))
                 .addRequirement(new ItemStack(Items.AMETHYST_BLOCK, 48))
@@ -121,21 +121,21 @@ public class BloodlineTasks {
                 .addRequirement(EntityType.ENDERMAN, 10)
                 .build());
         context.register(BLOODLINE_ECTOTHERM_1, TaskBuilder.builder(BLOODLINE_ECTOTHERM_1).defaultTitle()
-                .setReward(new BloodlineRankReward(2))
+                .setReward(new BloodlineRankReward(2, BLOODLINE_ECTOTHERM_1.location()))
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineFrost.ECTOTHERM, true))
                 .addRequirement(new ItemStack(Items.COD, 32))
                 .addRequirement(new ItemStack(Items.HEART_OF_THE_SEA, 1))
                 .addRequirement(EntityType.GUARDIAN, 20)
                 .build());
         context.register(BLOODLINE_ECTOTHERM_2, TaskBuilder.builder(BLOODLINE_ECTOTHERM_2).defaultTitle()
-                .setReward(new BloodlineRankReward(3))
+                .setReward(new BloodlineRankReward(3, BLOODLINE_ECTOTHERM_2.location()))
                 .unlockedBy(new BloodlineUnlocker(2, BloodlineFrost.ECTOTHERM, true))
                 .addRequirement(new ItemStack(Items.SALMON, 48))
                 .addRequirement(new ItemStack(Items.ICE, 30))
                 .addRequirement(EntityType.ELDER_GUARDIAN, 3)
                 .build());
         context.register(BLOODLINE_ECTOTHERM_3, TaskBuilder.builder(BLOODLINE_ECTOTHERM_3).defaultTitle()
-                .setReward(new BloodlineRankReward(4))
+                .setReward(new BloodlineRankReward(4, BLOODLINE_ECTOTHERM_3.location()))
                 .unlockedBy(new BloodlineUnlocker(3, BloodlineFrost.ECTOTHERM, true))
                 .addRequirement(new ItemStack(Items.HEART_OF_THE_SEA, 2))
                 .addRequirement(new ItemStack(Items.PACKED_ICE, 64))
@@ -149,21 +149,21 @@ public class BloodlineTasks {
                 .addRequirement(EntityType.ELDER_GUARDIAN, 1)
                 .build());
         context.register(BLOODLINE_BLOODKNIGHT_1, TaskBuilder.builder(BLOODLINE_BLOODKNIGHT_1).defaultTitle()
-                .setReward(new BloodlineRankReward(2))
+                .setReward(new BloodlineRankReward(2, BLOODLINE_BLOODKNIGHT_1.location()))
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineBloodknight.BLOOD_KNIGHT, true))
                 .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 10))
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_2.get(), 10))
                 .addRequirement(ModEntities.VAMPIRE.get(), 50)
                 .build());
         context.register(BLOODLINE_BLOODKNIGHT_2, TaskBuilder.builder(BLOODLINE_BLOODKNIGHT_2).defaultTitle()
-                .setReward(new BloodlineRankReward(3))
+                .setReward(new BloodlineRankReward(3, BLOODLINE_BLOODKNIGHT_2.location()))
                 .unlockedBy(new BloodlineUnlocker(2, BloodlineBloodknight.BLOOD_KNIGHT, true))
                 .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 10))
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_3.get(), 10))
                 .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 25)
                 .build());
         context.register(BLOODLINE_BLOODKNIGHT_3, TaskBuilder.builder(BLOODLINE_BLOODKNIGHT_3).defaultTitle()
-                .setReward(new BloodlineRankReward(4))
+                .setReward(new BloodlineRankReward(4, BLOODLINE_BLOODKNIGHT_3.location()))
                 .unlockedBy(new BloodlineUnlocker(3, BloodlineBloodknight.BLOOD_KNIGHT, true))
                 .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 20))
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_4.get(), 10))

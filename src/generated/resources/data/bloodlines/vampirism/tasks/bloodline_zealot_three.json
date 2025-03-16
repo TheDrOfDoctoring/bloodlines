@@ -45,6 +45,7 @@
   },
   "rewards": {
     "type": "bloodlines:bloodline_reward",
+    "source": "bloodlines:bloodline_zealot_three",
     "targetRank": 4
   },
   "title": {

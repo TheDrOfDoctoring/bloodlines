@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
+import de.teamlapen.vampirism.api.VampirismRegistries;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.task.ITaskRewardInstance;
 import de.teamlapen.vampirism.api.entity.player.task.TaskReward;
@@ -11,21 +12,24 @@ import de.teamlapen.vampirism.core.ModParticles;
 import de.teamlapen.vampirism.core.ModSounds;
 import de.teamlapen.vampirism.particle.GenericParticleOptions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
-public record BloodlineRankReward(int targetRank) implements TaskReward, ITaskRewardInstance {
+public record BloodlineRankReward(int targetRank, ResourceLocation source) implements TaskReward, ITaskRewardInstance {
 
     public static final MapCodec<BloodlineRankReward> CODEC = RecordCodecBuilder.mapCodec(inst -> {
         return inst.group(
-                Codec.INT.fieldOf("targetRank").forGetter(BloodlineRankReward::targetRank)
+                Codec.INT.fieldOf("targetRank").forGetter(BloodlineRankReward::targetRank),
+                ResourceLocation.CODEC.fieldOf("source").forGetter(t -> t.source)
         ).apply(inst, BloodlineRankReward::new);
     });
 
     @Override
     public void applyReward(IFactionPlayer<?> p) {
+        p.getTaskManager().resetUniqueTask(ResourceKey.create(VampirismRegistries.Keys.TASK, source));
         BloodlineManager.getOpt(p.asEntity()).ifPresent(bl -> {
             Player player = p.asEntity();
             if(bl.getRank() == targetRank - 1) {

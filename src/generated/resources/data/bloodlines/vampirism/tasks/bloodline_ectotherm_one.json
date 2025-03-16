@@ -36,6 +36,7 @@
   },
   "rewards": {
     "type": "bloodlines:bloodline_reward",
+    "source": "bloodlines:bloodline_ectotherm_one",
     "targetRank": 2
   },
   "title": {
