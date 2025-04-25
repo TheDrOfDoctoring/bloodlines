@@ -16,7 +16,9 @@ public class PowderedSnowBlockMixin {
     @ModifyReturnValue(method = "canEntityWalkOnPowderSnow", at = @At("RETURN"))
     private static boolean canWalkOnPowderedSnow(boolean orig, Entity entity) {
         if(entity instanceof Player player && Helper.isVampire(player)) {
-            return VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_SNOW_WALKER.get());
+            if (VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_SNOW_WALKER.get())) {
+                return true;
+            }
         }
         return orig;
     }

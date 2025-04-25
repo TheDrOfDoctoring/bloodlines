@@ -50,7 +50,7 @@ public class BloodlineZealot extends VampireBloodline {
     public void onBloodlineChange(LivingEntity entity, int rank) {
         super.onBloodlineChange(entity, rank);
         if(entity instanceof Player player) {
-            updateSpeed(player, rank - 1);
+            updateSpeed(player, Math.max(rank - 1, 0));
             if(Helper.isVampire(player)){
                 IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) (VampirePlayer.get(player)).getSpecialAttributes();
                 specialAttributes.bloodlines$setStoneRunSpeed(1f);
