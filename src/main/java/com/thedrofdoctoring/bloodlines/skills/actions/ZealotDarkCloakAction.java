@@ -36,6 +36,14 @@ public class ZealotDarkCloakAction extends DefaultVampireAction implements ILast
     public int getDuration(IVampirePlayer player) {
         return Mth.clamp(CommonConfig.zealotDarkCloakDuration.get(), 10, Integer.MAX_VALUE / 20 - 1) * 20;
     }
+    @Override
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+    @Override
+    public boolean showHudDuration(Player player) {
+        return true;
+    }
 
     @Override
     public boolean isEnabled() {

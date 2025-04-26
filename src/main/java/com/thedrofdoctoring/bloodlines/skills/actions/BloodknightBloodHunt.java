@@ -7,6 +7,7 @@ import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class BloodknightBloodHunt extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
@@ -71,5 +72,12 @@ public class BloodknightBloodHunt extends DefaultVampireAction implements ILasti
     @Override
     public int getDuration(IVampirePlayer iVampirePlayer) {
         return CommonConfig.bloodknightBloodHuntDuration.get() * 20;
+    }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
+    public boolean showHudDuration(Player player) {
+        return true;
     }
 }

@@ -80,5 +80,12 @@ public class BloodknightCrimsonLeap extends DefaultVampireAction implements ILas
         return !player.getActionHandler().isActionActive((ILastingAction) VampireActions.BAT.get());
 
     }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
+    public boolean showHudDuration(Player player) {
+        return true;
+    }
 }
 

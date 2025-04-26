@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 public class EctothermDolphinLeap extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
@@ -67,5 +68,12 @@ public class EctothermDolphinLeap extends DefaultVampireAction implements ILasti
     }
     protected void applyEffect(IVampirePlayer vampire) {
         this.addEffectInstance(vampire, new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 52, 1));
+    }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
+    public boolean showHudDuration(Player player) {
+        return true;
     }
 }

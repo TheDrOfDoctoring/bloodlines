@@ -113,7 +113,13 @@ public class BloodknightSanguineInfusion extends DefaultVampireAction implements
         return false;
     }
 
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
 
+    public boolean showHudDuration(Player player) {
+        return true;
+    }
     @Override
     public int getCooldown(IVampirePlayer iVampirePlayer) {
         return CommonConfig.bloodknightSanguineInfusionCooldown.get() * 20;

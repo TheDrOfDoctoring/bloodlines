@@ -12,6 +12,7 @@ import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.core.ModAttributes;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class NobleLeechingAction extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
@@ -34,7 +35,13 @@ public class NobleLeechingAction extends DefaultVampireAction implements ILastin
             vamp.asEntity().getAttribute(ModAttributes.BLOOD_EXHAUSTION).addPermanentModifier(new AttributeModifier(Bloodlines.rl("noble_leeching_exhaustion"), 0.5, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         }
     }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
 
+    public boolean showHudDuration(Player player) {
+        return true;
+    }
     @Override
     public int getDuration(IVampirePlayer iVampirePlayer) {
         return CommonConfig.leechingDuration.get() * 20;
@@ -63,4 +70,5 @@ public class NobleLeechingAction extends DefaultVampireAction implements ILastin
     public int getCooldown(IVampirePlayer iVampirePlayer) {
         return CommonConfig.leechingCooldown.get();
     }
+
 }

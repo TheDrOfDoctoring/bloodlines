@@ -48,4 +48,9 @@ public class EctothermInkSplash extends DefaultVampireAction {
     public int getCooldown(IVampirePlayer iVampirePlayer) {
         return CommonConfig.ectothermInkSplashCooldown.get() * 20;
     }
+
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
 }

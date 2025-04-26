@@ -31,6 +31,12 @@ public class ZealotShadowwalkAction extends DefaultVampireAction {
     }
 
     @Override
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
+
+    @Override
     public boolean activate(@NotNull IVampirePlayer vampire, ActivationContext context) {
         Player player = vampire.asEntity();
 

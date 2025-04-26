@@ -9,6 +9,7 @@ import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class BloodknightDayWalker extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
@@ -73,5 +74,12 @@ public class BloodknightDayWalker extends DefaultVampireAction implements ILasti
     }
     protected void applyEffect(IVampirePlayer vampire) {
         addEffectInstance(vampire, new MobEffectInstance(ModEffects.SUNSCREEN, 22, 3, false, false, false));
+    }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
+    public boolean showHudDuration(Player player) {
+        return true;
     }
 }

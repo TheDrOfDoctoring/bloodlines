@@ -88,4 +88,9 @@ public class NobleFlankAction extends DefaultVampireAction {
         return !vampire.getActionHandler().isActionActive((ILastingAction) VampireActions.BAT.get());
 
     }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
+
 }

@@ -11,6 +11,7 @@ import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -52,4 +53,8 @@ public class BloodknightBloodExtraction extends DefaultVampireAction {
     public int getCooldown(IVampirePlayer iVampirePlayer) {
         return CommonConfig.bloodknightBloodExtractionCooldown.get() * 20;
     }
+    public boolean showHudCooldown(Player player) {
+        return true;
+    }
+
 }
