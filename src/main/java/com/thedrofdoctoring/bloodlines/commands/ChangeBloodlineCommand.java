@@ -35,7 +35,7 @@ public class ChangeBloodlineCommand extends BasicCommand {
             if(rank > 4 || rank < 0) {
                 context.getSource().sendFailure(Component.translatable("command.bloodlines.rank_wrong"));
             }
-            else if(bloodline.getFaction() == FactionPlayerHandler.getOpt(player).map(FactionPlayerHandler::getCurrentFaction).orElse(null)) {
+            else if(bloodline.getFaction() == FactionPlayerHandler.get(player).getCurrentFaction()) {
                 BloodlineManager.getOpt(player).ifPresent(bl -> {
                     IBloodline oldBloodline = bl.getBloodline();
                     int oldRank = bl.getRank();

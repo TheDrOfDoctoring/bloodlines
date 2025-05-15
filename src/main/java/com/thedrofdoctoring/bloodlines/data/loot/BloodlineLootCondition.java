@@ -1,6 +1,5 @@
 package com.thedrofdoctoring.bloodlines.data.loot;
 
-import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -11,7 +10,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -20,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.Set;
 
-@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType, unused")
 public class BloodlineLootCondition implements LootItemCondition {
     public static final MapCodec<BloodlineLootCondition> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             IBloodline.CODEC.fieldOf("bloodline").forGetter(e -> e.bloodline),
@@ -40,7 +38,6 @@ public class BloodlineLootCondition implements LootItemCondition {
         this.minRank = minRank;
         this.entityIsAttacker = entityIsAttacker;
     }
-
     public BloodlineLootCondition(IBloodline bloodline, boolean entityIsAttacker, int maxRank, int minRank) {
         this.bloodline = bloodline;
         this.maxRank = Optional.of(maxRank);

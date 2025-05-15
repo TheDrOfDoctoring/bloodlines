@@ -21,7 +21,7 @@ public class BottomlessChaliceFluidHandler extends BloodBottleFluidHandler {
         if (currentAmt == 0) {
             return FluidStack.EMPTY;
         } else {
-            FluidStack stack = new FluidStack((Fluid) ModFluids.BLOOD.get(), Math.min(currentAmt, getAdjustedAmount(maxDrain)));
+            FluidStack stack = new FluidStack(ModFluids.BLOOD.get(), Math.min(currentAmt, getAdjustedAmount(maxDrain)));
             if (action.execute()) {
                 this.setBlood(this.container, currentAmt - stack.getAmount());
             }

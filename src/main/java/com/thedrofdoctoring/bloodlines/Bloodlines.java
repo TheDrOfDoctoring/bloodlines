@@ -31,7 +31,6 @@ import de.teamlapen.vampirism.api.VampirismAPI;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -157,7 +156,7 @@ public class Bloodlines {
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.GRAVEBOUND);
 
     }
-
+    @SuppressWarnings("unchecked, rawtypes")
     private void enqueueIMC(final InterModEnqueueEvent event) {
         HelperRegistry.registerSyncablePlayerCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MANAGER.get(), BloodlineManager.class);
         HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MOB_MANAGER.get(), BloodlineMobManager.class);

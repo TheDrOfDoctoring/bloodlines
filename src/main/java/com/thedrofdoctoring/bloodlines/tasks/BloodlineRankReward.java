@@ -20,12 +20,10 @@ import org.jetbrains.annotations.NotNull;
 
 public record BloodlineRankReward(int targetRank, ResourceLocation source) implements TaskReward, ITaskRewardInstance {
 
-    public static final MapCodec<BloodlineRankReward> CODEC = RecordCodecBuilder.mapCodec(inst -> {
-        return inst.group(
-                Codec.INT.fieldOf("targetRank").forGetter(BloodlineRankReward::targetRank),
-                ResourceLocation.CODEC.fieldOf("source").forGetter(t -> t.source)
-        ).apply(inst, BloodlineRankReward::new);
-    });
+    public static final MapCodec<BloodlineRankReward> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            Codec.INT.fieldOf("targetRank").forGetter(BloodlineRankReward::targetRank),
+            ResourceLocation.CODEC.fieldOf("source").forGetter(t -> t.source)
+    ).apply(inst, BloodlineRankReward::new));
 
     @Override
     public void applyReward(IFactionPlayer<?> p) {

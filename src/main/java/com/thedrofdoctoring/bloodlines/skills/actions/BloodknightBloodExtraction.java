@@ -1,6 +1,5 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
-import com.thedrofdoctoring.bloodlines.capabilities.other.VampExtendedCreature;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;

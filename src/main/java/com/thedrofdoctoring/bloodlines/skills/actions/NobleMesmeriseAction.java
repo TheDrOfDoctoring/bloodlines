@@ -23,7 +23,7 @@ public class NobleMesmeriseAction extends DefaultVampireAction implements ILasti
 
 
     public int getCooldown(IVampirePlayer player) {
-        return (Integer) CommonConfig.mesmeriseCooldown.get() * 20;
+        return CommonConfig.mesmeriseCooldown.get() * 20;
     }
 
     public int getDuration(@NotNull IVampirePlayer player) {

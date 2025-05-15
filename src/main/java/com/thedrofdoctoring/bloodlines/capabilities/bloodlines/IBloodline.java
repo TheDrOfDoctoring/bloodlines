@@ -32,6 +32,7 @@ public interface IBloodline {
      * @param cleanup - True when bloodline is being removed, used for removing conditional modifiers.
      * @return Map of attributes and AttributeModifiers that should be applied to the bloodline player.
      */
+
     Map<Holder<Attribute>, AttributeModifier> getBloodlineAttributes(int rank, LivingEntity entity, boolean cleanup);
 
     default void onBloodlineChange(LivingEntity entity, int rank) {
@@ -73,7 +74,7 @@ public interface IBloodline {
                     ISkill iSkill = RegUtil.getSkill(skill);
                     if(RegUtil.getSkill(skill) == null || iSkill.getFaction().isEmpty() || iSkill.getFaction().get() != getFaction()) {
                         throw new IllegalStateException("Default Bloodline Enabled Skill " + skill + " is invalid!");
-                    } else if(!skillHandler.isSkillEnabled(iSkill)) {
+                    } else if(skillHandler != null && skillHandler.isSkillEnabled(iSkill)) {
                         //noinspection unchecked
                         skillHandler.enableSkill(iSkill);
                     }
@@ -82,7 +83,7 @@ public interface IBloodline {
         }
     }
     default void applyConditionalModifier(Map<Holder<Attribute>, AttributeModifier> attributes, ISkill<?> skill, Holder<Attribute> attribute, AttributeModifier modifier, ISkillHandler<?> skillHandler, boolean cleanup) {
-        if(skillHandler.isSkillEnabled(skill) || cleanup) {
+        if(skillHandler != null && (skillHandler.isSkillEnabled(skill) || cleanup)) {
             attributes.put(attribute, modifier);
         }
     }

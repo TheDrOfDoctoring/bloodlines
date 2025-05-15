@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
 import com.mojang.serialization.DataResult;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashMap;
@@ -59,7 +58,7 @@ public class BloodlineSkillHandler  {
     public void addSkillPoints(ResourceLocation source, int amount) {
         this.skillPoints += amount;
         if(rewardMap.containsKey(source)) {
-            rewardMap.compute(source, (k, totalGained) -> totalGained + amount);
+            rewardMap.compute(source, (k, totalGained) -> totalGained == null ? amount : totalGained + amount);
             return;
         }
         rewardMap.put(source, amount);

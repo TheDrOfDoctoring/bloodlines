@@ -26,6 +26,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.EventHooks;
 
 public class BloodlineSummonCommand extends BasicCommand {
     private static final SimpleCommandExceptionType ERROR_FAILED = new SimpleCommandExceptionType(Component.translatable("commands.summon.failed"));
@@ -92,7 +93,7 @@ public class BloodlineSummonCommand extends BasicCommand {
             if (!(entity instanceof PathfinderMob mob)) {
                 throw INVALID_BLOODLINE.create();
             }
-            mob.finalizeSpawn(pSource.getLevel(), pSource.getLevel().getCurrentDifficultyAt(entity.blockPosition()), MobSpawnType.COMMAND, null);
+            EventHooks.finalizeMobSpawn(mob, pSource.getLevel(), pSource.getLevel().getCurrentDifficultyAt(entity.blockPosition()), MobSpawnType.COMMAND, null);
             if(mob instanceof IFactionMob fMob) {
                 if(bloodline.getFaction().equals(fMob.getFaction())) {
                     BloodlineMobManager manager = BloodlineMobManager.get(mob);

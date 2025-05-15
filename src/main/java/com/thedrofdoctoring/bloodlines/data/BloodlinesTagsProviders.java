@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.data;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesBlocks;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkill;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import com.thedrofdoctoring.bloodlines.tasks.BloodlineTasks;
 import de.teamlapen.vampirism.api.VampirismRegistries;
@@ -10,7 +9,6 @@ import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.task.Task;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModTags;
-import de.teamlapen.vampirism.data.provider.TagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -35,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
-
+@SuppressWarnings("unused")
 public class BloodlinesTagsProviders {
 
     public static void register(DataGenerator gen, GatherDataEvent event, PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper existingFileHelper) {

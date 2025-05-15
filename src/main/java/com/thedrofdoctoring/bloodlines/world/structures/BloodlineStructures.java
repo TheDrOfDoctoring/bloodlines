@@ -15,7 +15,6 @@ import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
-import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -37,13 +36,11 @@ public class BloodlineStructures {
 
     public static void createStructureSets(BootstrapContext<StructureSet> context) {
         HolderGetter<Structure> structureLookup = context.lookup(Registries.STRUCTURE);
-        HolderGetter<StructureSet> structureSetLookup = context.lookup(Registries.STRUCTURE_SET);
         context.register(ZEALOT_SHRINE_SET, new StructureSet(structureLookup.getOrThrow(ZEALOT_SHRINE), new RandomSpreadStructurePlacement(16, 8, RandomSpreadType.LINEAR, 1937195837)));
     }
 
     public static void createStructures(BootstrapContext<Structure> context) {
         HolderGetter<Biome> lookup = context.lookup(Registries.BIOME);
-        HolderGetter<StructureTemplatePool> lookup1 = context.lookup(Registries.TEMPLATE_POOL);
         context.register(ZEALOT_SHRINE, new ZealotShrineStructure(
                 new Structure.StructureSettings.Builder(
                         lookup.getOrThrow(BiomeTags.HAS_ANCIENT_CITY))

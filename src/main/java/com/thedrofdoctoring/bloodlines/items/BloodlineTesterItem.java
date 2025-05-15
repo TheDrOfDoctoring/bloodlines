@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class BloodlineTesterItem  extends Item {
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity source) {
+    public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity source) {
         Optional<IBloodlineManager> optManager = BloodlineHelper.getBloodlineData(target);
         if(source instanceof Player player && optManager.isPresent()) {
             IBloodlineManager blManager = optManager.get();
@@ -31,7 +32,7 @@ public class BloodlineTesterItem  extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack pStack, @NotNull TooltipContext pContext, List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
         pTooltipComponents.add(Component.translatable("text.bloodlines.blood_tester_usage").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
     }

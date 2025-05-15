@@ -3,7 +3,6 @@ package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.vampirism.core.ModSounds;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -37,7 +36,6 @@ public class BloodlineHelper {
         bl.setRank(1);
         bl.setBloodline(bloodline);
         bl.onBloodlineChange(null, 0);
-        String bloodlineName = bloodline.getName();
         player.displayClientMessage(joinMessage, true);
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 2));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 180, 3));

@@ -25,6 +25,7 @@ public class EctothermFrostLord extends DefaultVampireAction implements ILasting
         return true;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void activate(IVampirePlayer vamp) {
         if(vamp.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_ICELORD.get())) {
             IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
@@ -63,7 +64,7 @@ public class EctothermFrostLord extends DefaultVampireAction implements ILasting
     public void onActivatedClient(IVampirePlayer vampire) {
         activate(vampire);
     }
-
+    @SuppressWarnings("ConstantConditions")
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
         if(vampire.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_ICELORD.get())) {
             IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();

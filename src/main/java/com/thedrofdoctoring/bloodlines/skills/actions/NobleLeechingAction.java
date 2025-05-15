@@ -26,6 +26,7 @@ public class NobleLeechingAction extends DefaultVampireAction implements ILastin
         activate(vampire);
         return true;
     }
+    @SuppressWarnings("ConstantConditions")
     private void activate(IVampirePlayer vamp) {
         BloodlineManager.removeModifier(vamp.asEntity().getAttribute(ModAttributes.BLOOD_EXHAUSTION), Bloodlines.rl("noble_leeching_exhaustion"));
         IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vamp).getSpecialAttributes();
@@ -51,6 +52,7 @@ public class NobleLeechingAction extends DefaultVampireAction implements ILastin
         activate(vampire);
     }
     @Override
+    @SuppressWarnings("ConstantConditions")
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
         BloodlineManager.removeModifier(vampire.asEntity().getAttribute(ModAttributes.BLOOD_EXHAUSTION), Bloodlines.rl("noble_leeching_exhaustion"));
         IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) ((VampirePlayer) vampire).getSpecialAttributes();

@@ -4,7 +4,6 @@ import com.thedrofdoctoring.bloodlines.client.BloodlineEntityRenderManager;
 import com.thedrofdoctoring.bloodlines.client.ClientEventHandler;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
@@ -19,7 +18,7 @@ public class BloodlinesClient {
 
     private final BloodlineEntityRenderManager renderManager;
 
-    public BloodlinesClient(IEventBus modEventBus, ModContainer container) {
+    public BloodlinesClient(ModContainer container) {
         INSTANCE = this;
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         NeoForge.EVENT_BUS.register(new ClientEventHandler(Minecraft.getInstance()));

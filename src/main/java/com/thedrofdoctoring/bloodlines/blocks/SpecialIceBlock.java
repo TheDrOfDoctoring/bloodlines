@@ -45,7 +45,7 @@ public class SpecialIceBlock extends HalfTransparentBlock {
     }
 
     @Override
-    public void playerDestroy(Level pLevel, Player pPlayer, BlockPos pPos, BlockState pState, @Nullable BlockEntity pTe, ItemStack pStack) {
+    public void playerDestroy(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull BlockPos pPos, @NotNull BlockState pState, @Nullable BlockEntity pTe, @NotNull ItemStack pStack) {
         super.playerDestroy(pLevel, pPlayer, pPos, pState, pTe, pStack);
         if (pState.getValue(WAS_WATER)) {
             pLevel.setBlockAndUpdate(pPos, meltsInto());
@@ -53,7 +53,7 @@ public class SpecialIceBlock extends HalfTransparentBlock {
     }
 
     @Override
-    protected void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+    protected void randomTick(BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
         if(pState.getValue(MELTAGE) < 2) {
             int melt = pState.getValue(MELTAGE);
             pLevel.setBlock(pPos, pState.setValue(MELTAGE, melt + 1), 2);

@@ -1,7 +1,5 @@
 package com.thedrofdoctoring.bloodlines.items;
 
-import com.thedrofdoctoring.bloodlines.config.CommonConfig;
-import com.thedrofdoctoring.bloodlines.core.BloodlinesEffects;
 import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

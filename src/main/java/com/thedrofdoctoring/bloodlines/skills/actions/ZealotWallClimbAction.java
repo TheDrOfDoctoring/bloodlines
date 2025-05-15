@@ -15,7 +15,7 @@ public class ZealotWallClimbAction extends DefaultVampireAction implements ILast
 
 
     public int getCooldown(IVampirePlayer player) {
-        return (Integer) CommonConfig.zealotWallClimbCooldown.get() * 20;
+        return CommonConfig.zealotWallClimbCooldown.get() * 20;
     }
 
     public int getDuration(@NotNull IVampirePlayer player) {

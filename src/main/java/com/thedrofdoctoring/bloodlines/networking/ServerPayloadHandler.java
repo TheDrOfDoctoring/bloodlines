@@ -16,10 +16,10 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class ServerPayloadHandler {
 
-    public static void handleIcePacket(ServerboundIcePacket data, final IPayloadContext context) {
+    public static void handleIcePacket(ServerboundIcePacket ignoredData, final IPayloadContext context) {
         context.enqueueWork(() -> {
 
-            Player player = context.player();;
+            Player player = context.player();
             Level level = context.player().level();
             HitResult result = player.pick(10, 1, true);
             if(!(result instanceof BlockHitResult blockResult) ) return;

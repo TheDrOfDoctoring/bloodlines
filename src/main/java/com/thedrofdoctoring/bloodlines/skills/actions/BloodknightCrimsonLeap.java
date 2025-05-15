@@ -12,8 +12,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -77,7 +75,7 @@ public class BloodknightCrimsonLeap extends DefaultVampireAction implements ILas
 
     @Override
     public boolean canBeUsedBy(IVampirePlayer player) {
-        return !player.getActionHandler().isActionActive((ILastingAction) VampireActions.BAT.get());
+        return !player.getActionHandler().isActionActive(VampireActions.BAT.get());
 
     }
     public boolean showHudCooldown(Player player) {

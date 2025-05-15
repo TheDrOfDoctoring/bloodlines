@@ -2,8 +2,6 @@ package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
@@ -37,7 +35,7 @@ public abstract class VillagerMixin extends AbstractVillager {
 
     //Better prices for Nobles.
 
-    @Inject(method = "updateSpecialPrices", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/Villager;getPlayerReputation(Lnet/minecraft/world/entity/player/Player;)I", shift = At.Shift.BEFORE))
+    @Inject(method = "updateSpecialPrices", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/npc/Villager;getPlayerReputation(Lnet/minecraft/world/entity/player/Player;)I"))
     private void updateSpecialPrices(Player player, CallbackInfo ci) {
         if (!BuiltInRegistries.VILLAGER_PROFESSION.wrapAsHolder(this.getVillagerData().getProfession()).is(ModTags.Professions.HAS_FACTION) && Helper.isVampire(player)) {
             if (VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_BETTER_TRADE_PRICES.get())) {
@@ -48,14 +46,14 @@ public abstract class VillagerMixin extends AbstractVillager {
                     int diff = rankMult != 0 ? (int) Math.floor((merchantoffer1.getBaseCostA().getCount()) * (rankMult - 1)) : 0;
                     merchantoffer1.addToSpecialPriceDiff(diff);
                 }
-            } else if (BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT) {
+            } else if (BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT.get()) {
                 int rank = BloodlineHelper.getBloodlineRank(player);
                 for (MerchantOffer merchantoffer1 : this.getOffers()) {
                     double rankMult = CommonConfig.zealotTradePricesMultiplier.get().get(rank - 1).floatValue();
                     int diff = rankMult != 0 ? (int) Math.floor((merchantoffer1.getBaseCostA().getCount()) * (rankMult - 1)) : 0;
                     merchantoffer1.addToSpecialPriceDiff(diff);
                 }
-            } else if(BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_BLOODKNIGHT) {
+            } else if(BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get()) {
                 int rank = BloodlineHelper.getBloodlineRank(player);
                 for (MerchantOffer merchantoffer1 : this.getOffers()) {
                     double rankMult = CommonConfig.bloodknightTradePricesMultiplier.get().get(rank - 1).floatValue();

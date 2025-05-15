@@ -1,12 +1,12 @@
 package com.thedrofdoctoring.bloodlines.core.bloodline;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

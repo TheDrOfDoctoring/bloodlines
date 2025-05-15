@@ -17,17 +17,17 @@ import java.util.function.Predicate;
 @Mixin(Spider.SpiderTargetGoal.class)
 public abstract class SpiderTargetGoalMixin<T extends LivingEntity> extends NearestAttackableTargetGoal<T> implements ZealotTargetGoalModifier {
     @Unique
-    private static final Predicate<LivingEntity> checkZealotSkill = (entity) -> {
+    private static final Predicate<LivingEntity> bloodlines$checkZealotSkill = (entity) -> {
         return !(entity instanceof Player player && VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_SPIDER_FRIEND));
     };
 
-    public SpiderTargetGoalMixin(Mob p_26060_, Class p_26061_, boolean p_26062_) {
+    public SpiderTargetGoalMixin(Mob p_26060_, Class<T> p_26061_, boolean p_26062_) {
         super(p_26060_, p_26061_, p_26062_);
     }
 
     @Override
-    public void ignoreZealotSpiderFriend() {
-        Predicate<LivingEntity> predicate = checkZealotSkill;
+    public void bloodlines$ignoreZealotSpiderFriend() {
+        Predicate<LivingEntity> predicate = bloodlines$checkZealotSkill;
         if (((TargetConditionAccessor) this.targetConditions).getSelector() != null) {
             predicate = predicate.and(((TargetConditionAccessor) this.targetConditions).getSelector());
         }
