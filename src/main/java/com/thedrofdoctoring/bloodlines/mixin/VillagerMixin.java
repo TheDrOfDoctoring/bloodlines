@@ -27,8 +27,6 @@ public abstract class VillagerMixin extends AbstractVillager {
     @Shadow
     public abstract VillagerData getVillagerData();
 
-    @Shadow public abstract void playWorkSound();
-
     public VillagerMixin(EntityType<? extends AbstractVillager> vil, Level level) {
         super(vil, level);
     }

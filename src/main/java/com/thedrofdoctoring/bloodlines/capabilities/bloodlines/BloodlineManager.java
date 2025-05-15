@@ -145,12 +145,12 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
                     }
                 }
             });
-            FactionPlayerHandler.get(player).checkSkillTreeLocks();;
+            FactionPlayerHandler.get(player).checkSkillTreeLocks();
             skillHandler.clearSkillPoints();
             if(bloodline != null) {
                 oldBloodline.onBloodlineChange(player, 0);
                 bloodline.onBloodlineChange(player, this.getRank());
-                FactionPlayerHandler.get(player).checkSkillTreeLocks();;
+                FactionPlayerHandler.get(player).checkSkillTreeLocks();
             }
         } else if(bloodlineRank != oldRank && bloodline != null) {
             bloodline.onBloodlineChange(player, this.getRank());
@@ -203,9 +203,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
     public void updateAttributes(IBloodline oldBloodline) {
         if (oldBloodline != null && oldBloodline != bloodline && !player.getCommandSenderWorld().isClientSide) {
             Map<Holder<Attribute>, AttributeModifier> oldAttributes = oldBloodline.getBloodlineAttributes(1, player, true);
-            oldAttributes.forEach((attribute, modifier) -> {
-                    removeModifier(player.getAttribute(attribute), modifier.id());
-            });
+            oldAttributes.forEach((attribute, modifier) -> removeModifier(player.getAttribute(attribute), modifier.id()));
         }
         if (bloodline != null && !player.getCommandSenderWorld().isClientSide) {
             Map<Holder<Attribute>, AttributeModifier> attributes = bloodline.getBloodlineAttributes(getRank(), player, false);

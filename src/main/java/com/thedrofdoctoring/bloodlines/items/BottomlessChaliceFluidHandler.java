@@ -6,7 +6,6 @@ import com.thedrofdoctoring.bloodlines.items.attachments.ChaliceBlood;
 import de.teamlapen.vampirism.core.ModFluids;
 import de.teamlapen.vampirism.items.BloodBottleFluidHandler;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
