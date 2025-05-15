@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public record BloodlinePerkReward(int perkPoints, ResourceLocation source) implements TaskReward, ITaskRewardInstance {
+public record  BloodlinePerkReward(int perkPoints, ResourceLocation source) implements TaskReward, ITaskRewardInstance {
 
     public static final MapCodec<BloodlinePerkReward> CODEC = RecordCodecBuilder.mapCodec(inst -> {
         return inst.group(

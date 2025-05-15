@@ -2,12 +2,15 @@ package com.thedrofdoctoring.bloodlines.data;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesBlocks;
+import com.thedrofdoctoring.bloodlines.skills.BloodlineSkill;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import com.thedrofdoctoring.bloodlines.tasks.BloodlineTasks;
 import de.teamlapen.vampirism.api.VampirismRegistries;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.task.Task;
+import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModTags;
+import de.teamlapen.vampirism.data.provider.TagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -54,6 +57,7 @@ public class BloodlinesTagsProviders {
                     .add(BloodlineTasks.BLOODLINE_ZEALOT_1).add(BloodlineTasks.BLOODLINE_ZEALOT_2).add(BloodlineTasks.BLOODLINE_ZEALOT_3).add(BloodlineTasks.BLOODLINE_ZEALOT_PERK_POINTS)
                     .add(BloodlineTasks.BLOODLINE_ECTOTHERM_1).add(BloodlineTasks.BLOODLINE_ECTOTHERM_2).add(BloodlineTasks.BLOODLINE_ECTOTHERM_3).add(BloodlineTasks.BLOODLINE_ECTOTHERM_PERK_POINTS)
                     .add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_1).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_2).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_3).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_PERK_POINTS).replace(false)
+                    .add(BloodlineTasks.BLOODLINE_GRAVEBOUND_1).add(BloodlineTasks.BLOODLINE_GRAVEBOUND_2).add(BloodlineTasks.BLOODLINE_GRAVEBOUND_3).add(BloodlineTasks.BLOODLINE_GRAVEBOUND_PERK_POINTS).replace(false)
 
                     .replace(false);
 
@@ -62,7 +66,9 @@ public class BloodlinesTagsProviders {
                     .add(BloodlineTasks.BLOODLINE_ECTOTHERM_1).add(BloodlineTasks.BLOODLINE_ECTOTHERM_2).add(BloodlineTasks.BLOODLINE_ECTOTHERM_3).add(BloodlineTasks.BLOODLINE_ECTOTHERM_PERK_POINTS)
                     .add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_1).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_2).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_3).add(BloodlineTasks.BLOODLINE_BLOODKNIGHT_PERK_POINTS).replace(false)
                     .replace(false);
-
+            this.tag(ModTags.Tasks.IS_HUNTER)
+                    .add(BloodlineTasks.BLOODLINE_GRAVEBOUND_1).add(BloodlineTasks.BLOODLINE_GRAVEBOUND_2).add(BloodlineTasks.BLOODLINE_GRAVEBOUND_3).add(BloodlineTasks.BLOODLINE_GRAVEBOUND_PERK_POINTS)
+                    .replace(false);
         }
         private static @NotNull TagKey<Task> tag(@NotNull String name) {
             return TagKey.create(VampirismRegistries.Keys.TASK, Bloodlines.rl(name));
@@ -79,7 +85,8 @@ public class BloodlinesTagsProviders {
         protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 
             this.tag(ModTags.SkillTrees.VAMPIRE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM, BloodlineSkills.Trees.BLOOD_KNIGHT).replace(false);
-            this.tag(BLOODLINE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM, BloodlineSkills.Trees.BLOOD_KNIGHT);
+            this.tag(BLOODLINE).add(BloodlineSkills.Trees.NOBLE, BloodlineSkills.Trees.ZEALOT, BloodlineSkills.Trees.ECTOTHERM, BloodlineSkills.Trees.BLOOD_KNIGHT, BloodlineSkills.Trees.GRAVEBOUND);
+            this.tag(ModTags.SkillTrees.HUNTER).add(BloodlineSkills.Trees.GRAVEBOUND);
         }
     }
     public static class BloodlinesBlockTagProvider extends BlockTagsProvider {
@@ -92,12 +99,13 @@ public class BloodlinesTagsProviders {
 
         @Override
         protected void addTags(HolderLookup.@NotNull Provider provider) {
-            tag(ZEALOT_STONE).addTag(Tags.Blocks.STONES).addTag(Tags.Blocks.COBBLESTONES).add(Blocks.DRIPSTONE_BLOCK);
+            tag(ZEALOT_STONE).addTag(Tags.Blocks.STONES).addTag(Tags.Blocks.COBBLESTONES).add(Blocks.DRIPSTONE_BLOCK).addTag(Tags.Blocks.COBBLESTONES_DEEPSLATE);
             tag(ECTOTHERM_ICE).add(Blocks.ICE, Blocks.BLUE_ICE, Blocks.PACKED_ICE, BloodlinesBlocks.ICE_BLOCK.get());
         }
     }
     public static class BloodlinesItemTagProvider extends ItemTagsProvider {
         public static final TagKey<Item> ECTOTHERM_RAW_FISH = ItemTags.create(Bloodlines.rl("ectotherm_raw_fish"));
+        public static final TagKey<Item> HEART_SEEKER_STRIKER = ItemTags.create(Bloodlines.rl("heart_seeker_striker"));
 
         public BloodlinesItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagsProvider, ExistingFileHelper existingFileHelper) {
             super(output, lookupProvider, blockTagsProvider, Bloodlines.MODID, existingFileHelper);
@@ -112,6 +120,7 @@ public class BloodlinesTagsProviders {
         @Override
         protected void addTags(HolderLookup.@NotNull Provider provider) {
             tag(ECTOTHERM_RAW_FISH).add(Items.COD, Items.SALMON, Items.TROPICAL_FISH);
+            tag(HEART_SEEKER_STRIKER).add(ModItems.HEART_SEEKER_NORMAL.get(), ModItems.HEART_SEEKER_ENHANCED.get(), ModItems.HEART_SEEKER_ULTIMATE.get(), ModItems.HEART_STRIKER_NORMAL.get(), ModItems.HEART_STRIKER_ENHANCED.get(), ModItems.HEART_STRIKER_ULTIMATE.get());
         }
     }
 

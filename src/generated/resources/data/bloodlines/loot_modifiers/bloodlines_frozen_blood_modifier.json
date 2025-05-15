@@ -1,0 +1,19 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "bloodlines:match_weapon",
+      "weapon_predicate": {
+        "items": "#bloodlines:heart_seeker_striker"
+      }
+    },
+    {
+      "bloodline": {
+        "id": "bloodlines:ectotherm"
+      },
+      "condition": "bloodlines:bloodline",
+      "entity_is_attacker": false
+    }
+  ],
+  "table": "bloodlines:entities/frozen_blood"
+}

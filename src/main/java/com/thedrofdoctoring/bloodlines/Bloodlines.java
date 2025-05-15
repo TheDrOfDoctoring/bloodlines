@@ -6,9 +6,13 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineM
 import com.thedrofdoctoring.bloodlines.capabilities.other.VampExtendedCreature;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.config.HunterBloodlinesConfig;
 import com.thedrofdoctoring.bloodlines.core.*;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.data.*;
+import com.thedrofdoctoring.bloodlines.data.loot.BloodlinesLoot;
+import com.thedrofdoctoring.bloodlines.data.loot.BloodlinesLootModifiersProvider;
+import com.thedrofdoctoring.bloodlines.data.loot.BloodlinesLootProvider;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistribution;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceFluidHandler;
@@ -21,11 +25,13 @@ import com.thedrofdoctoring.bloodlines.skills.BloodlineSkillType;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
 import com.thedrofdoctoring.bloodlines.tasks.BloodlineTasks;
+import com.thedrofdoctoring.bloodlines.world.structures.BloodlineStructures;
 import de.teamlapen.lib.HelperRegistry;
 import de.teamlapen.vampirism.api.VampirismAPI;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -57,6 +63,7 @@ public class Bloodlines {
 
     public Bloodlines(IEventBus modEventBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG);
+        container.registerConfig(ModConfig.Type.COMMON, HunterBloodlinesConfig.HUNTER_BLOODLINES_CONFIG, MODID+"-hunter_bloodlines.toml");
 
         modEventBus.addListener(this::loadComplete);
         modEventBus.addListener(this::enqueueIMC);
@@ -78,7 +85,13 @@ public class Bloodlines {
         BloodlineTasks.TASK_UNLOCKER.register(modEventBus);
         BloodlineComponents.DATA_COMPONENTS.register(modEventBus);
         BloodlineTasks.TASK_REWARD_INSTANCES.register(modEventBus);
+        BloodlinesLoot.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
+        BloodlinesLoot.LOOT_CONDITION_TYPES.register(modEventBus);
         BloodlinesEffects.EFFECTS.register(modEventBus);
+        BloodlinesBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
+        BloodlineStructures.STRUCTURE_TYPES.register(modEventBus);
+        BloodlineStructures.STRUCTURE_PIECES.register(modEventBus);
+
 
         NeoForge.EVENT_BUS.addListener(this::onCommandsRegister);
     }
@@ -126,6 +139,10 @@ public class Bloodlines {
 
         generator.addProvider(event.includeServer(), new BloodlineSkillTreeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new BloodlinesDataMaps(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new BloodlinesRecipeProviders(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), BloodlinesLootProvider.getProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new BloodlinesLootModifiersProvider(packOutput, lookupProvider));
+
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -137,6 +154,7 @@ public class Bloodlines {
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.ZEALOT);
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.ECTOTHERM);
         VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.BLOODKNIGHT);
+        VampirismAPI.skillManager().registerSkillType(BloodlineSkillType.GRAVEBOUND);
 
     }
 

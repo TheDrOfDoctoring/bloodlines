@@ -41,6 +41,7 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>, ISkill<IVampirePlayer>> ZEALOT_SKILL = SKILLS.register("zealot", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_ZEALOT.get(), true, 0, 1));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> ECTOTHERM_SKILL = SKILLS.register("ectotherm", () -> new BloodlineParentSkill<IVampirePlayer>(BloodlineRegistry.BLOODLINE_ECTOTHERM.get(), true, 0, 1).setToggleActions(player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = true, player -> ((VampirePlayer) player).getSpecialAttributes().waterResistance = false));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_SKILL = SKILLS.register("bloodknight", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, 1));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> GRAVEBOUND_SKILL = SKILLS.register("gravebound", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get(), true, 0, 1));
 
     // Zealot Skills
 
@@ -133,7 +134,9 @@ public class BloodlineSkills {
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_FRENZIED_STRIKES = SKILLS.register("bloodknight_frenzied_attacks", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
     public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> BLOODKNIGHT_HIDDEN_STRIKE = SKILLS.register("bloodknight_hidden_strike", () -> new BloodlineSkill<>(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), true, 0, true));
 
-
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> GRAVEBOUND_RANK_2 = SKILLS.register("gravebound_rank_2", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get(), true, 0, 2));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> GRAVEBOUND_RANK_3 = SKILLS.register("gravebound_rank_3", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get(), true, 0, 3));
+    public static final DeferredHolder<ISkill<?>,ISkill<IVampirePlayer>> GRAVEBOUND_RANK_4 = SKILLS.register("gravebound_rank_4", () -> new BloodlineParentSkill<>(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get(), true, 0, 4));
 
 
     //Bloodline Skills are added here so that they can be removed if the player's bloodline changes. Not sure if there's a better way to do this.
@@ -152,9 +155,14 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillTree> ZEALOT = vampTree("zealot");
         public static final ResourceKey<ISkillTree> ECTOTHERM = vampTree("ectotherm");
         public static final ResourceKey<ISkillTree> BLOOD_KNIGHT = vampTree("bloodknight");
+        public static final ResourceKey<ISkillTree> GRAVEBOUND = hunterTree("gravebound");
 
         private static ResourceKey<ISkillTree> vampTree(String path) {
             return ResourceKey.create(VampirismRegistries.Keys.SKILL_TREE, Bloodlines.rl("vampire/" + path));
+        }
+
+        private static ResourceKey<ISkillTree> hunterTree(String path) {
+            return ResourceKey.create(VampirismRegistries.Keys.SKILL_TREE, Bloodlines.rl("hunter/" + path));
         }
 
         public static void createSkillTrees(BootstrapContext<ISkillTree> context) {
@@ -163,6 +171,8 @@ public class BloodlineSkills {
             context.register(NOBLE, new SkillTree(VReference.VAMPIRE_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_NOBLE.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.noble")));
             context.register(BLOOD_KNIGHT, new SkillTree(VReference.VAMPIRE_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.bloodknight")));
 
+            context.register(GRAVEBOUND, new SkillTree(VReference.HUNTER_FACTION, EntityPredicate.Builder.entity().subPredicate(new BloodlineSubPredicate(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get())).build(), new ItemStack(ModItems.PURE_BLOOD_4.asItem()), Component.translatable("text.bloodlines.skills.gravebound")));
+
         }
     }
     public static class Nodes {
@@ -170,6 +180,7 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> ZEALOT_ROOT = node("root", "zealot");
         public static final ResourceKey<ISkillNode> ECTOTHERM_ROOT = node("root", "ectotherm");
         public static final ResourceKey<ISkillNode> BLOODKNIGHT_ROOT = node("root", "bloodknight");
+        public static final ResourceKey<ISkillNode> GRAVEBOUND_ROOT = node("root", "gravebound");
 
         public static final ResourceKey<ISkillNode> ZEALOT_RANK_2 = node("rank_2", "zealot");
         public static final ResourceKey<ISkillNode> ZEALOT_RANK_3 = node("rank_3", "zealot");
@@ -246,6 +257,10 @@ public class BloodlineSkills {
         public static final ResourceKey<ISkillNode> BLOODKNIGHT_BLOOD_EXTRACTION = node("blood_extraction", "bloodknight");
         public static final ResourceKey<ISkillNode> BLOODKNIGHT_FRENZIED_ATTACKS = node("frenzied_attacks", "bloodknight");
         public static final ResourceKey<ISkillNode> BLOODKNIGHT_HIDDEN_STRIKE = node("hidden_strike", "bloodknight");
+
+        public static final ResourceKey<ISkillNode> GRAVEBOUND_RANK_2 = node("rank_2", "gravebound");
+        public static final ResourceKey<ISkillNode> GRAVEBOUND_RANK_3 = node("rank_3", "gravebound");
+        public static final ResourceKey<ISkillNode> GRAVEBOUND_RANK_4 = node("rank_4", "gravebound");
 
 
         private static ResourceKey<ISkillNode> node(String path, String bloodline) {
@@ -334,7 +349,9 @@ public class BloodlineSkills {
             context.register(BLOODKNIGHT_HIDDEN_STRIKE, new SkillNode(BloodlineSkills.BLOODKNIGHT_HIDDEN_STRIKE));
             context.register(BLOODKNIGHT_FRENZIED_ATTACKS, new SkillNode(BloodlineSkills.BLOODKNIGHT_FRENZIED_STRIKES));
 
-
+            context.register(GRAVEBOUND_RANK_2, new SkillNode(BloodlineSkills.GRAVEBOUND_RANK_2));
+            context.register(GRAVEBOUND_RANK_3, new SkillNode(BloodlineSkills.GRAVEBOUND_RANK_3));
+            context.register(GRAVEBOUND_RANK_4, new SkillNode(BloodlineSkills.GRAVEBOUND_RANK_4));
         }
     }
 }

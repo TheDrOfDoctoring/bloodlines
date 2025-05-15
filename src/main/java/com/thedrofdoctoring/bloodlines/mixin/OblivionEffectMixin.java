@@ -14,7 +14,7 @@ public class OblivionEffectMixin {
 
     @Inject(method = "applyEffectTick", at = @At("RETURN"), remap = false)
     private void applyEffect(LivingEntity entityLivingBaseIn, int amplifier, CallbackInfoReturnable<Boolean> cir) {
-        if(cir.getReturnValue() && entityLivingBaseIn instanceof Player player) {
+        if(!cir.getReturnValue() && entityLivingBaseIn instanceof Player player) {
             BloodlineManager manager = BloodlineManager.get(player);
             if(manager.getBloodline() != null) {
                 manager.getBloodline().onBloodlineChange(player, manager.getRank());

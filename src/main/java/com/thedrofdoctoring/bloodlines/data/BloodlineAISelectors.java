@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.data;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
@@ -29,6 +30,10 @@ public class BloodlineAISelectors {
             BloodlinesData.BLOODLINE_AI_SELECTORS,
             BloodlineZealot.ZEALOT
     );
+    public static final ResourceKey<BloodlineSelector> BLOODLINE_GRAVEBOUND_TARGET_BLOODLINES = ResourceKey.create(
+            BloodlinesData.BLOODLINE_AI_SELECTORS,
+            BloodlineGravebound.GRAVEBOUND
+    );
 
     public static void createAISelectors(BootstrapContext<BloodlineSelector> context) {
         context.register(
@@ -39,6 +44,14 @@ public class BloodlineAISelectors {
                                 BloodlineRegistry.BLOODLINE_NOBLE.get(),
                                 BloodlineRegistry.BLOODLINE_ECTOTHERM.get(),
                                 BloodlineRegistry.BLOODLINE_ZEALOT.get()
+                        )
+                )
+        );
+        context.register(
+                BLOODLINE_GRAVEBOUND_TARGET_BLOODLINES,
+                new BloodlineSelector(
+                        true,
+                        List.of(
                         )
                 )
         );

@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
@@ -17,7 +18,7 @@ public class PlayerMixin {
     @ModifyReturnValue(method = "getBlockSpeedFactor", at = @At("RETURN"))
     private float zealotStoneSpeed(float originalSpeed) {
         Player player = (Player) (Object) this;
-        if(Helper.isVampire(player) && bloodlines$onStone(player) && BloodlineManager.get(player).getBloodline() instanceof BloodlineZealot) {
+        if(Helper.isVampire(player) && bloodlines$onStone(player) && BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT) {
             float speedMultiplier = ((IVampSpecialAttributes)VampirePlayer.get(player).getSpecialAttributes()).bloodlines$getStoneRunSpeed();
             return originalSpeed * speedMultiplier;
         }

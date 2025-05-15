@@ -7,9 +7,11 @@ import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifi
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlinesSpawnModifiers;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import com.thedrofdoctoring.bloodlines.tasks.BloodlineTasks;
+import com.thedrofdoctoring.bloodlines.world.structures.BloodlineStructures;
 import de.teamlapen.vampirism.api.VampirismRegistries;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
@@ -24,6 +26,8 @@ public class BloodlinesData {
             .add(BLOODLINE_RANK_DISTRIBUTION, BloodlineRankDistributions::createRankDistributions)
             .add(BLOODLINE_SPAWN_MODIFIERS, BloodlinesSpawnModifiers::createSpawnModifiers)
             .add(BLOODLINE_AI_SELECTORS, BloodlineAISelectors::createAISelectors)
+            .add(Registries.STRUCTURE, BloodlineStructures::createStructures)
+            .add(Registries.STRUCTURE_SET, BloodlineStructures::createStructureSets)
 
             .add(VampirismRegistries.Keys.TASK, BloodlineTasks::createTasks)
             .add(VampirismRegistries.Keys.SKILL_TREE, BloodlineSkills.Trees::createSkillTrees)

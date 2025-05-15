@@ -184,6 +184,16 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue bloodknightHiddenStrikeWeaknessDurationPlayer;
     public static final ModConfigSpec.IntValue bloodknightHiddenStrikeWeaknessDurationMob;
     public static final ModConfigSpec.IntValue bloodknightHiddenStrikeSlownessDurationMob;
+    public static final ModConfigSpec.BooleanValue nobleUniqueUnlock;
+    public static final ModConfigSpec.BooleanValue zealotUniqueUnlock;
+    public static final ModConfigSpec.BooleanValue bloodknightUniqueUnlock;
+    public static final ModConfigSpec.BooleanValue ectothermUniqueUnlock;
+    public static final ModConfigSpec.DoubleValue nobleLordslayerBaronHealth;
+    public static final ModConfigSpec.IntValue nobleLordSlayerMinLordRank;
+    public static final ModConfigSpec.IntValue heinousElixirDurationSeconds;
+    public static final ModConfigSpec.IntValue coldBloodedElixirDurationSeconds;
+
+
 
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
@@ -199,6 +209,9 @@ public class CommonConfig {
 
 
         COMMON_BUILDER.pop();
+        nobleUniqueUnlock = COMMON_BUILDER.comment("Whether the Noble Bloodline's unique method of joining the bloodline is available. If disabled, then add a recipe for the bloodline fang or add another way to become a member of the bloodline.").define("nobleUniqueUnlock", true);
+        nobleLordslayerBaronHealth = COMMON_BUILDER.comment("The remaining health percentage a Vampire Baron should have in order for the Lordslayer injection to work.").defineInRange("nobleLordslayerBaronHealth", 0.3d, 0d, 1d);
+        nobleLordSlayerMinLordRank = COMMON_BUILDER.comment("The minimum lord level a player must be in order to become a Noble, by the Lordslayer method").defineInRange("nobleLordSlayerMinLordRank", 2, 0, 5);
 
         sunTicksPerIncrease = COMMON_BUILDER.comment("When the correct bloodline skill is enabled, how often (amount of ticks) sun damage progress is increased. Integer values only").defineInRange("sunTicksPerIncrease", 3, 2, Integer.MAX_VALUE);
         nobleMaxHealthChange = COMMON_BUILDER.comment("Max Health increase/decrease for each bloodline rank.").defineList("nobleMaxHealthIncrease", Arrays.asList(-2.0d, -4.0d, -4.0d, -8.0d), t -> t instanceof Double);
@@ -250,6 +263,7 @@ public class CommonConfig {
         COMMON_BUILDER.push("zealot_mobs");
         zealotMobDamageIncrease = COMMON_BUILDER.comment("Zealot Mob Damage Increase for each rank").defineList("zealotMobDamageIncrease", Arrays.asList(1d, 1.5d, 3d, 4.5d), t -> t instanceof Double);
         COMMON_BUILDER.pop();
+        zealotUniqueUnlock = COMMON_BUILDER.comment("Whether the Zealot Bloodline's unique method of joining the bloodline is available. If disabled, then add a recipe for the bloodline fang or add another way to become a member of the bloodline.").define("zealotUniqueUnlock", true);
 
         zealotBloodExhaustionChange = COMMON_BUILDER.comment("Blood exhaustion change for each bloodline rank, Attribute Multiplier").defineList("zealotBloodExhaustionChange", Arrays.asList(-0.15d, -0.3, -0.4d, -0.5d), t -> t instanceof Double);
         zealotMiningSpeedIncrease = COMMON_BUILDER.comment("Mining speed multiplier for each zealot rank").defineList("zealotMiningSpeed", Arrays.asList(1.1, 1.25d, 1.35d, 1.5d), t -> t instanceof Double);
@@ -278,7 +292,7 @@ public class CommonConfig {
         zealotHexProtectionMultiplier = COMMON_BUILDER.comment("Multiplier for damage from magical sources").defineList("zealotHexProtectionMultiplier", Arrays.asList(0.9d, 0.85d, 0.85d, 0.75d), t -> t instanceof Double);
         zealotFrenzyCooldown = COMMON_BUILDER.comment("Frenzy cooldown, seconds").defineInRange("zealotFrenzyCooldown", 60, 0, Integer.MAX_VALUE);
         zealotFrenzyDuration = COMMON_BUILDER.comment("Frenzy duration, seconds").defineInRange("zealotFrenzyDuration", 15, 0, Integer.MAX_VALUE);
-        zealotSerpentSpeedMultipliers = COMMON_BUILDER.comment("Crawling or shifting speed multiplier for Serpent Skill, at each bloodline rank. Attribute Multiplier").defineList("zealotSerpentSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
+        zealotSerpentSpeedMultipliers = COMMON_BUILDER.comment("Crawling or shifting speed multiplier for Serpent Skill, at each bloodline rank. Attribute Multiplier").defineList("zealotSerpentSpeedMultipliers", Arrays.asList(0.2d, 0.35d, 0.45d, 0.55d), t -> t instanceof Double);
         zealotMiningSpeedMultipliers = COMMON_BUILDER.comment("Frenzy mining speed multipliers. Attribute Multiplier").defineList("zealotMiningSpeedMultipliers", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), t -> t instanceof Double);
         zealotBrightAreaDamageMultiplier = COMMON_BUILDER.comment("Damage taken in bright areas at specificed Bloodline Rank").defineInRange("zealotBrightAreaDamageMultiplier", 1.2d, 0, Integer.MAX_VALUE);
         zealotBrightAreaDamageMultiplierRank = COMMON_BUILDER.comment("Bloodline Rank required to start taking more damage in bright areas, set to 5 to disable").defineInRange("zealotBrightAreaDamageMultiplierRank",4, 0, 5);
@@ -302,6 +316,8 @@ public class CommonConfig {
         ectothermMobAdditionalKnockbackResistance = COMMON_BUILDER.comment("Additional knockback resistance for Ectotherm Bloodline mobs").defineList("ectothermMobAdditionalKnockbackResistance", Arrays.asList(0.25d, 0.5d, 0.75d, 1d), t -> t instanceof Double);
 
         COMMON_BUILDER.pop();
+        ectothermUniqueUnlock = COMMON_BUILDER.comment("Whether the Ectotherm Bloodline's unique method of joining the bloodline is available. If disabled, then add a recipe for the bloodline fang or add another way to become a member of the bloodline.").define("ectothermUniqueUnlock", true);
+        coldBloodedElixirDurationSeconds = COMMON_BUILDER.comment("Duration of Cold Blooded Elixir, in seconds").defineInRange("coldBloodedElixirDurationSeconds",  30, 0, 10000);
 
         ectothermIceLordCooldown = COMMON_BUILDER.comment("Ice Lord cooldown").defineInRange("ectothermIceLordCooldown", 15, 0, Integer.MAX_VALUE);
         ectothermUnderwaterVisionDistance = COMMON_BUILDER.comment("Distance you can see clearly underwater at, for each bloodline rank. Set to 0 for normal amount").defineList("ectothermUnderwaterVisionDistance", Arrays.asList(0, 90, 125, 150), t -> t instanceof Integer);
@@ -352,6 +368,8 @@ public class CommonConfig {
         COMMON_BUILDER.pop();
 
         bloodknightVampireMinHealthFeedingPercentage = COMMON_BUILDER.comment("The proportion of remaining health that a vampire mob must have, or be below, so that a Bloodknight Vampire can feed on it.").defineInRange("bloodknightVampireMinHealthFeedingProportion", 0.25, 0, 1);
+        bloodknightUniqueUnlock = COMMON_BUILDER.comment("Whether the Bloodknight Bloodline's unique method of joining the bloodline is available. If disabled, then add a recipe for the bloodline fang or add another way to become a member of the bloodline.").define("bloodknightUniqueUnlock", true);
+        heinousElixirDurationSeconds = COMMON_BUILDER.comment("Duration of Heinous Elixir, in seconds").defineInRange("heinousElixirDurationSeconds",  15, 0, 10000);
 
         bloodknightDefaults[0] = bloodknightBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("bloodknightBlRank1DefaultSkills", List.of("bloodlines:bloodknight"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));;
         bloodknightDefaults[1] = bloodknightBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("bloodknightBlRank2DefaultSkills", List.of("bloodlines:bloodknight_rank_2"), string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));

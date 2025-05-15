@@ -7,6 +7,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
@@ -57,7 +58,7 @@ public abstract class VampirePlayerMixin extends FactionBasePlayer<IVampirePlaye
         } else if(!((IVampSpecialAttributes)getSpecialAttributes()).bloodlines$getSlowSun()){
             original.call(instance, value + 1);
         }
-        if(BloodlineManager.get(player).getBloodline() instanceof BloodlineZealot && BloodlineManager.get(player).getRank() >= CommonConfig.zealotDoubleSunTickRank.get()) {
+        if(BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT && BloodlineManager.get(player).getRank() >= CommonConfig.zealotDoubleSunTickRank.get()) {
             original.call(instance, value + 1);
         }
 

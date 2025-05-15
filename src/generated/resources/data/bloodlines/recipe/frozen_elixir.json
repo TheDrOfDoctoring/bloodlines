@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bloodlines:frozen_blood_sample"
+    },
+    {
+      "item": "bloodlines:frozen_blood_sample"
+    },
+    {
+      "item": "bloodlines:frozen_blood_sample"
+    },
+    {
+      "item": "bloodlines:frozen_blood_sample"
+    },
+    {
+      "item": "bloodlines:frozen_blood_sample"
+    },
+    {
+      "item": "bloodlines:frozen_blood_sample"
+    },
+    {
+      "tag": "vampirism:pure_blood"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodlines:freezing_elixir"
+  }
+}

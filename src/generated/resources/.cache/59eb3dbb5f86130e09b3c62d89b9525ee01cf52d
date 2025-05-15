@@ -1,0 +1,4 @@
+// 1.21	2025-05-02T15:13:52.4452589	Loot Tables
+cbb1acbe072adb7a2a66887ddd636343596cddcb data/bloodlines/loot_table/chests/corrupted_blood.json
+9d70fb2e564e3bf79951b8614639ced2f8d38a28 data/bloodlines/loot_table/entities/corrupted_blood.json
+7f5a16e98c074fc5458e1d352434e4ab5977b67e data/bloodlines/loot_table/entities/frozen_blood.json

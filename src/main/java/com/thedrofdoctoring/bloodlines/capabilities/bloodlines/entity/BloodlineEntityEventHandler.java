@@ -102,6 +102,7 @@ public class BloodlineEntityEventHandler {
                     break;
                 }
             }
+            if(targetRank == 0) return;
 
             mobManager.setBloodline(targetBloodline);
             mobManager.setRank(targetRank);

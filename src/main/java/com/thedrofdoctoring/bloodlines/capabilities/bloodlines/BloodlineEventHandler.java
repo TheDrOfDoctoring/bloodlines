@@ -7,6 +7,7 @@ import com.thedrofdoctoring.bloodlines.core.BloodlinesEffects;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesItems;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
+import com.thedrofdoctoring.bloodlines.effects.HeinousCurseEffect;
 import com.thedrofdoctoring.bloodlines.entity.ZealotTargetGoalModifier;
 import com.thedrofdoctoring.bloodlines.networking.ServerboundIcePacket;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
@@ -35,11 +36,14 @@ import de.teamlapen.vampirism.mixin.accessor.NearestAttackableTargetGoalAccessor
 import de.teamlapen.vampirism.particle.GenericParticleOptions;
 import de.teamlapen.vampirism.util.Helper;
 import de.teamlapen.vampirism.world.LevelFog;
+import de.teamlapen.vampirism.world.ModDamageSources;
 import it.unimi.dsi.fastutil.objects.Object2BooleanArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
@@ -118,6 +122,7 @@ public class BloodlineEventHandler {
             });
         }
     }
+
     @SubscribeEvent
     public static void onCriticalHit(CriticalHitEvent event) {
         if(event.getEntity() instanceof Player player && Helper.isVampire(player) && event.getTarget() instanceof LivingEntity living) {
@@ -142,7 +147,7 @@ public class BloodlineEventHandler {
         if(event.getVampire() instanceof VampirePlayer vp) {
             BloodlineManager.getOpt(vp.getRepresentingPlayer()).ifPresent(bl -> {
                 int rank = bl.getRank() - 1;
-                if(bl.getBloodline() instanceof BloodlineNoble) {
+                if(bl.getBloodline() == BloodlineRegistry.BLOODLINE_NOBLE) {
                     //Decrease blood gain from food sources and increase blood gain from mobs for nobles.
                     if(event.getBloodSource().getStack().isPresent() && event.getBloodSource().getStack().get().getItem() instanceof VampirismItemBloodFoodItem) {
                         event.setAmount((int) (event.getAmount() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue()));
@@ -153,7 +158,7 @@ public class BloodlineEventHandler {
                         event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue());
                     }
                 }
-                if(bl.getBloodline() instanceof BloodlineBloodknight) {
+                if(bl.getBloodline() == BloodlineRegistry.BLOODLINE_BLOODKNIGHT) {
                     if(event.getBloodSource().getStack().isPresent()) {
                         List<Item> allowed = List.of(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), ModItems.BLOOD_BOTTLE.get());
                         if(!allowed.contains(event.getBloodSource().getStack().get().getItem())) {
@@ -251,7 +256,7 @@ public class BloodlineEventHandler {
         //yikes
         Player player = event.getEntity();
         if(player.tickCount % 5 == 0) {
-            if(BloodlineManager.get(player).getBloodline() instanceof BloodlineFrost) {
+            if(BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM) {
                 player.setTicksFrozen(0);
             }
         }
@@ -276,7 +281,7 @@ public class BloodlineEventHandler {
         }
     }
     private static void checkEctothermBiome(Player player) {
-        if(BloodlineManager.get(player).getBloodline() instanceof BloodlineFrost && !player.level().isClientSide) {
+        if(BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM && !player.level().isClientSide) {
             int rank = BloodlineManager.get(player).getRank() - 1;
             int modifierRank = rank + 1;
             Holder<Biome> biome = player.level().getBiome(player.getOnPos());
@@ -313,6 +318,18 @@ public class BloodlineEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onDamage(LivingIncomingDamageEvent event) {
         if (event.getEntity().getCommandSenderWorld().isClientSide) return;
+        if (!CommonConfig.ectothermUniqueUnlock.get()) return;
+        if (event.getEntity() instanceof Player player && event.getAmount() >= event.getEntity().getHealth() && event.getSource().is(ModDamageTypes.SUN_DAMAGE)) {
+            BloodlineManager bl = BloodlineManager.get(player);
+            if(bl.getBloodline() == null && player.hasEffect(BloodlinesEffects.COLD_BLOODED) && player.isInWater()) {
+                player.removeEffect(BloodlinesEffects.COLD_BLOODED);
+                player.addEffect(new MobEffectInstance(ModEffects.SUNSCREEN, 30 * 20, 2));
+                BloodlineHelper.joinBloodlineGeneric(player, BloodlineRegistry.BLOODLINE_ECTOTHERM.get(), Component.translatable("text.bloodlines.ectotherm_join").withStyle(ChatFormatting.DARK_RED));
+                event.setCanceled(true);
+
+            }
+
+        }
 
         if (event.getSource().getEntity() instanceof LivingEntity source && Helper.isVampire(source)) {
             if (source instanceof Player player) {
@@ -346,11 +363,11 @@ public class BloodlineEventHandler {
                 skillHandler = VampirePlayer.get(playerVampire).getSkillHandler();
             }
             int rank = bl.getRank() - 1;
-            if (bl.getBloodline() instanceof BloodlineNoble && (event.getSource().is(ModDamageTypes.VAMPIRE_ON_FIRE) || event.getSource().is(ModDamageTypes.VAMPIRE_IN_FIRE))) {
+            if (bl.getBloodline() == BloodlineRegistry.BLOODLINE_NOBLE && (event.getSource().is(ModDamageTypes.VAMPIRE_ON_FIRE) || event.getSource().is(ModDamageTypes.VAMPIRE_IN_FIRE))) {
                 event.setAmount(event.getAmount() * CommonConfig.nobleFireDamageMultiplier.get().get(rank).floatValue());
             }
 
-            if (bl.getBloodline() instanceof BloodlineZealot) {
+            if (bl.getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT) {
                 int brightness = vampireTarget.getCommandSenderWorld().getRawBrightness(vampireTarget.getOnPos().above(), 0);
                 if((specialAttributes == null || specialAttributes.bloodlines$getShadowArmour()) && brightness <= CommonConfig.zealotShadowArmourLightLevel.get()) {
                     event.setAmount(event.getAmount() * CommonConfig.zealotShadowArmourDamageMultiplier.get().get(rank).floatValue());
@@ -364,7 +381,7 @@ public class BloodlineEventHandler {
                 }
             }
 
-            if (bl.getBloodline() instanceof BloodlineFrost) {
+            if (bl.getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM) {
 
                 if(event.getSource().is(ModDamageTypes.VAMPIRE_IN_FIRE) || event.getSource().is(ModDamageTypes.VAMPIRE_ON_FIRE)) {
                     event.setAmount(event.getAmount() * CommonConfig.ectothermFireDamageMultipliers.get().get(rank).floatValue());
@@ -373,7 +390,7 @@ public class BloodlineEventHandler {
                     event.setAmount(event.getAmount() * CommonConfig.ectothermHolyWaterDiffusion.get().get(rank).floatValue());
                 }
             }
-            if (bl.getBloodline() instanceof BloodlineBloodknight) {
+            if (bl.getBloodline() == BloodlineRegistry.BLOODLINE_BLOODKNIGHT) {
                 if(event.getSource().getEntity() instanceof LivingEntity entity && Helper.isHunter(entity)) {
                     event.setAmount(event.getAmount() * CommonConfig.bloodknightHunterDamageMult.get().get(rank).floatValue());
                 }
@@ -466,7 +483,7 @@ public class BloodlineEventHandler {
     @SubscribeEvent
     public static void breakSpeed(PlayerEvent.BreakSpeed event) {
         BloodlineManager bloodlineManager = BloodlineManager.get(event.getEntity());
-        if(bloodlineManager.getBloodline() instanceof BloodlineZealot) {
+        if(bloodlineManager.getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT) {
             int rank = bloodlineManager.getRank() - 1;
             float additionalSpeed = 0.0f;
             if(event.getState().is(BloodlinesTagsProviders.BloodlinesBlockTagProvider.ZEALOT_STONE) && VampirePlayer.get(event.getEntity()).getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_TUNNELER.get())) {
@@ -497,19 +514,25 @@ public class BloodlineEventHandler {
             }
         }
     }
+    @SubscribeEvent
     public static void onEffectRemoved(MobEffectEvent.Remove event) {
         LivingEntity living = event.getEntity();
         if(living instanceof Player player && Helper.isVampire(player)) {
             removeBloodknightBatMult(player);
         }
     }
+    @SubscribeEvent
     public static void onEffectExpired(MobEffectEvent.Expired event) {
         LivingEntity living = event.getEntity();
         if(living instanceof Player player && Helper.isVampire(player)) {
             removeBloodknightBatMult(player);
         }
+        if(living instanceof Player player && event.getEffectInstance() != null && event.getEffectInstance().is(BloodlinesEffects.HEINOUS_CURSE)) {
+            HeinousCurseEffect.handleHeinousEnding(player);
+        }
 
     }
+
 
     private static void removeBloodknightBatMult(Player player) {
         VampirePlayer vp = VampirePlayer.get(player);

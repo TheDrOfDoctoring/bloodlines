@@ -1,0 +1,19 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "bloodlines:match_weapon",
+      "weapon_predicate": {
+        "items": "#bloodlines:heart_seeker_striker"
+      }
+    },
+    {
+      "bloodline": {
+        "id": "bloodlines:bloodknight"
+      },
+      "condition": "bloodlines:bloodline",
+      "entity_is_attacker": false
+    }
+  ],
+  "table": "bloodlines:entities/corrupted_blood"
+}

@@ -1,0 +1,19 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "node": "bloodlines:gravebound_rank_4"
+            }
+          ],
+          "node": "bloodlines:gravebound_rank_3"
+        }
+      ],
+      "node": "bloodlines:gravebound_rank_2"
+    }
+  ],
+  "node": "bloodlines:gravebound_rank_2",
+  "skill_tree": "bloodlines:hunter/gravebound"
+}

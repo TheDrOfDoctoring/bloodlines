@@ -5,6 +5,10 @@
   },
   "biome_weight": [
     {
+      "biome": "#c:is_hot",
+      "weight": -100
+    },
+    {
       "biome": "#minecraft:is_overworld",
       "weight": 25
     },

@@ -5,10 +5,8 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBlo
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
-import com.thedrofdoctoring.bloodlines.items.BloodlineFang;
-import com.thedrofdoctoring.bloodlines.items.BloodlineTesterItem;
-import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
-import com.thedrofdoctoring.bloodlines.items.PurityInjection;
+import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.items.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -35,9 +33,15 @@ public class BloodlinesItems {
     public static final DeferredHolder<Item, BottomlessChaliceItem> CHALICE_ITEM = register("bottomless_chalice", () -> new BottomlessChaliceItem(new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, PurityInjection> PURITY_INJECTION = register("purity_injection", () -> new PurityInjection(new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, BloodlineTesterItem> BLOODLINE_TESTER = register("bloodline_tester", () -> new BloodlineTesterItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredHolder<Item, LordslayerInjectionItem> LORDSLAYER_INJECTION = register("lordslayer_injection", () -> new LordslayerInjectionItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredHolder<Item, Item> CORRUPTED_BLOOD_SAMPLE = register("corrupted_blood_sample", () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final DeferredHolder<Item, Item> FROZEN_BLOOD_SAMPLE = register("frozen_blood_sample", () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final DeferredHolder<Item, ElixirItem> HEINOUS_ELIXIR = register("heinous_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.HEINOUS_CURSE, () -> CommonConfig.heinousElixirDurationSeconds.get() * 20));
+    public static final DeferredHolder<Item, ElixirItem> COLD_ELIXIR = register("freezing_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.COLD_BLOODED, () -> CommonConfig.coldBloodedElixirDurationSeconds.get() * 20));
+    public static final DeferredHolder<Item, Item> ZEALOT_RITUAL_CATALYST = register("zealot_ritual_catalyst", () -> new Item(new Item.Properties().stacksTo(64)));
 
 
-    private static <T extends Item> DeferredHolder<Item, T> register(final String id, final Supplier<? extends T> itemSupplier) {
+    public static <T extends Item> DeferredHolder<Item, T> register(final String id, final Supplier<? extends T> itemSupplier) {
         DeferredHolder<Item, T> item = ITEMS.register(id, itemSupplier);
         creativeTabItems.add(item);
         return item;
