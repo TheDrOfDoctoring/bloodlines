@@ -2,8 +2,15 @@ package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
+import de.teamlapen.vampirism.core.ModSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +29,19 @@ public class BloodlineHelper {
             return BloodlineRegistry.BLOODLINE_REGISTRY.get(id);
         }
         return null;
+    }
+    public static void joinBloodlineGeneric(Player player, IBloodline bloodline, Component joinMessage) {
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.ENTITY_VAMPIRE_SCREAM.get(), SoundSource.PLAYERS, 1, 1);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 1, 1);
+        BloodlineManager bl = BloodlineManager.get(player);
+        bl.setRank(1);
+        bl.setBloodline(bloodline);
+        bl.onBloodlineChange(null, 0);
+        String bloodlineName = bloodline.getName();
+        player.displayClientMessage(joinMessage, true);
+        player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 2));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 180, 3));
+        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 200, 2));
     }
 
     /**

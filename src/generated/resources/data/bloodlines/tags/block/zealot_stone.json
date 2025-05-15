@@ -2,6 +2,7 @@
   "values": [
     "#c:stones",
     "#c:cobblestones",
-    "minecraft:dripstone_block"
+    "minecraft:dripstone_block",
+    "#c:cobblestones/deepslate"
   ]
 }

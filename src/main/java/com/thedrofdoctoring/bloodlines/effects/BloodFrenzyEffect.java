@@ -21,7 +21,7 @@ public class BloodFrenzyEffect extends MobEffect {
     }
 
     @Override
-    public void onEffectAdded(LivingEntity pLivingEntity, int pAmplifier) {
+    public void onEffectAdded(@NotNull LivingEntity pLivingEntity, int pAmplifier) {
         super.onEffectAdded(pLivingEntity, pAmplifier);
         this.addAttributeModifier(Attributes.ATTACK_DAMAGE, Bloodlines.rl("blood_frenzy_damage"), CommonConfig.bloodknightBloodFrenzyDamageBonus.get(), AttributeModifier.Operation.ADD_VALUE);
         this.addAttributeModifier(Attributes.MAX_HEALTH, Bloodlines.rl("blood_frenzy_max_health"), CommonConfig.bloodknightBloodFrenzyMaxHealthBonus.get(), AttributeModifier.Operation.ADD_VALUE);

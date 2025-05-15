@@ -1,6 +1,6 @@
 {
   "below_depth_weight": {
-    "weight": 50,
+    "weight": 250,
     "yLevel": 40
   },
   "biome_weight": [
@@ -10,7 +10,7 @@
     },
     {
       "biome": "#minecraft:is_overworld",
-      "weight": 10
+      "weight": -50
     },
     {
       "biome": "#minecraft:has_structure/ancient_city",

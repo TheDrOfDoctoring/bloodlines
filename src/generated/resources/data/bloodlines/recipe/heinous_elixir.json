@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bloodlines:corrupted_blood_sample"
+    },
+    {
+      "item": "bloodlines:corrupted_blood_sample"
+    },
+    {
+      "item": "bloodlines:corrupted_blood_sample"
+    },
+    {
+      "item": "bloodlines:corrupted_blood_sample"
+    },
+    {
+      "item": "bloodlines:corrupted_blood_sample"
+    },
+    {
+      "item": "bloodlines:corrupted_blood_sample"
+    },
+    {
+      "tag": "vampirism:pure_blood"
+    },
+    {
+      "item": "vampirism:vampire_blood_bottle"
+    },
+    {
+      "item": "vampirism:vampire_blood_bottle"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodlines:heinous_elixir"
+  }
+}

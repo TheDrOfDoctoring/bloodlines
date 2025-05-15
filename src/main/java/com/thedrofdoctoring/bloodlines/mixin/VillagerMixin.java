@@ -5,6 +5,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.core.ModTags;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
@@ -47,14 +48,14 @@ public abstract class VillagerMixin extends AbstractVillager {
                     int diff = rankMult != 0 ? (int) Math.floor((merchantoffer1.getBaseCostA().getCount()) * (rankMult - 1)) : 0;
                     merchantoffer1.addToSpecialPriceDiff(diff);
                 }
-            } else if (BloodlineManager.get(player).getBloodline() instanceof BloodlineZealot) {
+            } else if (BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_ZEALOT) {
                 int rank = BloodlineHelper.getBloodlineRank(player);
                 for (MerchantOffer merchantoffer1 : this.getOffers()) {
                     double rankMult = CommonConfig.zealotTradePricesMultiplier.get().get(rank - 1).floatValue();
                     int diff = rankMult != 0 ? (int) Math.floor((merchantoffer1.getBaseCostA().getCount()) * (rankMult - 1)) : 0;
                     merchantoffer1.addToSpecialPriceDiff(diff);
                 }
-            } else if(BloodlineManager.get(player).getBloodline() instanceof BloodlineNoble) {
+            } else if(BloodlineManager.get(player).getBloodline() == BloodlineRegistry.BLOODLINE_BLOODKNIGHT) {
                 int rank = BloodlineHelper.getBloodlineRank(player);
                 for (MerchantOffer merchantoffer1 : this.getOffers()) {
                     double rankMult = CommonConfig.bloodknightTradePricesMultiplier.get().get(rank - 1).floatValue();

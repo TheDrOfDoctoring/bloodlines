@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_frozen_blood": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bloodlines:frozen_blood_sample"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bloodlines:frozen_elixir"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_frozen_blood"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bloodlines:frozen_elixir"
+    ]
+  }
+}

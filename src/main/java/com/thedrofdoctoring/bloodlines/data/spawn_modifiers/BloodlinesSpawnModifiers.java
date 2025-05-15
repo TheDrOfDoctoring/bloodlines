@@ -35,6 +35,7 @@ public class BloodlinesSpawnModifiers {
             Bloodlines.rl("bloodknight_spawn_modifier")
     );
 
+
     public static void createSpawnModifiers(BootstrapContext<BloodlineSpawnModifier> context) {
         HolderGetter<Biome> biomeLookup = context.lookup(Registries.BIOME);
 
@@ -70,6 +71,7 @@ public class BloodlinesSpawnModifiers {
                         BloodlineRegistry.BLOODLINE_ECTOTHERM.get(),
                         List.of(ModEntities.VAMPIRE.get(), ModEntities.ADVANCED_VAMPIRE.get()),
                         List.of(
+                                Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_HOT), -100),
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), 25),
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OCEAN), 50),
                                 Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_COLD), 50)
@@ -85,10 +87,10 @@ public class BloodlinesSpawnModifiers {
                         List.of(ModEntities.VAMPIRE.get(), ModEntities.ADVANCED_VAMPIRE.get()),
                         List.of(
                                 Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_UNDERGROUND), 100),
-                                Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), 10),
+                                Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), -50),
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.HAS_ANCIENT_CITY), 100)
                         ),
-                        Pair.of(40, 50)
+                        Pair.of(40, 250)
                 )
 
         );

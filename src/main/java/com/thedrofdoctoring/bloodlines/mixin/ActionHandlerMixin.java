@@ -3,6 +3,7 @@ package com.thedrofdoctoring.bloodlines.mixin;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
+import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.actions.IActionHandler;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
@@ -36,7 +37,9 @@ public abstract class ActionHandlerMixin<T extends IFactionPlayer<T>> implements
                     event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.zealotObscuredPowerTimerIncrease.get() + 1);
             }
             if(player.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_UNDERWATER_DURATION.get()) && player.asEntity().isUnderWater()) {
-                event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.ectothermUnderwaterDurationIncrease.get() + 1);
+                if(action != BloodlineActions.ECTOTHERM_DOLPHIN_LEAP_ACTION) {
+                    event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.ectothermUnderwaterDurationIncrease.get() + 1);
+                }
             }
 
         }

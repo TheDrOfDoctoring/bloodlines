@@ -1,0 +1,71 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:entity",
+        "amount": 5,
+        "description": {
+          "translate": "entity.vampirism.advanced_vampire"
+        },
+        "entityType": "vampirism:advanced_vampire",
+        "id": "vampirism:advanced_vampire"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.vampirism.human_heart"
+        },
+        "id": "vampirism:human_heart",
+        "item": {
+          "count": 8,
+          "id": "vampirism:human_heart"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 20,
+        "description": {
+          "translate": "entity.vampirism.hunter"
+        },
+        "entityType": "vampirism:hunter",
+        "id": "vampirism:hunter"
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.vampirism.vampire_blood_bottle"
+        },
+        "id": "vampirism:vampire_blood_bottle",
+        "item": {
+          "count": 8,
+          "id": "vampirism:vampire_blood_bottle"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 20,
+        "description": {
+          "translate": "entity.minecraft.villager"
+        },
+        "entityType": "minecraft:villager",
+        "id": "minecraft:villager"
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_perk_reward",
+    "perkPointAmount": 1,
+    "source": "bloodlines:bloodline_perk_points_gravebound_1"
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_perk_points_gravebound_1"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:gravebound",
+      "matchExactly": false
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.core.bloodline;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
@@ -39,13 +40,15 @@ public class BloodlineRegistry {
          <li> Create a BloodlineSpawnModifier and BloodlineRankDistribution - Not necessary if bloodline is only for players </li>
          <li> Create textures for bloodline entity - Not necessary if bloodline only applies to entities that would not be supported by this </li>
          </ul>
-     */
+     */ 
     public static final DeferredRegister<IBloodline> BLOODLINES = DeferredRegister.create(BLOODLINE_REGISTRY, Bloodlines.MODID);
 
     public static final DeferredHolder<IBloodline, BloodlineNoble> BLOODLINE_NOBLE = BLOODLINES.register("noble", BloodlineNoble::new);
     public static final DeferredHolder<IBloodline, BloodlineFrost> BLOODLINE_ECTOTHERM = BLOODLINES.register("ectotherm", BloodlineFrost::new);
     public static final DeferredHolder<IBloodline, BloodlineZealot> BLOODLINE_ZEALOT = BLOODLINES.register("zealot", BloodlineZealot::new);
     public static final DeferredHolder<IBloodline, BloodlineBloodknight> BLOODLINE_BLOODKNIGHT = BLOODLINES.register("bloodknight", BloodlineBloodknight::new);
+
+    public static final DeferredHolder<IBloodline, BloodlineGravebound> BLOODLINE_GRAVEBOUND = BLOODLINES.register("gravebound", BloodlineGravebound::new);
 
 
 }

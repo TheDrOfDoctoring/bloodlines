@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "vampirism:injection_sanguinare"
+    },
+    "B": {
+      "item": "bloodlines:corrupted_blood_sample"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BAB",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodlines:lordslayer_injection"
+  }
+}

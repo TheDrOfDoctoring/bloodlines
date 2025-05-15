@@ -1,0 +1,64 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.diamond"
+        },
+        "id": "minecraft:diamond",
+        "item": {
+          "count": 16,
+          "id": "minecraft:diamond"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.emerald"
+        },
+        "id": "minecraft:emerald",
+        "item": {
+          "count": 16,
+          "id": "minecraft:emerald"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
+          "translate": "item.minecraft.gold_block"
+        },
+        "id": "minecraft:gold_block",
+        "item": {
+          "count": 4,
+          "id": "minecraft:gold_block"
+        }
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 8,
+        "description": {
+          "translate": "entity.vampirism.vampire_baron"
+        },
+        "entityType": "vampirism:vampire_baron",
+        "id": "vampirism:vampire_baron"
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_reward",
+    "source": "bloodlines:bloodline_gravebound_three",
+    "targetRank": 2
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_gravebound_three"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:gravebound",
+      "matchExactly": true
+    }
+  ]
+}

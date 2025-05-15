@@ -1,0 +1,8 @@
+{
+  "entries": [
+    "bloodlines:bloodlines_corrupted_blood_crypt_loot_modifier",
+    "bloodlines:bloodlines_corrupted_blood_modifier",
+    "bloodlines:bloodlines_frozen_blood_modifier"
+  ],
+  "replace": false
+}

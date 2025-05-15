@@ -38,16 +38,7 @@ public class BloodlineFang extends Item {
                 if(bl.getBloodline() != null) {
                     player.displayClientMessage(Component.translatable("text.bloodlines.bloodline_active"), true);
                 } else {
-                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.ENTITY_VAMPIRE_SCREAM.get(), SoundSource.PLAYERS, 1, 1);
-                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 1, 1);
-                    bl.setRank(1);
-                    bl.setBloodline(bloodline);
-                    bl.onBloodlineChange(null, 0);
-                    String bloodlineName = bloodline.getName();
-                    player.displayClientMessage(Component.translatable("text.bloodlines.new_bloodline", bloodlineName).withStyle(ChatFormatting.DARK_RED), true);
-                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 80, 2));
-                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 3));
-                    player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 90, 2));
+                    BloodlineHelper.joinBloodlineGeneric(player, bloodline, Component.translatable("text.bloodlines.new_bloodline", bloodline.getName()).withStyle(ChatFormatting.DARK_RED));
                     player.getItemInHand(hand).shrink(1);
                 }
             });

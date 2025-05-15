@@ -4,6 +4,8 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
+import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
+import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import net.minecraft.advancements.critereon.EntitySubPredicate;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -29,7 +31,13 @@ public record BloodlineSubPredicate(IBloodline bloodline) implements EntitySubPr
     @Override
     public boolean matches(@NotNull Entity pEntity, @NotNull ServerLevel pLevel, @Nullable Vec3 p_218830_) {
         if (pEntity instanceof Player player) {
-            return BloodlineManager.getOpt(player).map(handler -> bloodline == null || handler.getBloodline() == bloodline).orElse(false);
+            BloodlineManager manager = BloodlineManager.get(player);
+            IPlayableFaction<?> faction = FactionPlayerHandler.get(player).getCurrentFaction();
+            IBloodline bl = manager.getBloodline();
+            if(bl == null || bl.getFaction() != faction) {
+                return false;
+            }
+            return bl == bloodline;
         }
         return false;
     }

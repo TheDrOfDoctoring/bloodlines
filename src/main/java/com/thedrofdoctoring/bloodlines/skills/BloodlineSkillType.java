@@ -15,7 +15,9 @@ public enum BloodlineSkillType implements ISkillType {
     NOBLE(Bloodlines.rl("noble"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
     ZEALOT(Bloodlines.rl("zealot"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
     ECTOTHERM(Bloodlines.rl("ectotherm"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
-    BLOODKNIGHT(Bloodlines.rl("bloodknight"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true);
+    BLOODKNIGHT(Bloodlines.rl("bloodknight"), "", faction -> faction == VReference.VAMPIRE_FACTION, faction -> true),
+
+    GRAVEBOUND(Bloodlines.rl("gravebound"), "", faction -> faction == VReference.HUNTER_FACTION, faction -> true);
 
     public final ResourceLocation id;
     public final String nameSuffix;

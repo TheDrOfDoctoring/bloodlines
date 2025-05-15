@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class    BloodlineSkillTreeProvider extends SkillTreeProvider {
+public class BloodlineSkillTreeProvider extends SkillTreeProvider {
 
     public BloodlineSkillTreeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(packOutput, lookupProvider, Bloodlines.MODID);
@@ -24,9 +24,27 @@ public class    BloodlineSkillTreeProvider extends SkillTreeProvider {
         HolderLookup.RegistryLookup<ISkillTree> trees = provider.lookupOrThrow(VampirismRegistries.Keys.SKILL_TREE);
         HolderLookup.RegistryLookup<ISkillNode> nodes = provider.lookupOrThrow(VampirismRegistries.Keys.SKILL_NODE);
 
+        buildVampireTrees(trees, nodes, skillTreeOutput);
+        buildHunterTrees(trees, nodes, skillTreeOutput);
+
+    }
+    private void buildHunterTrees(HolderLookup.RegistryLookup<ISkillTree> trees, HolderLookup.RegistryLookup<ISkillNode> nodes, @NotNull SkillTreeOutput skillTreeOutput) {
+        skillTreeOutput.accept(modId("gravebound"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.GRAVEBOUND), nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_2),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_2),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_3),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_4)
+                                )
+                        )
+                )
+            ));
+
+    }
+
+
+    private void buildVampireTrees(HolderLookup.RegistryLookup<ISkillTree> trees, HolderLookup.RegistryLookup<ISkillNode> nodes, @NotNull SkillTreeOutput skillTreeOutput) {
         skillTreeOutput.accept(modId("noble"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.NOBLE), nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_ROOT),
 
-        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BETTER_TRADE_PRICES)),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BETTER_TRADE_PRICES)),
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_RANK_2),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_FASTER_MOVEMENT_SPEED),
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_CELERITY)
@@ -38,7 +56,7 @@ public class    BloodlineSkillTreeProvider extends SkillTreeProvider {
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_FLANK))),
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_RANK_4),
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BAT_FLIGHT_SPEED),
-                                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BAT_ARMOUR))),
+                                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BAT_ARMOUR))),
                                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_CHALICE_SKILL)
                                                 )
                                         ),
@@ -46,68 +64,68 @@ public class    BloodlineSkillTreeProvider extends SkillTreeProvider {
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_FASTER_RESURRECT)),
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_INVISIBILITY))
                                 ),
-                            new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_LEECHING),
-                            new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_ENHANCED_LEECHING)
-                            ))
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_LEECHING),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_ENHANCED_LEECHING)
+                                        ))
                         ),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_MORE_TICKS_IN_SUN)),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_MORE_TICKS_IN_SUN)),
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.NOBLE_BETTER_BLOOD_DRAIN)
+                        )
                 )
-        )
         );
         skillTreeOutput.accept(modId("zealot"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.ZEALOT), nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_ROOT),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_STONE_SPEED),
-                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_TUNNELER))),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_RANK_2),
-                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SHADOWWALK)),
-                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_RANK_3),
-                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_DARKCLOAK)),
-                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_RANK_4),
-                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SHADOW_MASTERY),
-                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_OBSCURED_POWER)))),
-                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_FALL_DAMAGE),
-                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_WALL_CLIMB),
-                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_FRENZY)
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_STONE_SPEED),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_TUNNELER))),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_RANK_2),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SHADOWWALK)),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_RANK_3),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_DARKCLOAK)),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_RANK_4),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SHADOW_MASTERY),
+                                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_OBSCURED_POWER)))),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_FALL_DAMAGE),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_WALL_CLIMB),
+                                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_FRENZY)
+                                                        )
                                                 )
                                         )
-                                )
+                                ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_FLESH_ARMOUR),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_HEX_PROTECTION)))
+
+
+
                         ),
-                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_FLESH_ARMOUR),
-                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_HEX_PROTECTION)))
-
-
-
-                                        ),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SPIDER_FRIEND),
-                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SWIFT_SNEAK)))
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SPIDER_FRIEND),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ZEALOT_SWIFT_SNEAK)))
                 )
         );
         skillTreeOutput.accept(modId("ectotherm"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.ECTOTHERM), nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ROOT),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_SNOW_WALKER)),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_SNOW_WALKER)),
 
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_2),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_REFRACTION),
                                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DIFFUSION))),
-                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_3),
-                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROZEN_SLOWNESS)),
-                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_4),
-                                            new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_LORD_OF_FROST_DURATION),
-                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_UNDERWATER_DURATION))
-                                            ),
-                                            new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_INK_SPLASH),
-                                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_HYDRODYNAMIC_FORM))
-                                        )
-                                    ),
-                                    new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_TENTACLES))
-                        ),
-                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ICE_LORD),
-                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROST_CONTROL))
-                        ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_3),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROZEN_SLOWNESS)),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_RANK_4),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_LORD_OF_FROST_DURATION),
+                                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_UNDERWATER_DURATION))
+                                                ),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_INK_SPLASH),
+                                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_HYDRODYNAMIC_FORM))
+                                                )
+                                        ),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_TENTACLES))
+                                ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_ICE_LORD),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FROST_CONTROL))
+                                ),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_FISHMONGER))
                         ),
 
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_UNDERWATER_MINING_SPEED)),
-                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DOLPHIN_LEAP))
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_UNDERWATER_MINING_SPEED)),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.ECTOTHERM_DOLPHIN_LEAP))
                 )
         );
         skillTreeOutput.accept(modId("bloodknight"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.BLOOD_KNIGHT), nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_ROOT),

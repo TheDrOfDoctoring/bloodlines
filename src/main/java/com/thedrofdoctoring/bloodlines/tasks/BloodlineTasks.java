@@ -2,6 +2,7 @@ package com.thedrofdoctoring.bloodlines.tasks;
 
 import com.mojang.serialization.MapCodec;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
@@ -45,10 +46,14 @@ public class BloodlineTasks {
     public static final ResourceKey<Task> BLOODLINE_BLOODKNIGHT_1 = task("bloodline_bloodknight_one");
     public static final ResourceKey<Task> BLOODLINE_BLOODKNIGHT_2 = task("bloodline_bloodknight_two");
     public static final ResourceKey<Task> BLOODLINE_BLOODKNIGHT_3 = task("bloodline_bloodknight_three");
+    public static final ResourceKey<Task> BLOODLINE_GRAVEBOUND_1 = task("bloodline_gravebound_one");
+    public static final ResourceKey<Task> BLOODLINE_GRAVEBOUND_2 = task("bloodline_gravebound_two");
+    public static final ResourceKey<Task> BLOODLINE_GRAVEBOUND_3 = task("bloodline_gravebound_three");
     public static final ResourceKey<Task> BLOODLINE_BLOODKNIGHT_PERK_POINTS = task("bloodline_perk_points_bloodknight_1");
     public static final ResourceKey<Task> BLOODLINE_ECTOTHERM_PERK_POINTS = task("bloodline_perk_points_ectotherm_1");
     public static final ResourceKey<Task> BLOODLINE_NOBLE_PERK_POINTS = task("bloodline_perk_points_noble_1");
     public static final ResourceKey<Task> BLOODLINE_ZEALOT_PERK_POINTS = task("bloodline_perk_points_zealot_1");
+    public static final ResourceKey<Task> BLOODLINE_GRAVEBOUND_PERK_POINTS = task("bloodline_perk_points_gravebound_1");
 
 
     private static ResourceKey<Task> task(String path) {
@@ -176,6 +181,39 @@ public class BloodlineTasks {
                 .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 8))
                 .addRequirement(ModEntities.VAMPIRE.get(), 20)
                 .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 5)
+                .build());
+        context.register(BLOODLINE_GRAVEBOUND_PERK_POINTS, TaskBuilder.builder(BLOODLINE_GRAVEBOUND_PERK_POINTS).defaultTitle()
+                .setReward(new BloodlinePerkReward(1, BLOODLINE_GRAVEBOUND_PERK_POINTS.location()))
+                .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, false))
+                .addRequirement(new ItemStack(ModItems.HUMAN_HEART.get(), 8))
+                .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 8))
+                .addRequirement(EntityType.VILLAGER, 20)
+                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 5)
+                .addRequirement(ModEntities.HUNTER.get(), 20)
+                .build());
+        context.register(BLOODLINE_GRAVEBOUND_1, TaskBuilder.builder(BLOODLINE_GRAVEBOUND_1).defaultTitle()
+                .setReward(new BloodlineRankReward(2, BLOODLINE_GRAVEBOUND_1.location()))
+                .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, true))
+                .addRequirement(new ItemStack(Items.DIAMOND, 16))
+                .addRequirement(new ItemStack(Items.GOLD_BLOCK, 4))
+                .addRequirement(new ItemStack(Items.EMERALD, 16))
+                .addRequirement(ModEntities.VAMPIRE_BARON.get(), 8)
+                .build());
+        context.register(BLOODLINE_GRAVEBOUND_2, TaskBuilder.builder(BLOODLINE_GRAVEBOUND_2).defaultTitle()
+                .setReward(new BloodlineRankReward(2, BLOODLINE_GRAVEBOUND_2.location()))
+                .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, true))
+                .addRequirement(new ItemStack(Items.DIAMOND, 16))
+                .addRequirement(new ItemStack(Items.GOLD_BLOCK, 4))
+                .addRequirement(new ItemStack(Items.EMERALD, 16))
+                .addRequirement(ModEntities.VAMPIRE_BARON.get(), 8)
+                .build());
+        context.register(BLOODLINE_GRAVEBOUND_3, TaskBuilder.builder(BLOODLINE_GRAVEBOUND_3).defaultTitle()
+                .setReward(new BloodlineRankReward(2, BLOODLINE_GRAVEBOUND_3.location()))
+                .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, true))
+                .addRequirement(new ItemStack(Items.DIAMOND, 16))
+                .addRequirement(new ItemStack(Items.GOLD_BLOCK, 4))
+                .addRequirement(new ItemStack(Items.EMERALD, 16))
+                .addRequirement(ModEntities.VAMPIRE_BARON.get(), 8)
                 .build());
     }
 }
