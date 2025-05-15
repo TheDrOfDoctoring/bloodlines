@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import de.teamlapen.lib.lib.util.UtilLib;
-import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.config.VampirismConfig;
@@ -85,7 +84,7 @@ public class NobleFlankAction extends DefaultVampireAction {
 
     @Override
     public boolean canBeUsedBy(IVampirePlayer vampire) {
-        return !vampire.getActionHandler().isActionActive((ILastingAction) VampireActions.BAT.get());
+        return !vampire.getActionHandler().isActionActive(VampireActions.BAT.get());
 
     }
     public boolean showHudCooldown(Player player) {

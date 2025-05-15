@@ -1,8 +1,8 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
 import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.lib.lib.storage.IAttachment;
@@ -124,7 +124,7 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
             this.bloodlineRank = 0;
         }
     }
-
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void updateAttributes(IBloodline oldBloodline) {
         if (oldBloodline != null && oldBloodline != bloodline && !entity.getCommandSenderWorld().isClientSide) {
@@ -141,6 +141,7 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
                 AttributeInstance att = entity.getAttribute(attribute);
                 if(att == null) return;
                 removeModifier(att, modifier.id());
+
                 entity.getAttribute(attribute).addPermanentModifier(modifier);
             });
         }

@@ -3,13 +3,11 @@ package com.thedrofdoctoring.bloodlines.tasks;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import de.teamlapen.vampirism.api.VampirismRegistries;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.task.ITaskRewardInstance;
 import de.teamlapen.vampirism.api.entity.player.task.TaskReward;
-import de.teamlapen.vampirism.entity.player.TaskManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -18,12 +16,10 @@ import org.jetbrains.annotations.NotNull;
 
 public record  BloodlinePerkReward(int perkPoints, ResourceLocation source) implements TaskReward, ITaskRewardInstance {
 
-    public static final MapCodec<BloodlinePerkReward> CODEC = RecordCodecBuilder.mapCodec(inst -> {
-        return inst.group(
-                Codec.INT.fieldOf("perkPointAmount").forGetter(i -> i.perkPoints),
-                ResourceLocation.CODEC.fieldOf("source").forGetter(t -> t.source)
-        ).apply(inst, BloodlinePerkReward::new);
-    });
+    public static final MapCodec<BloodlinePerkReward> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            Codec.INT.fieldOf("perkPointAmount").forGetter(i -> i.perkPoints),
+            ResourceLocation.CODEC.fieldOf("source").forGetter(t -> t.source)
+    ).apply(inst, BloodlinePerkReward::new));
 
 
     @Override

@@ -1,6 +1,5 @@
 package com.thedrofdoctoring.bloodlines.data;
 
-import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;

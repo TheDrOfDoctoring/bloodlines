@@ -1,8 +1,11 @@
 package com.thedrofdoctoring.bloodlines.core;
 
+import com.mojang.datafixers.types.Type;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.blocks.entities.ZealotAltarBlockEntity;
+import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,7 +20,7 @@ public class BloodlinesBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ZealotAltarBlockEntity>> ZEALOT_ALTAR = BLOCK_ENTITY_TYPES.register("zealot_altar", () -> create(ZealotAltarBlockEntity::new, BloodlinesBlocks.ZEALOT_ALTAR.get()));
 
-
+    @SuppressWarnings("ConstantConditions")
     private static <T extends BlockEntity> @NotNull BlockEntityType<T> create(BlockEntityType.@NotNull BlockEntitySupplier<T> factoryIn, Block... blocks) {
         return BlockEntityType.Builder.of(factoryIn, blocks).build(null);
     }

@@ -18,7 +18,10 @@ import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Reader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class BloodlineEntityRenderManager implements ResourceManagerReloadListener {

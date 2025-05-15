@@ -53,7 +53,7 @@ public class FollowAdvancedVampireGoalMixin {
                 BloodlineMobManager leaderManager = BloodlineMobManager.get(entity1);
                 IBloodline leaderBl = leaderManager.getBloodline();
                 if (leaderBl == manager.getBloodline() && entity1.isAlive() && leader1.getFollowingCount() < leader1.getMaxFollowerCount()) {
-                    int d1 = leaderManager.getRank();;
+                    int d1 = leaderManager.getRank();
 
                     if (d1 >= d0) {
                         d0 = d1;

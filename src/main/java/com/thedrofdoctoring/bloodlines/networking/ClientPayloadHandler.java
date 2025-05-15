@@ -7,7 +7,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class ClientPayloadHandler {
 
-    public static void handleLeapPacket(ClientboundLeapPacket useless, final IPayloadContext context) {
+    public static void handleLeapPacket(ClientboundLeapPacket ignoredUseless, final IPayloadContext context) {
         context.enqueueWork(() -> {
             Player player = context.player();
             double distanceMult = CommonConfig.ectothermDolphinLeapDistance.get();

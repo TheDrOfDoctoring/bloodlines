@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.List;
-
+@SuppressWarnings("unchecked, rawtypes")
 @Mixin(ActionHandler.class)
 public abstract class ActionHandlerMixin<T extends IFactionPlayer<T>> implements IActionHandler<T> {
 

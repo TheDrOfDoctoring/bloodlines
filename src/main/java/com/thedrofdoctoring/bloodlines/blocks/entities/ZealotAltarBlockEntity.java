@@ -5,7 +5,6 @@ import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesBlockEntities;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.vampirism.core.ModParticles;
-import de.teamlapen.vampirism.core.ModSounds;
 import de.teamlapen.vampirism.particle.FlyingBloodParticleOptions;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.ChatFormatting;
@@ -23,7 +22,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -87,6 +85,7 @@ public class ZealotAltarBlockEntity extends BlockEntity {
 
         if (currentPlayer == null || !currentPlayer.isAlive()) {
             currentTick = 1;
+            return;
         } else {
             if (currentPlayer.getDeltaMovement().y >= 0) {
                 currentPlayer.setDeltaMovement(0D, 0D, 0D);
@@ -155,7 +154,7 @@ public class ZealotAltarBlockEntity extends BlockEntity {
 
     public static void tick(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull ZealotAltarBlockEntity altar) {
         if (altar.currentPlayerUUID != null) {
-            if (!altar.setupRitualState(altar.currentPlayerUUID)) return;
+            if (altar.ritualStateInvalid(altar.currentPlayerUUID)) return;
             altar.currentPlayerUUID = null;
             altar.setChanged();
             level.sendBlockUpdated(pos, state, state, 3);
@@ -176,7 +175,7 @@ public class ZealotAltarBlockEntity extends BlockEntity {
         int tick = nbt.getInt("tick");
         if (tick > 0 && currentPlayer == null && nbt.hasUUID("player_uuid")) {
             UUID uuid = nbt.getUUID("player_uuid");
-            if (!setupRitualState(uuid)) {
+            if (ritualStateInvalid(uuid)) {
                 this.currentPlayerUUID = uuid;
             }
             this.currentTick = tick;
@@ -184,9 +183,9 @@ public class ZealotAltarBlockEntity extends BlockEntity {
 
     }
 
-    private boolean setupRitualState(UUID currentPlayerUUID) {
-        if(this.level == null) return false;
-        if(this.level.players().isEmpty()) return false;
+    private boolean ritualStateInvalid(UUID currentPlayerUUID) {
+        if(this.level == null) return true;
+        if(this.level.players().isEmpty()) return true;
 
         this.currentPlayer = this.level.getPlayerByUUID(currentPlayerUUID);
 
@@ -194,7 +193,7 @@ public class ZealotAltarBlockEntity extends BlockEntity {
             currentTick = 0;
         }
 
-        return true;
+        return false;
     }
 
     public @NotNull Result canActivate(@NotNull Player player) {

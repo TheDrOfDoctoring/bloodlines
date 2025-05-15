@@ -4,14 +4,12 @@ import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesEffects;
-import com.thedrofdoctoring.bloodlines.skills.BloodlineSkill;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.config.VampirismConfig;
-import de.teamlapen.vampirism.entity.player.skills.SkillHandler;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -46,6 +44,7 @@ public class BloodknightSanguineInfusion extends DefaultVampireAction implements
         iVampirePlayer.useBlood(drain, true);
         return true;
     }
+    @SuppressWarnings("ConstantConditions")
     private void activate(IVampirePlayer vampire) {
         Player player = vampire.asEntity();
         BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), SPEED);
@@ -76,7 +75,7 @@ public class BloodknightSanguineInfusion extends DefaultVampireAction implements
     public void onActivatedClient(IVampirePlayer iVampirePlayer) {
 
     }
-
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onDeactivated(IVampirePlayer iVampirePlayer) {
         Player player = iVampirePlayer.asEntity();

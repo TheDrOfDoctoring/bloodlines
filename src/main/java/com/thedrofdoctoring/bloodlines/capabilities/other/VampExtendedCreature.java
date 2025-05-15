@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.capabilities.other;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineSkillHandler;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;

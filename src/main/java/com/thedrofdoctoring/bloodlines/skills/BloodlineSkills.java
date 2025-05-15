@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-
+@SuppressWarnings("unused")
 public class BloodlineSkills {
 
     public static final HashMap<IBloodline, ArrayList<ISkill<?>>> bloodlineSkills = new HashMap<>();

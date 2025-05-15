@@ -48,14 +48,14 @@ public class ZealotShrineStructure extends Structure {
         if(y >= 39) return Optional.empty();
         BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), y, chunkPos.getMinBlockZ());
 
-        Optional<Structure.GenerationStub> generator = Optional.of(
-                new Structure.GenerationStub(
-                        blockPos, (b) -> {
-                            b.addPiece(new ZealotShrinePiece(0, context.structureTemplateManager(), "zealot_shrine", makeSettings(), blockPos));
-                        }
+        return Optional.of(
+                new GenerationStub(
+                        blockPos, (b) ->
+                        b.addPiece(
+                                new ZealotShrinePiece(0, context.structureTemplateManager(), "zealot_shrine", makeSettings(), blockPos)
+                        )
                 )
         );
-        return generator;
     }
     private static @NotNull StructurePlaceSettings makeSettings() {
         return (new StructurePlaceSettings()).setRotation(Rotation.CLOCKWISE_180).setMirror(Mirror.NONE);

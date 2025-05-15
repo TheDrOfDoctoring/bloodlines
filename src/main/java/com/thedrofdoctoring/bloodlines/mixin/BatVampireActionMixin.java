@@ -23,7 +23,7 @@ import java.util.Objects;
 
 @Mixin(BatVampireAction.class)
 public class BatVampireActionMixin {
-
+    @SuppressWarnings("ConstantConditions")
     @Inject(method = "setModifier", at = @At(value = "INVOKE", target = "Lde/teamlapen/vampirism/entity/player/vampire/actions/BatVampireAction;setFlightSpeed(Lnet/minecraft/world/entity/player/Player;F)V", shift = At.Shift.AFTER, ordinal = 0), remap = false)
     private void setNobleBatSpeedMultiplier(Player player, boolean enabled, CallbackInfo ci) {
         VampirePlayer vp = VampirePlayer.get(player);

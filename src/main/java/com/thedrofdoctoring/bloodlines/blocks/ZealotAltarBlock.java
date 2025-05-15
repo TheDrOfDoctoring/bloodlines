@@ -9,7 +9,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -38,6 +37,7 @@ public class ZealotAltarBlock extends BaseEntityBlock {
     }
     @NotNull
     @Override
+    @SuppressWarnings("deprecation")
     public RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }

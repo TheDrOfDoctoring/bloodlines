@@ -1,10 +1,5 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
@@ -24,8 +19,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
-
-import java.util.Optional;
 
 @Mixin(VampireBloodBottleItem.class)
 public class VampireBloodBottleItemMixin extends Item {

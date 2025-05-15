@@ -20,7 +20,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
 public class BloodlinesItems {
     private static final Set<DeferredHolder<Item, ? extends Item>> creativeTabItems = new HashSet<>();
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, Bloodlines.MODID);

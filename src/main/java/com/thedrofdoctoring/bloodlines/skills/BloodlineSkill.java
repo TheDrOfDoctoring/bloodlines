@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 
 public class BloodlineSkill <T extends IFactionPlayer<T>> extends VampirismSkill<T> implements IBloodlineSkill, ISkill<T> {
     private final ResourceLocation bloodlineId;
-    private Component desc;
     private final int cost;
     private final IBloodline bloodline;
     private final boolean hasCost;

@@ -10,13 +10,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class BloodlineUnlocker implements TaskUnlocker {
-    public static final MapCodec<BloodlineUnlocker> CODEC = RecordCodecBuilder.mapCodec(inst -> {
-        return inst.group(
-                Codec.INT.fieldOf("bloodLineLevel").forGetter(i -> i.bloodlineLevel),
-                Codec.STRING.fieldOf("bloodlineId").forGetter(i -> i.id),
-                Codec.BOOL.fieldOf("matchExactly").forGetter(i -> i.matchExactly)
-        ).apply(inst, BloodlineUnlocker::new);
-    });
+    public static final MapCodec<BloodlineUnlocker> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            Codec.INT.fieldOf("bloodLineLevel").forGetter(i -> i.bloodlineLevel),
+            Codec.STRING.fieldOf("bloodlineId").forGetter(i -> i.id),
+            Codec.BOOL.fieldOf("matchExactly").forGetter(i -> i.matchExactly)
+    ).apply(inst, BloodlineUnlocker::new));
 
     private final int bloodlineLevel;
     private final String id;

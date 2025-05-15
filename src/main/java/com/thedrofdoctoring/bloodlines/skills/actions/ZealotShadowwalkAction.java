@@ -37,6 +37,7 @@ public class ZealotShadowwalkAction extends DefaultVampireAction {
 
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean activate(@NotNull IVampirePlayer vampire, ActivationContext context) {
         Player player = vampire.asEntity();
 

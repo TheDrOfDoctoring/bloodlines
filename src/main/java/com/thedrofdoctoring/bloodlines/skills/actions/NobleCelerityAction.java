@@ -21,6 +21,7 @@ public class NobleCelerityAction extends DefaultVampireAction implements ILastin
 
     public static final ResourceLocation CELERITY_SPEED_LOCATION = Bloodlines.rl("noble_celerity_speed");
     public static final ResourceLocation CELERITY_STEP_LOCATION = Bloodlines.rl("noble_celerity_step");
+    @SuppressWarnings("ConstantConditions")
     public boolean activate(@NotNull IVampirePlayer vampire, IAction.ActivationContext context) {
         Player player = vampire.asEntity();
         BloodlineManager.removeModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), CELERITY_SPEED_LOCATION);
@@ -53,7 +54,7 @@ public class NobleCelerityAction extends DefaultVampireAction implements ILastin
 
     public void onActivatedClient(IVampirePlayer vampire) {
     }
-
+    @SuppressWarnings("ConstantConditions")
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
         BloodlineManager.removeModifier(vampire.asEntity().getAttribute(Attributes.MOVEMENT_SPEED), CELERITY_SPEED_LOCATION);
         BloodlineManager.removeModifier(vampire.asEntity().getAttribute(Attributes.STEP_HEIGHT), CELERITY_STEP_LOCATION);

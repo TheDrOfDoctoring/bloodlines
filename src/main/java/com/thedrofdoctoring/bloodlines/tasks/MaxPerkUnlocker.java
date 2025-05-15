@@ -5,24 +5,19 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineSkillHandler;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.task.TaskUnlocker;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-
+@SuppressWarnings("unused")
 public record MaxPerkUnlocker(int maxPerkPoints, ResourceLocation taskName) implements TaskUnlocker {
 
 
-    public static final MapCodec<MaxPerkUnlocker> CODEC = RecordCodecBuilder.mapCodec(inst -> {
-        return inst.group(
-                Codec.INT.fieldOf("maxPerkPoints").forGetter(i -> i.maxPerkPoints),
-                ResourceLocation.CODEC.fieldOf("taskName").forGetter(t -> t.taskName)
-        ).apply(inst, MaxPerkUnlocker::new);
-    });
+    public static final MapCodec<MaxPerkUnlocker> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            Codec.INT.fieldOf("maxPerkPoints").forGetter(i -> i.maxPerkPoints),
+            ResourceLocation.CODEC.fieldOf("taskName").forGetter(t -> t.taskName)
+    ).apply(inst, MaxPerkUnlocker::new));
 
     @Override
     public Component getDescription() {

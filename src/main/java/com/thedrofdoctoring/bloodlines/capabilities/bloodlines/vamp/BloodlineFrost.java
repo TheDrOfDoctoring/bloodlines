@@ -4,7 +4,6 @@ import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
-import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import net.minecraft.core.Holder;
@@ -32,9 +31,11 @@ public class BloodlineFrost extends VampireBloodline {
         double speedMul = 1;
         if(entity instanceof Player player) {
             ISkillHandler<IVampirePlayer> skillHandler =  this.getSkillHandler(player);
+            if(skillHandler != null) {
+                speedMul = skillHandler.isSkillEnabled(BloodlineSkills.ECTOTHERM_HYDRODYNAMIC_FORM.get()) ? CommonConfig.ectothermHydrodynamicFormSpeedMultiplier.get() : 1;
+            }
             applyConditionalModifier(attributes, BloodlineSkills.ECTOTHERM_MINING_SPEED_UNDERWATER.get(), Attributes.SUBMERGED_MINING_SPEED, new AttributeModifier(Bloodlines.rl("ectotherm_underwater_mining_speed"), CommonConfig.ectothermUnderwaterMiningSpeedMultiplier.get().get(realRank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), skillHandler, cleanup);
             applyConditionalModifier(attributes, BloodlineSkills.ECTOTHERM_TENTACLES.get(), Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(Bloodlines.rl("ectotherm_tentacles"), CommonConfig.ectothermTentacleInteractionDistance.get(), AttributeModifier.Operation.ADD_VALUE), skillHandler, cleanup);
-            speedMul = skillHandler.isSkillEnabled(BloodlineSkills.ECTOTHERM_HYDRODYNAMIC_FORM.get()) ? CommonConfig.ectothermHydrodynamicFormSpeedMultiplier.get() : 1;
         } else {
             attributes.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(Bloodlines.rl("ectotherm_knockback_resistance"), CommonConfig.ectothermMobAdditionalKnockbackResistance.get().get(realRank), AttributeModifier.Operation.ADD_VALUE));
         }

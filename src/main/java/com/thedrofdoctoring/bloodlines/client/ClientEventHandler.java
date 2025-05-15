@@ -71,7 +71,7 @@ public class ClientEventHandler {
                 event.setFarPlaneDistance(10f);
             }
 
-            if (BloodlineManager.get(mc.player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM.get() && !inWall) {
+            if (!inWall && BloodlineManager.get(mc.player).getBloodline() == BloodlineRegistry.BLOODLINE_ECTOTHERM.get()) {
                 int rank = BloodlineHelper.getBloodlineRank(mc.player) - 1;
                 int viewDist = CommonConfig.ectothermUnderwaterVisionDistance.get().get(rank);
                 if(viewDist > 0) {

@@ -58,8 +58,8 @@ public abstract class SkillHandlerMixin<T extends IFactionPlayer<T>> implements 
     @Inject(method = "enableSkill", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/stats/Stat;)V"), remap = false)
     private void checkBloodlineSkillEnables(@NotNull ISkill<T> skill, boolean fromLoading, CallbackInfo ci) {
         if(skill instanceof IBloodlineSkill blSkill) {
-            BloodlineManager.getOpt(player.getRepresentingPlayer()).ifPresent(bl -> {
-                if (!fromLoading && bl.getBloodline() != null && player.getRepresentingPlayer().tickCount > 1) {
+            BloodlineManager.getOpt(player.asEntity()).ifPresent(bl -> {
+                if (!fromLoading && bl.getBloodline() != null && player.asEntity().tickCount > 1) {
                     bl.updateAttributes(bl.getBloodline());
                     if(blSkill.requiresBloodlineSkillPoints()) {
                         bl.getSkillHandler().setEnabledSkills(bl.getSkillHandler().getEnabledSkills() + 1);
@@ -72,8 +72,8 @@ public abstract class SkillHandlerMixin<T extends IFactionPlayer<T>> implements 
     @Inject(method = "disableSkill", at = @At(value = "INVOKE", target = "Lde/teamlapen/vampirism/api/entity/player/skills/ISkill;onDisable(Lde/teamlapen/vampirism/api/entity/player/IFactionPlayer;)V"), remap = false)
     private void checkBloodlineSkillDisables(@NotNull ISkill<T> skill, CallbackInfo ci) {
         if (skill instanceof IBloodlineSkill blSkill) {
-            BloodlineManager.getOpt(player.getRepresentingPlayer()).ifPresent(bl -> {
-                if (bl.getBloodline() != null && player.getRepresentingPlayer().tickCount > 1) {
+            BloodlineManager.getOpt(player.asEntity()).ifPresent(bl -> {
+                if (bl.getBloodline() != null && player.asEntity().tickCount > 1) {
                     bl.updateAttributes(bl.getBloodline());
                     if(blSkill.requiresBloodlineSkillPoints()) {
                         bl.getSkillHandler().setEnabledSkills(bl.getSkillHandler().getEnabledSkills() - 1);

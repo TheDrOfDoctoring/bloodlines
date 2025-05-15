@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 public class NobleInvisibilityAction extends InvisibilityVampireAction {
     @Override
     public boolean showInSelectAction(Player player) {
-        return !(VampirePlayer.getOpt(player).map(vp -> vp.getSkillHandler().isSkillEnabled(VampireSkills.VAMPIRE_INVISIBILITY.get())).orElse(false));
+        return !(VampirePlayer.get(player).getSkillHandler().isSkillEnabled(VampireSkills.VAMPIRE_INVISIBILITY.get()));
     }
 
     @Override

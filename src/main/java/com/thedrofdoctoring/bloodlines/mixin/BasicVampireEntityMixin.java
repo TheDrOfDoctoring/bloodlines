@@ -2,7 +2,6 @@ package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
-import de.teamlapen.vampirism.entity.ExtendedCreature;
 import de.teamlapen.vampirism.entity.vampire.BasicVampireEntity;
 import de.teamlapen.vampirism.entity.vampire.VampireBaseEntity;
 import net.minecraft.world.entity.EntityType;

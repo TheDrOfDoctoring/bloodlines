@@ -35,7 +35,7 @@ public class SkillNodeScreenMixin {
     //slightly grotesque. will break if the SkillNodeState enum ordinals are changed
     @Inject(method = "drawHover", at = @At(value = "INVOKE", target = "Lde/teamlapen/vampirism/client/gui/screens/skills/SkillNodeScreen;getLockingSkills(Lde/teamlapen/vampirism/entity/player/skills/SkillTreeConfiguration$SkillTreeNodeConfiguration;)Ljava/util/List;"), remap = false, locals = LocalCapture.CAPTURE_FAILSOFT)
     private void addBloodlineHover(GuiGraphics graphics, double mouseX, double mouseY, float fade, int scrollX, int scrollY, CallbackInfo ci, @Coerce Enum<?> state, Holder<ISkill<?>>[] elements, int hoveredSkillIndex, Holder<ISkill<?>> hoveredSkill, int x) {
-        if(hoveredSkill.value() instanceof IBloodlineSkill skill && skill.requiresBloodlineSkillPoints() && state.ordinal() == 0) {
+        if(hoveredSkill.value() instanceof IBloodlineSkill skill && skill.requiresBloodlineSkillPoints() && state.ordinal() == 0 && minecraft.player != null) {
             int remainingPoints = BloodlineManager.get(minecraft.player).getSkillHandler().getRemainingSkillPoints();
             List<Component> text = new ArrayList<>();
             text.add(Component.translatable("text.bloodlines.skills.required_points").withStyle(ChatFormatting.DARK_RED));

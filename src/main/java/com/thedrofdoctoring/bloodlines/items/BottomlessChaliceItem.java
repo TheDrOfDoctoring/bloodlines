@@ -1,7 +1,6 @@
 package com.thedrofdoctoring.bloodlines.items;
 
 import com.thedrofdoctoring.bloodlines.core.BloodlineComponents;
-import com.thedrofdoctoring.bloodlines.core.BloodlinesItems;
 import com.thedrofdoctoring.bloodlines.items.attachments.ChaliceBlood;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.VReference;
@@ -45,11 +44,7 @@ public class BottomlessChaliceItem extends Item {
     public BottomlessChaliceItem(Properties props) {
         super(props);
     }
-    public static @NotNull ItemStack getStackDamage (int damage) {
-        ItemStack stack = new ItemStack(BloodlinesItems.CHALICE_ITEM.get());
-        stack.set(BloodlineComponents.CHALICE_BLOOD, new ChaliceBlood(damage));
-        return stack;
-    }
+
 
     @Override
     public boolean isEnchantable(@NotNull ItemStack stack) {
@@ -57,12 +52,12 @@ public class BottomlessChaliceItem extends Item {
     }
 
     @Override
-    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+    public boolean isBookEnchantable(@NotNull ItemStack stack, @NotNull ItemStack book) {
         return false;
     }
 
     @Override
-    public boolean doesSneakBypassUse(ItemStack stack, @NotNull LevelReader world, @NotNull BlockPos pos, Player player) {
+    public boolean doesSneakBypassUse(@NotNull ItemStack stack, @NotNull LevelReader world, @NotNull BlockPos pos, @NotNull Player player) {
         if (world instanceof Level level) {
             return level.getCapability(Capabilities.FluidHandler.BLOCK, pos, null) != null;
         }
@@ -87,7 +82,7 @@ public class BottomlessChaliceItem extends Item {
 
 
     @Override
-    public int getUseDuration(ItemStack pStack, LivingEntity p_344979_) {
+    public int getUseDuration(@NotNull ItemStack pStack, @NotNull LivingEntity entity) {
         return 15;
     }
 
@@ -97,12 +92,12 @@ public class BottomlessChaliceItem extends Item {
         return UseAnim.DRINK;
     }
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltips, @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltips, flag);
         Player player = ClientProxy.get().getClientPlayer();
         int blood = stack.getOrDefault(BloodlineComponents.CHALICE_BLOOD.get(), ChaliceBlood.EMPTY).blood();
         if (player != null && Helper.isVampire(player)) {
-            if (!VampirePlayer.getOpt(player).map(vp -> vp.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())).orElse(false)) {
+            if (!VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())) {
                 tooltips.add(Component.translatable("text.bloodlines.chalice").withStyle(ChatFormatting.DARK_PURPLE));
             } else {
                 tooltips.add(Component.translatable("text.bloodlines.chalice_blood", blood * MULTIPLIER).withStyle(ChatFormatting.DARK_RED));
@@ -134,13 +129,13 @@ public class BottomlessChaliceItem extends Item {
         }
         ItemStack copy = stack.copy();
         int blood = BloodHelper.getBlood(stack);
-        VampirePlayer vampire = VampirePlayer.getOpt((Player) pLivingEntity).orElse(null);
-        if (vampire == null || vampire.getLevel() == 0 || blood == 0 || !vampire.getBloodStats().needsBlood()) {
+        VampirePlayer vampire = VampirePlayer.get((Player) pLivingEntity);
+        if ( vampire.getLevel() == 0 || blood == 0 || !vampire.getBloodStats().needsBlood()) {
             pLivingEntity.releaseUsingItem();
             return;
         }
         if (!vampire.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())) {
-            pLivingEntity.releaseUsingItem();;
+            pLivingEntity.releaseUsingItem();
             return;
         }
 
@@ -162,17 +157,16 @@ public class BottomlessChaliceItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(@NotNull Level worldIn, @NotNull Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
-        return VampirePlayer.getOpt(playerIn).map(vampire -> {
-            if (vampire.getLevel() == 0) return new InteractionResultHolder<>(InteractionResult.PASS, stack);
-            if (!vampire.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())) return new InteractionResultHolder<>(InteractionResult.PASS, stack);
-            if (vampire.getBloodStats().needsBlood() && stack.getCount() == 1 && BloodHelper.getBlood(stack) != 0) {
-                playerIn.startUsingItem(handIn);
-                return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
-            } else if (BloodHelper.getBlood(stack) == 0) {
-                playerIn.displayClientMessage(Component.translatable("text.bloodlines.chalice_out_of_blood"), true);
-            }
-            return new InteractionResultHolder<>(InteractionResult.PASS, stack);
-        }).orElse(new InteractionResultHolder<>(InteractionResult.PASS, stack));
+        VampirePlayer vampire = VampirePlayer.get(playerIn);
+        if (vampire.getLevel() == 0) return new InteractionResultHolder<>(InteractionResult.PASS, stack);
+        if (!vampire.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())) return new InteractionResultHolder<>(InteractionResult.PASS, stack);
+        if (vampire.getBloodStats().needsBlood() && stack.getCount() == 1 && BloodHelper.getBlood(stack) != 0) {
+            playerIn.startUsingItem(handIn);
+            return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
+        } else if (BloodHelper.getBlood(stack) == 0) {
+            playerIn.displayClientMessage(Component.translatable("text.bloodlines.chalice_out_of_blood"), true);
+        }
+        return new InteractionResultHolder<>(InteractionResult.PASS, stack);
     }
 
     @Override

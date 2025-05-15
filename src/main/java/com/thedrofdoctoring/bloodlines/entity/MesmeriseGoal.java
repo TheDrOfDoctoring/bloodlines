@@ -13,7 +13,6 @@ import java.util.EnumSet;
 
 //cant really extend TemptGoal annoyingly
 public class MesmeriseGoal extends Goal {
-    private boolean isRunning;
     private static final TargetingConditions TEMP_TARGETING = TargetingConditions.forNonCombat().range(15.0D).ignoreLineOfSight();
     private final TargetingConditions targetingConditions;
     protected final PathfinderMob mob;
@@ -30,8 +29,8 @@ public class MesmeriseGoal extends Goal {
     }
     private boolean shouldFollow(LivingEntity mob) {
         //not too bad i would hope
-        if(mob instanceof Player player && Helper.isVampire(mob)) {
-            IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) VampirePlayer.get(player).getSpecialAttributes();
+        if(mob instanceof Player p && Helper.isVampire(mob)) {
+            IVampSpecialAttributes specialAttributes = (IVampSpecialAttributes) VampirePlayer.get(p).getSpecialAttributes();
             return specialAttributes.bloodlines$getMesmerise();
         }
         return false;
@@ -68,13 +67,11 @@ public class MesmeriseGoal extends Goal {
         this.px = this.player.getX();
         this.py = this.player.getY();
         this.pz = this.player.getZ();
-        this.isRunning = true;
     }
 
     public void stop() {
         this.player = null;
         this.mob.getNavigation().stop();
-        this.isRunning = false;
     }
 
     public void tick() {

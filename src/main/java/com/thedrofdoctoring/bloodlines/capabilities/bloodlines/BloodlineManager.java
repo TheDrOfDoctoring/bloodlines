@@ -198,7 +198,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         }
         return null;
     }
-
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void updateAttributes(IBloodline oldBloodline) {
         if (oldBloodline != null && oldBloodline != bloodline && !player.getCommandSenderWorld().isClientSide) {

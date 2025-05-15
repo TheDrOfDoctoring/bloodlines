@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public class ZealotFrenzyAction extends DefaultVampireAction implements ILastingAction<IVampirePlayer> {
 
     private static final ResourceLocation FRENZY_MINING_LOCATION = Bloodlines.rl("zealot_frenzy_mining_speed");
-
+    @SuppressWarnings("ConstantConditions")
     public boolean activate(@NotNull IVampirePlayer vampire, IAction.ActivationContext context) {
         Player player = vampire.asEntity();
         BloodlineManager.removeModifier(player.getAttribute(Attributes.BLOCK_BREAK_SPEED), FRENZY_MINING_LOCATION);
@@ -46,11 +46,11 @@ public class ZealotFrenzyAction extends DefaultVampireAction implements ILasting
 
     public void onActivatedClient(IVampirePlayer vampire) {
     }
-
+    @SuppressWarnings("ConstantConditions")
     public void onDeactivated(@NotNull IVampirePlayer vampire) {
         BloodlineManager.removeModifier(vampire.asEntity().getAttribute(Attributes.BLOCK_BREAK_SPEED), FRENZY_MINING_LOCATION);
     }
-
+    @SuppressWarnings("ConstantConditions")
     public void onReActivated(IVampirePlayer vampire) {
         Player player = vampire.asEntity();
         BloodlineManager.removeModifier(player.getAttribute(Attributes.BLOCK_BREAK_SPEED), FRENZY_MINING_LOCATION);
