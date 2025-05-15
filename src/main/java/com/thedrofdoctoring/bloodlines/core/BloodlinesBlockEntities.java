@@ -1,11 +1,8 @@
 package com.thedrofdoctoring.bloodlines.core;
 
-import com.mojang.datafixers.types.Type;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.blocks.entities.ZealotAltarBlockEntity;
-import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;

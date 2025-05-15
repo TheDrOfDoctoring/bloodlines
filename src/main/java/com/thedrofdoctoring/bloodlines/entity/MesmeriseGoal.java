@@ -56,8 +56,8 @@ public class MesmeriseGoal extends Goal {
                 this.pz = this.player.getZ();
             }
 
-            this.pRotX = (double)this.player.getXRot();
-            this.pRotY = (double)this.player.getYRot();
+            this.pRotX = this.player.getXRot();
+            this.pRotY = this.player.getYRot();
 
         return this.canUse();
     }

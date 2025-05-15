@@ -44,9 +44,6 @@ public class BloodlineSkillHandler  {
         return this.enabledSkills;
     }
 
-    public int getSkillPoints() {
-        return this.skillPoints;
-    }
     public void clearSkillPoints() {
         this.skillPoints = 0;
         this.rewardMap.clear();
