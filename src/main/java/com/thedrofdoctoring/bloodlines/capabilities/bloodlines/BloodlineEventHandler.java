@@ -149,7 +149,7 @@ public class BloodlineEventHandler {
                         event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue());
                     }
                     else if(event.getBloodSource().getEntity().isPresent() && vp.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_BETTER_BLOOD_DRAIN.get())) {
-                        event.setAmount((int) (event.getAmount() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue()));
+                        event.setAmount((int) (event.getAmount() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue()));
                         event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue());
                     }
                 }
