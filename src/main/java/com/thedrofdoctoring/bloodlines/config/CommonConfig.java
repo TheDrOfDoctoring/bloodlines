@@ -329,7 +329,7 @@ public class CommonConfig {
         ectothermColdBiomeIncreasedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is increased in cold biomes").defineInRange("ectothermColdBiomeIncreasedMovementSpeedRank", 4, 0, 5);
         ectothermLordOfFrostDuration = COMMON_BUILDER.comment("Lord of Frost action duration at each BL Rank, in seconds").defineList("ectothermFrostDuration", Arrays.asList(15, 30, 60, 120), t -> t instanceof Integer);
         ectothermLordOfFrostMultiplier = COMMON_BUILDER.comment("Duration multiplier for Lord of Frost with requisite skill").defineInRange("ectothermLordOfFrostMultiplier", 2d, 0, 5.0d);
-        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
+        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("Damage multipliers for Ectotherms under the Lord of Frost action").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), t -> t instanceof Double);
         ectothermLordofFrostIncreasedDamageRank = COMMON_BUILDER.comment("Rank at which lord of frost damage is increased").defineInRange("ectothermLordofFrostIncreasedDamageRank", 3, 0, 5);
         ectothermUnderwaterDurationIncrease = COMMON_BUILDER.comment("Increase to duration for actions every 10 ticks whilst underwater with requisite skill").defineInRange("ectothermUnderwaterDurationIncrease", 5, 0, 1000);
         ectothermInkSplashCooldown = COMMON_BUILDER.comment("Cooldown for ink splash action in seconds").defineInRange("ectothermInkSplashCooldown", 60, 0, 1000);

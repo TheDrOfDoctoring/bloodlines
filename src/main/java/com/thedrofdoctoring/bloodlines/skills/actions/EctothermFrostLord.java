@@ -33,8 +33,8 @@ public class EctothermFrostLord extends DefaultVampireAction implements ILasting
         BloodlineManager.removeModifier(vamp.asEntity().getAttribute(Attributes.ATTACK_DAMAGE), damage);
         int rank = BloodlineManager.get(vamp.asEntity()).getRank() - 1;
         if(rank + 1 >= CommonConfig.ectothermLordofFrostIncreasedDamageRank.get()) {
-            vamp.asEntity().getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(new AttributeModifier(damage, CommonConfig.ectothermLordOfFrostDamageMultiplier.get().get(rank), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-        }
+            double damageMult = CommonConfig.ectothermLordOfFrostDamageMultiplier.get().get(rank) - 1;
+            vamp.asEntity().getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(new AttributeModifier(damage, damageMult, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));        }
     }
 
 
