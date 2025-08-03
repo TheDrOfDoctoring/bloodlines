@@ -184,6 +184,8 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue bloodknightHiddenStrikeWeaknessDurationPlayer;
     public static final ModConfigSpec.IntValue bloodknightHiddenStrikeWeaknessDurationMob;
     public static final ModConfigSpec.IntValue bloodknightHiddenStrikeSlownessDurationMob;
+    public static final ModConfigSpec.BooleanValue bloodknightStillWaterProvideBuff;
+
 
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
@@ -401,6 +403,8 @@ public class CommonConfig {
         bloodknightHiddenStrikeSlownessDurationMob = COMMON_BUILDER.comment("Duration of Hidden Strike slowness on mobs, in ticks").defineInRange("bloodknightHiddenStrikeSlownessDurationMob", 500, 0, 100000);
         bloodknightHiddenStrikeWeaknessDurationPlayer = COMMON_BUILDER.comment("Duration of Hidden Strike weakness on players, in ticks").defineInRange("bloodknightHiddenStrikeWeaknessDurationPlayer", 200, 0, 100000);
         bloodknightHiddenStrikeSlownessDurationPlayer = COMMON_BUILDER.comment("Duration of Hidden Strike slowness on players, in ticks").defineInRange("bloodknightHiddenStrikeSlownessDurationPlayer", 300, 0, 100000);
+        bloodknightStillWaterProvideBuff = COMMON_BUILDER.comment("Drinking Vampire Blood bottles with Still Blood also provides the same benefits as drinking blood directly from vampires").define("bloodknightStillWaterProvideBuff", false);
+
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();
