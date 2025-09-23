@@ -39,7 +39,7 @@ public class BloodlineEntityRenderManager implements ResourceManagerReloadListen
         bloodlineToTextures.clear();
         // Using resource manager param doesn't work, for some reason. Oh well.
         ResourceManager manager = mc.getResourceManager();
-        ResourceLocation[] textureJsons = manager.listResources("models/entities/bloodlines", s -> s.getPath().endsWith(".json")).keySet().toArray(ResourceLocation[]::new);
+        ResourceLocation[] textureJsons = manager.listResources("entities/bloodlines", s -> s.getPath().endsWith(".json")).keySet().toArray(ResourceLocation[]::new);
         ArrayList<JsonObject> jsonObjects = new ArrayList<>();
         for(ResourceLocation location : textureJsons) {
             Optional<Resource> resource = manager.getResource(location);
