@@ -4,7 +4,7 @@
     {
       "condition": "bloodlines:match_weapon",
       "weapon_predicate": {
-        "items": "#bloodlines:heart_seeker_striker"
+        "items": "#bloodlines:vampire_sample_obtaining_weapons"
       }
     },
     {

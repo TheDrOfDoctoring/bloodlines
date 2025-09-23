@@ -1,6 +1,16 @@
 package com.thedrofdoctoring.bloodlines.skills.actions;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.skills.actions.hunter.gravebound.*;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.bloodknight.*;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.ectotherm.EctothermDolphinLeap;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.ectotherm.EctothermFrostLord;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.ectotherm.EctothermInkSplash;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.noble.*;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.zealot.ZealotDarkCloakAction;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.zealot.ZealotFrenzyAction;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.zealot.ZealotShadowwalkAction;
+import com.thedrofdoctoring.bloodlines.skills.actions.vampire.zealot.ZealotWallClimbAction;
 import de.teamlapen.vampirism.api.VampirismRegistries;
 import de.teamlapen.vampirism.api.entity.player.actions.IAction;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -9,6 +19,20 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class BloodlineActions {
 
     public static final DeferredRegister<IAction<?>> ACTIONS = DeferredRegister.create(VampirismRegistries.Keys.ACTION, Bloodlines.MODID);
+
+    public static final DeferredHolder<IAction<?>, GraveboundDevourSoulAction> GRAVEBOUND_DEVOUR_SOUL = ACTIONS.register("gravebound_devour_soul_action", GraveboundDevourSoulAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundSoulInfusionAction> GRAVEBOUND_SOUL_INFUSION = ACTIONS.register("gravebound_soul_infusion_action", GraveboundSoulInfusionAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundLingeringDevourAction> GRAVEBOUND_LINGERING_DEVOUR = ACTIONS.register("gravebound_lingering_devour", GraveboundLingeringDevourAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundSoulClaimingAction> GRAVEBOUND_SOUL_CLAIMING = ACTIONS.register("gravebound_soul_claiming", GraveboundSoulClaimingAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundCritStrikeAction> GRAVEBOUND_SORCEROUS_STRIKE = ACTIONS.register("gravebound_crit_action", GraveboundCritStrikeAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundMistFormAction> GRAVEBOUND_MIST_FORM = ACTIONS.register("gravebound_mist_form_action", GraveboundMistFormAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundForceEndMistFormAction> GRAVEBOUND_END_FORM_ACTION = ACTIONS.register("gravebound_end_mist_form_action", GraveboundForceEndMistFormAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundPhylacteryTeleportAction> GRAVEBOUND_PHYLACTERY_TELEPORT_ACTION = ACTIONS.register("gravebound_phylactery_teleport_action", GraveboundPhylacteryTeleportAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundGhostWalkAction> GRAVEBOUND_GHOST_WALK_ACTION = ACTIONS.register("gravebound_ghost_walk_action", GraveboundGhostWalkAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundSoulTransferPhylacteryAction> GRAVEBOUND_SOUL_PHYLACTERY_ACTION = ACTIONS.register("gravebound_phylactery_soul_transfer_action", GraveboundSoulTransferPhylacteryAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundPossessionAction> GRAVEBOUND_POSSESSION_ACTION = ACTIONS.register("gravebound_possession_action", GraveboundPossessionAction::new);
+    public static final DeferredHolder<IAction<?>, GraveboundPossessionSwapAction> GRAVEBOUND_POSSESSION_SWAP_ACTION = ACTIONS.register("gravebound_possession_swap_action", GraveboundPossessionSwapAction::new);
+
 
     public static final DeferredHolder<IAction<?>, NobleCelerityAction> NOBLE_CELERITY_ACTION = ACTIONS.register("noble_celerity_action", NobleCelerityAction::new);
     public static final DeferredHolder<IAction<?>, NobleMesmeriseAction> NOBLE_MESMERISE_ACTION = ACTIONS.register("noble_mesmerise_action", NobleMesmeriseAction::new);

@@ -26,7 +26,7 @@ public record  BloodlinePerkReward(int perkPoints, ResourceLocation source) impl
     public void applyReward(IFactionPlayer<?> p) {
         p.getTaskManager().resetUniqueTask(ResourceKey.create(VampirismRegistries.Keys.TASK, source));
         BloodlineManager.getOpt(p.asEntity()).ifPresent(bl -> {
-                bl.getSkillHandler().addSkillPoints(source, perkPoints);
+                bl.getSkillHandler().addSkillPoints(perkPoints, true);
                 bl.sync(false);
         });
     }

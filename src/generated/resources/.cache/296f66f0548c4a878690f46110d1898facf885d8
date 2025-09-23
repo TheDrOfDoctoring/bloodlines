@@ -1,0 +1,6 @@
+// 1.21.1	2025-08-03T15:20:52.704019	Tags for minecraft:damage_type mod id bloodlines
+eae95c555182718cd9bd893114dcab578f7469ae data/bloodlines/tags/damage_type/gravebound_vulnerable.json
+a57d30728eb37734daf083d6044435c932d4dfb3 data/minecraft/tags/damage_type/bypasses_armor.json
+a57d30728eb37734daf083d6044435c932d4dfb3 data/minecraft/tags/damage_type/bypasses_effects.json
+a57d30728eb37734daf083d6044435c932d4dfb3 data/minecraft/tags/damage_type/bypasses_resistance.json
+a57d30728eb37734daf083d6044435c932d4dfb3 data/minecraft/tags/damage_type/no_knockback.json

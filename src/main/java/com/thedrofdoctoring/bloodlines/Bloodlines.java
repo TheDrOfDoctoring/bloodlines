@@ -5,11 +5,13 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.capabilities.other.VampExtendedCreature;
 import com.thedrofdoctoring.bloodlines.commands.BloodlineCommands;
+import com.thedrofdoctoring.bloodlines.compat.guide.BloodlinesGuideBook;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.config.HunterBloodlinesConfig;
 import com.thedrofdoctoring.bloodlines.core.*;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.data.*;
+import com.thedrofdoctoring.bloodlines.data.datamaps.BloodlinesDataMaps;
 import com.thedrofdoctoring.bloodlines.data.loot.BloodlinesLoot;
 import com.thedrofdoctoring.bloodlines.data.loot.BloodlinesLootModifiersProvider;
 import com.thedrofdoctoring.bloodlines.data.loot.BloodlinesLootProvider;
@@ -17,10 +19,7 @@ import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistrib
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceFluidHandler;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
-import com.thedrofdoctoring.bloodlines.networking.ClientPayloadHandler;
-import com.thedrofdoctoring.bloodlines.networking.ClientboundLeapPacket;
 import com.thedrofdoctoring.bloodlines.networking.ServerPayloadHandler;
-import com.thedrofdoctoring.bloodlines.networking.ServerboundIcePacket;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkillType;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
@@ -34,6 +33,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -46,10 +46,9 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
+import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import org.slf4j.Logger;
 
 import java.util.Set;
@@ -58,6 +57,7 @@ import java.util.concurrent.CompletableFuture;
 @Mod(Bloodlines.MODID)
 public class Bloodlines {
     public static final String MODID = "bloodlines";
+    public static boolean onServer = true;
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Bloodlines(IEventBus modEventBus, ModContainer container) {
@@ -68,29 +68,37 @@ public class Bloodlines {
         modEventBus.addListener(this::enqueueIMC);
         modEventBus.addListener(this::gatherData);
         modEventBus.addListener(this::registerCapabilities);
-        modEventBus.addListener(this::registerPayloads);
         modEventBus.addListener(this::registerRegistries);
         modEventBus.addListener(this::registerDatapackRegistries);
+        modEventBus.addListener(this::registerDataMapTypes);
+
+
+        modEventBus.addListener(ServerPayloadHandler::registerPayloads);
 
         BloodlineRegistry.BLOODLINES.register(modEventBus);
         BloodlineCommands.COMMAND_ARGUMENT_TYPES.register(modEventBus);
         BloodlinesItems.register(modEventBus);
         BloodlinesBlocks.BLOCKS.register(modEventBus);
         BloodlineSkills.SKILLS.register(modEventBus);
-        BloodlineEntities.ENTITY_SUB_PREDICATES.register(modEventBus);
+        BloodlinesEntities.ENTITY_SUB_PREDICATES.register(modEventBus);
         BloodlineActions.ACTIONS.register(modEventBus);
-        BloodlineAttachments.ATTACHMENT_TYPES.register(modEventBus);
+        BloodlinesAttachments.ATTACHMENT_TYPES.register(modEventBus);
         BloodlineTasks.TASK_REWARDS.register(modEventBus);
         BloodlineTasks.TASK_UNLOCKER.register(modEventBus);
-        BloodlineComponents.DATA_COMPONENTS.register(modEventBus);
+        BloodlinesComponents.DATA_COMPONENTS.register(modEventBus);
         BloodlineTasks.TASK_REWARD_INSTANCES.register(modEventBus);
         BloodlinesLoot.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
         BloodlinesLoot.LOOT_CONDITION_TYPES.register(modEventBus);
         BloodlinesEffects.EFFECTS.register(modEventBus);
         BloodlinesBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
+        BloodlinesEntities.ENTITY_TYPES.register(modEventBus);
+        BloodlinesStats.CUSTOM_STAT.register(modEventBus);
         BloodlineStructures.STRUCTURE_TYPES.register(modEventBus);
         BloodlineStructures.STRUCTURE_PIECES.register(modEventBus);
 
+        if(ModList.get().isLoaded("guideapi_vp")) {
+            NeoForge.EVENT_BUS.addListener(BloodlinesGuideBook::createCategoriesEvent);
+        }
 
         NeoForge.EVENT_BUS.addListener(this::onCommandsRegister);
     }
@@ -108,20 +116,8 @@ public class Bloodlines {
         event.dataPackRegistry(BloodlinesData.BLOODLINE_RANK_DISTRIBUTION, BloodlineRankDistribution.CODEC.codec(), null);
 
     }
-
-    public void registerPayloads(final RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar("1.0.0");
-        registrar.playToServer(
-                ServerboundIcePacket.TYPE,
-                ServerboundIcePacket.CODEC,
-                ServerPayloadHandler::handleIcePacket
-        );
-        registrar.playToClient(
-                ClientboundLeapPacket.TYPE,
-                ClientboundLeapPacket.CODEC,
-                ClientPayloadHandler::handleLeapPacket
-        );
-
+    public void registerDataMapTypes(final RegisterDataMapTypesEvent event) {
+        event.register(BloodlinesDataMaps.ENTITY_SOULS);
     }
 
     public void gatherData(GatherDataEvent event) {
@@ -137,7 +133,7 @@ public class Bloodlines {
         BloodlinesTagsProviders.register(generator, event, packOutput, lookupProvider, existingFileHelper);
 
         generator.addProvider(event.includeServer(), new BloodlineSkillTreeProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new BloodlinesDataMaps(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new BloodlinesDataMapsProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new BloodlinesRecipeProviders(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), BloodlinesLootProvider.getProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new BloodlinesLootModifiersProvider(packOutput, lookupProvider));
@@ -158,9 +154,9 @@ public class Bloodlines {
     }
     @SuppressWarnings("unchecked, rawtypes")
     private void enqueueIMC(final InterModEnqueueEvent event) {
-        HelperRegistry.registerSyncablePlayerCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MANAGER.get(), BloodlineManager.class);
-        HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlineAttachments.BLOODLINE_MOB_MANAGER.get(), BloodlineMobManager.class);
-        HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlineAttachments.VAMP_EXTENDED_CREATURE.get(), VampExtendedCreature.class);
+        HelperRegistry.registerSyncablePlayerCapability((AttachmentType) BloodlinesAttachments.BLOODLINE_MANAGER.get(), BloodlineManager.class);
+        HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlinesAttachments.BLOODLINE_MOB_MANAGER.get(), BloodlineMobManager.class);
+        HelperRegistry.registerSyncableEntityCapability((AttachmentType) BloodlinesAttachments.VAMP_EXTENDED_CREATURE.get(), VampExtendedCreature.class);
 
     }
 

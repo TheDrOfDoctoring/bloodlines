@@ -11,44 +11,22 @@
         "id": "vampirism:advanced_vampire"
       },
       {
-        "type": "vampirism:item",
+        "type": "vampirism:stat",
+        "amount": 35,
         "description": {
-          "translate": "item.vampirism.human_heart"
+          "translate": "stat.bloodlines.creatures_souls_devoured"
         },
-        "id": "vampirism:human_heart",
-        "item": {
-          "count": 8,
-          "id": "vampirism:human_heart"
-        }
+        "id": "bloodlines:creatures_souls_devoured",
+        "stat": "bloodlines:creatures_souls_devoured"
       },
       {
         "type": "vampirism:entity",
-        "amount": 20,
+        "amount": 3,
         "description": {
-          "translate": "entity.vampirism.hunter"
+          "translate": "entity.vampirism.vampire_baron"
         },
-        "entityType": "vampirism:hunter",
-        "id": "vampirism:hunter"
-      },
-      {
-        "type": "vampirism:item",
-        "description": {
-          "translate": "item.vampirism.vampire_blood_bottle"
-        },
-        "id": "vampirism:vampire_blood_bottle",
-        "item": {
-          "count": 8,
-          "id": "vampirism:vampire_blood_bottle"
-        }
-      },
-      {
-        "type": "vampirism:entity",
-        "amount": 20,
-        "description": {
-          "translate": "entity.minecraft.villager"
-        },
-        "entityType": "minecraft:villager",
-        "id": "minecraft:villager"
+        "entityType": "vampirism:vampire_baron",
+        "id": "vampirism:vampire_baron"
       }
     ]
   },
@@ -66,6 +44,11 @@
       "bloodLineLevel": 1,
       "bloodlineId": "bloodlines:gravebound",
       "matchExactly": false
+    },
+    {
+      "type": "bloodlines:max_perk_unlocker",
+      "maxPerkPoints": 0,
+      "minPerkPoints": 5
     }
   ]
 }

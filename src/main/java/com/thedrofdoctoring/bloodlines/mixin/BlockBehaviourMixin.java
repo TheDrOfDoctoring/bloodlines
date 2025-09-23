@@ -1,20 +1,21 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
-import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlinesPlayerAttributes;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesTagsProviders;
-import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
-import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,6 +24,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockBehaviour.BlockStateBase.class)
 public abstract class BlockBehaviourMixin {
+    @Shadow public abstract Block getBlock();
+
     @Unique
     public final VoxelShape bloodlines$voxelShape = Shapes.empty();
 
@@ -32,27 +35,33 @@ public abstract class BlockBehaviourMixin {
             return;
         }
         Entity entity = ((EntityCollisionContext) con).getEntity();
-        if(!(entity instanceof Player) || !Helper.isVampire(entity)) {
+        if(!(entity instanceof Player player)) {
             return;
         }
 
-        VampirePlayer vp = VampirePlayer.get((Player) entity);
-        IVampSpecialAttributes specialAttributes = ((IVampSpecialAttributes)vp.getSpecialAttributes());
-        if (getter.getBlockState(pos).is(BloodlinesTagsProviders.BloodlinesBlockTagProvider.ECTOTHERM_ICE) && specialAttributes.bloodlines$getIcePhasing()) {
+        BloodlinesPlayerAttributes atts = BloodlinesPlayerAttributes.get(player);
+        BlockState state = getter.getBlockState(pos);
+        boolean canGhostwalk = atts.getGraveboundData().ghostWalk && !state.is(BloodlinesTagsProviders.BloodlinesBlockTagProvider.GHOSTWALK_BLACKLIST);
+        boolean canIcePhase = atts.getEctothermAtts().icePhasing && state.is(BloodlinesTagsProviders.BloodlinesBlockTagProvider.ECTOTHERM_ICE);
 
-            if(!bloodlines$isAbove(entity, Shapes.block(), pos) || entity.isDescending()) {
-                specialAttributes.bloodlines$setInWall(true);
-                cir.setReturnValue(bloodlines$voxelShape);
+        atts.inWall = false;
+        if (canGhostwalk || canIcePhase) {
+
+
+            if(state.isSolidRender(getter, pos)) {
+                if(!bloodlines$isAbove(entity, Shapes.block(), pos) || entity.isDescending()) {
+                    atts.inWall = true;
+                    cir.setReturnValue(bloodlines$voxelShape);
+                }
             }
+
             if(entity.getDeltaMovement().y > 0.1 && !entity.isDescending() && !bloodlines$isAbove(entity, Shapes.block(), pos)) {
-                specialAttributes.bloodlines$setInWall(true);
-                if(entity.isInWater()) {
+                atts.inWall = true;
+                if(entity.isInWater() && atts.getEctothermAtts().icePhasing) {
                     entity.setDeltaMovement(entity.getDeltaMovement().x, 0.5f, entity.getDeltaMovement().z);
                 }
             }
             entity.resetFallDistance();
-        } else {
-            specialAttributes.bloodlines$setInWall(false);
         }
     }
     @Unique

@@ -80,6 +80,7 @@ public class BloodlinesSpawnModifiers {
                 )
 
         );
+        // In Vampirism, vampires cannot typically spawn in "underground biomes", so the tags here are effectively pointless, only the below depth weight bonus matters.
         context.register(
                 BLOODLINE_ZEALOT_SPAWN_MODIFIER,
                 new BloodlineSpawnModifier(
@@ -90,7 +91,7 @@ public class BloodlinesSpawnModifiers {
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), -50),
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.HAS_ANCIENT_CITY), 100)
                         ),
-                        Pair.of(40, 250)
+                        Pair.of(40, 500)
                 )
 
         );

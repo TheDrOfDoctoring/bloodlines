@@ -5,6 +5,32 @@
         {
           "children": [
             {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "node": "bloodlines:gravebound_gravebound_passive_soul_claiming"
+                    }
+                  ],
+                  "node": "bloodlines:gravebound_soul_claiming"
+                }
+              ],
+              "node": "bloodlines:gravebound_lingering_devour"
+            },
+            {
+              "node": "bloodlines:gravebound_powerful_devour"
+            }
+          ],
+          "node": "bloodlines:gravebound_regen_devour"
+        }
+      ],
+      "node": "bloodlines:gravebound_soul_infusion"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
               "node": "bloodlines:gravebound_rank_4"
             }
           ],
@@ -12,8 +38,58 @@
         }
       ],
       "node": "bloodlines:gravebound_rank_2"
+    },
+    {
+      "children": [
+        {
+          "node": "bloodlines:gravebound_poison_healing"
+        },
+        {
+          "children": [
+            {
+              "node": "bloodlines:gravebound_soul_transfer_phylactery"
+            },
+            {
+              "children": [
+                {
+                  "node": "bloodlines:gravebound_ghost_walk"
+                }
+              ],
+              "node": "bloodlines:gravebound_phylactery_teleport"
+            }
+          ],
+          "node": "bloodlines:gravebound_soul_transfer"
+        }
+      ],
+      "node": "bloodlines:gravebound_poison_immunity"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "node": "bloodlines:gravebound_gravebound_possession_swap_action"
+                }
+              ],
+              "node": "bloodlines:gravebound_gravebound_possession_action"
+            },
+            {
+              "children": [
+                {
+                  "node": "bloodlines:gravebound_faster_resurrection"
+                }
+              ],
+              "node": "bloodlines:gravebound_cheaper_resurrection"
+            }
+          ],
+          "node": "bloodlines:gravebound_gravebound_undead_lord"
+        }
+      ],
+      "node": "bloodlines:gravebound_soul_speed"
     }
   ],
-  "node": "bloodlines:gravebound_rank_2",
+  "node": "bloodlines:gravebound_root",
   "skill_tree": "bloodlines:hunter/gravebound"
 }

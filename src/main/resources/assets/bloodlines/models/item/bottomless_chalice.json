@@ -4,8 +4,29 @@
     "layer0": "bloodlines:item/bottomless_chalice"
   },
   "overrides": [
-    { "predicate": { "custom_model_data": 1 }, "model": "bloodlines:item/bottomless_chalice_some_blood" },
-    { "predicate": { "custom_model_data": 2 }, "model": "bloodlines:item/bottomless_chalice_more_blood" },
-    { "predicate": { "custom_model_data": 3 }, "model": "bloodlines:item/bottomless_chalice_most_blood" }
+    {
+      "model": "bloodlines:item/bottomless_chalice",
+      "predicate": {
+        "bloodlines:chalice_blood": 0.0
+      }
+    },
+    {
+      "model": "bloodlines:item/bottomless_chalice_some_blood",
+      "predicate": {
+        "bloodlines:chalice_blood": 0.015
+      }
+    },
+    {
+      "model": "bloodlines:item/bottomless_chalice_more_blood",
+      "predicate": {
+        "bloodlines:chalice_blood": 0.2
+      }
+    },
+    {
+      "model": "bloodlines:item/bottomless_chalice_most_blood",
+      "predicate": {
+        "bloodlines:chalice_blood": 0.4
+      }
+    }
   ]
 }

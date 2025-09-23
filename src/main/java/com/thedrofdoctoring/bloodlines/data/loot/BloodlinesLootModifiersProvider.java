@@ -28,7 +28,7 @@ public class BloodlinesLootModifiersProvider extends GlobalLootModifierProvider 
                 "bloodlines_corrupted_blood_modifier",
                 new AddTableLootModifier(new LootItemCondition[] {
 
-                        new MatchWeapon(ItemPredicate.Builder.item().of(BloodlinesTagsProviders.BloodlinesItemTagProvider.HEART_SEEKER_STRIKER)),
+                        new MatchWeapon(ItemPredicate.Builder.item().of(BloodlinesTagsProviders.BloodlinesItemTagProvider.VAMPIRE_SAMPLE_OBTAINING_WEAPONS)),
                         new BloodlineLootCondition(BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), false)
 
                 }, BloodlinesLootProvider.CORRUPTED_BLOOD_ENTITY_TABLE)
@@ -37,7 +37,7 @@ public class BloodlinesLootModifiersProvider extends GlobalLootModifierProvider 
                 "bloodlines_frozen_blood_modifier",
                 new AddTableLootModifier(new LootItemCondition[] {
 
-                        new MatchWeapon(ItemPredicate.Builder.item().of(BloodlinesTagsProviders.BloodlinesItemTagProvider.HEART_SEEKER_STRIKER)),
+                        new MatchWeapon(ItemPredicate.Builder.item().of(BloodlinesTagsProviders.BloodlinesItemTagProvider.VAMPIRE_SAMPLE_OBTAINING_WEAPONS)),
                         new BloodlineLootCondition(BloodlineRegistry.BLOODLINE_ECTOTHERM.get(), false)
 
                 }, BloodlinesLootProvider.FROZEN_BLOOD_ENTITY_TABLE)

@@ -13,11 +13,20 @@ public class BloodlineActionSkill<T extends IFactionPlayer<T>> extends ActionSki
 
     private final IBloodline bloodline;
     private final boolean hasCost;
+    private final int requiredBloodlineRank;
 
     public BloodlineActionSkill(Supplier<? extends IAction<T>> action, int skillPointCost, boolean customDescription, IBloodline bloodline, boolean hasCost) {
         super(action, Either.left(bloodline.getSkillTree()), skillPointCost, customDescription);
         this.bloodline = bloodline;
         this.hasCost = hasCost;
+        this.requiredBloodlineRank = 0;
+        BloodlineSkills.addSkill(this, bloodline);
+    }
+    public BloodlineActionSkill(Supplier<? extends IAction<T>> action, int skillPointCost, boolean customDescription, IBloodline bloodline, boolean hasCost, int requiredBloodlineRank) {
+        super(action, Either.left(bloodline.getSkillTree()), skillPointCost, customDescription);
+        this.bloodline = bloodline;
+        this.hasCost = hasCost;
+        this.requiredBloodlineRank = requiredBloodlineRank;
         BloodlineSkills.addSkill(this, bloodline);
     }
     @Override
@@ -33,5 +42,10 @@ public class BloodlineActionSkill<T extends IFactionPlayer<T>> extends ActionSki
     @Override
     public boolean requiresBloodlineSkillPoints() {
         return this.hasCost;
+    }
+
+    @Override
+    public int requiredBloodlineRank() {
+        return requiredBloodlineRank;
     }
 }

@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.List;
-@SuppressWarnings("unchecked, rawtypes")
+@SuppressWarnings("rawtypes")
 @Mixin(ActionHandler.class)
 public abstract class ActionHandlerMixin<T extends IFactionPlayer<T>> implements IActionHandler<T> {
 
@@ -34,11 +34,11 @@ public abstract class ActionHandlerMixin<T extends IFactionPlayer<T>> implements
             if(player.getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_OBSCURED_POWER.get())) {
                 Player player = event.getFactionPlayer().asEntity();
                 if(BloodlineHelper.lightMatches(CommonConfig.zealotObscuredPowerLightLevel.get(), player.getOnPos().above(), player.getCommandSenderWorld(), true))
-                    event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.zealotObscuredPowerTimerIncrease.get() + 1);
+                    this.extendActionTimer(action, CommonConfig.zealotObscuredPowerTimerIncrease.get() + 1);
             }
             if(player.getSkillHandler().isSkillEnabled(BloodlineSkills.ECTOTHERM_UNDERWATER_DURATION.get()) && player.asEntity().isUnderWater()) {
-                if(action != BloodlineActions.ECTOTHERM_DOLPHIN_LEAP_ACTION) {
-                    event.getFactionPlayer().getActionHandler().extendActionTimer((ILastingAction) action, CommonConfig.ectothermUnderwaterDurationIncrease.get() + 1);
+                if(action != BloodlineActions.ECTOTHERM_DOLPHIN_LEAP_ACTION.get()) {
+                    this.extendActionTimer(action, CommonConfig.ectothermUnderwaterDurationIncrease.get() + 1);
                 }
             }
 

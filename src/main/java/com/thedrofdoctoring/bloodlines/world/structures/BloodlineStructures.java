@@ -36,14 +36,14 @@ public class BloodlineStructures {
 
     public static void createStructureSets(BootstrapContext<StructureSet> context) {
         HolderGetter<Structure> structureLookup = context.lookup(Registries.STRUCTURE);
-        context.register(ZEALOT_SHRINE_SET, new StructureSet(structureLookup.getOrThrow(ZEALOT_SHRINE), new RandomSpreadStructurePlacement(16, 8, RandomSpreadType.LINEAR, 1937195837)));
+        context.register(ZEALOT_SHRINE_SET, new StructureSet(structureLookup.getOrThrow(ZEALOT_SHRINE), new RandomSpreadStructurePlacement(20, 10, RandomSpreadType.LINEAR, 1937195837)));
     }
 
     public static void createStructures(BootstrapContext<Structure> context) {
         HolderGetter<Biome> lookup = context.lookup(Registries.BIOME);
         context.register(ZEALOT_SHRINE, new ZealotShrineStructure(
                 new Structure.StructureSettings.Builder(
-                        lookup.getOrThrow(BiomeTags.HAS_ANCIENT_CITY))
+                        lookup.getOrThrow(BiomeTags.IS_OVERWORLD))
                         .generationStep(GenerationStep.Decoration.UNDERGROUND_DECORATION)
                         .terrainAdapation(TerrainAdjustment.BEARD_BOX).build()
         ));

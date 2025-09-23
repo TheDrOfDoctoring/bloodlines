@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:obsidian",
+    "minecraft:crying_obsidian",
+    "minecraft:bedrock",
+    "minecraft:barrier",
+    "minecraft:end_stone",
+    "minecraft:end_portal_frame",
+    "#minecraft:air"
+  ]
+}

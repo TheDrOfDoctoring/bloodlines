@@ -1,0 +1,72 @@
+{
+  "values": {
+    "minecraft:illusioner": {
+      "base_devour_health": 0.35,
+      "souls": 5
+    },
+    "minecraft:piglin": {
+      "base_devour_health": 0.5,
+      "souls": 3
+    },
+    "minecraft:player": {
+      "base_devour_health": 0.1,
+      "souls": 8
+    },
+    "minecraft:villager": {
+      "base_devour_health": 1.0,
+      "souls": 6
+    },
+    "minecraft:vindicator": {
+      "base_devour_health": 0.35,
+      "souls": 5
+    },
+    "minecraft:wandering_trader": {
+      "base_devour_health": 1.0,
+      "souls": 6
+    },
+    "vampirism:advanced_hunter": {
+      "base_devour_health": 0.2,
+      "souls": 6
+    },
+    "vampirism:advanced_hunter_imob": {
+      "base_devour_health": 0.2,
+      "souls": 6
+    },
+    "vampirism:advanced_vampire": {
+      "base_devour_health": 0.2,
+      "souls": 4
+    },
+    "vampirism:advanced_vampire_imob": {
+      "base_devour_health": 0.2,
+      "souls": 4
+    },
+    "vampirism:hunter": {
+      "base_devour_health": 0.2,
+      "souls": 4
+    },
+    "vampirism:hunter_imob": {
+      "base_devour_health": 0.2,
+      "souls": 4
+    },
+    "vampirism:vampire": {
+      "base_devour_health": 0.2,
+      "souls": 3
+    },
+    "vampirism:vampire_baron": {
+      "base_devour_health": 0.1,
+      "souls": 8
+    },
+    "vampirism:vampire_imob": {
+      "base_devour_health": 0.2,
+      "souls": 3
+    },
+    "vampirism:villager_angry": {
+      "base_devour_health": 0.5,
+      "souls": 6
+    },
+    "vampirism:villager_converted": {
+      "base_devour_health": 0.75,
+      "souls": 6
+    }
+  }
+}

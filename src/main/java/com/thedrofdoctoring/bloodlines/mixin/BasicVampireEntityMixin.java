@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesAttachments;
 import de.teamlapen.vampirism.entity.vampire.BasicVampireEntity;
 import de.teamlapen.vampirism.entity.vampire.VampireBaseEntity;
 import net.minecraft.world.entity.EntityType;
@@ -18,7 +18,7 @@ public class BasicVampireEntityMixin extends VampireBaseEntity {
 
     @ModifyReturnValue(method = "wantsBlood", at = @At("RETURN"))
     public boolean wantsBloodMod(boolean original) {
-        return original || this.getData(BloodlineAttachments.VAMP_EXTENDED_CREATURE.get()).getBlood() <= 53;
+        return original || this.getData(BloodlinesAttachments.VAMP_EXTENDED_CREATURE.get()).getBlood() <= 53;
     }
 
 }

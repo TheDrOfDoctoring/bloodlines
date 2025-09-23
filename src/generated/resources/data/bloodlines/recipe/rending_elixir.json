@@ -1,0 +1,16 @@
+{
+  "type": "vampirism:alchemical_table",
+  "ingredient": {
+    "item": "bloodlines:frozen_blood_sample"
+  },
+  "input": {
+    "item": "vampirism:pure_blood_4"
+  },
+  "result": {
+    "count": 1,
+    "id": "bloodlines:rending_elixir"
+  },
+  "skill": [
+    "vampirism:master_brewer"
+  ]
+}

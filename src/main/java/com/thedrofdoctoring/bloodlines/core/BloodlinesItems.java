@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.core;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineBloodknight;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineFrost;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNoble;
@@ -30,15 +31,19 @@ public class BloodlinesItems {
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_ZEALOT = register("bloodline_fang_zealot", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineZealot.ZEALOT));
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_BLOODKNIGHT = register("bloodline_fang_bloodknight", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineBloodknight.BLOOD_KNIGHT));
     public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_NOBLE = register("bloodline_fang_noble", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineNoble.NOBLE));
+    public static final DeferredHolder<Item, BloodlineFang> BLOODLINE_FANG_GRAVEBOUND = register("bloodline_fang_gravebound", () -> new BloodlineFang(new Item.Properties().stacksTo(1), BloodlineGravebound.GRAVEBOUND));
     public static final DeferredHolder<Item, BottomlessChaliceItem> CHALICE_ITEM = register("bottomless_chalice", () -> new BottomlessChaliceItem(new Item.Properties().stacksTo(1)));
-    public static final DeferredHolder<Item, PurityInjection> PURITY_INJECTION = register("purity_injection", () -> new PurityInjection(new Item.Properties().stacksTo(1)));
+    public static final DeferredHolder<Item, Item> PURITY_INJECTION = register("purity_injection", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, BloodlineTesterItem> BLOODLINE_TESTER = register("bloodline_tester", () -> new BloodlineTesterItem(new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, LordslayerInjectionItem> LORDSLAYER_INJECTION = register("lordslayer_injection", () -> new LordslayerInjectionItem(new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, Item> CORRUPTED_BLOOD_SAMPLE = register("corrupted_blood_sample", () -> new Item(new Item.Properties().stacksTo(64)));
     public static final DeferredHolder<Item, Item> FROZEN_BLOOD_SAMPLE = register("frozen_blood_sample", () -> new Item(new Item.Properties().stacksTo(64)));
     public static final DeferredHolder<Item, ElixirItem> HEINOUS_ELIXIR = register("heinous_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.HEINOUS_CURSE, () -> CommonConfig.heinousElixirDurationSeconds.get() * 20));
     public static final DeferredHolder<Item, ElixirItem> COLD_ELIXIR = register("freezing_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.COLD_BLOODED, () -> CommonConfig.coldBloodedElixirDurationSeconds.get() * 20));
+    public static final DeferredHolder<Item, ElixirItem> RENDING_ELIXIR = register("rending_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.SOUL_RENDING, () -> (CommonConfig.heinousElixirDurationSeconds.get() + 5) * 20));
     public static final DeferredHolder<Item, Item> ZEALOT_RITUAL_CATALYST = register("zealot_ritual_catalyst", () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final DeferredHolder<Item, SoulBinderItem> SOUL_BINDER_REGULAR = register("regular_soul_binder", () -> new SoulBinderItem(false));
+    public static final DeferredHolder<Item, SoulBinderItem> SOUL_BINDER_CREATIVE = register("creative_soul_binder", () -> new SoulBinderItem(true));
 
 
     public static <T extends Item> DeferredHolder<Item, T> register(final String id, final Supplier<? extends T> itemSupplier) {

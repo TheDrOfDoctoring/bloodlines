@@ -21,4 +21,10 @@ public interface IBloodlineSkill {
      */
     boolean requiresBloodlineSkillPoints();
 
+    /**
+     *
+     * @return - The Bloodline rank a player must be in order to activate this skill. Not unlocked automatically, like default skills.
+     */
+    int requiredBloodlineRank();
+
 }

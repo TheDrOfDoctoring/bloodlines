@@ -8,26 +8,37 @@
     "BasicVampireEntityMixin",
     "BatVampireActionMixin",
     "BlockBehaviourMixin",
+    "EntityInvoker",
     "EntityMixin",
     "ExtendedCreatureMixin",
     "FollowAdvancedVampireGoalMixin",
+    "InjectionChairMixin",
+    "LivingEntityAccessor",
+    "LivingEntityMixin",
+    "NearestAttackableTargetGoalMixin",
     "OblivionEffectMixin",
     "PlayerMixin",
+    "PoisonMobEffectMixin",
     "PowderedSnowBlockMixin",
     "RegistriesDatapackGeneratorAccessor",
+    "ServerPlayerMixin",
     "SkillHandlerMixin",
     "SpiderTargetGoalMixin",
     "VampireBloodBottleItemMixin",
     "VampirePlayerMixin",
     "VampirePlayerVampSpecialAttributesMixin",
-    "VillagerMixin"
+    "VillagerMixin",
+    "client.SunOverlayMixin"
   ],
   "client": [
     "ScreenAccessor",
     "ScreenEffectRenderer",
     "SkillNodeScreenMixin",
     "client.AdvancedVampireRendererMixin",
-    "client.BasicVampireRendererMixin"
+    "client.BasicVampireRendererMixin",
+    "client.CapeLayerMixin",
+    "client.LivingEntityRendererMixin",
+    "client.PlayerRendererMixin"
   ],
   "minVersion": "0.8"
 }

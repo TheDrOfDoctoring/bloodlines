@@ -1,8 +1,11 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlineState;
 import de.teamlapen.lib.HelperLib;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+
+import java.util.Optional;
 
 public interface IBloodlineManager {
     int getRank();
@@ -24,5 +27,7 @@ public interface IBloodlineManager {
     }
 
     void onBloodlineChange(IBloodline oldBloodline, int oldRank);
+
+    Optional<BloodlineState> getBloodlineState();
 
 }

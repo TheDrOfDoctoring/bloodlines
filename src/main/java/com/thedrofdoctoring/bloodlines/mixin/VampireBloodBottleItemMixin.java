@@ -62,7 +62,7 @@ public class VampireBloodBottleItemMixin extends Item {
 
 
                 stack.shrink(1);
-                player.addItem(Items.GLASS_BOTTLE.getDefaultInstance());    
+                player.addItem(Items.GLASS_BOTTLE.getDefaultInstance());
             }
         }
         return stack;

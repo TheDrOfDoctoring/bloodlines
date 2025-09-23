@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:magic",
+    "minecraft:indirect_magic",
+    "#minecraft:bypasses_invulnerability",
+    {
+      "id": "vampirism:holy_water",
+      "required": false
+    }
+  ]
+}

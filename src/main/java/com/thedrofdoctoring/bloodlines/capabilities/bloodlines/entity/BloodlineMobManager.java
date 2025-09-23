@@ -3,7 +3,8 @@ package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity;
 import com.thedrofdoctoring.bloodlines.Bloodlines;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
-import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlineState;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesAttachments;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.lib.lib.storage.IAttachment;
 import net.minecraft.core.Holder;
@@ -30,12 +31,12 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
 
     public static @NotNull Optional<BloodlineMobManager> getSafe(@NotNull Entity mob) {
         if (mob instanceof PathfinderMob pathfinderMob) {
-            return Optional.of(pathfinderMob.getData(BloodlineAttachments.BLOODLINE_MOB_MANAGER.get()));
+            return Optional.of(pathfinderMob.getData(BloodlinesAttachments.BLOODLINE_MOB_MANAGER.get()));
         }
         return Optional.empty();
     }
     public static BloodlineMobManager get(PathfinderMob mob) {
-        return mob.getData(BloodlineAttachments.BLOODLINE_MOB_MANAGER.get());
+        return mob.getData(BloodlinesAttachments.BLOODLINE_MOB_MANAGER.get());
     }
 
 
@@ -161,6 +162,11 @@ public class BloodlineMobManager implements IBloodlineManager, IAttachment {
 
         updateAttributes(oldBloodline);
         sync(true);
+    }
+
+    @Override
+    public Optional<BloodlineState> getBloodlineState() {
+        return Optional.empty();
     }
 
     @Override

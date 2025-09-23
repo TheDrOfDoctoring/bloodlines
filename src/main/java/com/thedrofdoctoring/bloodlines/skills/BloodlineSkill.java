@@ -17,6 +17,7 @@ public class BloodlineSkill <T extends IFactionPlayer<T>> extends VampirismSkill
     private final int cost;
     private final IBloodline bloodline;
     private final boolean hasCost;
+    private int requiredRank = 0;
 
     BloodlineSkill(IBloodline bloodline, boolean desc, int cost) {
         this(bloodline, desc, cost, true);
@@ -26,17 +27,21 @@ public class BloodlineSkill <T extends IFactionPlayer<T>> extends VampirismSkill
         return (BloodlineSkill<T>) super.setToggleActions(activateIn, deactivateIn);
     }
 
-    @Override
-    public @NotNull VampirismSkill<T> setHasDefaultDescription() {
-        return super.setHasDefaultDescription();
-    }
-
     BloodlineSkill(IBloodline bloodline, boolean desc, int cost, boolean hasCost) {
         super(Either.left(bloodline.getSkillTree()), cost, desc);
         this.bloodline = bloodline;
         this.bloodlineId = bloodline.getBloodlineId();
         this.cost = cost;
         this.hasCost = hasCost;
+        BloodlineSkills.addSkill(this, bloodline);
+    }
+    BloodlineSkill(IBloodline bloodline, boolean desc, int cost, boolean hasCost, int requiredRank) {
+        super(Either.left(bloodline.getSkillTree()), cost, desc);
+        this.bloodline = bloodline;
+        this.bloodlineId = bloodline.getBloodlineId();
+        this.cost = cost;
+        this.hasCost = hasCost;
+        this.requiredRank = requiredRank;
         BloodlineSkills.addSkill(this, bloodline);
     }
 
@@ -61,6 +66,12 @@ public class BloodlineSkill <T extends IFactionPlayer<T>> extends VampirismSkill
     public boolean requiresBloodlineSkillPoints() {
         return this.hasCost;
     }
+
+    @Override
+    public int requiredBloodlineRank() {
+        return this.requiredRank;
+    }
+
     @Override
     public int getSkillPointCost() {
         return cost;

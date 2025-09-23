@@ -1,3 +1,6 @@
-// 1.21	2025-05-02T22:22:51.8307164	Tags for minecraft:block mod id bloodlines
+// 1.21.1	2025-08-18T04:48:41.9957626	Tags for minecraft:block mod id bloodlines
 1817144ee308ed87a2b810b0844eb63216ab5475 data/bloodlines/tags/block/ectotherm_ice.json
+c885ce9801ef5742fe83e1163cdbca1a0f262088 data/bloodlines/tags/block/ghostwalk_blacklist.json
 8f9ae498226a2b92a95523fc91302e325a5fca40 data/bloodlines/tags/block/zealot_stone.json
+c8af687c2c7154296e875f269cb5d4b028923636 data/minecraft/tags/block/mineable/pickaxe.json
+c8af687c2c7154296e875f269cb5d4b028923636 data/minecraft/tags/block/needs_diamond_tool.json

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:obsidian"
+    },
+    "B": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "C": {
+      "item": "minecraft:end_crystal"
+    },
+    "D": {
+      "item": "minecraft:bone_block"
+    }
+  },
+  "pattern": [
+    " B ",
+    "DCD",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodlines:phylactery"
+  }
+}

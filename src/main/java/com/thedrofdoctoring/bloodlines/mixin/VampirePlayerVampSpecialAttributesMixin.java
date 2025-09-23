@@ -7,6 +7,9 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(VampirePlayerSpecialAttributes.class)
 public class VampirePlayerVampSpecialAttributesMixin implements IVampSpecialAttributes {
+
+
+
     @Unique
     public boolean bloodlines$mesmerising;
     @Unique
@@ -14,27 +17,11 @@ public class VampirePlayerVampSpecialAttributesMixin implements IVampSpecialAttr
     @Unique
     public int bloodlines$leeching;
     @Unique
-    public float bloodlines$stoneRunSpeed;
-    @Unique
-    public boolean bloodlines$shadowArmour;
-    @Unique
     public boolean bloodlines$refraction;
-    @Unique
-    public boolean bloodlines$icePhasing;
-    @Unique
-    public boolean bloodlines$inWall;
-    @Unique
-    public boolean bloodlines$frost;
 
-    @Override
-    public boolean bloodlines$getShadowArmour() {
-        return this.bloodlines$shadowArmour;
-    }
+    @Unique
+    public boolean bloodlines$dayWalker;
 
-    @Override
-    public void bloodlines$setShadowArmour(boolean shadowArmour) {
-        this.bloodlines$shadowArmour = shadowArmour;
-    }
 
     @Override
     public boolean bloodlines$getRefraction() {
@@ -46,33 +33,15 @@ public class VampirePlayerVampSpecialAttributesMixin implements IVampSpecialAttr
         this.bloodlines$refraction = bloodlines$waterCooling;
     }
 
+
     @Override
-    public boolean bloodlines$getIcePhasing() {
-        return bloodlines$icePhasing;
+    public boolean bloodlines$getDayWalker() {
+        return this.bloodlines$dayWalker;
     }
 
     @Override
-    public void bloodlines$setIcePhasing(boolean icePhasing) {
-        this.bloodlines$icePhasing = icePhasing;
-    }
-    @Override
-    public boolean bloodlines$isInWall() {
-        return bloodlines$inWall;
-    }
-
-    @Override
-    public void bloodlines$setInWall(boolean inWall) {
-        this.bloodlines$inWall = inWall;
-    }
-
-    @Override
-    public boolean bloodlines$getFrostControl() {
-        return this.bloodlines$frost;
-    }
-
-    @Override
-    public void bloodlines$setFrost(boolean frostControl) {
-        this.bloodlines$frost = frostControl;
+    public void bloodlines$setDayWalker(boolean dayWalker) {
+        this.bloodlines$dayWalker = dayWalker;
     }
 
     @Override
@@ -105,13 +74,4 @@ public class VampirePlayerVampSpecialAttributesMixin implements IVampSpecialAttr
         this.bloodlines$noble_slow_sun = slowSun;
     }
 
-    @Override
-    public float bloodlines$getStoneRunSpeed() {
-        return bloodlines$stoneRunSpeed;
-    }
-
-    @Override
-    public void bloodlines$setStoneRunSpeed(float stoneSpeed) {
-        this.bloodlines$stoneRunSpeed = stoneSpeed;
-    }
 }

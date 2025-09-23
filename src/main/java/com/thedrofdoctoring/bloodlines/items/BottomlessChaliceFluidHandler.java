@@ -1,7 +1,7 @@
 package com.thedrofdoctoring.bloodlines.items;
 
 
-import com.thedrofdoctoring.bloodlines.core.BloodlineComponents;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesComponents;
 import com.thedrofdoctoring.bloodlines.items.attachments.ChaliceBlood;
 import de.teamlapen.vampirism.core.ModFluids;
 import de.teamlapen.vampirism.items.BloodBottleFluidHandler;
@@ -27,16 +27,15 @@ public class BottomlessChaliceFluidHandler extends BloodBottleFluidHandler {
             return stack;
         }
     }
+
+
     public void setBlood(@NotNull ItemStack stack, int amt) {
         amt = amt / MULTIPLIER;
-        if(stack.getItem() instanceof BottomlessChaliceItem chalice) {
-            chalice.bloodUpdated(amt, stack);
-        }
-        stack.set(BloodlineComponents.CHALICE_BLOOD.get(), new ChaliceBlood(amt));
+        stack.set(BloodlinesComponents.CHALICE_BLOOD.get(), new ChaliceBlood(amt));
     }
 
     public int getBlood(@NotNull ItemStack stack) {
-        return stack.getOrDefault(BloodlineComponents.CHALICE_BLOOD.get(), ChaliceBlood.EMPTY).blood() * MULTIPLIER;
+        return stack.getOrDefault(BloodlinesComponents.CHALICE_BLOOD.get(), ChaliceBlood.EMPTY).blood() * MULTIPLIER;
     }
 }
 

@@ -1,5 +1,5 @@
-// 1.21	2025-05-02T14:24:57.6047624	Global Loot Modifiers : bloodlines
+// 1.21.1	2025-05-18T17:32:26.6450175	Global Loot Modifiers : bloodlines
 9b2a776bd2ec5881636a19f14d0589a7f15f0e74 data/bloodlines/loot_modifiers/bloodlines_corrupted_blood_crypt_loot_modifier.json
-8346f8fc6a6612a8c093265c826b2fede5117e17 data/bloodlines/loot_modifiers/bloodlines_corrupted_blood_modifier.json
-39345e72569c1cf3e65b75a945361d1a8dac999d data/bloodlines/loot_modifiers/bloodlines_frozen_blood_modifier.json
+614fad28cc53296456c28252fc59c9847c9c5cc5 data/bloodlines/loot_modifiers/bloodlines_corrupted_blood_modifier.json
+9336dda1ab20d236e85f786da68812af305096b4 data/bloodlines/loot_modifiers/bloodlines_frozen_blood_modifier.json
 b72de7f28b0734ee1fc9c950d7cb1dcb6af77269 data/neoforge/loot_modifiers/global_loot_modifiers.json

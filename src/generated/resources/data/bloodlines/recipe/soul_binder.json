@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:bone"
+    },
+    "B": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "minecraft:soul_lantern"
+    }
+  },
+  "pattern": [
+    " BC",
+    " A ",
+    "A  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodlines:regular_soul_binder"
+  }
+}

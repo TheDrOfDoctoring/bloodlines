@@ -19,6 +19,8 @@ public class  BloodlineCommands {
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext buildContext) {
         dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack>literal(Bloodlines.MODID).then(ChangeBloodlineCommand.register()));
         dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack>literal(Bloodlines.MODID).then(BloodlinePerkCommand.register()));
+        dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack>literal(Bloodlines.MODID).then(AddSoulsCommand.register()));
+
         dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack>literal(Bloodlines.MODID).then(BloodlineSummonCommand.register(buildContext)));
 
     }

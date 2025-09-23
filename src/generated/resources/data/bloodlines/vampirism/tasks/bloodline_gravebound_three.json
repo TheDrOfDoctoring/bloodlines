@@ -4,39 +4,37 @@
       {
         "type": "vampirism:item",
         "description": {
-          "translate": "item.minecraft.diamond"
+          "translate": "item.bloodlines.corrupted_blood_sample"
         },
-        "id": "minecraft:diamond",
+        "id": "bloodlines:corrupted_blood_sample",
         "item": {
-          "count": 16,
-          "id": "minecraft:diamond"
+          "count": 32,
+          "id": "bloodlines:corrupted_blood_sample"
         }
       },
       {
         "type": "vampirism:item",
         "description": {
-          "translate": "item.minecraft.emerald"
+          "translate": "item.bloodlines.frozen_blood_sample"
         },
-        "id": "minecraft:emerald",
+        "id": "bloodlines:frozen_blood_sample",
         "item": {
-          "count": 16,
-          "id": "minecraft:emerald"
+          "count": 32,
+          "id": "bloodlines:frozen_blood_sample"
         }
       },
       {
-        "type": "vampirism:item",
+        "type": "vampirism:stat",
+        "amount": 1000,
         "description": {
-          "translate": "item.minecraft.gold_block"
+          "translate": "stat.bloodlines.souls_devoured"
         },
-        "id": "minecraft:gold_block",
-        "item": {
-          "count": 4,
-          "id": "minecraft:gold_block"
-        }
+        "id": "bloodlines:souls_devoured",
+        "stat": "bloodlines:souls_devoured"
       },
       {
         "type": "vampirism:entity",
-        "amount": 8,
+        "amount": 25,
         "description": {
           "translate": "entity.vampirism.vampire_baron"
         },
@@ -48,7 +46,7 @@
   "rewards": {
     "type": "bloodlines:bloodline_reward",
     "source": "bloodlines:bloodline_gravebound_three",
-    "targetRank": 2
+    "targetRank": 4
   },
   "title": {
     "translate": "task.bloodlines.bloodline_gravebound_three"
@@ -56,7 +54,7 @@
   "unlocker": [
     {
       "type": "bloodlines:bloodline",
-      "bloodLineLevel": 1,
+      "bloodLineLevel": 3,
       "bloodlineId": "bloodlines:gravebound",
       "matchExactly": true
     }

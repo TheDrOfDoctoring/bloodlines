@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.core;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.blocks.PhylacteryBlock;
 import com.thedrofdoctoring.bloodlines.blocks.SpecialIceBlock;
 import com.thedrofdoctoring.bloodlines.blocks.ZealotAltarBlock;
 import net.minecraft.world.item.BlockItem;
@@ -28,9 +29,15 @@ public class BloodlinesBlocks {
     ));
     public static final DeferredBlock<ZealotAltarBlock> ZEALOT_ALTAR = registerWithItem("zealot_altar", () -> new ZealotAltarBlock(BlockBehaviour.Properties.of()
             .mapColor(MapColor.METAL)
-            .strength(7)
+            .strength(4)
             .noOcclusion()
     ));
+    public static final DeferredBlock<PhylacteryBlock> PHYLACTERY = registerWithItem("phylactery", () -> new PhylacteryBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.METAL)
+            .strength(6)
+            .noOcclusion()
+    ));
+
     private static <T extends Block> DeferredBlock<T> registerWithItem(String name, Supplier<T> supplier, Item.@NotNull Properties properties) {
         DeferredBlock<T> block = BLOCKS.register(name, supplier);
         BloodlinesItems.register(name, () -> new BlockItem(block.get(), properties));
