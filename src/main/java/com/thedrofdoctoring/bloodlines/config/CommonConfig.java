@@ -8,7 +8,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class CommonConfig {
 
-    public static ModConfigSpec COMMON_CONFIG;
+    public static final ModConfigSpec COMMON_CONFIG;
     public static final ModConfigSpec.BooleanValue defaultNotManuallyUnlockable;
     public static final ModConfigSpec.IntValue sunTicksPerIncrease;
     public static final ModConfigSpec.IntValue celerityCooldown;
@@ -72,11 +72,13 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue ectothermInkSplashCooldown;
     public static final ModConfigSpec.DoubleValue ectothermHydrodynamicFormSpeedMultiplier;
     public static final ModConfigSpec.IntValue ectothermInkSplashBlindnessLength;
+    public static final ModConfigSpec.BooleanValue bloodBottleFrenzy;
+    public static final ModConfigSpec.ConfigValue<List<? extends Integer>> bloodBottleFrenzyDuration;
 
 
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleMaxHealthChange;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleAttackSpeedIncrease;
-    public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleBloodThirstChange;
+    public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleBloodThirstMult;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleTradePricesMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleNeonatalMultiplier;
     public static final ModConfigSpec.ConfigValue<List<? extends Double>> nobleFasterResurrectionMultiplier;
@@ -204,7 +206,7 @@ public class CommonConfig {
         COMMON_BUILDER.comment("Noble bloodline configurable values");
 
         COMMON_BUILDER.push("noble_mobs");
-        nobleMobSpeedIncrease = COMMON_BUILDER.comment("Additional speed for Noble Bloodline Mobs").defineList("nobleMobSpeedIncrease", Arrays.asList(0.1d, 0.15d, 0.25d, 0.5d), () -> 1.0d, t -> (t instanceof Double));
+        nobleMobSpeedIncrease = COMMON_BUILDER.comment("Additional speed for Noble Bloodline Mobs").defineList("nobleMobSpeedIncrease", Arrays.asList(0.025d, 0.05d, 0.075d, 0.1d), () -> 1.0d, t -> (t instanceof Double));
 
 
         COMMON_BUILDER.pop();
@@ -215,12 +217,12 @@ public class CommonConfig {
         sunTicksPerIncrease = COMMON_BUILDER.comment("When the correct bloodline skill is enabled, how often (amount of ticks) sun damage progress is increased. Integer values only").defineInRange("sunTicksPerIncrease", 3, 2, Integer.MAX_VALUE);
         nobleMaxHealthChange = COMMON_BUILDER.comment("Max Health increase/decrease for each bloodline rank.").defineList("nobleMaxHealthIncrease", Arrays.asList(-2.0d, -4.0d, -4.0d, -8.0d), () -> -1.0d,t -> t instanceof Double);
         nobleAttackSpeedIncrease = COMMON_BUILDER.comment("Noble attack speed increase per rank. Attribute Multiplier").defineList("nobleAttackSpeedIncrease", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), () -> 0.1d,t -> t instanceof Double);
-        nobleBloodThirstChange = COMMON_BUILDER.comment("Blood Thirst increase/decrease for each bloodline rank. Attribute Multiplier").defineList("nobleBloodThirstChange", Arrays.asList(0.2d, 0.4d, 0.6d, 0.75d), () -> 0.5d,t -> t instanceof Double);
-        nobleNeonatalMultiplier = COMMON_BUILDER.comment("Neonatal timer increase/decrease for each bloodline rank. Attribute Multiplier. ").defineList("nobleNeonatalMultiplier", Arrays.asList(0d, -0.8d, -0.65d, -0.4d), () -> -1.0d,t -> t instanceof Double);
-        nobleFasterResurrectionMultiplier = COMMON_BUILDER.comment("Resurrection timer increase/decrease for each bloodline rank. Attribute Multiplier. ").defineList("nobleResurrectionTimerMultiplier", Arrays.asList(0d, -0.8d, -0.65d, -0.4d), () -> -1.0d,t -> t instanceof Double);
+        nobleBloodThirstMult = COMMON_BUILDER.comment("Blood Thirst increase/decrease for each bloodline rank. Attribute Multiplier").defineList("nobleBloodThirstMult", Arrays.asList(0.1d, 0.15d, 0.25d, 0.35d), () -> 0.15d,t -> t instanceof Double);
+        nobleNeonatalMultiplier = COMMON_BUILDER.comment("Neonatal timer increase/decrease for each bloodline rank. Attribute Multiplier. ").defineList("nobleNeonatalMultiplier", Arrays.asList(0d, -0.2d, -0.4d, -0.75d), () -> -1.0d,t -> t instanceof Double);
+        nobleFasterResurrectionMultiplier = COMMON_BUILDER.comment("Resurrection timer increase/decrease for each bloodline rank. Attribute Multiplier. ").defineList("nobleResurrectionTimerMultiplier", Arrays.asList(0d, -0.2d, -0.4d, -0.75d), () -> -1.0d,t -> t instanceof Double);
         nobleTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Attribute Multiplier").defineList("nobleTradePricesMultiplier", Arrays.asList(0.8d, 0.75d, 0.5d, 0.35d), () -> 0.5d,t -> t instanceof Double);
         nobleBloodGainDecreaseMultiplier = COMMON_BUILDER.comment("Multiplier for blood gain decrease when gaining blood from human hearts or other Vampirism Blood Food Items").defineList("nobleBloodGainDecreaseMultiplier", Arrays.asList(0.7d, 0.6d, 0.5d, 0.35d), () -> 0.5d,t -> t instanceof Double);
-        nobleBloodGainMultiplier = COMMON_BUILDER.comment("Multiplier for blood gain with noble blood drain skill when draining directly from mobs").defineList("nobleBloodMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 1.8d), () -> 1.0d,t -> t instanceof Double);
+        nobleBloodGainMultiplier = COMMON_BUILDER.comment("Multiplier for blood gain with noble blood drain skill when draining directly from mobs").defineList("nobleBloodMultiplier", Arrays.asList(1.25d, 1.5d, 1.85d, 2.25d), () -> 1.0d,t -> t instanceof Double);
         nobleBatSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for bat speed with the bat speed increase skill").defineList("nobleBatSpeedMultiplier", Arrays.asList(1d, 1.1d, 1.2d, 1.4d), () -> 1.0d,t -> t instanceof Double);
         nobleSpeedMultiplier = COMMON_BUILDER.comment("Multiplier for speed from speed boost skill. Attribute Multiplier").defineList("nobleSpeedMultiplier", Arrays.asList(0d, 0.05d, 0.1d, 0.2d), () -> -1.0d,t -> t instanceof Double);
 
@@ -284,10 +286,10 @@ public class CommonConfig {
         zealotFleshEatingNutrition = COMMON_BUILDER.comment("How much nutrition (blood) is gained from eating rotten flesh with the flesh eating perk").defineInRange("zealotFleshEatingNutrition", 5, 0, 20);
         zealotFleshEatingSaturation = COMMON_BUILDER.comment("How much saturation gained from eating rotten flesh with the flesh eating perk").defineInRange("zealotFleshEatingSaturation", 0.5, 0, 5);
         zealotObscuredPowerLightLevel = COMMON_BUILDER.comment("Maximum light level that shadow mastery works at").defineInRange("zealotObscuredPowerLightLevel", 10, 0, 15);
-        zealotObscuredPowerTimerIncrease = COMMON_BUILDER.comment("How much the timer replenishes every 10 ticks with obscured power. By default this means the timer will simpl not decrease, but not increase either").defineInRange("zealotObscuredPowerTimerIncrease", 10, 0, 1000);
+        zealotObscuredPowerTimerIncrease = COMMON_BUILDER.comment("How much the timer replenishes every 10 ticks with obscured power.").defineInRange("zealotObscuredPowerTimerIncrease", 5, 0, 1000);
         zealotShadowMasteryLightLevel = COMMON_BUILDER.comment("Maximum light level that shadow mastery works at").defineInRange("zealotShadowMasteryLightLevel", 8, 0, 15);
-        zealotTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("zealotTradePricesMultiplier", Arrays.asList(0.8d, 0.7d, 0.6d, 0.5d), () -> 1.0d, t -> t instanceof Double);
-        zealotShadowMasteryCooldownMultiplier = COMMON_BUILDER.comment("Multiplier for action cooldownsa affected by Shadow Mastery action").defineList("zealotShadowMasteryCooldownMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 2d), () -> 1.0d,   t -> t instanceof Double);
+        zealotTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("zealotTradePricesMultiplier", Arrays.asList(1.2d, 1.5d, 1.75d, 2d), () -> 1.0d, t -> t instanceof Double);
+        zealotShadowMasteryCooldownMultiplier = COMMON_BUILDER.comment("Multiplier for action cooldownsa affected by Shadow Mastery action").defineList("zealotShadowMasteryCooldownMultiplier", Arrays.asList(1d, 1.25d, 1.5d, 1.75d), () -> 1.0d,   t -> t instanceof Double);
         zealotHexProtectionMultiplier = COMMON_BUILDER.comment("Multiplier for damage from magical sources").defineList("zealotHexProtectionMultiplier", Arrays.asList(0.9d, 0.85d, 0.85d, 0.75d), () -> 1.0d, t -> t instanceof Double);
         zealotFrenzyCooldown = COMMON_BUILDER.comment("Frenzy cooldown, seconds").defineInRange("zealotFrenzyCooldown", 60, 0, Integer.MAX_VALUE);
         zealotFrenzyDuration = COMMON_BUILDER.comment("Frenzy duration, seconds").defineInRange("zealotFrenzyDuration", 15, 0, Integer.MAX_VALUE);
@@ -342,7 +344,7 @@ public class CommonConfig {
         ectothermColdBiomeIncreasedMovementSpeedRank = COMMON_BUILDER.comment("Rank at which movement speed is increased in cold biomes").defineInRange("ectothermColdBiomeIncreasedMovementSpeedRank", 4, 0, 5);
         ectothermLordOfFrostDuration = COMMON_BUILDER.comment("Lord of Frost action duration at each BL Rank, in seconds").defineList("ectothermFrostDuration", Arrays.asList(15, 30, 60, 120), () -> 30,t -> t instanceof Integer);
         ectothermLordOfFrostMultiplier = COMMON_BUILDER.comment("Duration multiplier for Lord of Frost with requisite skill").defineInRange("ectothermLordOfFrostMultiplier", 2d, 0, 5.0d);
-        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("How much each BL Rank increases fire damage by").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), () -> 1.0d,t -> t instanceof Double);
+        ectothermLordOfFrostDamageMultiplier = COMMON_BUILDER.comment("Damage multipliers for Ectotherms under the Lord of Frost action").defineList("ectothermLordOfFrostDamageMultiplier", Arrays.asList(1.25d, 1.35d, 1.5d, 1.75d), () -> 1.5d, t -> t instanceof Double);
         ectothermLordofFrostIncreasedDamageRank = COMMON_BUILDER.comment("Rank at which lord of frost damage is increased").defineInRange("ectothermLordofFrostIncreasedDamageRank", 3, 0, 5);
         ectothermUnderwaterDurationIncrease = COMMON_BUILDER.comment("Increase to duration for actions every 10 ticks whilst underwater with requisite skill").defineInRange("ectothermUnderwaterDurationIncrease", 5, 0, 1000);
         ectothermInkSplashCooldown = COMMON_BUILDER.comment("Cooldown for ink splash action in seconds").defineInRange("ectothermInkSplashCooldown", 60, 0, 1000);
@@ -370,16 +372,19 @@ public class CommonConfig {
         bloodknightUniqueUnlock = COMMON_BUILDER.comment("Whether the Bloodknight Bloodline's unique method of joining the bloodline is available. If disabled, then add a recipe for the bloodline fang or add another way to become a member of the bloodline.").define("bloodknightUniqueUnlock", true);
         heinousElixirDurationSeconds = COMMON_BUILDER.comment("Duration of Heinous Elixir, in seconds").defineInRange("heinousElixirDurationSeconds",  15, 0, 10000);
 
+        bloodBottleFrenzy = COMMON_BUILDER.comment("Whether the Bloodknight Bloodline's blood frenzy triggers when drinking bottled vampire blood ").define("bloodBottleFrenzy", false);
+        bloodBottleFrenzyDuration = COMMON_BUILDER.comment("Duration of blood frenzy effect when drinking bottled blood, for each BL Rank, in seconds").defineList("bloodBottleFrenzyDuration", Arrays.asList(30, 60, 120, 150, 200), () -> 50,t -> t instanceof Integer);
+
         bloodknightDefaults[0] = bloodknightBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("bloodknightBlRank1DefaultSkills", List.of("bloodlines:bloodknight"), () -> "bloodlines:bloodknight",string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         bloodknightDefaults[1] = bloodknightBlRank2DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 2").defineList("bloodknightBlRank2DefaultSkills", List.of("bloodlines:bloodknight_rank_2"), () -> "bloodlines:bloodknight",string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         bloodknightDefaults[2] = bloodknightBlRank3DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 3").defineList("bloodknightBlRank3DefaultSkills", List.of("bloodlines:bloodknight_rank_3"),() -> "bloodlines:bloodknight",  string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
         bloodknightDefaults[3] = bloodknightBlRank4DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 4").defineList("bloodknightBlRank4DefaultSkills", List.of("bloodlines:bloodknight_rank_4"), () -> "bloodlines:bloodknight", string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));
-        bloodknightBloodThirstChange = COMMON_BUILDER.comment("Multipliers for blood exhaustion at each blood knight rank. Attribute Multiplier").defineList("bloodknightBloodThirstChange", Arrays.asList(-0.9d, -0.75d, -0.5d,-0.35d), () -> -1.0d, t -> t instanceof Double);
+        bloodknightBloodThirstChange = COMMON_BUILDER.comment("Multipliers for blood exhaustion at each blood knight rank. Attribute Multiplier").defineList("bloodknightBloodThirstMultiplier", Arrays.asList(-0.25d, -0.35d, -0.5d,-0.75d), () -> -1.0d, t -> t instanceof Double);
         bloodknightDamageIncrease = COMMON_BUILDER.comment("Multipliers for damage at each blood knight rank. Attribute Multiplier").defineList("bloodknightDamageIncrease", Arrays.asList(0.1d, 0.15d, 0.2d, 0.25d), () -> 1.0d,t -> t instanceof Double);
         bloodknightOtherSourceBloodDecrease = COMMON_BUILDER.comment("Multiplier for blood gain from non-vampiric blood sources").defineList("bloodknightOtherSourceBloodDecrease", Arrays.asList(0.7d, 0.5d, 0.3d, 0.2d), () -> 1.0d,t -> t instanceof Double);
         bloodknightVampireBloodBottleNutrition = COMMON_BUILDER.comment("Vampire Blood Bottle Nutrition (Blood Gain)").defineInRange("bloodknightVampireBloodBottleNutrition",  18, 0, 100);
         bloodknightVampireBloodBottleSaturation = COMMON_BUILDER.comment("Vampire Blood Bottle Saturation").defineInRange("bloodknightVampireBloodBottleSaturation",  2d, 0d, 10d);
-        bloodknightBloodFrenzyDamageBonus = COMMON_BUILDER.comment("Damage bonus increase from the Blood Frenzy effect").defineInRange("bloodknightBloodFrenzyDamageBonus",  3d, 0d, 10d);
+        bloodknightBloodFrenzyDamageBonus = COMMON_BUILDER.comment("Damage bonus increase from the Blood Frenzy effect").defineInRange("bloodknightBloodFrenzyDamageBonus",  2d, 0d, 10d);
         bloodknightBloodFrenzyMaxHealthBonus = COMMON_BUILDER.comment("Max Health increase from the Blood Frenzy effect").defineInRange("bloodknightBloodFrenzyMaxHealthBonus",  4d, 0d, 10d);
         bloodknightBloodFrenzy2SpeedBonus = COMMON_BUILDER.comment("Speed multiplier from the Blood Frenzy tier 2 effect").defineInRange("bloodknightBloodFrenzy2SpeedBonus",  0.15, -5d, 5d);
         bloodknightBloodFrenzy2JumpHeightBonus = COMMON_BUILDER.comment("Jump multiplier  from the Blood Frenzy tier 2 effect").defineInRange("bloodknightBloodFrenzy2JumpHeightBonus",  0.15, -5d, 5d);
@@ -399,16 +404,16 @@ public class CommonConfig {
         bloodknightBloodHuntDuration = COMMON_BUILDER.comment("Duration for blood hunt action, in seconds").defineInRange("bloodknightBloodHuntDuration",  3000, 0, 10000);
         bloodknightBloodHuntTimePerBloodLoss = COMMON_BUILDER.comment("Amount of ticks it takes for 1 blood to be used whilst action is active").defineInRange("bloodknightBloodHuntTimePerBloodLoss",  140, 0, 10000);
         bloodknightBloodHuntBaseBloodCost = COMMON_BUILDER.comment("Blood usage upon activating Blood Hunt").defineInRange("bloodknightBloodHuntBaseBloodCost",  3, 0, 50);
-        bloodknightTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("bloodknightTradePricesMultiplier", Arrays.asList(1d, 0.8d, 0.7d, 0.6d), () -> 1.0d,t -> t instanceof Double);
+        bloodknightTradePricesMultiplier = COMMON_BUILDER.comment("Trade Prices increase/decrease for each bloodline rank. Multiplier").defineList("bloodknightTradePricesMultiplier", Arrays.asList(1d, 1.2d, 1.35d, 1.75d), () -> 1.0d,t -> t instanceof Double);
         bloodknightVampireBonusBloodMult = COMMON_BUILDER.comment("Increased blood gain when drinking blood from vampires with requisite skill. Multiplier").defineList("bloodknightVampireBonusBloodMult", Arrays.asList(1.5d, 2d, 2.5d, 3d), () -> 1.0d,t -> t instanceof Double);
         bloodknightVampireBonusSaturationMult = COMMON_BUILDER.comment("Increased saturation gain when drinking blood from vampires with requisite skill. Multiplier").defineList("bloodknightVampireBonusSaturationMult", Arrays.asList(1.25d, 1.5d, 1.75d, 2.0d), () -> 1.0d,t -> t instanceof Double);
         bloodknightSappingStrikeMobDrain = COMMON_BUILDER.comment("Blood drain from vampire mobs with sapping strike skill").defineInRange("bloodknightSappingStrikeMobDrain",  4, 0, 40);
         bloodknightSappingStrikePlayerDrain = COMMON_BUILDER.comment("Blood drain from vampire players with sapping strike skill").defineInRange("bloodknightSappingStrikePlayerDrain",  1, 0, 40);
         bloodknightSappingStrikeSaturation = COMMON_BUILDER.comment("Saturation gain from sapping strike skill").defineInRange("bloodknightSappingStrikeSaturation",  0.25d, 0, 10d);
         bloodknightDaywalkerBaseBloodCost = COMMON_BUILDER.comment("Blood usage upon activating Daywalker").defineInRange("bloodknightDaywalkerBaseBloodCost",  5, 0, 50);
-        bloodknightDaywalkerCooldown = COMMON_BUILDER.comment("Cooldown for daywalker action, in seconds").defineInRange("bloodknightDaywalkerCooldown",  150, 0, 10000);
-        bloodknightDaywalkerDuration = COMMON_BUILDER.comment("Duration for daywalker action, in seconds").defineInRange("bloodknightDaywalkerDuration",  300, 0, 10000);
-        bloodknightDaywalkerTimePerBloodLoss = COMMON_BUILDER.comment("Amount of ticks it takes for 1 blood to be used whilst action is active").defineInRange("bloodknightDaywalkerTimePerBloodLoss",  75, 0, 10000);
+        bloodknightDaywalkerCooldown = COMMON_BUILDER.comment("Cooldown for daywalker action, in seconds").defineInRange("bloodknightDaywalkerCooldown",  300, 0, 10000);
+        bloodknightDaywalkerDuration = COMMON_BUILDER.comment("Duration for daywalker action, in seconds").defineInRange("bloodknightDaywalkerDuration",  180, 0, 10000);
+        bloodknightDaywalkerTimePerBloodLoss = COMMON_BUILDER.comment("Amount of ticks it takes for 1 blood to be used whilst action is active").defineInRange("bloodknightDaywalkerTimePerBloodLoss",  45, 0, 10000);
         bloodknightBatSpeedMultiplier = COMMON_BUILDER.comment("Bat Speed flight multiplier from Frenzied Bat Skill").defineInRange("bloodknightBatSpeedMultiplier", 1.75d, 0d, 100d);
         bloodknightHunterDamageMult = COMMON_BUILDER.comment("Damage received from hunters multiplier for Bloodknights. Multiplier").defineList("bloodknightHunterDamageMult", Arrays.asList(1d, 1d, 1.15d, 1.35), () -> 1.0d,t -> t instanceof Double);
         bloodknightVampireDamageMult = COMMON_BUILDER.comment("Damage dealt to vampires multiplier for Bloodknights. Multiplier").defineList("bloodknightVampireDamageMult", Arrays.asList(1.5d, 2d, 1.25d, 1.5d), () -> 1.0d,t -> t instanceof Double);

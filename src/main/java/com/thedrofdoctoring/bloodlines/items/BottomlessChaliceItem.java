@@ -1,18 +1,13 @@
 package com.thedrofdoctoring.bloodlines.items;
 
-import com.thedrofdoctoring.bloodlines.core.BloodlineComponents;
-import com.thedrofdoctoring.bloodlines.items.attachments.ChaliceBlood;
+import com.thedrofdoctoring.bloodlines.client.core.BloodlinesItemClient;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.VReference;
 import de.teamlapen.vampirism.api.entity.vampire.IVampire;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.entity.vampire.DrinkBloodContext;
 import de.teamlapen.vampirism.fluids.BloodHelper;
-import de.teamlapen.vampirism.proxy.ClientProxy;
-import de.teamlapen.vampirism.util.Helper;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +18,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -68,13 +62,13 @@ public class BottomlessChaliceItem extends Item {
     @NotNull
     @Override
     public ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level worldIn, @NotNull LivingEntity entityLiving) {
-        if (entityLiving instanceof IVampire) {
+        if (entityLiving instanceof IVampire vampire) {
             ItemStack copy = stack.copy();
             int blood = BloodHelper.getBlood(stack);
             int drink = Math.min(blood, MULTIPLIER);
             ItemStack[] result = new ItemStack[1];
             int amt = BloodHelper.drain(stack, drink, IFluidHandler.FluidAction.EXECUTE, true, containerStack -> result[0] = containerStack);
-            ((IVampire) entityLiving).drinkBlood(amt / MULTIPLIER, 0, new DrinkBloodContext(copy));
+            vampire.drinkBlood(amt / MULTIPLIER, 0, new DrinkBloodContext(copy));
             return result[0];
         }
         return FluidUtil.getFluidHandler(stack).map(IFluidHandlerItem::getContainer).orElseGet(() -> super.finishUsingItem(stack, worldIn, entityLiving));
@@ -92,30 +86,13 @@ public class BottomlessChaliceItem extends Item {
         return UseAnim.DRINK;
     }
     @Override
+    @SuppressWarnings("ConstantConditions")
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltips, @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltips, flag);
-        Player player = ClientProxy.get().getClientPlayer();
-        int blood = stack.getOrDefault(BloodlineComponents.CHALICE_BLOOD.get(), ChaliceBlood.EMPTY).blood();
-        if (player != null && Helper.isVampire(player)) {
-            if (!VampirePlayer.get(player).getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_CHALICE_SKILL.get())) {
-                tooltips.add(Component.translatable("text.bloodlines.chalice").withStyle(ChatFormatting.DARK_PURPLE));
-            } else {
-                tooltips.add(Component.translatable("text.bloodlines.chalice_blood", blood * MULTIPLIER).withStyle(ChatFormatting.DARK_RED));
-            }
-        }
-    }
-    public void bloodUpdated(int newAmount, ItemStack stack) {
-        float percentage = (float) newAmount / AMOUNT;
-        if(newAmount == 0) {
-            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(0));
-        }
-        else if(newAmount > 1 && percentage <= 0.25f) {
-            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(1));
-        }
-        else if(percentage > 0.25f && percentage <= 0.5f) {
-            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(2));
-        } else if(percentage > 0.5f) {
-            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(3));
+        if(context.level() == null) return;
+        if(context.level().isClientSide) {
+            // crashes on server otherwise
+            BloodlinesItemClient.handleChaliceHoverText(stack, context, tooltips, flag);
         }
     }
 

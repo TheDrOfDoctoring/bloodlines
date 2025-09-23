@@ -1,7 +1,9 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp;
 
+// Deprecated, use BloodlinesPlayerAttributes / Bloodline Special Attributes
 public interface IVampSpecialAttributes {
-
+    boolean bloodlines$getDayWalker();
+    void bloodlines$setDayWalker(boolean dayWalker);
     boolean bloodlines$getMesmerise();
 
     void bloodlines$setMesmerise(boolean mesmerise);
@@ -13,19 +15,6 @@ public interface IVampSpecialAttributes {
     boolean bloodlines$getSlowSun();
     void bloodlines$setSlowSun(boolean slowSun);
 
-    float bloodlines$getStoneRunSpeed();
-
-    void bloodlines$setStoneRunSpeed(float stoneSpeed);
-
-    boolean bloodlines$getShadowArmour();
-    void bloodlines$setShadowArmour(boolean shadowArmour);
-
     boolean bloodlines$getRefraction();
     void bloodlines$setRefraction(boolean refraction);
-    boolean bloodlines$getIcePhasing();
-    void bloodlines$setIcePhasing(boolean icePhasing);
-    boolean bloodlines$isInWall();
-    void bloodlines$setInWall(boolean inWall);
-    boolean bloodlines$getFrostControl();
-    void bloodlines$setFrost(boolean frostControl);
 }

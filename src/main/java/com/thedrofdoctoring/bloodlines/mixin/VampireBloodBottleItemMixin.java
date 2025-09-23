@@ -45,7 +45,7 @@ public class VampireBloodBottleItemMixin extends Item {
             if(vp.getSkillHandler().isSkillEnabled(BloodlineSkills.BLOODKNIGHT_STILL_BLOOD)) {
                 VampirePlayer.get(player).drinkBlood(CommonConfig.bloodknightVampireBloodBottleNutrition.get(), CommonConfig.bloodknightVampireBloodBottleSaturation.get().floatValue(), new DrinkBloodContext(stack));
                 stack.shrink(1);
-                player.addItem(Items.GLASS_BOTTLE.getDefaultInstance());    
+                player.addItem(Items.GLASS_BOTTLE.getDefaultInstance());
             }
         }
         return stack;

@@ -1,8 +1,9 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesAttachments;
 import de.teamlapen.vampirism.entity.ExtendedCreature;
+import de.teamlapen.vampirism.entity.vampire.VampireBaronEntity;
 import de.teamlapen.vampirism.entity.vampire.VampireBaseEntity;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
@@ -16,8 +17,8 @@ public class ExtendedCreatureMixin {
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @ModifyReturnValue(method = "getSafe", at = @At("RETURN"), remap = false)
     private static @NotNull Optional<ExtendedCreature> modifyGetVampire(Optional<ExtendedCreature> original, Entity mob) {
-        if(mob instanceof VampireBaseEntity vp) {
-            return Optional.of(vp.getData(BloodlineAttachments.VAMP_EXTENDED_CREATURE.get()));
+        if(mob instanceof VampireBaseEntity vp && !(mob instanceof VampireBaronEntity)) {
+            return Optional.of(vp.getData(BloodlinesAttachments.VAMP_EXTENDED_CREATURE.get()));
         }
         return original;
     }

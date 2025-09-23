@@ -1,7 +1,9 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
-import com.thedrofdoctoring.bloodlines.core.BloodlineAttachments;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlineState;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlinesPlayerAttributes;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesAttachments;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineParentSkill;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
@@ -31,11 +33,11 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
     public static final String NBT_KEY = "bloodline_manager";
     public static final ResourceLocation BlOODLINE_KEY = Bloodlines.rl(NBT_KEY);
     public static @NotNull BloodlineManager get(@NotNull Player player) {
-        return player.getData(BloodlineAttachments.BLOODLINE_MANAGER.get());
+        return player.getData(BloodlinesAttachments.BLOODLINE_MANAGER.get());
     }
 
     public static @NotNull Optional<BloodlineManager> getOpt(@NotNull Player player) {
-        return Optional.of(player.getData(BloodlineAttachments.BLOODLINE_MANAGER.get()));
+        return Optional.of(player.getData(BloodlinesAttachments.BLOODLINE_MANAGER.get()));
     }
 
     @Override
@@ -77,6 +79,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
     private final Player player;
     private ResourceLocation bloodlineName;
     private final BloodlineSkillHandler skillHandler;
+    private BloodlineState bloodlineState;
     private IBloodline bloodline;
 
     public BloodlineManager(Player player) {
@@ -85,6 +88,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         skillHandler.setEnabledSkills(0);
 
     }
+
 
     @Override
     public int getRank() {
@@ -106,10 +110,12 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
 
     @Override
     public IBloodline getBloodline() {
-        if(BloodlineRegistry.BLOODLINE_REGISTRY.containsKey(this.bloodlineName)) {
-            return BloodlineRegistry.BLOODLINE_REGISTRY.get(this.bloodlineName);
+        if(this.bloodline == null) {
+            if(BloodlineRegistry.BLOODLINE_REGISTRY.containsKey(this.bloodlineName)) {
+                return (this.bloodline = BloodlineRegistry.BLOODLINE_REGISTRY.get(this.bloodlineName));
+            }
         }
-        return null;
+        return this.bloodline;
     }
 
     @Override
@@ -126,6 +132,8 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
             this.bloodline = null;
             this.bloodlineName = null;
             this.bloodlineRank = 0;
+            if(this.bloodlineState != null) this.bloodlineState.clear(player.level());
+            this.bloodlineState = null;
             skillHandler.setEnabledSkills(0);
             skillHandler.clearSkillPoints();
         }
@@ -147,11 +155,19 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
             });
             FactionPlayerHandler.get(player).checkSkillTreeLocks();
             skillHandler.clearSkillPoints();
+            if(this.bloodlineState != null) this.bloodlineState.clear(player.level());
+            this.bloodlineState = null;
             if(bloodline != null) {
+                if(bloodline.getNewBloodlineState(player).isPresent()) {
+                    this.bloodlineState = bloodline.getNewBloodlineState(player).get();
+                }
                 oldBloodline.onBloodlineChange(player, 0);
                 bloodline.onBloodlineChange(player, this.getRank());
                 FactionPlayerHandler.get(player).checkSkillTreeLocks();
             }
+            skillHandler.clearSkillPoints();
+
+
         } else if(bloodlineRank != oldRank && bloodline != null) {
             bloodline.onBloodlineChange(player, this.getRank());
             if(oldRank == 0) {
@@ -161,12 +177,30 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
                 ISkillHandler<?> skillHandler = bloodline.getSkillHandler(player);
                 disableUntilEligible(skillHandler);
             }
+            if(bloodline.getNewBloodlineState(player).isPresent() && this.bloodlineState == null) {
+                this.bloodlineState = bloodline.getNewBloodlineState(player).get();
+            }
 
         }
-
         updateAttributes(oldBloodline);
         sync(true);
+        updatePlayerCache();
     }
+
+    @Override
+    public Optional<BloodlineState> getBloodlineState() {
+        return Optional.ofNullable(this.bloodlineState);
+    }
+
+    public void updatePlayerCache() {
+        BloodlinesPlayerAttributes attributes = BloodlinesPlayerAttributes.get(player);
+        attributes.bloodline = this.bloodline;
+        attributes.bloodlineRank = this.bloodlineRank;
+        if(this.bloodlineState != null) {
+            this.bloodlineState.updateCache(bloodlineRank);
+        }
+    }
+
     @SuppressWarnings({"unchecked", "rawtypes"})
     private void disableUntilEligible(ISkillHandler<?> skillHandler) {
 
@@ -245,9 +279,23 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         if(nbt.contains("bloodline")) {
             this.bloodlineRank = nbt.getInt("rank");
             this.bloodlineName = ResourceLocation.parse(nbt.getString("bloodline"));
-            this.bloodline = getBloodline();
+            this.bloodline = BloodlineHelper.getBloodlineById(bloodlineName);
             skillHandler.deserializeNBT(nbt);
+            if(this.bloodlineState == null && this.bloodline.getNewBloodlineState(player).isPresent()) {
+                this.bloodlineState = this.bloodline.getNewBloodlineState(player).get();
+            }
+            if(this.bloodlineState != null) {
+                this.bloodlineState.deserializeNBT(provider, nbt);
+            }
             onBloodlineChange(bloodline, bloodlineRank);
+            updatePlayerCache();
+        } else {
+            this.bloodline = null;
+            this.bloodlineRank = 0;
+            this.bloodlineName = null;
+            this.bloodlineState = null;
+            skillHandler.clearSkillPoints();
+            updatePlayerCache();
         }
     }
     @Override
@@ -257,6 +305,9 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
             nbt.putString("bloodline", bloodlineName.toString());
             nbt.putInt("rank", bloodlineRank);
             nbt = skillHandler.serializeNBT(nbt);
+            if(this.bloodlineState != null) {
+                nbt = bloodlineState.serializeNBT(provider, nbt);
+            }
         }
         return nbt;
     }
@@ -267,13 +318,22 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
             this.bloodline = null;
             this.bloodlineRank = 0;
             this.bloodlineName = null;
+            this.bloodlineState = null;
             skillHandler.clearSkillPoints();
+            updatePlayerCache();
         } else {
             this.bloodlineName = ResourceLocation.parse(nbt.getString("bloodline"));
-            this.bloodline = getBloodline();
+            this.bloodline = BloodlineHelper.getBloodlineById(bloodlineName);
             this.bloodlineRank = nbt.getInt("rank");
             skillHandler.deserializeUpdateNBT(nbt);
+            if(this.bloodlineState == null && this.bloodline.getNewBloodlineState(player).isPresent()) {
+                this.bloodlineState = this.bloodline.getNewBloodlineState(player).get();
+            }
+            if(this.bloodlineState != null) {
+                this.bloodlineState.deserializeUpdateNBT(provider, nbt);
+            }
             bloodline.onBloodlineChange(player, this.bloodlineRank);
+            updatePlayerCache();
         }
 
     }
@@ -285,6 +345,9 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
         nbt.putString("bloodline", bloodline == null ? "" : bloodline.getBloodlineId().toString());
         nbt.putInt("rank", bloodlineRank);
         nbt = skillHandler.serializeUpdateNBT(nbt);
+        if(this.bloodlineState != null) {
+            nbt = bloodlineState.serializeUpdateNBT(provider, nbt);
+        }
         return nbt;
     }
 }

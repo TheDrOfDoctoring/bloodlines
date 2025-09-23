@@ -42,4 +42,5 @@ public class HeinousCurseEffect extends MobEffect {
         }
 
     }
+    
 }

@@ -1,0 +1,54 @@
+{
+  "requirements": {
+    "requirements": [
+      {
+        "type": "vampirism:entity",
+        "amount": 10,
+        "description": {
+          "translate": "entity.vampirism.advanced_hunter"
+        },
+        "entityType": "vampirism:advanced_hunter",
+        "id": "vampirism:advanced_hunter"
+      },
+      {
+        "type": "vampirism:stat",
+        "amount": 100,
+        "description": {
+          "translate": "stat.bloodlines.creatures_souls_devoured"
+        },
+        "id": "bloodlines:creatures_souls_devoured",
+        "stat": "bloodlines:creatures_souls_devoured"
+      },
+      {
+        "type": "vampirism:entity",
+        "amount": 8,
+        "description": {
+          "translate": "entity.vampirism.vampire_baron"
+        },
+        "entityType": "vampirism:vampire_baron",
+        "id": "vampirism:vampire_baron"
+      }
+    ]
+  },
+  "rewards": {
+    "type": "bloodlines:bloodline_perk_reward",
+    "perkPointAmount": 1,
+    "source": "bloodlines:bloodline_perk_points_gravebound_2"
+  },
+  "title": {
+    "translate": "task.bloodlines.bloodline_perk_points_gravebound_2"
+  },
+  "unlocker": [
+    {
+      "type": "bloodlines:bloodline",
+      "bloodLineLevel": 1,
+      "bloodlineId": "bloodlines:gravebound",
+      "matchExactly": false
+    },
+    {
+      "type": "bloodlines:max_perk_unlocker",
+      "maxPerkPoints": 5,
+      "minPerkPoints": 10
+    }
+  ]
+}

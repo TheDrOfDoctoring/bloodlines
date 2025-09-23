@@ -27,10 +27,10 @@
                 {
                   "children": [
                     {
-                      "node": "bloodlines:bloodknight_blood_extraction"
+                      "node": "bloodlines:bloodknight_day_walker"
                     }
                   ],
-                  "node": "bloodlines:bloodknight_day_walker"
+                  "node": "bloodlines:bloodknight_blood_extraction"
                 }
               ],
               "node": "bloodlines:bloodknight_vampire_blood_bonus"

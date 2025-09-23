@@ -8,20 +8,19 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineSkillHan
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.task.TaskUnlocker;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 @SuppressWarnings("unused")
-public record MaxPerkUnlocker(int maxPerkPoints, ResourceLocation taskName) implements TaskUnlocker {
+public record MaxPerkUnlocker(int minPerkPoints, int maxPerkPoints) implements TaskUnlocker {
 
 
     public static final MapCodec<MaxPerkUnlocker> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Codec.INT.fieldOf("maxPerkPoints").forGetter(i -> i.maxPerkPoints),
-            ResourceLocation.CODEC.fieldOf("taskName").forGetter(t -> t.taskName)
+            Codec.INT.fieldOf("maxPerkPoints").forGetter(i -> i.minPerkPoints),
+            Codec.INT.fieldOf("minPerkPoints").forGetter(i -> i.maxPerkPoints)
     ).apply(inst, MaxPerkUnlocker::new));
 
     @Override
     public Component getDescription() {
-        return Component.translatable("text.bloodlines.max_perk_points", maxPerkPoints);
+        return Component.translatable("text.bloodlines.max_perk_points", minPerkPoints, maxPerkPoints);
     }
 
     @Override
@@ -29,8 +28,8 @@ public record MaxPerkUnlocker(int maxPerkPoints, ResourceLocation taskName) impl
         Player entity = iFactionPlayer.asEntity();
         BloodlineSkillHandler skillHandler = BloodlineManager.get(entity).getSkillHandler();
         if(skillHandler != null) {
-            int gainedPoints = skillHandler.getPointsFromSource(taskName);
-            return gainedPoints <= maxPerkPoints;
+            int taskSkillPoints = skillHandler.getTaskSkillPoints();
+            return taskSkillPoints >= minPerkPoints && taskSkillPoints < maxPerkPoints;
         }
         return true;
     }

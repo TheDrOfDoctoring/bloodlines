@@ -46,6 +46,8 @@ public class ChangeBloodlineCommand extends BasicCommand {
                     }
                     bl.setRank(rank);
                     bl.onBloodlineChange(oldBloodline, oldRank);
+
+
                     context.getSource().sendSuccess(() -> Component.translatable("command.bloodlines.bloodline_success"), true);
                 });
             } else {

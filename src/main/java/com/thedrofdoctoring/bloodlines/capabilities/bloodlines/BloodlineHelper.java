@@ -1,5 +1,7 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlinesPlayerAttributes;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.IBloodlinesPlayer;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.vampirism.core.ModSounds;
@@ -28,6 +30,10 @@ public class BloodlineHelper {
             return BloodlineRegistry.BLOODLINE_REGISTRY.get(id);
         }
         return null;
+    }
+    public static boolean hasBloodline(IBloodline bloodline, Player player) {
+        BloodlinesPlayerAttributes atts = ((IBloodlinesPlayer) player).bloodlines$getBloodlinesAtts();
+        return atts.bloodline == bloodline;
     }
     public static void joinBloodlineGeneric(Player player, IBloodline bloodline, Component joinMessage) {
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.ENTITY_VAMPIRE_SCREAM.get(), SoundSource.PLAYERS, 1, 1);

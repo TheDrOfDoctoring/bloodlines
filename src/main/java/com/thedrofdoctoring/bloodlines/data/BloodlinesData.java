@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.data;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesDamageTypes;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistribution;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistributions;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
@@ -26,6 +27,7 @@ public class BloodlinesData {
             .add(BLOODLINE_RANK_DISTRIBUTION, BloodlineRankDistributions::createRankDistributions)
             .add(BLOODLINE_SPAWN_MODIFIERS, BloodlinesSpawnModifiers::createSpawnModifiers)
             .add(BLOODLINE_AI_SELECTORS, BloodlineAISelectors::createAISelectors)
+            .add(Registries.DAMAGE_TYPE, BloodlinesDamageTypes::createDamageTypes)
             .add(Registries.STRUCTURE, BloodlineStructures::createStructures)
             .add(Registries.STRUCTURE_SET, BloodlineStructures::createStructureSets)
 

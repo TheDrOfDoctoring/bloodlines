@@ -7,6 +7,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 version = mod_version
 group = mod_group_id
@@ -94,6 +95,7 @@ dependencies {
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     // implementation ("curse.maven:jei-238222:5074416")
     implementation ("curse.maven:guide_api-380771:5618709")
+    implementation ("curse.maven:jei-238222:6516057")
     implementation ("curse.maven:vampirism-233029:6387585")// Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"

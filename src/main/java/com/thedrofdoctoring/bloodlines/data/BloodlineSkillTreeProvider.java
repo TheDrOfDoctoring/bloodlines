@@ -29,14 +29,46 @@ public class BloodlineSkillTreeProvider extends SkillTreeProvider {
 
     }
     private void buildHunterTrees(HolderLookup.RegistryLookup<ISkillTree> trees, HolderLookup.RegistryLookup<ISkillNode> nodes, @NotNull SkillTreeOutput skillTreeOutput) {
-        skillTreeOutput.accept(modId("gravebound"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.GRAVEBOUND), nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_2),
+        skillTreeOutput.accept(modId("gravebound"), new SkillTreeConfiguration(trees.getOrThrow(BloodlineSkills.Trees.GRAVEBOUND), nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_ROOT),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_SOUL_INFUSION),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_REGEN_DEVOUR),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_LINGERING_DEVOUR),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_SOUL_CLAIMING),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_PASSIVE_SOUL_CLAIMING))
+                                        )
+                                ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_POWERFUL_DEVOUR))
+                        )
+                ),
                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_2),
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_3),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_RANK_4)
                                 )
                         )
+                ),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_POISON_IMMUNITY),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_POISON_HEALING)
+                        ),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_SOUL_TRANSFER),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_SOUL_TRANSFER_PHYLACTERY)),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_PHYLACTERY_TELEPORT),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_GHOST_WALK)
+                                        )
+                                )
+                        )
+                ),
+                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_SOUL_SPEED),
+                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_UNDEAD_LORD),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_POSSESSION_ACTION),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_POSSESSION_SWAP_ACTION))
+                                ),
+                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_CHEAPER_RESURRECTION),
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.GRAVEBOUND_FASTER_RESURRECTION))
+                                    )
+                                )
+                        )
                 )
-            ));
+        );
 
     }
 
@@ -139,8 +171,8 @@ public class BloodlineSkillTreeProvider extends SkillTreeProvider {
                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_RANK_2),
                         new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_CRIMSON_LEAP),
                                 new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_VAMPIRE_BLOOD_BONUS),
-                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_DAY_WALKER),
-                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_BLOOD_EXTRACTION)
+                                        new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_BLOOD_EXTRACTION),
+                                                new SkillTreeConfiguration.SkillTreeNodeConfiguration(nodes.getOrThrow(BloodlineSkills.Nodes.BLOODKNIGHT_DAY_WALKER)
                                                 )
                                         )
                                 )

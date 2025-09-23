@@ -1,7 +1,15 @@
-// 1.21	2025-05-02T22:22:51.8293788	Recipes
+// 1.21.1	2025-09-23T14:46:14.9561872	Recipes
+0b2a54f3b07d5347a16d6fdb23637ee14baa153a data/bloodlines/advancement/recipes/alchemy_table/rending_elixir.json
 6c1d3e392df702cd00f4068d3cca51b9f82e0060 data/bloodlines/advancement/recipes/misc/frozen_elixir.json
 276df22886928b48edae585370df21af96e1cb7f data/bloodlines/advancement/recipes/misc/heinous_elixir.json
 3fd5a882c355972f1ffaabe7a3a6b536fc378a85 data/bloodlines/advancement/recipes/misc/lordslayer_injection.json
+ae8aff58da8cc520da9b6e124fef1b91e30722be data/bloodlines/advancement/recipes/misc/phylactery.json
+fe58bcd562373790813369c6f711212e94c7bc50 data/bloodlines/advancement/recipes/misc/ritual_catalyst.json
+a7a179410faf58cfe7c17401c6a12bee6118abd2 data/bloodlines/advancement/recipes/misc/soul_binder.json
 633ee848b4b49683d5cb3df102ab83887271515e data/bloodlines/recipe/frozen_elixir.json
 fb8700d2424822fce328c03c9249013442dc3c0d data/bloodlines/recipe/heinous_elixir.json
 9899209898d8756a3a9f7128fe49a0c1c0e3463c data/bloodlines/recipe/lordslayer_injection.json
+5b4c77a566416d7c6cca606344c4a76d2dc939d6 data/bloodlines/recipe/phylactery.json
+1328ad9fffca7b048ab39eeb2ab360ddd6431c85 data/bloodlines/recipe/rending_elixir.json
+5ed55c58ce56f83f94a00c75b5962be22c15f46f data/bloodlines/recipe/ritual_catalyst.json
+fb04c6eb15ee5e7aa0cf7b16631d952eb44d2118 data/bloodlines/recipe/soul_binder.json

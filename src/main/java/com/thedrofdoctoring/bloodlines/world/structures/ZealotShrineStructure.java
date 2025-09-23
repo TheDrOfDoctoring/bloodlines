@@ -35,24 +35,25 @@ public class ZealotShrineStructure extends Structure {
     public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.@NotNull GenerationContext context) {
 
         ChunkPos chunkPos = context.chunkPos();
-        int minX, minZ;
-        minX = chunkPos.getMinBlockX();
-        minZ = chunkPos.getMinBlockZ();
-        NoiseColumn blockColumn = context.chunkGenerator().getBaseColumn(minX, minZ, context.heightAccessor(), context.randomState());
+        int midX, midZ;
+        midX = chunkPos.getMiddleBlockX();
+        midZ = chunkPos.getMiddleBlockZ();
+        NoiseColumn blockColumn = context.chunkGenerator().getBaseColumn(midX, midZ, context.heightAccessor(), context.randomState());
         int y;
-        for(y = -40; y < 40; y++) {
-            if(blockColumn.getBlock(y).is(BlockTags.AIR)) {
+        for(y = -60; y < 10; y++) {
+            if(blockColumn.getBlock(y + 1).is(BlockTags.AIR)) {
                 break;
             }
         }
-        if(y >= 39) return Optional.empty();
-        BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), y, chunkPos.getMinBlockZ());
+
+        if(y >= 10) return Optional.empty();
+        BlockPos blockPos = new BlockPos(midX, y, midZ);
 
         return Optional.of(
                 new GenerationStub(
                         blockPos, (b) ->
                         b.addPiece(
-                                new ZealotShrinePiece(0, context.structureTemplateManager(), "zealot_shrine", makeSettings(), blockPos)
+                                new ZealotShrinePiece(2, context.structureTemplateManager(), "zealot_shrine", makeSettings(), blockPos)
                         )
                 )
         );

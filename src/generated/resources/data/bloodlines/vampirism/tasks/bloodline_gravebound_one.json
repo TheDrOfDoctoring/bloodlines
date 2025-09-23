@@ -2,41 +2,37 @@
   "requirements": {
     "requirements": [
       {
-        "type": "vampirism:item",
+        "type": "vampirism:entity",
+        "amount": 10,
         "description": {
-          "translate": "item.minecraft.diamond"
+          "translate": "entity.vampirism.advanced_vampire"
         },
-        "id": "minecraft:diamond",
-        "item": {
-          "count": 16,
-          "id": "minecraft:diamond"
-        }
+        "entityType": "vampirism:advanced_vampire",
+        "id": "vampirism:advanced_vampire"
       },
       {
         "type": "vampirism:item",
         "description": {
-          "translate": "item.minecraft.emerald"
+          "translate": "item.bloodlines.frozen_blood_sample"
         },
-        "id": "minecraft:emerald",
+        "id": "bloodlines:frozen_blood_sample",
         "item": {
-          "count": 16,
-          "id": "minecraft:emerald"
+          "count": 20,
+          "id": "bloodlines:frozen_blood_sample"
         }
       },
       {
-        "type": "vampirism:item",
+        "type": "vampirism:stat",
+        "amount": 250,
         "description": {
-          "translate": "item.minecraft.gold_block"
+          "translate": "stat.bloodlines.souls_devoured"
         },
-        "id": "minecraft:gold_block",
-        "item": {
-          "count": 4,
-          "id": "minecraft:gold_block"
-        }
+        "id": "bloodlines:souls_devoured",
+        "stat": "bloodlines:souls_devoured"
       },
       {
         "type": "vampirism:entity",
-        "amount": 8,
+        "amount": 10,
         "description": {
           "translate": "entity.vampirism.vampire_baron"
         },

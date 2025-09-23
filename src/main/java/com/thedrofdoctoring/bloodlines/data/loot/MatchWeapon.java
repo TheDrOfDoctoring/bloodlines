@@ -23,7 +23,7 @@ public class MatchWeapon implements LootItemCondition {
             ).apply(p, MatchWeapon::new)
     );
 
-    Optional<ItemPredicate> weaponPredicate;
+    private final Optional<ItemPredicate> weaponPredicate;
 
     private MatchWeapon(Optional<ItemPredicate> weaponPredicate) {
         this.weaponPredicate = weaponPredicate;

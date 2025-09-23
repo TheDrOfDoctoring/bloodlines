@@ -5,7 +5,7 @@ import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 
 public class BloodlineParentSkill<T extends IFactionPlayer<T>> extends BloodlineSkill<T> {
 
-    int rank;
+    private final int rank;
 
     BloodlineParentSkill(IBloodline bloodline, boolean desc, int cost, int rank) {
         super(bloodline, desc, cost, false);

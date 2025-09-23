@@ -2,6 +2,7 @@ package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlineState;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
@@ -19,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface IBloodline {
 
@@ -74,7 +76,7 @@ public interface IBloodline {
                     ISkill iSkill = RegUtil.getSkill(skill);
                     if(RegUtil.getSkill(skill) == null || iSkill.getFaction().isEmpty() || iSkill.getFaction().get() != getFaction()) {
                         throw new IllegalStateException("Default Bloodline Enabled Skill " + skill + " is invalid!");
-                    } else if(skillHandler != null && skillHandler.isSkillEnabled(iSkill)) {
+                    } else if(skillHandler != null && !skillHandler.isSkillEnabled(iSkill)) {
                         //noinspection unchecked
                         skillHandler.enableSkill(iSkill);
                     }
@@ -89,4 +91,13 @@ public interface IBloodline {
     }
     String getName();
 
+    /**
+     *
+     * @param player - Player reference for the Bloodline State
+     * @return - Returns a new, optional for the Bloodline State implementation for that Bloodline.
+     * This does not return the actual, current bloodline state data. Instead, that is found in {@link BloodlineManager#getBloodlineState() the Bloodline Manager}
+     */
+    default Optional<? extends BloodlineState> getNewBloodlineState(Player player) {
+        return Optional.empty();
+    }
 }

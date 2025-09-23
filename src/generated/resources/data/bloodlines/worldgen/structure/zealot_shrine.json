@@ -1,6 +1,6 @@
 {
   "type": "bloodlines:zealot_shrine",
-  "biomes": "#minecraft:has_structure/ancient_city",
+  "biomes": "#minecraft:is_overworld",
   "spawn_overrides": {},
   "step": "underground_decoration",
   "terrain_adaptation": "beard_box"

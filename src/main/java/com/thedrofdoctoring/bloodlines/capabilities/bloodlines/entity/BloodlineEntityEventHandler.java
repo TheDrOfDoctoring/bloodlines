@@ -9,6 +9,7 @@ import com.thedrofdoctoring.bloodlines.data.BloodlineSelector;
 import com.thedrofdoctoring.bloodlines.data.BloodlinesData;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistribution;
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
+import com.thedrofdoctoring.bloodlines.entity.MesmeriseGoal;
 import de.teamlapen.vampirism.entity.VampirismEntity;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -19,6 +20,7 @@ import net.minecraft.util.random.WeightedEntry;
 import net.minecraft.util.random.WeightedRandom;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
@@ -139,4 +141,10 @@ public class BloodlineEntityEventHandler {
         };
     }
 
+    @SubscribeEvent
+    public static void onMobSpawn(EntityJoinLevelEvent event) {
+        if(event.getEntity() instanceof Villager villager) {
+            villager.goalSelector.addGoal(villager.goalSelector.getAvailableGoals().size() + 1, new MesmeriseGoal(villager));
+        }
+    }
 }

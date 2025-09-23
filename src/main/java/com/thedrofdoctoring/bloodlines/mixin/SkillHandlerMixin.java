@@ -39,6 +39,9 @@ public abstract class SkillHandlerMixin<T extends IFactionPlayer<T>> implements 
                 if(bl.getSkillHandler().getRemainingSkillPoints() == 0 && blSkill.requiresBloodlineSkillPoints()) {
                     cir.setReturnValue(Result.NO_POINTS);
                 }
+                if(blSkill.requiredBloodlineRank() > bl.getRank()) {
+                    cir.setReturnValue(Result.LOCKED_BY_PLAYER_STATE);
+                }
 
                 if (CommonConfig.defaultNotManuallyUnlockable.get() && bl.getBloodline() != null) {
                     ModConfigSpec.ConfigValue<List<? extends String>>[] defaultSkills = bl.getBloodline().getDefaultEnabledSkills();
