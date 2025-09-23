@@ -1,7 +1,10 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesEffects;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
+import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
+import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.entity.vampire.DrinkBloodContext;
 import de.teamlapen.vampirism.items.VampireBloodBottleItem;
@@ -10,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
