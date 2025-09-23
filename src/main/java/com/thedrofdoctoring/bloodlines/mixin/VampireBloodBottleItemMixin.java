@@ -48,19 +48,6 @@ public class VampireBloodBottleItemMixin extends Item {
             VampirePlayer vp = VampirePlayer.get(player);
             if(vp.getSkillHandler().isSkillEnabled(BloodlineSkills.BLOODKNIGHT_STILL_BLOOD)) {
                 VampirePlayer.get(player).drinkBlood(CommonConfig.bloodknightVampireBloodBottleNutrition.get(), CommonConfig.bloodknightVampireBloodBottleSaturation.get().floatValue(), new DrinkBloodContext(stack));
-                if(CommonConfig.bloodknightStillWaterProvideBuff.get()) {
-                    ISkillHandler<IVampirePlayer> skillHandler = vp.getSkillHandler();
-                    int blRank = BloodlineManager.get(player).getRank() - 1;
-
-                    int duration = CommonConfig.bloodknightBloodFrenzyDurationPerRank.get().get(blRank) * 20;
-                    if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_1.get()) && !skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
-                        player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 0, false, true, true));
-                    } else if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
-                        player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 1, false, true, true));
-                    }
-                }
-
-
                 stack.shrink(1);
                 player.addItem(Items.GLASS_BOTTLE.getDefaultInstance());
             }
