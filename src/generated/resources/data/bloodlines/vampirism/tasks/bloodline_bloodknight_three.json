@@ -13,11 +13,22 @@
       {
         "type": "vampirism:item",
         "description": {
+          "translate": "item.bloodlines.corrupted_blood_sample"
+        },
+        "id": "bloodlines:corrupted_blood_sample",
+        "item": {
+          "count": 20,
+          "id": "bloodlines:corrupted_blood_sample"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
           "translate": "item.vampirism.pure_blood_4"
         },
         "id": "vampirism:pure_blood_4",
         "item": {
-          "count": 10,
+          "count": 8,
           "id": "vampirism:pure_blood_4"
         }
       },

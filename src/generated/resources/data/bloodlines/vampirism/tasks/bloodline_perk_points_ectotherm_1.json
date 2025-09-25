@@ -13,23 +13,23 @@
       {
         "type": "vampirism:item",
         "description": {
+          "translate": "item.bloodlines.frozen_blood_sample"
+        },
+        "id": "bloodlines:frozen_blood_sample",
+        "item": {
+          "count": 10,
+          "id": "bloodlines:frozen_blood_sample"
+        }
+      },
+      {
+        "type": "vampirism:item",
+        "description": {
           "translate": "item.minecraft.heart_of_the_sea"
         },
         "id": "minecraft:heart_of_the_sea",
         "item": {
           "count": 3,
           "id": "minecraft:heart_of_the_sea"
-        }
-      },
-      {
-        "type": "vampirism:item",
-        "description": {
-          "translate": "item.minecraft.salmon"
-        },
-        "id": "minecraft:salmon",
-        "item": {
-          "count": 32,
-          "id": "minecraft:salmon"
         }
       }
     ]

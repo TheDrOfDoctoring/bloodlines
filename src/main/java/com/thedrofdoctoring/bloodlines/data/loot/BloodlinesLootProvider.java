@@ -63,14 +63,14 @@ public class BloodlinesLootProvider {
         @Override
         public void generate(@NotNull BiConsumer<ResourceKey<LootTable>, LootTable.Builder> builder) {
             builder.accept(CORRUPTED_BLOOD_ENTITY_TABLE, LootTable.lootTable()
-                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(0f, 2f))
-                            .add(LootItem.lootTableItem(BloodlinesItems.CORRUPTED_BLOOD_SAMPLE.get()).setWeight(10))
-                            .add(EmptyLootItem.emptyItem().setWeight(60)))
+                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1f, 1f))
+                            .add(LootItem.lootTableItem(BloodlinesItems.CORRUPTED_BLOOD_SAMPLE.get()).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
+                            .add(EmptyLootItem.emptyItem().setWeight(20)))
             );
             builder.accept(FROZEN_BLOOD_ENTITY_TABLE, LootTable.lootTable()
-                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(0f, 1f))
-                            .add(LootItem.lootTableItem(BloodlinesItems.FROZEN_BLOOD_SAMPLE.get()).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
-                            .add(EmptyLootItem.emptyItem().setWeight(25)))
+                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1f, 1f))
+                            .add(LootItem.lootTableItem(BloodlinesItems.FROZEN_BLOOD_SAMPLE.get()).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
+                            .add(EmptyLootItem.emptyItem().setWeight(35)))
             );
         }
     }

@@ -13,12 +13,12 @@
       {
         "type": "vampirism:item",
         "description": {
-          "translate": "item.minecraft.ice"
+          "translate": "item.bloodlines.frozen_blood_sample"
         },
-        "id": "minecraft:ice",
+        "id": "bloodlines:frozen_blood_sample",
         "item": {
-          "count": 30,
-          "id": "minecraft:ice"
+          "count": 10,
+          "id": "bloodlines:frozen_blood_sample"
         }
       },
       {

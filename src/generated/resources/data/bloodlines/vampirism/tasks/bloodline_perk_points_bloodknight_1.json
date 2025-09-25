@@ -2,13 +2,15 @@
   "requirements": {
     "requirements": [
       {
-        "type": "vampirism:entity",
-        "amount": 5,
+        "type": "vampirism:item",
         "description": {
-          "translate": "entity.vampirism.advanced_vampire"
+          "translate": "item.bloodlines.corrupted_blood_sample"
         },
-        "entityType": "vampirism:advanced_vampire",
-        "id": "vampirism:advanced_vampire"
+        "id": "bloodlines:corrupted_blood_sample",
+        "item": {
+          "count": 12,
+          "id": "bloodlines:corrupted_blood_sample"
+        }
       },
       {
         "type": "vampirism:item",
@@ -37,7 +39,7 @@
         },
         "id": "vampirism:vampire_blood_bottle",
         "item": {
-          "count": 8,
+          "count": 4,
           "id": "vampirism:vampire_blood_bottle"
         }
       }

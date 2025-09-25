@@ -11,24 +11,24 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 2.0,
+                "max": 3.0,
                 "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
           "name": "bloodlines:frozen_blood_sample",
-          "weight": 10
+          "weight": 20
         },
         {
           "type": "minecraft:empty",
-          "weight": 25
+          "weight": 35
         }
       ],
       "rolls": {
         "type": "minecraft:uniform",
         "max": 1.0,
-        "min": 0.0
+        "min": 1.0
       }
     }
   ],
