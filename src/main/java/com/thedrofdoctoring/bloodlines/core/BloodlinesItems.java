@@ -8,17 +8,22 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineNob
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.BloodlineZealot;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.items.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 @SuppressWarnings("unused")
@@ -40,7 +45,16 @@ public class BloodlinesItems {
     public static final DeferredHolder<Item, Item> FROZEN_BLOOD_SAMPLE = register("frozen_blood_sample", () -> new Item(new Item.Properties().stacksTo(64)));
     public static final DeferredHolder<Item, ElixirItem> HEINOUS_ELIXIR = register("heinous_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.HEINOUS_CURSE, () -> CommonConfig.heinousElixirDurationSeconds.get() * 20));
     public static final DeferredHolder<Item, ElixirItem> COLD_ELIXIR = register("freezing_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.COLD_BLOODED, () -> CommonConfig.coldBloodedElixirDurationSeconds.get() * 20));
-    public static final DeferredHolder<Item, ElixirItem> RENDING_ELIXIR = register("rending_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.SOUL_RENDING, () -> (CommonConfig.heinousElixirDurationSeconds.get() + 5) * 20));
+    public static final DeferredHolder<Item, ElixirItem> RENDING_ELIXIR = register("rending_elixir", () -> new ElixirItem(new Item.Properties(), BloodlinesEffects.SOUL_RENDING, () -> (CommonConfig.heinousElixirDurationSeconds.get() + 5) * 20)
+    {   // To be removed eventually
+        @Override
+        public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+        if(ModList.get().isLoaded("emi") && !ModList.get().isLoaded("jei")) {
+            pTooltipComponents.add(Component.literal("It appears you are using EMI without JEI. EMI by itself does not come with support for Vampirism recipe types. This means the Rending Elixir recipe will not show.").withStyle(ChatFormatting.BLUE));
+        }
+
+    }});
     public static final DeferredHolder<Item, Item> ZEALOT_RITUAL_CATALYST = register("zealot_ritual_catalyst", () -> new Item(new Item.Properties().stacksTo(64)));
     public static final DeferredHolder<Item, SoulBinderItem> SOUL_BINDER_REGULAR = register("regular_soul_binder", () -> new SoulBinderItem(false));
     public static final DeferredHolder<Item, SoulBinderItem> SOUL_BINDER_CREATIVE = register("creative_soul_binder", () -> new SoulBinderItem(true));

@@ -35,15 +35,10 @@ public class  ZealotAltarBlock extends BaseEntityBlock {
     public ZealotAltarBlock(Properties pProperties) {
         super(pProperties);
     }
-    @NotNull
-    @Override
-    @SuppressWarnings("deprecation")
-    public RenderShape getRenderShape(@NotNull BlockState state) {
-        return RenderShape.MODEL;
-    }
-    @NotNull
-    @Override
-    public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+
+    private static final VoxelShape shrineShape = makeShape();
+
+    private static VoxelShape makeShape() {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.25, 0.75, 0.75, 0.75), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0, 0.75, 0, 1, 0.875, 1), BooleanOp.OR);
@@ -55,6 +50,18 @@ public class  ZealotAltarBlock extends BaseEntityBlock {
         shape = Shapes.join(shape, Shapes.box(0.375, 1.25, 0.375, 0.625, 1.5, 0.625), BooleanOp.OR);
 
         return shape;
+    }
+
+    @NotNull
+    @Override
+    @SuppressWarnings("deprecation")
+    public RenderShape getRenderShape(@NotNull BlockState state) {
+        return RenderShape.MODEL;
+    }
+    @NotNull
+    @Override
+    public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return shrineShape;
     }
 
     @Override

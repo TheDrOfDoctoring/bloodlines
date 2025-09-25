@@ -38,6 +38,17 @@ public class PhylacteryBlock extends BaseEntityBlock {
     public PhylacteryBlock(Properties pProperties) {
         super(pProperties);
     }
+
+    private static final VoxelShape phylacteryShape = makeShape();
+
+    private static VoxelShape makeShape() {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.375, 0.25, 0.75, 0.875 ,0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.40625, 0, 0.40625, 0.59375, 0.375,0.59375), BooleanOp.OR);
+
+        return shape;
+    }
+
     @NotNull
     @Override
     @SuppressWarnings("deprecation")
@@ -48,11 +59,7 @@ public class PhylacteryBlock extends BaseEntityBlock {
     @NotNull
     @Override
     public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.25, 0.375, 0.25, 0.75, 0.875 ,0.75), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.40625, 0, 0.40625, 0.59375, 0.375,0.59375), BooleanOp.OR);
-
-        return shape;
+        return phylacteryShape;
     }
 
 
