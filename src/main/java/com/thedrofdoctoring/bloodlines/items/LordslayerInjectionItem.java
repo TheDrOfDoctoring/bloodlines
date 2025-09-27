@@ -7,6 +7,7 @@ import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.entity.vampire.VampireBaronEntity;
+import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
@@ -28,7 +29,7 @@ public class LordslayerInjectionItem extends Item {
             float healthPercent = pTarget.getHealth() / pTarget.getMaxHealth();
             int lordRank = FactionPlayerHandler.get(player).getLordLevel();
             IBloodline bloodline = BloodlineManager.get(player).getBloodline();
-            if(lordRank >= CommonConfig.nobleLordSlayerMinLordRank.get() && bloodline == null && pTarget.hasEffect(MobEffects.WEAKNESS) && healthPercent <= CommonConfig.nobleLordslayerBaronHealth.get().floatValue()) {
+            if(Helper.isVampire(player) && lordRank >= CommonConfig.nobleLordSlayerMinLordRank.get() && bloodline == null && pTarget.hasEffect(MobEffects.WEAKNESS) && healthPercent <= CommonConfig.nobleLordslayerBaronHealth.get().floatValue()) {
                 pTarget.kill();
                 pStack.shrink(1);
                 BloodlineHelper.joinBloodlineGeneric(player, BloodlineRegistry.BLOODLINE_NOBLE.get(), Component.translatable("text.bloodlines.noble_join").withStyle(ChatFormatting.DARK_RED));

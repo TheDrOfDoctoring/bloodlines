@@ -4,6 +4,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
+import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
@@ -37,7 +38,7 @@ public class HeinousCurseEffect extends MobEffect {
     }
     public static void handleHeinousEnding(Player player) {
         BloodlineManager man = BloodlineManager.get(player);
-        if(man.getBloodline() == null && CommonConfig.bloodknightUniqueUnlock.get()) {
+        if(Helper.isVampire(player) && man.getBloodline() == null && CommonConfig.bloodknightUniqueUnlock.get()) {
             BloodlineHelper.joinBloodlineGeneric(player, BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get(), Component.translatable("text.bloodlines.bloodknight_join").withStyle(ChatFormatting.DARK_RED));
         }
 

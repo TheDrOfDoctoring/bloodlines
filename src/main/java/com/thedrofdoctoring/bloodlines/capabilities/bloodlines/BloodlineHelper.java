@@ -5,6 +5,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.IBloodlinesP
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import de.teamlapen.vampirism.core.ModSounds;
+import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -36,6 +37,7 @@ public class BloodlineHelper {
         return atts.bloodline == bloodline;
     }
     public static void joinBloodlineGeneric(Player player, IBloodline bloodline, Component joinMessage) {
+        if(FactionPlayerHandler.get(player).getCurrentFaction() != bloodline.getFaction()) return;
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.ENTITY_VAMPIRE_SCREAM.get(), SoundSource.PLAYERS, 1, 1);
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 1, 1);
         BloodlineManager bl = BloodlineManager.get(player);

@@ -253,7 +253,7 @@ public class BloodlineEventHandler {
 
         if (event.getEntity() instanceof Player player && event.getAmount() >= event.getEntity().getHealth()) {
             BloodlineManager bl = BloodlineManager.get(player);
-            if (CommonConfig.ectothermUniqueUnlock.get() && event.getSource().is(ModDamageTypes.SUN_DAMAGE) && bl.getBloodline() == null && player.hasEffect(BloodlinesEffects.COLD_BLOODED) && player.isInWater()) {
+            if (CommonConfig.ectothermUniqueUnlock.get() && Helper.isVampire(player) && event.getSource().is(ModDamageTypes.SUN_DAMAGE) && bl.getBloodline() == null && player.hasEffect(BloodlinesEffects.COLD_BLOODED) && player.isInWater()) {
                 player.removeEffect(BloodlinesEffects.COLD_BLOODED);
                 player.addEffect(new MobEffectInstance(ModEffects.SUNSCREEN, 30 * 20, 2));
                 BloodlineHelper.joinBloodlineGeneric(player, BloodlineRegistry.BLOODLINE_ECTOTHERM.get(), Component.translatable("text.bloodlines.ectotherm_join").withStyle(ChatFormatting.DARK_RED));
