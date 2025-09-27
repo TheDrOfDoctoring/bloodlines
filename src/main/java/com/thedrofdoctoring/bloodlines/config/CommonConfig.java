@@ -232,7 +232,7 @@ public class CommonConfig {
         celerityDuration = COMMON_BUILDER.comment("Celerity action duration in seconds").defineInRange("celerityDuration", 5, 1, Integer.MAX_VALUE);
         celerityStepAssistRank = COMMON_BUILDER.comment("Bloodline Rank at which celerity action gives Step Assist. Set to 6 to disable").defineInRange("celerityStepAssistRank", 3, 1, Integer.MAX_VALUE);
         mesmeriseEnabled = COMMON_BUILDER.comment("Whether mesmerise action is enabled").define("mesmeriseEnabled", true);
-        mesmeriseCooldown = COMMON_BUILDER.comment("Mesmerise action cooldown in seconds").defineInRange("mesmeriseCooldown", 90, 1, Integer.MAX_VALUE);
+        mesmeriseCooldown = COMMON_BUILDER.comment("Mesmerise action cooldown in seconds").defineInRange("mesmeriseCooldown", 60, 1, Integer.MAX_VALUE);
         mesmeriseDuration = COMMON_BUILDER.comment("Mesmerise action duration in seconds").defineInRange("mesmeriseDuration", 20, 1, Integer.MAX_VALUE);
         leechingEnabled = COMMON_BUILDER.comment("Whether leeching action is enabled").define("leechingEnabled", true);
         leechingCooldown = COMMON_BUILDER.comment("Leeching action cooldown in seconds").defineInRange("leechingCooldown", 120, 1, Integer.MAX_VALUE);

@@ -555,7 +555,7 @@
   "bloodlines.configuration.graveboundBlRank3DefaultSkills": "Gravebound Bloodline Rank 3 - Default Skills",
   "bloodlines.configuration.graveboundBlRank4DefaultSkills": "Gravebound Bloodline Rank 4 - Default Skills",
   "bloodlines.configuration.graveboundMaxSouls": "Gravebound Max Souls Scaling",
-  "bloodlines.configuration.graveboundDevourSoulCooldownSeconds": "Devour Soul Cooldown",
+  "bloodlines.configuration.graveboundDevourSoulCooldownsSeconds": "Devour Soul Cooldowns",
   "bloodlines.configuration.playerAliveTimeForDevour": "Player Alive Time Devour Requirement",
   "bloodlines.configuration.phylacteryMaxStorageTiers": "Phylactery Soul Storage Tiers",
   "bloodlines.configuration.phylacteryMaxStorageTierRequirements": "Phylactery Soul Storage Tier Requirements",
