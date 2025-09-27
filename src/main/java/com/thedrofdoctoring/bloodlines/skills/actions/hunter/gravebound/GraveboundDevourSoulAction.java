@@ -32,7 +32,7 @@ public class GraveboundDevourSoulAction extends DefaultGraveboundAction {
     @Override
     public int getCooldown(IHunterPlayer iHunterPlayer) {
         int blRank = BloodlineManager.get(iHunterPlayer.asEntity()).getRank() - 1;
-        return HunterBloodlinesConfig.devourSoulCooldownSeconds.get().get(blRank) * 20;
+        return HunterBloodlinesConfig.devourSoulCooldownsSeconds.get().get(blRank) * 20;
     }
 
     public boolean showHudCooldown(Player player) {
