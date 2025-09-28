@@ -2,15 +2,6 @@
   "requirements": {
     "requirements": [
       {
-        "type": "vampirism:stat",
-        "amount": 10000,
-        "description": {
-          "translate": "stat.vampirism.blood_drunk"
-        },
-        "id": "vampirism:blood_drunk",
-        "stat": "vampirism:blood_drunk"
-      },
-      {
         "type": "vampirism:item",
         "description": {
           "translate": "item.minecraft.emerald"
@@ -20,6 +11,15 @@
           "count": 24,
           "id": "minecraft:emerald"
         }
+      },
+      {
+        "type": "vampirism:stat",
+        "amount": 50000,
+        "description": {
+          "translate": "stat.bloodlines.entity_blood_drunk"
+        },
+        "id": "bloodlines:entity_blood_drunk",
+        "stat": "bloodlines:entity_blood_drunk"
       },
       {
         "type": "vampirism:stat",

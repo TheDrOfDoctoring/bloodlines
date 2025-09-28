@@ -5,9 +5,11 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineHelper;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineEventReceiver;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineManager;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
+import com.thedrofdoctoring.bloodlines.core.BloodlinesStats;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.lib.lib.util.UtilLib;
+import de.teamlapen.vampirism.api.VReference;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
@@ -152,9 +154,17 @@ public class BloodlineNoble extends VampireBloodline implements IBloodlineEventR
             event.setAmount((int) (event.getAmount() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue()));
             event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue());
         }
-        else if(event.getBloodSource().getEntity().isPresent() && bloodlinePlayer.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_BETTER_BLOOD_DRAIN.get())) {
-            event.setAmount((int) (event.getAmount() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue()));
-            event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue());
+        else if(event.getBloodSource().getEntity().isPresent()) {
+            int amount = event.getAmount();
+            int statIncrease = amount * VReference.FOOD_TO_FLUID_BLOOD;
+            if(bloodlinePlayer.getSkillHandler().isSkillEnabled(BloodlineSkills.NOBLE_BETTER_BLOOD_DRAIN.get())) {
+                statIncrease = (int) (statIncrease * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue());
+                amount = (int) (event.getAmount() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue());
+                event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainMultiplier.get().get(rank).floatValue());
+            }
+            event.setAmount(amount);
+            bloodlinePlayer.asEntity().awardStat(BloodlinesStats.ENTITY_BLOOD_DRUNK.get(), statIncrease);
         }
+
     }
 }

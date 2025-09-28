@@ -95,7 +95,7 @@ public class BloodlineTasks {
         context.register(BLOODLINE_NOBLE_PERK_POINTS, TaskBuilder.builder().setTitle(BLOODLINE_NOBLE_PERK_POINTS.location())
                 .setReward(new BloodlinePerkReward(1, BLOODLINE_NOBLE_PERK_POINTS.location()))
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineNoble.NOBLE, false))
-                .addRequirement(ModStats.BLOOD_DRUNK.get(), 10000 )
+                .addRequirement(BloodlinesStats.ENTITY_BLOOD_DRUNK.get(), 50000)
                 .addRequirement(Stats.TRADED_WITH_VILLAGER, 20)
                 .addRequirement(new ItemStack(Items.EMERALD, 24))
                 .build());

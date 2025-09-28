@@ -14,6 +14,7 @@ public class BloodlinesStats {
 
     public static final DeferredHolder<ResourceLocation, ResourceLocation> SOULS_DEVOURED = add("souls_devoured");
     public static final DeferredHolder<ResourceLocation, ResourceLocation> MOBS_SOUL_DEVOURED = add("creatures_souls_devoured");
+    public static final DeferredHolder<ResourceLocation, ResourceLocation> ENTITY_BLOOD_DRUNK = add("entity_blood_drunk");
 
 
     private static DeferredHolder<ResourceLocation, ResourceLocation> add(String name) {

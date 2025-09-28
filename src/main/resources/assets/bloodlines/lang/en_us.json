@@ -598,5 +598,6 @@
   "bloodlines.configuration.possessionSoulCost": "Possession Soul Cost",
   "bloodlines.configuration.possessionDuration": "Possession Duration",
   "bloodlines.configuration.possessionSwapCooldown": "Possession Swap Cooldown",
-  "bloodlines.configuration.possessionSwapSoulCost": "Possession Swap Soul Cost"
+  "bloodlines.configuration.possessionSwapSoulCost": "Possession Swap Soul Cost",
+  "stat.bloodlines.entity_blood_drunk": "Blood Drunk from Creatures"
 }

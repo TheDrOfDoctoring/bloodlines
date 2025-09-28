@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-25T12:37:54.6921175	Registries
+// 1.21.1	2025-09-28T19:22:24.1139625	Registries
 2eb8f20470f59102a5b1824fd683f83dd286e186 data/bloodlines/bloodlines/bloodline_ai_selector/bloodknight.json
 3e04bc82df0f5e180fe17ccbc21465ae87036a02 data/bloodlines/bloodlines/bloodline_ai_selector/ectotherm.json
 ebc4e5edfe45badf03b8771f58f6b2003974690a data/bloodlines/bloodlines/bloodline_ai_selector/gravebound.json
@@ -132,7 +132,7 @@ fda966d5d8911de1870121d21457b1cd8d6fb858 data/bloodlines/vampirism/tasks/bloodli
 e53a1b7a69431baba339addecdde35c63284fad6 data/bloodlines/vampirism/tasks/bloodline_perk_points_gravebound_1.json
 92a20d8ed4dd75ad0b8ba94a48d59d7dff736f28 data/bloodlines/vampirism/tasks/bloodline_perk_points_gravebound_2.json
 e0e5b2ec30257ad401938a85fe9e67fe239a6deb data/bloodlines/vampirism/tasks/bloodline_perk_points_gravebound_3.json
-d730794734cca5753149b8513daf07ed1fd870fd data/bloodlines/vampirism/tasks/bloodline_perk_points_noble_1.json
+2c9d1093b0a2c5b1e5518a28600209964ee8d12e data/bloodlines/vampirism/tasks/bloodline_perk_points_noble_1.json
 ef2bd40a503eb1f8c0fccf82a225b302561f37c5 data/bloodlines/vampirism/tasks/bloodline_perk_points_zealot_1.json
 bd2dd737c6cf01a3ec997238a57bea2d7e642a7f data/bloodlines/vampirism/tasks/bloodline_zealot_one.json
 66262b73e05d6a1fe2bbc014c3e17dc3a4f85726 data/bloodlines/vampirism/tasks/bloodline_zealot_three.json
