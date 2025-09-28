@@ -5,6 +5,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineEventRe
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlinesPlayerAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
+import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
 import de.teamlapen.vampirism.api.entity.factions.ISkillTree;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
@@ -17,7 +18,10 @@ import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -25,6 +29,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +86,15 @@ public class BloodlineZealot extends VampireBloodline implements IBloodlineEvent
             }
             updateSpeed(player, Math.max(rank - 1, 0), atts);
 
+        }
+    }
+
+    @Override
+    public void onCrit(CriticalHitEvent event) {
+        Player player = event.getEntity();
+        VampirePlayer vp = VampirePlayer.get(player);
+        if(event.getTarget() instanceof LivingEntity living && !event.getTarget().getType().is(EntityTypeTags.UNDEAD) && vp.getSkillHandler().isSkillEnabled(BloodlineSkills.ZEALOT_POISONED_STRIKE.get())) {
+            living.addEffect(new MobEffectInstance(MobEffects.POISON, CommonConfig.zealotPoisonedStrikeDuration.get(), 0));
         }
     }
     private void updateSpeed(Player player, int rank, SpecialAttributes attributes) {
