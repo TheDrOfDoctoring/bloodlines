@@ -148,7 +148,7 @@ public class BloodlineNoble extends VampireBloodline implements IBloodlineEventR
     @Override
     public void onBloodDrink(BloodDrinkEvent.PlayerDrinkBloodEvent event, int rank, VampirePlayer bloodlinePlayer) {
         //Decrease blood gain from food sources and increase blood gain from mobs for nobles.
-        if(event.getBloodSource().getStack().isPresent() && event.getBloodSource().getStack().get().getItem() instanceof VampirismItemBloodFoodItem) {
+        if(event.getBloodSource().getStack().isPresent()) {
             event.setAmount((int) (event.getAmount() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue()));
             event.setSaturationModifier(event.getSaturation() * CommonConfig.nobleBloodGainDecreaseMultiplier.get().get(rank).floatValue());
         }
