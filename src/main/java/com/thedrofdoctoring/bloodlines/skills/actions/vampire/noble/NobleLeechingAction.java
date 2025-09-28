@@ -69,7 +69,7 @@ public class NobleLeechingAction extends NobleBloodlineAction implements ILastin
 
     @Override
     public int getCooldown(IVampirePlayer iVampirePlayer) {
-        return CommonConfig.leechingCooldown.get();
+        return CommonConfig.leechingCooldown.get() * 20;
     }
 
 }
