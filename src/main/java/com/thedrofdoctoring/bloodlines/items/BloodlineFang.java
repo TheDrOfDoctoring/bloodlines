@@ -40,7 +40,7 @@ public class BloodlineFang extends Item {
                 player.displayClientMessage(Component.translatable("text.bloodlines.bloodline_active"), true);
                 return new InteractionResultHolder<>(InteractionResult.FAIL, player.getItemInHand(hand));
 
-            } else if(bl.getBloodline().getFaction() != faction) {
+            } else if(bloodline.getFaction() != faction) {
                 player.displayClientMessage(Component.translatable("text.bloodlines.wrong_faction", faction.getNamePlural()), true);
                 return new InteractionResultHolder<>(InteractionResult.FAIL, player.getItemInHand(hand));
             } else {
