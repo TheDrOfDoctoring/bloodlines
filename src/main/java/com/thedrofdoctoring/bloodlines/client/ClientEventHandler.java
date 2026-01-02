@@ -230,7 +230,7 @@ public class ClientEventHandler {
 
         if(mc.player == null) return;
 
-        if(BloodlinesPlayerAttributes.get(mc.player).getGraveboundData().possessionActive) {
+        if(BloodlinesPlayerAttributes.get(mc.player).getGraveboundData().possessionActive || HunterPlayer.get(mc.player).getActionHandler().isActionActive(BloodlineActions.GRAVEBOUND_POSSESSION_ACTION.get())) {
             // We only bother sending a packet if it's either an attack or an interaction, so we know if the received packet isn't an attack, it's an interact.
             if(event.isAttack() || event.isUseItem()) {
                 mc.player.connection.send(new ServerboundPossessionInteractPacket(event.isAttack()));

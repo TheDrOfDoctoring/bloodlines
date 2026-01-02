@@ -55,6 +55,7 @@ public class BloodlinesDataMapsProvider extends DataMapProvider {
         entitySoulValues.add(holder.apply(EntityType.WANDERING_TRADER), new EntitySoulData(6, 1f), false);
         entitySoulValues.add(holder.apply(EntityType.VINDICATOR), new EntitySoulData(5, 0.35f), false);
         entitySoulValues.add(holder.apply(EntityType.ILLUSIONER), new EntitySoulData(5, 0.35f), false);
+        entitySoulValues.add(holder.apply(EntityType.PILLAGER), new EntitySoulData(5, 0.35f), false);
 
 
         entitySoulValues.add(holder.apply(EntityType.PLAYER), new EntitySoulData(8, 0.1f), false);

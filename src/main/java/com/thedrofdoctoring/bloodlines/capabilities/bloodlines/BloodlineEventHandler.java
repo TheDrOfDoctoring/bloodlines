@@ -245,6 +245,16 @@ public class BloodlineEventHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onDamageLate(LivingDamageEvent.Pre event) {
+
+        IBloodlineManager manager = BloodlineHelper.getBloodlineManager(event.getEntity());
+
+        if (manager != null && manager.getBloodline() instanceof IBloodlineEventReceiver receiver) {
+            receiver.onReceiveDamageLate(event, event.getEntity(), manager.getRank() - 1);
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onDamage(LivingIncomingDamageEvent event) {
         if (event.getEntity().getCommandSenderWorld().isClientSide) return;
@@ -302,7 +312,6 @@ public class BloodlineEventHandler {
 
         }
     }
-
 
     @SubscribeEvent
     public static void livingFallEvent(LivingFallEvent event) {

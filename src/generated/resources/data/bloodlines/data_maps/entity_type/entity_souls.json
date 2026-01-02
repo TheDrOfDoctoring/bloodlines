@@ -8,6 +8,10 @@
       "base_devour_health": 0.5,
       "souls": 3
     },
+    "minecraft:pillager": {
+      "base_devour_health": 0.35,
+      "souls": 5
+    },
     "minecraft:player": {
       "base_devour_health": 0.1,
       "souls": 8

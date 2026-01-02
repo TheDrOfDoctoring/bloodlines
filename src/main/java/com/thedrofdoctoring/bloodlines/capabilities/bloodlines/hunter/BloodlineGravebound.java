@@ -54,8 +54,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -187,14 +187,14 @@ public class BloodlineGravebound extends HunterBloodline implements IBloodlineEv
     }
 
     @Override
-    public void onReceiveDamage(LivingIncomingDamageEvent event, LivingEntity bloodlineMember, int blRank) {
+    public void onReceiveDamageLate(LivingDamageEvent.Pre event, LivingEntity bloodlineMember, int blRank) {
 
         if(blRank + 1 < HunterBloodlinesConfig.immortalityGraveboundRank.get() || bloodlineMember.getCommandSenderWorld().isClientSide) return;
 
         // We only negate damage / go into mist form if the damage type isn't one a gravebound is vulnerable to
         if(event.getSource().is(BloodlinesTagsProviders.BloodlinesDamageTypesProvider.GRAVEBOUND_VULNERABLE)) {
             // need to limit to floating point max value, otherwise this breaks the game.
-            event.setAmount(Math.min(event.getAmount() * HunterBloodlinesConfig.graveboundMagicDamageMultiplier.get().get(blRank).floatValue(), Float.MAX_VALUE));
+            event.setNewDamage(Math.min(event.getOriginalDamage() * HunterBloodlinesConfig.graveboundMagicDamageMultiplier.get().get(blRank).floatValue(), Float.MAX_VALUE));
             if(HunterBloodlinesConfig.graveboundVulnerableDamageTypeMistForm.get()) {
                 return;
             }
@@ -208,11 +208,11 @@ public class BloodlineGravebound extends HunterBloodline implements IBloodlineEv
         BloodlinesPlayerAttributes atts = BloodlinesPlayerAttributes.get(player);
         SpecialAttributes graveBoundData = atts.getGraveboundData();
         if(graveBoundData.mistForm) {
-            event.setCanceled(true);
+            event.setNewDamage(0);
             return;
         }
         IActionHandler<IHunterPlayer> actionHandler = HunterPlayer.get(player).getActionHandler();
-        if(event.getAmount() > bloodlineMember.getHealth() && !actionHandler.isActionActive(BloodlineActions.GRAVEBOUND_MIST_FORM.get()) && !actionHandler.isActionOnCooldown(BloodlineActions.GRAVEBOUND_MIST_FORM.get())) {
+        if(event.getNewDamage() > bloodlineMember.getHealth() && !actionHandler.isActionActive(BloodlineActions.GRAVEBOUND_MIST_FORM.get()) && !actionHandler.isActionOnCooldown(BloodlineActions.GRAVEBOUND_MIST_FORM.get())) {
 
             // Already in mist form, so die for real.
             if(graveBoundData.mistForm) return;
@@ -222,8 +222,7 @@ public class BloodlineGravebound extends HunterBloodline implements IBloodlineEv
             graveBoundData.lastDamageSource = event.getSource();
             HunterPlayer.get(player).getActionHandler().toggleAction(BloodlineActions.GRAVEBOUND_MIST_FORM.get(), new ActionHandler.ActivationContext());
             player.setHealth(1);
-
-            event.setCanceled(true);
+            event.setNewDamage(0);
 
         }
     }

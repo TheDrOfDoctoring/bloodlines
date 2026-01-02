@@ -111,11 +111,8 @@ public class GraveboundPossessionAction extends GraveboundSoulAction implements 
             BloodlineManager.get(player).sync(false);
         }
 
-
-
         if(player instanceof ServerPlayer serverPlayer) {
             serverPlayer.setDeltaMovement(0, 0, 0);
-
             serverPlayer.setCamera(target);
         }
         return true;

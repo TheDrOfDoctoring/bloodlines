@@ -24,6 +24,7 @@ public class GraveboundPossessionSwapAction extends GraveboundSoulAction {
         Vec3 playerPos = iHunterPlayer.asEntity().position();
         playerPos = new Vec3(playerPos.x, playerPos.y, playerPos.z);
         iHunterPlayer.asEntity().teleportTo(targetPos.x, targetPos.y, targetPos.z);
+        iHunterPlayer.asEntity().absMoveTo(targetPos.x, targetPos.y, targetPos.z);
         target.absMoveTo(playerPos.x, playerPos.y, playerPos.z);
 
         consumeSouls(iHunterPlayer);
