@@ -149,21 +149,20 @@ public class GraveboundMistFormAction extends DefaultGraveboundAction implements
         int requiredSouls = getRequiredSouls(player, manager.getRank() - 1);
         if(state != null && state.getSouls() > requiredSouls) {
             state.addSouls(-requiredSouls);
-            setMistform(iHunterPlayer, false, true);
-            setAttributes(iHunterPlayer.asEntity(), false);
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS, 0.35f, 1);
             ModParticles.spawnParticlesServer(player.level(), ParticleTypes.SOUL, player.getX(), player.getY(), player.getZ(), 50, 0f, 0.5f, 0f, 0.1f);
         } else {
-
             DamageSource killingDamageSource = BloodlinesPlayerAttributes.get(player).getGraveboundData().lastDamageSource;
             BloodlinesPlayerAttributes.get(player).getGraveboundData().mistForm = false;
             if(killingDamageSource != null) {
                 player.hurt(killingDamageSource, 1000f);
             } else {
-                player.kill();
+                player.hurt(player.damageSources().magic(), 1000f);
             }
 
         }
+        setMistform(iHunterPlayer, false, true);
+        setAttributes(iHunterPlayer.asEntity(), false);
 
     }
 
