@@ -17,6 +17,7 @@ import de.teamlapen.vampirism.api.entity.player.task.TaskUnlocker;
 import de.teamlapen.vampirism.core.ModEntities;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModStats;
+import de.teamlapen.vampirism.core.ModTags;
 import de.teamlapen.vampirism.entity.player.tasks.TaskBuilder;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -129,7 +130,7 @@ public class BloodlineTasks {
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineZealot.ZEALOT, false))
                 .addRequirement(new ItemStack(Items.DIAMOND, 8))
                 .addRequirement(new ItemStack(Items.AMETHYST_BLOCK, 12))
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 5)
+                .addRequirement(ModTags.Entities.ADVANCED_VAMPIRE, 5)
                 .addRequirement(EntityType.ENDERMAN, 10)
                 .build());
         context.register(BLOODLINE_ECTOTHERM_1, TaskBuilder.builder().setTitle(BLOODLINE_ECTOTHERM_1.location())
@@ -165,7 +166,7 @@ public class BloodlineTasks {
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineBloodknight.BLOOD_KNIGHT, true))
                 .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 10))
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_2.get(), 5))
-                .addRequirement(ModEntities.VAMPIRE.get(), 50)
+                .addRequirement(ModTags.Entities.VAMPIRE, 50)
                 .build());
         context.register(BLOODLINE_BLOODKNIGHT_2, TaskBuilder.builder().setTitle(BLOODLINE_BLOODKNIGHT_2.location())
                 .setReward(new BloodlineRankReward(3, BLOODLINE_BLOODKNIGHT_2.location()))
@@ -174,7 +175,7 @@ public class BloodlineTasks {
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_3.get(), 5))
                 .addRequirement(new ItemStack(BloodlinesItems.CORRUPTED_BLOOD_SAMPLE.get(), 10))
 
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 25)
+                .addRequirement(ModTags.Entities.ADVANCED_VAMPIRE, 25)
                 .build());
         context.register(BLOODLINE_BLOODKNIGHT_3, TaskBuilder.builder().setTitle(BLOODLINE_BLOODKNIGHT_3.location())
                 .setReward(new BloodlineRankReward(4, BLOODLINE_BLOODKNIGHT_3.location()))
@@ -183,7 +184,7 @@ public class BloodlineTasks {
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_4.get(), 8))
                 .addRequirement(new ItemStack(BloodlinesItems.CORRUPTED_BLOOD_SAMPLE.get(), 20))
 
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 50)
+                .addRequirement(ModTags.Entities.ADVANCED_VAMPIRE, 50)
                 .build());
         context.register(BLOODLINE_BLOODKNIGHT_PERK_POINTS, TaskBuilder.builder().setTitle(BLOODLINE_BLOODKNIGHT_PERK_POINTS.location())
                 .setReward(new BloodlinePerkReward(1, BLOODLINE_BLOODKNIGHT_PERK_POINTS.location()))
@@ -191,14 +192,14 @@ public class BloodlineTasks {
                 .addRequirement(new ItemStack(ModItems.PURE_BLOOD_3.get(), 4))
                 .addRequirement(new ItemStack(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), 4))
                 .addRequirement(new ItemStack(BloodlinesItems.CORRUPTED_BLOOD_SAMPLE.get(), 12))
-                .addRequirement(ModEntities.VAMPIRE.get(), 20)
+                .addRequirement(ModTags.Entities.VAMPIRE, 20)
                 .build());
         context.register(BLOODLINE_GRAVEBOUND_PERK_POINTS, TaskBuilder.builder().setTitle(BLOODLINE_GRAVEBOUND_PERK_POINTS.location())
                 .setReward(new BloodlinePerkReward(1, BLOODLINE_GRAVEBOUND_PERK_POINTS.location()))
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, false))
                 .unlockedBy(new MaxPerkUnlocker(0, 5))
                 .addRequirement(BloodlinesStats.MOBS_SOUL_DEVOURED.get(), 35)
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 5)
+                .addRequirement(ModTags.Entities.ADVANCED_VAMPIRE, 5)
                 .addRequirement(ModEntities.VAMPIRE_BARON.get(), 3)
                 .build());
         context.register(BLOODLINE_GRAVEBOUND_PERK_POINTS_2, TaskBuilder.builder().setTitle(BLOODLINE_GRAVEBOUND_PERK_POINTS_2.location())
@@ -206,7 +207,7 @@ public class BloodlineTasks {
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, false))
                 .unlockedBy(new MaxPerkUnlocker(5, 10))
                 .addRequirement(BloodlinesStats.MOBS_SOUL_DEVOURED.get(), 100)
-                .addRequirement(ModEntities.ADVANCED_HUNTER.get(), 10)
+                .addRequirement(ModTags.Entities.ADVANCED_HUNTER, 10)
                 .addRequirement(ModEntities.VAMPIRE_BARON.get(), 8)
                 .build());
         context.register(BLOODLINE_GRAVEBOUND_PERK_POINTS_3, TaskBuilder.builder().setTitle(BLOODLINE_GRAVEBOUND_PERK_POINTS_3.location())
@@ -214,8 +215,8 @@ public class BloodlineTasks {
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, false))
                 .unlockedBy(new MaxPerkUnlocker(10, 15))
                 .addRequirement(BloodlinesStats.MOBS_SOUL_DEVOURED.get(), 200)
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 20)
-                .addRequirement(ModEntities.ADVANCED_HUNTER.get(), 20)
+                .addRequirement(ModTags.Entities.ADVANCED_VAMPIRE, 20)
+                .addRequirement(ModTags.Entities.ADVANCED_HUNTER, 20)
                 .addRequirement(ModEntities.VAMPIRE_BARON.get(), 10)
                 .build());
         context.register(BLOODLINE_GRAVEBOUND_1, TaskBuilder.builder().setTitle(BLOODLINE_GRAVEBOUND_1.location())
@@ -223,7 +224,7 @@ public class BloodlineTasks {
                 .unlockedBy(new BloodlineUnlocker(1, BloodlineGravebound.GRAVEBOUND, true))
                 .addRequirement(new ItemStack(BloodlinesItems.FROZEN_BLOOD_SAMPLE, 20))
                 .addRequirement(ModEntities.VAMPIRE_BARON.get(), 10)
-                .addRequirement(ModEntities.ADVANCED_VAMPIRE.get(), 10)
+                .addRequirement(ModTags.Entities.ADVANCED_VAMPIRE, 10)
                 .addRequirement(BloodlinesStats.SOULS_DEVOURED.get(), 250)
                 .build());
         context.register(BLOODLINE_GRAVEBOUND_2, TaskBuilder.builder().setTitle(BLOODLINE_GRAVEBOUND_2.location())

@@ -13,10 +13,10 @@
         }
       },
       {
-        "type": "vampirism:entity",
+        "type": "vampirism:entity_type",
         "amount": 50,
         "description": {
-          "translate": "entity.vampirism.vampire"
+          "translate": "entity_tag.vampirism.vampire"
         },
         "entityType": "vampirism:vampire",
         "id": "vampirism:vampire"

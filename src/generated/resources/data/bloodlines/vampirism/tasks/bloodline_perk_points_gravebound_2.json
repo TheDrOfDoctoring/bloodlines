@@ -2,10 +2,10 @@
   "requirements": {
     "requirements": [
       {
-        "type": "vampirism:entity",
+        "type": "vampirism:entity_type",
         "amount": 10,
         "description": {
-          "translate": "entity.vampirism.advanced_hunter"
+          "translate": "entity_tag.vampirism.advanced_hunter"
         },
         "entityType": "vampirism:advanced_hunter",
         "id": "vampirism:advanced_hunter"
