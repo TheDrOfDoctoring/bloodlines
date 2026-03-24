@@ -20,6 +20,7 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue mesmeriseDuration;
     public static final ModConfigSpec.BooleanValue nobleRainWeakness;
     public static final ModConfigSpec.BooleanValue nobleWaterWeakness;
+    public static final ModConfigSpec.BooleanValue nobleFLankRequirement;
     public static final ModConfigSpec.BooleanValue leechingEnabled;
     public static final ModConfigSpec.IntValue leechingCooldown;
     public static final ModConfigSpec.IntValue leechingDuration;
@@ -246,7 +247,8 @@ public class CommonConfig {
         bothInvisibilityDuration = COMMON_BUILDER.comment("Invisibility duration when a player has both noble and regular vampire invisibility actions unlocked").defineInRange("bothInvisibilityDuration", 45, 1, Integer.MAX_VALUE);
         nobleIntrigueDamageMultiplier = COMMON_BUILDER.comment("How much damage is multiplied by when attacking from behind with intrigue skill").defineInRange("intrigueMultiplier", 1.5d, 0, 1000);
         nobleFlankCooldown = COMMON_BUILDER.comment("Flank cooldown in seconds").defineInRange("nobleFlankCooldown", 15, 1, Integer.MAX_VALUE);
-        nobleFlankRange = COMMON_BUILDER.comment("Flank max distance").defineInRange("nobleFlankMaxDistance", 200, 1, 1000);
+        nobleFlankRange = COMMON_BUILDER.comment("Flank max distance").defineInRange("nobleFlankMaxDistance", 300, 1, 1000);
+        nobleFLankRequirement = COMMON_BUILDER.comment("If true, flank only works on entities that cannot see the player").define("nobleFlankSightRequirement", true);
         nobleBatArmourMultiplier = COMMON_BUILDER.comment("Multiplier for armour in bat form with requisite skill").defineInRange("nobleBatArmourMultiplier", -0.45d, -1d, 1d);
 
         nobleDefaults[0] = nobleBlRank1DefaultSkills = COMMON_BUILDER.comment("Bloodline Skills that are enabled by default upon reaching Rank 1").defineList("nobleBLRank1DefaultSkills", List.of("bloodlines:noble"), () -> "bloodlines:noble",string -> string instanceof String && UtilLib.isValidResourceLocation(((String) string)));

@@ -10,6 +10,7 @@ import de.teamlapen.vampirism.entity.player.vampire.actions.VampireActions;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -33,12 +34,10 @@ public class NobleFlankAction extends NobleBloodlineAction {
             dist *= VampirismConfig.BALANCE.vrTeleportDistanceMod.get();
         }
 
-
         Vec3 eyePos = player.getEyePosition();
-        Vec3 view = player.getViewVector(1.0F).scale(dist);
-        Vec3 viewPos = eyePos.add(view);
-        AABB aabb = player.getBoundingBox().expandTowards(view).inflate(1.0);
-        EntityHitResult result = ProjectileUtil.getEntityHitResult(player, eyePos, viewPos, aabb, p -> p instanceof LivingEntity, dist);
+        Vec3 view = getPlayerLookingSpot(player, dist);
+        AABB aabb = player.getBoundingBox().expandTowards(player.getViewVector(1.0f).scale(dist)).inflate(1.0);
+        EntityHitResult result = ProjectileUtil.getEntityHitResult(player, eyePos, view, aabb, p -> p instanceof LivingEntity, dist);
         double ox = player.getX();
         double oy = player.getY();
         double oz = player.getZ();
@@ -49,18 +48,17 @@ public class NobleFlankAction extends NobleBloodlineAction {
         Vec3 pos = null;
         LivingEntity resultEntity = (LivingEntity) result.getEntity();
 
-        if(player.isInvisible() || !UtilLib.canReallySee(resultEntity, player, false)) {
-            Vec3 lookAngle = resultEntity.getViewVector(1);
-            Vec3 behindPos = lookAngle.reverse().multiply(1.2f, 0, 1.2f);
-            pos = resultEntity.position().add(behindPos).add(0, 0.2f, 0);
-
+        if(CommonConfig.nobleFLankRequirement.get()) {
+            if(player.isInvisible() || !UtilLib.canReallySee(resultEntity, player, false)) {
+                Vec3 lookAngle = resultEntity.getViewVector(1);
+                Vec3 behindPos = lookAngle.reverse().multiply(1.2f, 0, 1.2f);
+                pos = resultEntity.position().add(behindPos).add(0, 0.2f, 0);
+            }
         }
 
         if (pos != null) {
             player.setPos(pos);
         }
-
-
 
         if (pos == null) {
             player.setPos(ox, oy, oz);
@@ -68,12 +66,31 @@ public class NobleFlankAction extends NobleBloodlineAction {
             return false;
         }
         if (player instanceof ServerPlayer playerMp) {
-            playerMp.disconnect();
+            playerMp.removeVehicle();
             playerMp.teleportTo(pos.x, pos.y, pos.z);
         }
         player.getCommandSenderWorld().playSound(null, ox,oy,oz, ModSounds.TELEPORT_AWAY.get(), SoundSource.PLAYERS, 1f, 1f);
         player.getCommandSenderWorld().playSound(null, player.getX(), player.getY(), player.getZ(),ModSounds.TELEPORT_HERE.get(), SoundSource.PLAYERS, 1f, 1f);
         return true;
+    }
+
+
+    public static @NotNull Vec3 getPlayerLookingSpot(@NotNull Player player, int distance) {
+        float scale = 1.0F;
+        float pitch = player.xRotO + (player.getXRot() - player.xRotO) * scale;
+        float yaw = player.yRotO + (player.getYRot() - player.yRotO) * scale;
+        double x = player.xo + (player.getX() - player.xo) * scale;
+        double y = player.yo + (player.getY() - player.yo) * scale + 1.62D;
+        double z = player.zo + (player.getZ() - player.zo) * scale;
+        Vec3 vector1 = new Vec3(x, y, z);
+        float cosYaw = Mth.cos(-yaw * 0.017453292F - (float) Math.PI);
+        float sinYaw = Mth.sin(-yaw * 0.017453292F - (float) Math.PI);
+        float cosPitch = -Mth.cos(-pitch * 0.017453292F);
+        float sinPitch = Mth.sin(-pitch * 0.017453292F);
+        float pitchAdjustedSinYaw = sinYaw * cosPitch;
+        float pitchAdjustedCosYaw = cosYaw * cosPitch;
+
+        return vector1.add(pitchAdjustedSinYaw * distance, sinPitch * distance, pitchAdjustedCosYaw * distance);
     }
 
     @Override
