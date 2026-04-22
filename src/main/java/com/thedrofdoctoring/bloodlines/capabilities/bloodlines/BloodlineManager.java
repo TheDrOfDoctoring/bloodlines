@@ -210,7 +210,7 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
 
             BloodlineParentSkill<?> nodesClosestParent = closestParent(skill, skillHandler);
 
-            if (nodesClosestParent != null && skillHandler.isSkillEnabled(skill) && nodesClosestParent.getRank() > bloodlineRank) {
+            if (nodesClosestParent != null && nodesClosestParent.getRank() > bloodlineRank) {
                 skillHandler.disableSkill(skill);
             }
         }

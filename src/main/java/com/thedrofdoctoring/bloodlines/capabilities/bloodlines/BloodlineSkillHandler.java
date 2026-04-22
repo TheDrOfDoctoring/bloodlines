@@ -9,6 +9,7 @@ public class BloodlineSkillHandler  {
     private int enabledSkills;
 
     public void deserializeNBT(CompoundTag nbt) {
+        this.clearSkillPoints();
         this.taskSkillPoints = nbt.getInt("blSkillPoints");
         this.otherSkillPoints = nbt.getInt("blOtherSkillPoints");
         this.enabledSkills = nbt.getInt("blEnabledSkills");
@@ -21,6 +22,7 @@ public class BloodlineSkillHandler  {
     }
 
     public void deserializeUpdateNBT(CompoundTag nbt) {
+        this.clearSkillPoints();
         this.taskSkillPoints = nbt.getInt("blSkillPoints");
         this.otherSkillPoints = nbt.getInt("blOtherSkillPoints");
         this.enabledSkills = nbt.getInt("blEnabledSkills");
@@ -32,7 +34,7 @@ public class BloodlineSkillHandler  {
         return nbt;
     }
     public void setEnabledSkills(int enabledSkills) {
-        this.enabledSkills = enabledSkills;
+        this.enabledSkills = Math.max(0, enabledSkills);
     }
     public int getEnabledSkills() {
         return this.enabledSkills;
