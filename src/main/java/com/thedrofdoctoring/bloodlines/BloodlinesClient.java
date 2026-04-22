@@ -26,7 +26,6 @@ public class BloodlinesClient {
 
     public BloodlinesClient(IEventBus modBus, ModContainer container) {
         INSTANCE = this;
-        Bloodlines.onServer = false;
 
         this.setupOverlays();
 

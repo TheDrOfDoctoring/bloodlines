@@ -57,7 +57,6 @@ import java.util.concurrent.CompletableFuture;
 @Mod(Bloodlines.MODID)
 public class Bloodlines {
     public static final String MODID = "bloodlines";
-    public static boolean onServer = true;
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Bloodlines(IEventBus modEventBus, ModContainer container) {
