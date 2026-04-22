@@ -601,5 +601,6 @@
   "bloodlines.configuration.possessionSwapCooldown": "Possession Swap Cooldown",
   "bloodlines.configuration.possessionSwapSoulCost": "Possession Swap Soul Cost",
   "bloodlines.configuration.playerBitingOnlyForBloodknight": "Player Biting For Bloodknights Only",
+  "bloodlines.configuration.playerBitingGivesFrenzy": "Player Biting Blood Frenzy",
   "stat.bloodlines.entity_blood_drunk": "Blood Drunk from Creatures"
 }

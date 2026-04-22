@@ -53,6 +53,7 @@ public class CommonConfig {
     public static final ModConfigSpec.IntValue zealotBrightAreaDamageMultiplierLightLevel;
     public static final ModConfigSpec.IntValue zealotPoisonedStrikeDuration;
     public static final ModConfigSpec.BooleanValue playerBitingOnlyForBloodknight;
+    public static final ModConfigSpec.BooleanValue playerBitingGivesFrenzy;
 
 
 
@@ -377,6 +378,8 @@ public class CommonConfig {
         bloodknightUniqueUnlock = COMMON_BUILDER.comment("Whether the Bloodknight Bloodline's unique method of joining the bloodline is available. If disabled, then add a recipe for the bloodline fang or add another way to become a member of the bloodline.").define("bloodknightUniqueUnlock", true);
         heinousElixirDurationSeconds = COMMON_BUILDER.comment("Duration of Heinous Elixir, in seconds").defineInRange("heinousElixirDurationSeconds",  15, 0, 10000);
         playerBitingOnlyForBloodknight = COMMON_BUILDER.comment("By default, vampires can bite other vampire players without being bloodknights themselves. With this enabled, only bloodknights can drink blood from other vampire players").define("playerBitingOnlyForBloodknight", false);
+        playerBitingGivesFrenzy = COMMON_BUILDER.comment("If set to false, bloodknight player biting will not give blood frenzy").define("playerBitingGivesFrenzy", false);
+
 
         bloodBottleFrenzy = COMMON_BUILDER.comment("Whether the Bloodknight Bloodline's blood frenzy triggers when drinking bottled vampire blood ").define("bloodBottleFrenzy", false);
         bloodBottleFrenzyDuration = COMMON_BUILDER.comment("Duration of blood frenzy effect when drinking bottled blood, for each BL Rank, in seconds").defineList("bloodBottleFrenzyDuration", Arrays.asList(30, 60, 120, 150, 200), () -> 50,t -> t instanceof Integer);

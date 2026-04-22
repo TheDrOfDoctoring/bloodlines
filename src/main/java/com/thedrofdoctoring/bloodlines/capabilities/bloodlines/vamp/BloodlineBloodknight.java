@@ -149,44 +149,52 @@ public class BloodlineBloodknight extends VampireBloodline implements IBloodline
     public void onBloodDrink(BloodDrinkEvent.PlayerDrinkBloodEvent event, int rank, VampirePlayer vp) {
 
         if(event.getBloodSource().getStack().isPresent()) {
-            List<Item> allowed = List.of(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), ModItems.BLOOD_BOTTLE.get());
-            ItemStack stack = event.getBloodSource().getStack().get();
-            if(!allowed.contains(stack.getItem())) {
-                event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue()));
-                event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue());
-            }
-            if(stack.is(ModItems.VAMPIRE_BLOOD_BOTTLE.get()) &&  CommonConfig.bloodBottleFrenzy.get()) {
-                int duration = CommonConfig.bloodBottleFrenzyDuration.get().get(rank) * 20;
-                ISkillHandler<IVampirePlayer> skillHandler = vp.getSkillHandler();
-                Player player = vp.asEntity();
-                if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_1.get()) && !skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
-                    player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 0, false, true, true));
-                } else if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
-                    player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 1, false, true, true));
-                }
-            }
+            onItemBloodDrink(event.getBloodSource().getStack().get(), event, rank, vp);
         }
         if(event.getBloodSource().getEntity().isPresent()) {
-            LivingEntity entity = event.getBloodSource().getEntity().get();
-            if(!Helper.isVampire(entity)) {
-                event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue()));
-                event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue());
-            } else {
-                ISkillHandler<IVampirePlayer> skillHandler = vp.getSkillHandler();
-                Player player = vp.asEntity();
+            onEntityBloodDrink(event.getBloodSource().getEntity().get(), vp, rank, event);
+        }
+    }
 
-                int duration = CommonConfig.bloodknightBloodFrenzyDurationPerRank.get().get(rank) * 20;
-                if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_1.get()) && !skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
-                    player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 0, false, true, true));
-                } else if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
-                    player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 1, false, true, true));
-                }
-                if(!(entity instanceof Player)) {
-                    event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightVampireBonusBloodMult.get().get(rank).floatValue()));
-                    event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightVampireBonusSaturationMult.get().get(rank).floatValue());
-                }
-
+    private void onItemBloodDrink(ItemStack stack, BloodDrinkEvent.PlayerDrinkBloodEvent event, int rank, VampirePlayer vp) {
+        List<Item> allowed = List.of(ModItems.VAMPIRE_BLOOD_BOTTLE.get(), ModItems.BLOOD_BOTTLE.get());
+        if(!allowed.contains(stack.getItem())) {
+            event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue()));
+            event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue());
+        }
+        if(stack.is(ModItems.VAMPIRE_BLOOD_BOTTLE.get()) &&  CommonConfig.bloodBottleFrenzy.get()) {
+            int duration = CommonConfig.bloodBottleFrenzyDuration.get().get(rank) * 20;
+            ISkillHandler<IVampirePlayer> skillHandler = vp.getSkillHandler();
+            Player player = vp.asEntity();
+            if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_1.get()) && !skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
+                player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 0, false, true, true));
+            } else if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
+                player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 1, false, true, true));
             }
+        }
+    }
+
+    private void onEntityBloodDrink(LivingEntity entity, VampirePlayer drinker, int rank, BloodDrinkEvent.PlayerDrinkBloodEvent event) {
+        if(!Helper.isVampire(entity)) {
+            event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue()));
+            event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightOtherSourceBloodDecrease.get().get(rank).floatValue());
+        } else {
+            if(!CommonConfig.playerBitingGivesFrenzy.get() && entity instanceof Player) return;
+
+            ISkillHandler<IVampirePlayer> skillHandler = drinker.getSkillHandler();
+            Player player = drinker.asEntity();
+
+            int duration = CommonConfig.bloodknightBloodFrenzyDurationPerRank.get().get(rank) * 20;
+            if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_1.get()) && !skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
+                player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 0, false, true, true));
+            } else if(skillHandler.isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEEDING_FRENZY_2.get())) {
+                player.addEffect(new MobEffectInstance(BloodlinesEffects.BLOOD_FRENZY, duration, 1, false, true, true));
+            }
+            if(!(entity instanceof Player)) {
+                event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightVampireBonusBloodMult.get().get(rank).floatValue()));
+                event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightVampireBonusSaturationMult.get().get(rank).floatValue());
+            }
+
         }
     }
 }
