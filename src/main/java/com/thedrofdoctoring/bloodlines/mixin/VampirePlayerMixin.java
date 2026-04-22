@@ -1,14 +1,17 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp.IVampSpecialAttributes;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
+import de.teamlapen.vampirism.api.entity.vampire.IVampire;
 import de.teamlapen.vampirism.entity.player.FactionBasePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayerSpecialAttributes;
@@ -57,6 +60,26 @@ public abstract class VampirePlayerMixin extends FactionBasePlayer<IVampirePlaye
         }
 
     }
+
+    @ModifyReturnValue(method = "canBeBitten", at = @At("RETURN"))
+    private boolean onlyBloodKnightBiting(boolean original, IVampire biter) {
+        if(original) {
+            if(!CommonConfig.playerBitingOnlyForBloodknight.get()) return true;
+
+            if(biter instanceof VampirePlayer vp) {
+                Player player = vp.asEntity();
+                IBloodline bloodline = BloodlineManager.get(player).getBloodline();
+                if(bloodline != BloodlineRegistry.BLOODLINE_BLOODKNIGHT.get()) return false;
+
+                boolean modifiedDuration = vp.getSkillHandler().isSkillEnabled(BloodlineSkills.BLOODKNIGHT_FEIGNED_MERCY.get());
+                float percentageHealth = modifiedDuration ? CommonConfig.bloodknightFeignedVampireMaxHealthFeedingAmount.get().floatValue() : CommonConfig.bloodknightVampireMinHealthFeedingPercentage.get().floatValue();
+
+                return (this.asEntity().getHealth() / this.asEntity().getMaxHealth()) <= percentageHealth;
+            }
+        }
+        return false;
+    }
+
     @Inject(method = "isGettingSundamage", at = @At("RETURN"), cancellable = true)
     private void ectothermDiffraction(LevelAccessor iWorld, boolean forcerefresh, CallbackInfoReturnable<Boolean> cir) {
         if(((IVampSpecialAttributes)getSpecialAttributes()).bloodlines$getRefraction()) {
