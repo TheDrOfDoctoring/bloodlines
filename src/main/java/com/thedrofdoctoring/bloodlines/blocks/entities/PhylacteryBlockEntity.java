@@ -1,10 +1,13 @@
 package com.thedrofdoctoring.bloodlines.blocks.entities;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
+import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodline;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.config.HunterBloodlinesConfig;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesBlockEntities;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesBlocks;
+import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -49,6 +52,7 @@ public class PhylacteryBlockEntity extends BlockEntity {
             this.loadCustomOnly(tag, lookupProvider);
         }
     }
+
     @Override
     public void saveAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider lookupProvider) {
         super.saveAdditional(nbt, lookupProvider);
@@ -83,13 +87,22 @@ public class PhylacteryBlockEntity extends BlockEntity {
         return storedSouls;
     }
     public void determineMaxSouls(int totalSoulsDevoured) {
+        int tier = determineTier(totalSoulsDevoured);
+        int maxTier = HunterBloodlinesConfig.phylacteryMaxStorageTierRequirements.get().size();
+        if(tier >= maxTier || tier < 0) {
+            maxStoredSouls = 5;
+            Bloodlines.LOGGER.warn("Unable to obtain Phylactery tier");
+        }
+        this.maxStoredSouls = HunterBloodlinesConfig.phylacteryMaxStorageTiers.get().get(tier);
+    }
+
+    public static int determineTier(int totalSoulsDevoured) {
         List<? extends Integer> tiers = HunterBloodlinesConfig.phylacteryMaxStorageTierRequirements.get();
         int i = 0;
         boolean foundTier = false;
 
         if(totalSoulsDevoured >= tiers.getLast()) {
-            foundTier = true;
-            i = tiers.size() - 1;
+            return tiers.size() - 1;
         }
 
         while(i < tiers.size() && !foundTier) {
@@ -102,11 +115,25 @@ public class PhylacteryBlockEntity extends BlockEntity {
                 i++;
             }
         }
-        if(i >= tiers.size()) {
-            maxStoredSouls = 5;
-            Bloodlines.LOGGER.warn("Unable to obtain Phylactery tier");
+        return i;
+    }
+
+    public static int determineSoulsForNextTier(int totalSoulsDevoured) {
+        List<? extends Integer> tiers = HunterBloodlinesConfig.phylacteryMaxStorageTierRequirements.get();
+        int i = 0;
+
+        if(totalSoulsDevoured >= tiers.getLast()) {
+            return 0;
         }
-        this.maxStoredSouls = HunterBloodlinesConfig.phylacteryMaxStorageTiers.get().get(i);
+
+        while(i < tiers.size()) {
+            int tierRequirement = tiers.get(i);
+            if(totalSoulsDevoured < tierRequirement) {
+                return tierRequirement - totalSoulsDevoured;
+            }
+            i += 1;
+        }
+        return 0;
     }
 
     public int addSouls(int additional) {
@@ -127,6 +154,29 @@ public class PhylacteryBlockEntity extends BlockEntity {
             return used;
         }
         return 0;
+    }
+
+    public void extractSouls(Player user, int amount) {
+        BloodlineManager manager = BloodlineManager.get(user);
+        IBloodline bloodline = manager.getBloodline();
+
+        if(bloodline == BloodlineRegistry.BLOODLINE_GRAVEBOUND.get() && manager.getBloodlineState().isPresent()) {
+            BloodlineGravebound.State state = (BloodlineGravebound.State) manager.getBloodlineState().get();
+            if(amount > 0) {
+                int used = this.addSouls(-amount);
+                int usedAfter = state.addSouls(used);
+                this.addSouls(used - usedAfter);
+            } else {
+                int used = state.addSouls(amount);
+                int usedAfter = this.addSouls(used);
+                state.addSouls(used - usedAfter);
+            }
+
+            state.updateCache(manager.getRank());
+            this.setChanged();
+            manager.sync(false);
+        }
+
     }
 
     public void setOwner(@Nullable Player player) {

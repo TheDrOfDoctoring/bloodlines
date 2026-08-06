@@ -19,6 +19,7 @@ import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineRankDistrib
 import com.thedrofdoctoring.bloodlines.data.spawn_modifiers.BloodlineSpawnModifier;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceFluidHandler;
 import com.thedrofdoctoring.bloodlines.items.BottomlessChaliceItem;
+import com.thedrofdoctoring.bloodlines.menus.BloodlinesMenus;
 import com.thedrofdoctoring.bloodlines.networking.ServerPayloadHandler;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkillType;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
@@ -94,6 +95,7 @@ public class Bloodlines {
         BloodlinesStats.CUSTOM_STAT.register(modEventBus);
         BloodlineStructures.STRUCTURE_TYPES.register(modEventBus);
         BloodlineStructures.STRUCTURE_PIECES.register(modEventBus);
+        BloodlinesMenus.MENUS.register(modEventBus);
 
         if(ModList.get().isLoaded("guideapi_vp")) {
             NeoForge.EVENT_BUS.addListener(BloodlinesGuideBook::createCategoriesEvent);

@@ -47,6 +47,21 @@ public class SoulBinderItem extends Item {
             if(be instanceof PhylacteryBlockEntity phylactery && bloodline == BloodlineRegistry.BLOODLINE_GRAVEBOUND.get() && manager.getBloodlineState().isPresent()) {
                 Player owner = phylactery.getOwner();
                 BloodlineGravebound.State state = (BloodlineGravebound.State) manager.getBloodlineState().get();
+                boolean phylacteryOwnerIsUser = user.getUUID().equals(phylactery.getOwnerUUID());
+                // These checks shouldn't really ever be necessary but who knows what can happen
+                if(phylacteryOwnerIsUser && !state.hasPhylactery()) {
+                    state.setPhylactery(pos, level.dimension().location());
+                    manager.sync(false);
+                    state.updateCache(manager.getRank());
+                    return InteractionResult.SUCCESS;
+                }
+
+                if(!phylacteryOwnerIsUser && state.tryGetPhylactery().map(phyl -> phyl.equals(phylactery)).orElseGet(() -> false)) {
+                    if(owner == null) {
+                        phylactery.setOwner(user);
+                        return InteractionResult.SUCCESS;
+                    }
+                }
 
                 // We only bind with the regular soul binder if the phylactery doesn't have an owner.
                 if(!phylactery.hasOwner() && !state.hasPhylactery()) {
@@ -57,29 +72,9 @@ public class SoulBinderItem extends Item {
                     state.updateCache(manager.getRank());
                     return InteractionResult.SUCCESS;
 
-                // If owner matches user, then we add souls to phylactery
-                } else if(phylactery.getOwnerUUID().equals(user.getUUID())) {
-
-                    int amount = user.isShiftKeyDown() ? 5 : 1;
-                    if(state.getSouls() <= 0) return InteractionResult.SUCCESS;
-
-                    int used = state.addSouls(-amount);
-                    int usedAfter = phylactery.addSouls(used);
-                    state.addSouls(used - usedAfter);
-
-                    int remaining = phylactery.getStoredSouls();
-                    state.updateCache(manager.getRank());
-                    phylactery.setChanged();
-                    if(remaining == phylactery.getMaxStoredSouls()) {
-                        user.displayClientMessage(Component.translatable("text.bloodlines.phylactery_max", remaining), true);
-                    } else {
-                        user.displayClientMessage(Component.translatable("text.bloodlines.phylactery_souls", remaining), true);
-                    }
-                    manager.sync(false);
-                    user.getCooldowns().addCooldown(this, 10);
-
+                // If owner matches user, just return
+                } else if(phylacteryOwnerIsUser) {
                     return InteractionResult.SUCCESS;
-
                 // Creative Soul Binder ignores other conditions, forces the phylactery to be bound even if it already has an owner.
                 } else if(forceBind) {
                     boolean shouldRebind = !user.isShiftKeyDown();

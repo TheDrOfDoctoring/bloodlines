@@ -125,16 +125,18 @@ public class BloodlineEventHandler {
             if(phylacteryDimension != null && state.getPhylacteryPos() != null) {
                 BlockState block = phylacteryDimension.getBlockState(state.getPhylacteryPos());
                 if(!block.is(BloodlinesBlocks.PHYLACTERY)) {
-                    state.setPhylactery(null, null);
+                    state.removePhylactery();
                     manager.updatePlayerCache();
                     manager.sync(false);
                 } else if(phylacteryDimension.getBlockEntity(state.getPhylacteryPos()) instanceof PhylacteryBlockEntity phylactery) {
                     if(phylactery.getOwnerUUID() != null && !phylactery.getOwnerUUID().equals(player.getUUID())) {
-                        state.setPhylactery(null, null);
+                        state.removePhylactery();
                         manager.updatePlayerCache();
                         manager.sync(false);
                     }
                 }
+            } else {
+                state.removePhylactery();
             }
         }
     }
@@ -285,6 +287,7 @@ public class BloodlineEventHandler {
                         state.setPhylactery(phylacteryPos, player.level().dimension().location());
                         state.setSouls(10);
                         manager.sync(false);
+                        state.updateCache(manager.getRank());
                     }
 
                     player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 2));

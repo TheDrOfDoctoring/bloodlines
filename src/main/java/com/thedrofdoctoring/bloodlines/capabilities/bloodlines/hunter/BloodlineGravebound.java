@@ -354,6 +354,7 @@ public class BloodlineGravebound extends HunterBloodline implements IBloodlineEv
 
         public void removePhylactery() {
             this.phylacteryPos = null;
+            this.phylacteryDimensionID = null;
         }
         public void setPhylactery(@Nullable BlockPos pos, ResourceLocation dimension) {
             this.phylacteryPos = pos;

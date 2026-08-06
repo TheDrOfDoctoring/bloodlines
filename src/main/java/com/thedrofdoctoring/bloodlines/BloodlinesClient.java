@@ -6,6 +6,7 @@ import com.thedrofdoctoring.bloodlines.client.core.BloodlinesItemClient;
 import com.thedrofdoctoring.bloodlines.client.core.BloodlinesKeys;
 import com.thedrofdoctoring.bloodlines.client.core.BloodlinesOverlays;
 import com.thedrofdoctoring.bloodlines.client.gui.overlay.SoulbarOverlay;
+import com.thedrofdoctoring.bloodlines.client.screens.BloodlinesMenuScreens;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -36,6 +37,7 @@ public class BloodlinesClient {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         NeoForge.EVENT_BUS.register(new ClientEventHandler(Minecraft.getInstance()));
         NeoForge.EVENT_BUS.register(new BloodlinesKeys());
+        BloodlinesMenuScreens.register(modBus);
 
 
         renderManager = new BloodlineEntityRenderManager(Minecraft.getInstance());

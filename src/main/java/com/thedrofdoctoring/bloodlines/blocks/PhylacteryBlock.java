@@ -7,6 +7,7 @@ import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.hunter.BloodlineGravebound;
 import com.thedrofdoctoring.bloodlines.core.bloodline.BloodlineRegistry;
 import com.thedrofdoctoring.bloodlines.items.SoulBinderItem;
+import com.thedrofdoctoring.bloodlines.menus.PhylacteryMenu;
 import de.teamlapen.vampirism.core.ModParticles;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -15,7 +16,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -85,28 +89,30 @@ public class PhylacteryBlock extends BaseEntityBlock {
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull BlockHitResult pHitResult) {
         if(pPlayer.getMainHandItem().getItem() instanceof SoulBinderItem) return InteractionResult.FAIL;
         if(pLevel.getBlockEntity(pPos) instanceof PhylacteryBlockEntity phylactery && !pLevel.isClientSide) {
-            if(pPlayer.getUUID().equals(phylactery.getOwnerUUID()) && BloodlineHelper.hasBloodline(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get(), pPlayer)) {
+            if(BloodlineHelper.hasBloodline(BloodlineRegistry.BLOODLINE_GRAVEBOUND.get(), pPlayer)) {
                 BloodlineManager manager = BloodlineManager.get(pPlayer);
                 BloodlineGravebound.State state = BloodlineGravebound.getGraveboundState(manager);
+                Player owner = phylactery.getOwner();
                 if(state == null) return InteractionResult.FAIL;
 
-                int amount = pPlayer.isShiftKeyDown() ? 5 : 1;
-
-                if(phylactery.getStoredSouls() <= 0) {
-                    pPlayer.displayClientMessage(Component.translatable("text.bloodlines.phylactery_souls", phylactery.getStoredSouls()), true);
+                boolean phylacteryOwnerIsUser = pPlayer.getUUID().equals(phylactery.getOwnerUUID());
+                if(phylacteryOwnerIsUser && !state.hasPhylactery()) {
+                    state.setPhylactery(pPos, pLevel.dimension().location());
+                    manager.sync(false);
+                    state.updateCache(manager.getRank());
                     return InteractionResult.SUCCESS;
                 }
 
-                int used = phylactery.addSouls(-amount);
-                int usedAfter = state.addSouls(used);
-                phylactery.addSouls(used - usedAfter);
-                phylactery.setChanged();
-                phylactery.requestModelDataUpdate();
-                pPlayer.displayClientMessage(Component.translatable("text.bloodlines.phylactery_souls", phylactery.getStoredSouls()), true);
+                if(!phylacteryOwnerIsUser && state.tryGetPhylactery().map(phyl -> phyl.equals(phylactery)).orElseGet(() -> false)) {
+                    if(owner == null) {
+                        phylactery.setOwner(pPlayer);
+                        return InteractionResult.SUCCESS;
+                    }
+                }
 
-
-                state.updateCache(manager.getRank());
-                manager.sync(false);
+                if(phylacteryOwnerIsUser) {
+                    pPlayer.openMenu(getMenuProvider(pState, pLevel, pPos));
+                }
                 return InteractionResult.SUCCESS;
 
             }
@@ -133,6 +139,14 @@ public class PhylacteryBlock extends BaseEntityBlock {
                 state.updateCache(manager.getRank());
             }
         }
+    }
+
+
+    @Override
+    protected @Nullable MenuProvider getMenuProvider(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos) {
+        return new SimpleMenuProvider(
+                (id, inv, player) -> new PhylacteryMenu(id, inv, ContainerLevelAccess.create(pLevel, pPos)), Component.translatable("screens.bloodlines.phylactery_title")
+        );
     }
 
     @Override

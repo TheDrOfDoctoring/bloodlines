@@ -17,8 +17,11 @@ import com.thedrofdoctoring.bloodlines.networking.packets.from_client.Serverboun
 import com.thedrofdoctoring.bloodlines.networking.packets.from_client.ServerboundPossessionInteractPacket;
 import com.thedrofdoctoring.bloodlines.skills.actions.BloodlineActions;
 import de.teamlapen.vampirism.api.client.VIngameOverlays;
+import de.teamlapen.vampirism.api.entity.player.actions.IActionHandler;
+import de.teamlapen.vampirism.api.entity.player.hunter.IHunterPlayer;
 import de.teamlapen.vampirism.client.gui.screens.VampirismContainerScreen;
 import de.teamlapen.vampirism.core.ModParticles;
+import de.teamlapen.vampirism.entity.player.actions.ActionHandler;
 import de.teamlapen.vampirism.entity.player.hunter.HunterPlayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -144,11 +147,18 @@ public class ClientEventHandler {
         int left = width / 2 - 8;
         int top = height / 2 - 4;
         RenderSystem.enableBlend();
-        float alpha = HunterPlayer.get(mc.player).getActionHandler().isActionOnCooldown(BloodlineActions.GRAVEBOUND_DEVOUR_SOUL.get()) ? 0.35f : 1;
+        IActionHandler<IHunterPlayer> actionHandler = HunterPlayer.get(mc.player).getActionHandler();
+        boolean isOnCooldown = actionHandler.isActionOnCooldown(BloodlineActions.GRAVEBOUND_DEVOUR_SOUL.get());
+        float alpha = isOnCooldown ? 0.35f : 1;
+        float proportion = actionHandler.getPercentageForAction(BloodlineActions.GRAVEBOUND_DEVOUR_SOUL.get());
+        int fill = (int) ((1 + proportion) * 16);
         graphics.setColor(1f, 1f, 1f, alpha);
         graphics.blitSprite(DEVOUR_SOUL_SPRITE, 16, 16, 0,0, left, top, 16, 16);
 
         RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
+        if(isOnCooldown) {
+            graphics.blitSprite(DEVOUR_SOUL_SPRITE, 16, 16, 0, 0, left, top, 16, fill);
+        }
         RenderSystem.disableBlend();
 
     }
