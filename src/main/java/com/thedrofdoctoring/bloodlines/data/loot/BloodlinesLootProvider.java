@@ -69,8 +69,8 @@ public class BloodlinesLootProvider {
             );
             builder.accept(FROZEN_BLOOD_ENTITY_TABLE, LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1f, 1f))
-                            .add(LootItem.lootTableItem(BloodlinesItems.FROZEN_BLOOD_SAMPLE.get()).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
-                            .add(EmptyLootItem.emptyItem().setWeight(35)))
+                            .add(LootItem.lootTableItem(BloodlinesItems.FROZEN_BLOOD_SAMPLE.get()).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
+                            .add(EmptyLootItem.emptyItem().setWeight(20)))
             );
         }
     }

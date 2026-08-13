@@ -35,7 +35,6 @@ public class BloodlineRegistry {
 
         Additionally,
         <ul>
-         <li> Register a BloodlineFang for that Bloodline - If a Vampire Bloodline. </li>
          <li> Create tasks for levelling and perk points for that bloodline - Unless special levelling or perk system. </li>
          <li> Create a BloodlineSpawnModifier and BloodlineRankDistribution - Not necessary if bloodline is only for players </li>
          <li> Create textures for bloodline entity - Not necessary if bloodline only applies to entities that would not be supported by this </li>

@@ -18,11 +18,11 @@
             }
           ],
           "name": "bloodlines:frozen_blood_sample",
-          "weight": 20
+          "weight": 30
         },
         {
           "type": "minecraft:empty",
-          "weight": 35
+          "weight": 20
         }
       ],
       "rolls": {

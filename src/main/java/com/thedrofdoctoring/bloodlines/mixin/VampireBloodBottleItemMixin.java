@@ -1,19 +1,17 @@
 package com.thedrofdoctoring.bloodlines.mixin;
 
+import com.thedrofdoctoring.bloodlines.advancements.BloodlinesAdvancementTriggers;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
-import com.thedrofdoctoring.bloodlines.core.BloodlinesEffects;
 import com.thedrofdoctoring.bloodlines.skills.BloodlineSkills;
-import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
-import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.entity.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.entity.vampire.DrinkBloodContext;
 import de.teamlapen.vampirism.items.VampireBloodBottleItem;
 import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -48,6 +46,9 @@ public class VampireBloodBottleItemMixin extends Item {
             VampirePlayer vp = VampirePlayer.get(player);
             if(vp.getSkillHandler().isSkillEnabled(BloodlineSkills.BLOODKNIGHT_STILL_BLOOD)) {
                 VampirePlayer.get(player).drinkBlood(CommonConfig.bloodknightVampireBloodBottleNutrition.get(), CommonConfig.bloodknightVampireBloodBottleSaturation.get().floatValue(), new DrinkBloodContext(stack));
+                if(player instanceof ServerPlayer serverPlayer) {
+                    BloodlinesAdvancementTriggers.DRINK_VAMPIRE_BLOOD.get().trigger(serverPlayer);
+                }
                 stack.shrink(1);
                 player.addItem(Items.GLASS_BOTTLE.getDefaultInstance());
             }

@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.advancements.BloodlinesAdvancementTriggers;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlineState;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.data.BloodlinesPlayerAttributes;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesAttachments;
@@ -15,6 +16,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -23,6 +25,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.attachment.IAttachmentHolder;
 import net.neoforged.neoforge.attachment.IAttachmentSerializer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -182,9 +185,16 @@ public class BloodlineManager implements IBloodlineManager, IAttachment {
             }
 
         }
+        if(player instanceof ServerPlayer serverPlayer) {
+            triggerAdvancements(serverPlayer, bloodline, bloodlineRank);
+        }
         updateAttributes(oldBloodline);
         sync(true);
         updatePlayerCache();
+    }
+
+    private void triggerAdvancements(ServerPlayer player, @Nullable IBloodline bloodline, int rank) {
+        BloodlinesAdvancementTriggers.BLOODLINE_RANK.get().trigger(player, bloodline, rank);
     }
 
     @Override

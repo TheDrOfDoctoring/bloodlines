@@ -59,9 +59,9 @@ public class BloodlinesSpawnModifiers {
                         List.of(ModEntities.VAMPIRE.get(), ModEntities.ADVANCED_VAMPIRE.get()),
                         List.of(
                                 Pair.of(biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD), 15),
-                                Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD), 20)
+                                Pair.of(biomeLookup.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD), 55)
                         ),
-                        Pair.of(60, -25)
+                        Pair.of(45, -25)
                 )
 
         );

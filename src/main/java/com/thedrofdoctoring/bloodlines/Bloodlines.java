@@ -1,6 +1,8 @@
 package com.thedrofdoctoring.bloodlines;
 
 import com.mojang.logging.LogUtils;
+import com.thedrofdoctoring.bloodlines.advancements.BloodlinesAdvancementProvider;
+import com.thedrofdoctoring.bloodlines.advancements.BloodlinesAdvancementTriggers;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.BloodlineManager;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.entity.BloodlineMobManager;
 import com.thedrofdoctoring.bloodlines.capabilities.other.VampExtendedCreature;
@@ -96,6 +98,8 @@ public class Bloodlines {
         BloodlineStructures.STRUCTURE_TYPES.register(modEventBus);
         BloodlineStructures.STRUCTURE_PIECES.register(modEventBus);
         BloodlinesMenus.MENUS.register(modEventBus);
+        BloodlinesAdvancementTriggers.TRIGGERS.register(modEventBus);
+
 
         if(ModList.get().isLoaded("guideapi_vp")) {
             NeoForge.EVENT_BUS.addListener(BloodlinesGuideBook::createCategoriesEvent);
@@ -138,7 +142,7 @@ public class Bloodlines {
         generator.addProvider(event.includeServer(), new BloodlinesRecipeProviders(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), BloodlinesLootProvider.getProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new BloodlinesLootModifiersProvider(packOutput, lookupProvider));
-
+        generator.addProvider(event.includeServer(), new BloodlinesAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {

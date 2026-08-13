@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "main": {
+      "conditions": {
+        "is_rank_specific": false,
+        "rank": 1
+      },
+      "trigger": "bloodlines:bloodline_rank"
+    }
+  },
+  "display": {
+    "background": "vampirism:textures/block/dark_stone_bricks.png",
+    "description": {
+      "translate": "advancement.bloodlines.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "vampirism:pure_blood_4"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.bloodlines"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

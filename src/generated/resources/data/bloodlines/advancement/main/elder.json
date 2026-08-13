@@ -1,0 +1,31 @@
+{
+  "parent": "bloodlines:main/ranking_up",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "is_rank_specific": true,
+        "rank": 4
+      },
+      "trigger": "bloodlines:bloodline_rank"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bloodlines.elder.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "vampirism:vampire_clothing_crown"
+    },
+    "title": {
+      "translate": "advancement.bloodlines.elder"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

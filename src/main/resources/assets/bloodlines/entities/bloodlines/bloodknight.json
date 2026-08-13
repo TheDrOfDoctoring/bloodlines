@@ -1,0 +1,8 @@
+{
+  "bloodline": "bloodlines:bloodknight",
+  "textures": [
+    "bloodlines:textures/entity/vampire/bloodknight/bloodknight1",
+    "bloodlines:textures/entity/vampire/bloodknight/bloodknight2",
+    "bloodlines:textures/entity/vampire/bloodknight/bloodknight3"
+  ]
+}

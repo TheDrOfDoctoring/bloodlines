@@ -1,0 +1,31 @@
+{
+  "parent": "bloodlines:main/root",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "is_rank_specific": false,
+        "rank": 2
+      },
+      "trigger": "bloodlines:bloodline_rank"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bloodlines.rank_up.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bloodlines:corrupted_blood_sample"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.bloodlines.rank_up"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -607,5 +607,15 @@
   "screens.bloodlines.phylactery_take": "Take %s",
   "screens.bloodlines.phylactery_give": "Give %s",
   "screens.bloodlines.phylactery_stored_souls": "Stored Souls: %1$s/%2$s",
-  "screens.bloodlines.phylactery_next_tier": "Consumed for Next Tier: %s"
+  "screens.bloodlines.phylactery_next_tier": "Consumed for Next Tier: %s",
+  "advancement.bloodlines": "One Of Us",
+  "advancement.bloodlines.desc": "Join a Bloodline",
+  "advancement.bloodlines.rank_up": "Earning Your Place",
+  "advancement.bloodlines.rank_up.desc": "Complete a Bloodline Task to increase your rank.",
+  "advancement.bloodlines.elder": "Elder",
+  "advancement.bloodlines.elder.desc": "Reach the maximum Bloodline rank.",
+  "advancement.bloodlines.pariah.desc": "As a Bloodknight, drink another vampire's blood",
+  "advancement.bloodlines.pariah": "Pariah",
+  "advancement.bloodlines.test_bloodline": "Smallest of the Small on Earth",
+  "advancement.bloodlines.test_bloodline.desc": "Use a Bloodline Tester to determine another creature is a different Bloodline from you"
 }

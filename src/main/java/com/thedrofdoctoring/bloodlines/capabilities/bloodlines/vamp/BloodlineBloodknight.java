@@ -1,6 +1,7 @@
 package com.thedrofdoctoring.bloodlines.capabilities.bloodlines.vamp;
 
 import com.thedrofdoctoring.bloodlines.Bloodlines;
+import com.thedrofdoctoring.bloodlines.advancements.BloodlinesAdvancementTriggers;
 import com.thedrofdoctoring.bloodlines.capabilities.bloodlines.IBloodlineEventReceiver;
 import com.thedrofdoctoring.bloodlines.config.CommonConfig;
 import com.thedrofdoctoring.bloodlines.core.BloodlinesEffects;
@@ -19,6 +20,7 @@ import de.teamlapen.vampirism.util.Helper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -193,6 +195,9 @@ public class BloodlineBloodknight extends VampireBloodline implements IBloodline
             if(!(entity instanceof Player)) {
                 event.setAmount((int) (event.getAmount() * CommonConfig.bloodknightVampireBonusBloodMult.get().get(rank).floatValue()));
                 event.setSaturationModifier(event.getSaturation() * CommonConfig.bloodknightVampireBonusSaturationMult.get().get(rank).floatValue());
+            }
+            if(drinker.asEntity() instanceof ServerPlayer serverPlayer) {
+                BloodlinesAdvancementTriggers.DRINK_VAMPIRE_BLOOD.get().trigger(serverPlayer);
             }
 
         }
